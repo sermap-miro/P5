@@ -212,7 +212,7 @@ def AiCWebserv(port):
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 15:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 20:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
-                            conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript\n\n")
+                            conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n")
                             #Source: https://content-security-policy.com/
                             # https://stackoverflow.com/questions/9664282/difference-between-application-x-javascript-and-text-javascript-content-types/9664327
                             # text/javascript is obsolete, and application/x-javascript was experimental (hence the x- prefix) for a transitional period until application/javascript could be standardised.
@@ -228,7 +228,7 @@ def AiCWebserv(port):
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 15:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 20:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/javascript\n\n')
-                            conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript\n\n")
+                            conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n")
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=0, s-maxage=7200, public\nAge: 0\nLast-Modified: Wed, 05 Dec 18 14:12:13 +0000\nExpires: Wed, 05 Dec 18 20:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #print('bootstrap.min.css')
                             CHUNK_SIZE = 512
@@ -243,7 +243,7 @@ def AiCWebserv(port):
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 15:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 20:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/javascript\n\n')
-                            conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript\n\n")
+                            conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n")
                             CHUNK_SIZE = 512
                             with open('assets/js/main.min.js', 'rb') as f:
                                 data = f.read(CHUNK_SIZE)
