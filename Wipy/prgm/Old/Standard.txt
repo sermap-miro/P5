@@ -1,0 +1,10 @@
+#Programme 1 : cycle standard
+#Avance jusqu'à une platine
+A
+#Lève la pelle
+L
+#Recule jusqu'à une platine
+R
+#Baisse la pelle
+B
+#Fin du programme

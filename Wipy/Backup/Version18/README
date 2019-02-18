@@ -1,0 +1,42 @@
+#Version 18:
+-Amélioration de l'application pour la mise à jour du Wipy (problème d'utf-8 entre python 2.7 et 3.x). (Il y a peut etre des problèmes sur les versions précédentes de par ce fait la...)
+
+#Version 17:
+-Ajout du password pour le wifi
+-Modification des liens du site internet pour que ca pointe en local et non en fixant l'adresse ip (dans le cas éventuel ou le wipy viendrait se connecter a un réseau wifi existant)
+
+#Version 16:
+-Bug accès site web avec déconnexion: https://forum.pycom.io/topic/1747/urequests-with-ussl-causes-an-oserror/4
+Fermeture de la socket dans tous les cas => socket.close()
+et gc.collect() pour vider le collecteur python
+
+
+#Version 15:
+-Ajout de l'icone du site web embarqué
+-Ajout de la commande Interrupteur qui permet d'activer ou de désactiver le relais
+-Ajout du temps de fonctionnement et de maintenance sur la page Information
+
+
+#Version 14: version en fonctionnement au Tilleret
+
+
+#Version 9:
+Ajout de nouveau intitulé d'alarme:
+9 : 'Overload_Cap_1_1'
+10 : 'Overload_Cap_1_3'
+
+
+#Version 6:
+#18 Avril
+
+Multitas: 
+	-Le paramètre dans les programmes concernant le nombre de seconde de patinage est désormais le nombre
+	de centaine de milliseconde
+	-Comme Quentin l'a proposé, lorsque le mirobot est en multitas, on défini le temps de platine égal au temps de		patinage passé en paramètre
+
+
+#Version 7:
+#14 Juin
+
+Vérification de l'horloge au démarrage du lopy
+Comptage des heures de fonctionnement

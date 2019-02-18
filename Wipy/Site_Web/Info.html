@@ -1,0 +1,110 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 
+<title>P5</title> 
+  <link rel="icon" href="data:;base64,=">
+  <style type="text/css" id="style">
+  
+  @media screen and (min-device-width:698px) {
+  div#showgrid {
+    width: 698px;
+    margin: auto;
+  }
+}
+
+div.column {
+  border-style: solid;
+  border-width: 0px;
+}
+
+.row {
+  width: 100%;
+  margin: auto;
+vertical-align: middle;
+}
+
+@media (min-device-width: 698px) {
+  .column {
+    width: 200px;
+    height: 77px;
+    display: inline;
+    float: left;
+  }
+}
+
+.column {
+  width: 200px;
+  height: 77px;
+  margin: auto;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+    vertical-align: middle;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.button {
+  display: inline;
+  /*display: inline-block;*/
+  /*display: table-cell;*/
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  vertical-align: middle;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #8e3e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.150px-width{
+ width: 150px;
+}
+
+  </style>
+
+<script language="javascript">
+function Send_Command(cmd){
+	var resp, xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			resp = xmlhttp.responseText;
+			console.log(resp);
+			}
+	}
+	xmlhttp.open("GET","Plan=" + cmd,true); xmlhttp.send()	
+}
+</script> 
+</head> 
+<body> 
+
+
+
+
+<button class="button 150px-width" onclick="location.href='http://192.168.4.1/'">Menu Principal</button>
+
+
+
+<p></p><p></p><p>Etat P5: Inactif</p><p>Etat précédent P5: Avance</p><p>Pions: 0</p><p>Batterie (V): 35.96</p><p>Capteur pion: <font color="#000000">Metal Absent</font></p><p>Capteur capot: <font color="#00ff00">En place</font></p><p>Arrêt Urgence: <font color="#00ff00">Position Normal</font></p><p>Relais: Désactivé</p><p>i Moteur 1: 0.0</p><p>i Moteur 2: 0.0</p><p>Patinage (s): 50</p><p>Temps (Pion) (ms): 200</p><p>Temps (Platine) (ms): 3000</p><p>Temps pelle (s): 30</p><p>Version: 9:14</p><p>Wifi <a href="http://192.168.4.1/Wifi">SSID</a>: P5</p><p></p><p>Version PIC: 9</p><p>Version Wipy: 14
+</p></body></html>

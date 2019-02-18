@@ -1,0 +1,11 @@
+#début du programme
+#Pailleux et multitas
+P 3
+M 20
+L
+# dernière platine
+R 0
+# plot de charge
+R 0
+B
+#fin du programme

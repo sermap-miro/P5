@@ -1,0 +1,8 @@
+#début du programme
+A 0
+M 10
+L
+R 0
+R 0
+B
+#fin du programme

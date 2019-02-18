@@ -1,0 +1,162 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head> 
+<title>P5</title> 
+  <link rel="icon" href="data:;base64,=">
+  <style type="text/css" id="style">
+  
+  @media screen and (min-device-width:698px) {
+  div#showgrid {
+    width: 698px;
+    margin: auto;
+  }
+}
+
+div.column {
+  border-style: solid;
+  border-width: 0px;
+}
+
+.row {
+  width: 100%;
+  margin: auto;
+vertical-align: middle;
+}
+
+@media (min-device-width: 698px) {
+  .column {
+    width: 200px;
+    height: 77px;
+    display: inline;
+    float: left;
+  }
+}
+
+.column {
+  width: 200px;
+  height: 77px;
+  margin: auto;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+    vertical-align: middle;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.button {
+  display: inline;
+  /*display: inline-block;*/
+  /*display: table-cell;*/
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  vertical-align: middle;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #8e3e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.150px-width{
+ width: 150px;
+}
+
+  </style>
+</head> 
+<body> 
+<p>Le réglage de l'heure du P5 peut se réaliser en utilisant un navigateur connecté au P5 par la laison Wi-Fi. Pour ce faire il faut se rendre sur la page:
+<p>http://192.168.4.1/H=12:44 => s'il est midi et 44 min.
+<p>Autre exemple 3 h et 4 min:
+<p>http://192.168.4.1/H=3:4
+<p>http://192.168.4.1/H=03:04
+<p>http://192.168.4.1/H=03:4
+<p>http://192.168.4.1/H=3:04
+<p>Il est possible également de régler l'heure à partir des boutons suivants
+<p>
+<div id="showgrid">
+<div class="row row-centered">
+  <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=0'">0:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=1'">1:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=2'">2:00</button></div>
+  </div>
+</div>
+<div id="showgrid">
+  <div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=3'">3:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=4'">4:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=5'">5:00</button></div>
+  </div>
+</div>
+<div id="showgrid">
+  <div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=6'">6:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=7'">7:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=8'">8:00</button></div>
+  </div>
+</div>
+<div id="showgrid">
+<div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=9'">9:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=10'">10:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=11'">11:00</button></div>
+  </div>
+</div>
+<div id="showgrid">
+<div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=12'">12:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=13'">13:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=14'">14:00</button></div>
+  </div>
+</div>
+<div id="showgrid">
+<div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=15'">15:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=16'">16:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=17'">17:00</button></div>
+  </div>
+</div>
+<div id="showgrid">
+<div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=18'">18:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=19'">19:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=20'">20:00</button></div>
+  </div>
+</div>
+<div id="showgrid">
+<div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=21'">21:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=22'">22:00</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/H=23'">23:00</button></div>
+  </div>
+</div>
+<div id="showgrid">
+<div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/Prgm'">Menu Programme</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/Manu'">Menu Manuel</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1'">Menu Principal</button></div>
+  </div>
+</div>
+</body>
+</html>
