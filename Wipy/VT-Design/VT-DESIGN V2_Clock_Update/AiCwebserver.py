@@ -1045,7 +1045,7 @@ def AiCWebserv(port):
 
                                 try:
                                     #with open('AiCmirobot.htm', 'r') as html:
-
+                    
                                     with open('AiCmirobot_menu_principal_begin.htm', 'r') as html:
                                         #conn.send(html.read())
 
