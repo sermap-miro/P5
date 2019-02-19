@@ -52,6 +52,16 @@ LOGO_HEADER += 'Content-Type: image/png\r\n'
 LOGO_HEADER += '\r\n'
 
 
+ICO_HEADER = 'HTTP/1.0 200 OK\r\n'
+ICO_HEADER += 'Connection: close\r\n'
+ICO_HEADER += 'Cache-Control: max-age=2678400, public\r\n'
+ICO_HEADER += 'Last-Modified: Fri, 1 Jan 2019 23:42:00 GMT\r\n'
+ICO_HEADER += 'ETag: "63a64df551425fcc55e4d42a148795d9f25f89d4"\r\n'
+ICO_HEADER += 'Server: SERMAP\r\n'
+ICO_HEADER += 'Content-Type: image/x-icon\r\n'
+ICO_HEADER += '\r\n'
+
+
 POST_HEADER = 'HTTP/1.0 200 OK\r\n'
 POST_HEADER += 'Connection: close\r\n'
 
@@ -355,6 +365,7 @@ def AiCWebserv(port):
                                     data = f.read(CHUNK_SIZE)
                         elif ibexample > 0 :
                             #print('bootstrap.min.css')
+                            conn.sendall(HTML_HEADER)
                             CHUNK_SIZE = 512
                             with open('example.html', 'rb') as f:
                                 data = f.read(CHUNK_SIZE)
@@ -362,6 +373,7 @@ def AiCWebserv(port):
                                     conn.send(bytes(data))
                                     data = f.read(CHUNK_SIZE)
                         elif ibcalibration > 0 :
+                            conn.sendall(HTML_HEADER)
                             print("Rafraîchissement calibration")
                             try:
                                 with open('AiCmirobot_calibration.htm', 'r') as html:
@@ -380,8 +392,10 @@ def AiCWebserv(port):
                             # print('Val {}  Val'.format(Val))#Mirobot.Commande_List[Val])
                             #Mirobot.Execute_Cmd(Val)
                             Execution_Calibration(Val)
+                            conn.sendall(POST_HEADER)
                             conn.send(Val)
                         elif ibs > 0 :
+                            conn.sendall(HTML_HEADER)
                             conn.send(bytes("<p>", "ascii"))
                             #conn.send(bytes("Page Web P5: {}".format(request), "ascii"))
                             conn.send(bytes('{} {} {} {} {}'.format(m.PIC_ASK('S'), m.version, ARRET_URGENCE(), m.batterie(), m.wifi_name), "ascii"))
@@ -391,6 +405,7 @@ def AiCWebserv(port):
                             #adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > screen.png
                             #print('Favicon')
                             CHUNK_SIZE = 512
+                            conn.sendall(ICO_HEADER)
                             with open('favicon.ico', 'rb') as ico:
                                 data = ico.read(CHUNK_SIZE)
                                 while data:
@@ -413,8 +428,8 @@ def AiCWebserv(port):
                             # print('Val {}  Val'.format(Val))#Mirobot.Commande_List[Val])
                             # #Mirobot.Execute_Cmd(Val)
                             # Execution_Programme(Val)
-
-                            conn.send(bytes('<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />', "ascii"))
+                            conn.sendall(HTML_HEADER)
+                            #conn.send(bytes('<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />', "ascii"))
                             try:
                                 _h = int(Val)
                                 conn.send(bytes("<p>", "ascii"))
@@ -450,7 +465,7 @@ def AiCWebserv(port):
                         elif ibe > 0 or ibi > 0:
                             # _CONVERSION_FACTOR_CAN_2_AMPERE = 5
                             #conn.send(bytes('<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />', "ascii"))
-
+                            conn.sendall(HTML_HEADER)
                             try:
                                 with open('AiCmirobot_header.htm', 'r') as html:
                                     #conn.send(html.read())
@@ -612,6 +627,7 @@ def AiCWebserv(port):
                             #Mirobot.Execute_Cmd(Val)
                             Commande_Manuel(Val)
                             conn.sendall(POST_HEADER)
+                            #conn.sendall(HTML_HEADER)
                             conn.send(Val)
                         elif ibvp > 0 :
                             ie = request.find(' ', ibvp)
@@ -622,6 +638,8 @@ def AiCWebserv(port):
                             # print('Val {}  Val'.format(Val))#Mirobot.Commande_List[Val])
                             #Mirobot.Execute_Cmd(Val)
                             Execution_Programme(Val)
+
+                            conn.sendall(POST_HEADER)
                             conn.send(Val)
                         elif ibp > 0 :
 
@@ -635,6 +653,7 @@ def AiCWebserv(port):
                             except:
                                 print("Envoi AiCmirobot_p.htm Failed!")
                         elif ib3 > 0 :
+                            conn.sendall(HTML_HEADER)
                             # if request[0:4]=='POST':
                             #     print("POST Ok")
                             # else:
@@ -686,7 +705,7 @@ def AiCWebserv(port):
                             # else:
                             #     print("GET ABSENT = > POST? = {}".format(request[0:2]))
 
-
+                            conn.sendall(HTML_HEADER)
                             try:
                                 with open('AiCmirobot_header.htm', 'r') as html:
                                     #conn.send(html.read())
@@ -865,7 +884,7 @@ def AiCWebserv(port):
 
 
                             #print("GET Ok")
-
+                            conn.sendall(HTML_HEADER)
                             try:
                                 with open('AiCmirobot_header.htm', 'r') as html:
                                     #conn.send(html.read())
@@ -947,7 +966,7 @@ def AiCWebserv(port):
                         elif ibf > 0 :
                             _wifi=0
                             print("Rafraîchissement f")
-
+                            conn.sendall(HTML_HEADER)
                             if request[0:3]!='GET':
                                 #m.request = request
                                 #print('request = {}'.format(request))
