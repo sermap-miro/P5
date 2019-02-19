@@ -16,24 +16,44 @@ from wifi import wlan
 from gc import collect
 
 
-JAVASCRIPT_HEADER = 'HTTP/1.0 200 OK\n'
-JAVASCRIPT_HEADER += 'Connection: close\n'
-JAVASCRIPT_HEADER += 'Cache-Control: max-age=2678400, public\n'
-JAVASCRIPT_HEADER += 'Server: SERMAP\n'
-JAVASCRIPT_HEADER += "Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\n"
-JAVASCRIPT_HEADER += 'Content-Type: application/javascript; charset=utf-8\n\n'
+HTML_HEADER = 'HTTP/1.0 200 OK\r\n'
+HTML_HEADER += 'Connection: close\r\n'
+HTML_HEADER += 'Last-Modified: Fri, 1 Jan 2019 23:42:00 GMT\r\n'
+HTML_HEADER += 'ETag: "03a64df551425fcc55e4d42a148795d9f25f89d4"\r\n'
+HTML_HEADER += '\r\n'
 
-CSS_HEADER = 'HTTP/1.0 200 OK\n'
-CSS_HEADER += 'Connection: close\n'
-CSS_HEADER += 'Cache-Control: max-age=2678400, public\n'
-CSS_HEADER += 'Server: SERMAP\n'
-CSS_HEADER += 'Content-Type: text/css\n\n'
 
-LOGO_HEADER = 'HTTP/1.0 200 OK\n'
-LOGO_HEADER += 'Connection: close\n'
-LOGO_HEADER += 'Cache-Control: max-age=2678400, public\n'
-LOGO_HEADER += 'Server: SERMAP\n'
-LOGO_HEADER += 'Content-Type: image/png\n\n'
+JAVASCRIPT_HEADER = 'HTTP/1.0 200 OK\r\n'
+JAVASCRIPT_HEADER += 'Connection: close\r\n'
+JAVASCRIPT_HEADER += 'Cache-Control: max-age=2678400, public\r\n'
+JAVASCRIPT_HEADER += 'Last-Modified: Fri, 1 Jan 2019 23:42:00 GMT\r\n'
+JAVASCRIPT_HEADER += 'ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"\r\n'
+JAVASCRIPT_HEADER += 'Server: SERMAP\r\n'
+JAVASCRIPT_HEADER += "Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\r\n"
+JAVASCRIPT_HEADER += 'Content-Type: application/javascript; charset=utf-8\r\n'
+JAVASCRIPT_HEADER += '\r\n'
+
+CSS_HEADER = 'HTTP/1.0 200 OK\r\n'
+CSS_HEADER += 'Connection: close\r\n'
+CSS_HEADER += 'Cache-Control: max-age=2678400, public\r\n'
+CSS_HEADER += 'Last-Modified: Fri, 1 Jan 2019 23:42:00 GMT\r\n'
+CSS_HEADER += 'ETag: "43a64df551425fcc55e4d42a148795d9f25f89d4"\r\n'
+CSS_HEADER += 'Server: SERMAP\r\n'
+CSS_HEADER += 'Content-Type: text/css\r\n'
+CSS_HEADER += '\r\n'
+
+LOGO_HEADER = 'HTTP/1.0 200 OK\r\n'
+LOGO_HEADER += 'Connection: close\r\n'
+LOGO_HEADER += 'Cache-Control: max-age=2678400, public\r\n'
+LOGO_HEADER += 'Last-Modified: Fri, 1 Jan 2019 23:42:00 GMT\r\n'
+LOGO_HEADER += 'ETag: "53a64df551425fcc55e4d42a148795d9f25f89d4"\r\n'
+LOGO_HEADER += 'Server: SERMAP\r\n'
+LOGO_HEADER += 'Content-Type: image/png\r\n'
+LOGO_HEADER += '\r\n'
+
+
+POST_HEADER = 'HTTP/1.0 200 OK\r\n'
+POST_HEADER += 'Connection: close\r\n'
 
 
 CONTENT = b"""\
@@ -207,6 +227,8 @@ def AiCWebserv(port):
                         ibmain_js = requete.find('main.min.js')
                         ibmiro_logo = requete.find('logo.png')
                         ibexample = requete.find('example.html')
+                        ibtesthtml = requete.find('test.html')
+                        ibtestjs = requete.find('test.js')
                         if ibexit > 0:
                             conn.send(bytes("P5 Web Access Closed", "ascii"))
                             Tourne = 0
@@ -298,6 +320,22 @@ def AiCWebserv(port):
                             conn.sendall(JAVASCRIPT_HEADER)
                             CHUNK_SIZE = 512
                             with open('assets/js/main.min.js', 'rb') as f:
+                                data = f.read(CHUNK_SIZE)
+                                while data:
+                                    conn.send(bytes(data))
+                                    data = f.read(CHUNK_SIZE)
+                        elif ibtestjs > 0 :
+                            conn.sendall(JAVASCRIPT_HEADER)
+                            CHUNK_SIZE = 512
+                            with open('test.js', 'rb') as f:
+                                data = f.read(CHUNK_SIZE)
+                                while data:
+                                    conn.send(bytes(data))
+                                    data = f.read(CHUNK_SIZE)
+                        elif ibtesthtml > 0 :
+                            conn.sendall(HTML_HEADER)
+                            CHUNK_SIZE = 512
+                            with open('test.html', 'rb') as f:
                                 data = f.read(CHUNK_SIZE)
                                 while data:
                                     conn.send(bytes(data))
@@ -573,6 +611,7 @@ def AiCWebserv(port):
                             #m.affiche('Val={}'.format(Val))#Mirobot.Commande_List[Val])
                             #Mirobot.Execute_Cmd(Val)
                             Commande_Manuel(Val)
+                            conn.sendall(POST_HEADER)
                             conn.send(Val)
                         elif ibvp > 0 :
                             ie = request.find(' ', ibvp)
@@ -585,6 +624,8 @@ def AiCWebserv(port):
                             Execution_Programme(Val)
                             conn.send(Val)
                         elif ibp > 0 :
+
+                            conn.sendall(HTML_HEADER)
                             #print("Rafraîchissement p")
                             try:
                                 with open('AiCmirobot_p.htm', 'r') as html:
@@ -716,6 +757,7 @@ def AiCWebserv(port):
 
                             #print("GET Ok")
 
+                            conn.sendall(HTML_HEADER)
                             try:
                                 with open('AiCmirobot_header.htm', 'r') as html:
                                     #conn.send(html.read())
@@ -880,6 +922,8 @@ def AiCWebserv(port):
 
                         elif ibm > 0 :
                             print("Rafraîchissement m")
+
+                            conn.sendall(HTML_HEADER)
                             try:
                                 with open('AiCmirobot.htm', 'r') as html:
                                     #conn.send(html.read())
@@ -1050,6 +1094,7 @@ def AiCWebserv(port):
 
                             #print("GET Ok")
 
+                            conn.sendall(HTML_HEADER)
                             try:
                                 with open('AiCmirobot_header.htm', 'r') as html:
                                     #conn.send(html.read())
@@ -1101,7 +1146,7 @@ def AiCWebserv(port):
 
                                     with open('AiCmirobot_menu_principal_begin.htm', 'r') as html:
                                         #conn.send(html.read())
-
+                                        conn.sendall(HTML_HEADER)
                                         for line in html.readlines():
 
                                             # Pour afficher l'heure de l'appareil
