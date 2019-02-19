@@ -5,14 +5,14 @@
 
 read -n1 -r -p "Reset Complet du Wipy ? Press space to continue..." key
 #Reset Complet: 
-pycom-fwtool-cli -v -p COM6 erase_all
+pycom-fwtool-cli -v -p $1 erase_all
 
 
 
 #echo "Install du système du Wipy"
 read -n1 -r -p "Install du système du Wipy? Press space to continue..." key
 #Update
-pycom-fwtool-cli --port COM6 --verbose  flash -t WiPy-1.18.1.r1.tar.gz
+pycom-fwtool-cli --port $1 --verbose  flash -t WiPy-1.18.1.r1.tar.gz
 
 
 
@@ -22,7 +22,7 @@ pycom-fwtool-cli --port COM6 --verbose  flash -t WiPy-1.18.1.r1.tar.gz
 #echo "Installation du programme P5 pour le Wipy"
 read -n1 -r -p "Installation du programme P5 pour le Wipy? Press space to continue..." key
 #Restore
-pycom-fwtool-cli --port COM6 --verbose copy -p fs1 -r -f Version_31.bin
+pycom-fwtool-cli --port $1 --verbose copy -p fs1 -r -f Version_31.bin
 
 
 
