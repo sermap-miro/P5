@@ -15,6 +15,51 @@ from wifi import wlan
 
 from gc import collect
 
+
+JAVASCRIPT_HEADER = 'HTTP/1.1 200 OK\n'
+JAVASCRIPT_HEADER += 'Connection: close\n'
+JAVASCRIPT_HEADER += 'Cache-Control: max-age=2678400, public\n'
+JAVASCRIPT_HEADER += 'Server: SERMAP\n'
+JAVASCRIPT_HEADER += "Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\n"
+JAVASCRIPT_HEADER += 'Content-Type: application/javascript; charset=utf-8\n\n'
+
+CSS_HEADER = 'HTTP/1.1 200 OK\n'
+CSS_HEADER += 'Connection: close\n'
+CSS_HEADER += 'Cache-Control: max-age=2678400, public\n'
+CSS_HEADER += 'Server: SERMAP\n'
+CSS_HEADER += 'Content-Type: text/css\n\n'
+
+LOGO_HEADER = 'HTTP/1.1 200 OK\n'
+LOGO_HEADER += 'Connection: close\n'
+LOGO_HEADER += 'Cache-Control: max-age=2678400, public\n'
+LOGO_HEADER += 'Server: SERMAP\n'
+LOGO_HEADER += 'Content-Type: image/png\n\n'
+
+
+
+
+# JAVASCRIPT_HEADER = "HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n"
+# JAVASCRIPT_HEADER2 = "HTTP/1.1 200 OK\n"\
+#                     "Connection: close\n"\
+#                     "Cache-Control: max-age=2678400, public\n"\
+#                     "Server: SERMAP\n"\
+#                     "Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\n"\
+#                     "Content-Type: application/javascript; charset=utf-8\n\n"
+# LOGO_HEADER = 'HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: image/png\n\n'
+# CSS_HEADER = 'HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n'
+#
+# JAVASCRIPT_HEADER3 = 'HTTP/1.1 200 OK\n'\
+#                     'Connection: close\n'
+#
+# JAVASCRIPT_HEADER4 = '''HTTP/1.1 200 OK
+# Connection: close
+# Cache-Control: max-age=2678400, public
+# Server: SERMAP
+# Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';
+# Content-Type: application/javascript; charset=utf-8
+#
+# '''
+
 def AiCWebserv(port):
     import socket
     #import time
@@ -170,8 +215,8 @@ def AiCWebserv(port):
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=0, s-maxage=7200, public\nAge: 0\nLast-Modified: Wed, 05 Dec 18 14:12:13 +0000\nExpires: Wed, 05 Dec 18 20:12:13 +0000\nServer: SERMAP\nContent-Type: text/css\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 20:12:13 +0000\nServer: SERMAP\nContent-Type: text/css\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nServer: SERMAP\nContent-Type: text/css\n\n') # 2 h
-                            conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n') # 1 mois = 31*24*3600 = 2678400
-
+                            #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n')
+                            conn.sendall(CSS_HEADER)
                             with open('assets/css/bootstrap.min.css', 'rb') as f:
                                 data = f.read(CHUNK_SIZE)
                                 while data:
@@ -184,8 +229,8 @@ def AiCWebserv(port):
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nServer: SERMAP\nContent-Type: text/css\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 15:12:13 +0000\nServer: SERMAP\nContent-Type: text/css\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 20:12:13 +0000\nServer: SERMAP\nContent-Type: text/css\n\n')
-                            conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n')
-
+                            #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n')
+                            conn.sendall(CSS_HEADER)
                             with open('assets/css/miro.css', 'rb') as f:
                                 data = f.read(CHUNK_SIZE)
                                 while data:
@@ -199,8 +244,8 @@ def AiCWebserv(port):
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nServer: SERMAP\nContent-Type: text/css\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 15:12:13 +0000\nServer: SERMAP\nContent-Type: text/css\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 20:12:13 +0000\nServer: SERMAP\nContent-Type: text/css\n\n')
-                            conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n')
-
+                            #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n')
+                            conn.sendall(CSS_HEADER)
                             with open('assets/css/miro.responsive.css', 'rb') as f:
                                 data = f.read(CHUNK_SIZE)
                                 while data:
@@ -212,7 +257,8 @@ def AiCWebserv(port):
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 15:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 20:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
-                            conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n")
+                            #conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n")
+                            conn.sendall(JAVASCRIPT_HEADER)
                             #Source: https://content-security-policy.com/
                             # https://stackoverflow.com/questions/9664282/difference-between-application-x-javascript-and-text-javascript-content-types/9664327
                             # text/javascript is obsolete, and application/x-javascript was experimental (hence the x- prefix) for a transitional period until application/javascript could be standardised.
@@ -228,7 +274,8 @@ def AiCWebserv(port):
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 15:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 20:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/javascript\n\n')
-                            conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n")
+                            #conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n")
+                            conn.sendall(JAVASCRIPT_HEADER)
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=0, s-maxage=7200, public\nAge: 0\nLast-Modified: Wed, 05 Dec 18 14:12:13 +0000\nExpires: Wed, 05 Dec 18 20:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #print('bootstrap.min.css')
                             CHUNK_SIZE = 512
@@ -243,7 +290,8 @@ def AiCWebserv(port):
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 15:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 20:12:13 +0000\nServer: SERMAP\nContent-Type: text/javascript\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/javascript\n\n')
-                            conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n")
+                            #conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n")
+                            conn.sendall(JAVASCRIPT_HEADER)
                             CHUNK_SIZE = 512
                             with open('assets/js/main.min.js', 'rb') as f:
                                 data = f.read(CHUNK_SIZE)
@@ -255,7 +303,8 @@ def AiCWebserv(port):
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nServer: SERMAP\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 15:12:13 +0000\nServer: SERMAP\n\n')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nExpires: Wed, 05 Dec 18 20:12:13 +0000\nServer: SERMAP\n\n')
-                            conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: image/png\n\n')
+                            #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: image/png\n\n')
+                            conn.sendall(LOGO_HEADER)
                             CHUNK_SIZE = 512
                             with open('assets/img/logo.png', 'rb') as f:
                                 data = f.read(CHUNK_SIZE)
@@ -1045,7 +1094,7 @@ def AiCWebserv(port):
 
                                 try:
                                     #with open('AiCmirobot.htm', 'r') as html:
-                    
+
                                     with open('AiCmirobot_menu_principal_begin.htm', 'r') as html:
                                         #conn.send(html.read())
 
