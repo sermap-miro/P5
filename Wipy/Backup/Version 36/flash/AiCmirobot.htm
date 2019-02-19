@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>P5</title>
+
+        <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+
+        <link href="assets/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="assets/css/miro.css" type="text/css" rel="stylesheet">
+        <link href="assets/css/miro.responsive.css" type="text/css" rel="stylesheet">
+
+        <script src="assets/js/jquery-3.3.1.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/main.min.js"></script>
+
+        <style type="text/css">
+            html, body { 
+                cursor: pointer; 
+            }
+        </style>
+
+        <script language="javascript">
+            function Send_Command(cmd){
+                var resp, xmlhttp=new XMLHttpRequest();
+                xmlhttp.onreadystatechange=function() {
+                    if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                        resp = xmlhttp.responseText;
+                        console.log(resp);
+                        }
+                }
+                xmlhttp.open("GET","Val=" + cmd,true); xmlhttp.send()   
+            }
+        </script>
+    </head>
+    
+    <body>
+        <header class="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6 logo">
+                        <img src="assets/img/logo.png">
+                    </div>
+
+                    <div class="col-6 title">
+                        <h1>P5</h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="time">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 text-center">
+                        <p id="now"></p>
+                        <p id="clock"></p>
+                    </div>
+                </div>
+            </div>     
+        </div>
+
+        <main id="main" class="mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="miro-nav">
+                            <li><a class="btn btn-secondary mb-2" href="/">Menu principal</a></li>
+                        </ul>
+
+                        <ul class="miro-nav">
+                            <li><a class="btn btn-primary" onclick="Send_Command(1)">Cycle (Standard)</a></li>
+                            <li><a class="btn btn-primary" onclick="Send_Command(2)">Avant</a></li>
+                            <li><a class="btn btn-primary" onclick="Send_Command(3)">Lever Pelle</a></li>
+                            <li><a class="btn btn-primary" onclick="Send_Command(4)">Sort (Bequille)</a></li>
+                            <li><a class="btn btn-primary" onclick="Send_Command(5)">STOP</a></li>
+                            <li><a class="btn btn-primary" onclick="Send_Command(6)">Rentre (Bequille)</a></li>
+                            <li><a class="btn btn-primary" onclick="Send_Command(7)">Cycle (Retour)</a></li>
+                            <li><a class="btn btn-primary" onclick="Send_Command(8)">Arrière</a></li>
+                            <li><a class="btn btn-primary" onclick="Send_Command(9)">Baisser Pelle</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p class="mb-1">Copyright © <a href="http://miro.fr" target="_blank">Miro</a> 2018</p>
+            <p>Réalisation <a href="http://vt-design.com" target="_blank">vt-design</a></p>   
+        </footer>
+    </body>
+</html>
