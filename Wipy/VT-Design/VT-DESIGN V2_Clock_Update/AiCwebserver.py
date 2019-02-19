@@ -16,27 +16,31 @@ from wifi import wlan
 from gc import collect
 
 
-JAVASCRIPT_HEADER = 'HTTP/1.1 200 OK\n'
+JAVASCRIPT_HEADER = 'HTTP/1.0 200 OK\n'
 JAVASCRIPT_HEADER += 'Connection: close\n'
 JAVASCRIPT_HEADER += 'Cache-Control: max-age=2678400, public\n'
 JAVASCRIPT_HEADER += 'Server: SERMAP\n'
 JAVASCRIPT_HEADER += "Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\n"
 JAVASCRIPT_HEADER += 'Content-Type: application/javascript; charset=utf-8\n\n'
 
-CSS_HEADER = 'HTTP/1.1 200 OK\n'
+CSS_HEADER = 'HTTP/1.0 200 OK\n'
 CSS_HEADER += 'Connection: close\n'
 CSS_HEADER += 'Cache-Control: max-age=2678400, public\n'
 CSS_HEADER += 'Server: SERMAP\n'
 CSS_HEADER += 'Content-Type: text/css\n\n'
 
-LOGO_HEADER = 'HTTP/1.1 200 OK\n'
+LOGO_HEADER = 'HTTP/1.0 200 OK\n'
 LOGO_HEADER += 'Connection: close\n'
 LOGO_HEADER += 'Cache-Control: max-age=2678400, public\n'
 LOGO_HEADER += 'Server: SERMAP\n'
 LOGO_HEADER += 'Content-Type: image/png\n\n'
 
 
+CONTENT = b"""\
+HTTP/1.0 200 OK
 
+Hello #%d from MicroPython!
+"""
 
 # JAVASCRIPT_HEADER = "HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n"
 # JAVASCRIPT_HEADER2 = "HTTP/1.1 200 OK\n"\
