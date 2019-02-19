@@ -84,29 +84,33 @@ vertical-align: middle;
 }
 
   </style>
+<script language="javascript">
+function Send_Command(cmd){
+	var resp, xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			resp = xmlhttp.responseText;
+			console.log(resp);
+			}
+	}
+	xmlhttp.open("GET","Valc=" + cmd,true); xmlhttp.send()	
+}
+</script> 
 </head> 
-<body>
-
-
-
-
-
-
-
-<p> 
+<body> 
 <div id="showgrid">
   <div class="row row-centered">
-    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/Prgm'">Programmes</button></div>
-    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/Manu'">Manuel</button></div>
-    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/Info'">Informations</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="Send_Command(1)">10 V</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="Send_Command(2)">30 V</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="Send_Command(3)">Bip</button></div>
   </div>
-</div>
-<p>
-<div id="showgrid">
   <div class="row row-centered">
-    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/Clock'">Horloge</button></div>
-    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/Plan'">Planning</button></div>
-    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/Edit'">Editions</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="Send_Command(4)">LED ON</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="Send_Command(5)">LED OFF</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="Send_Command(6)">00:00</button></div>
+  </div>
+  <div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='/'">Menu Principal</button></div>
   </div>
 </div>
 </body>

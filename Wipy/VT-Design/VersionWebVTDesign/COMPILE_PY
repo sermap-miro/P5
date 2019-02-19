@@ -1,0 +1,28 @@
+#!/bin/bash
+#mpy-cross -mcache-lookup-bc AiCwebserver_CMD.py
+#mpy-cross -mcache-lookup-bc AiCwebserver.py
+#mpy-cross -mcache-lookup-bc commande.py
+#mpy-cross -mcache-lookup-bc config.py
+#mpy-cross -mcache-lookup-bc es.py
+#mpy-cross -mcache-lookup-bc main.py
+#mpy-cross -mcache-lookup-bc mirobot2.py
+#mpy-cross -mcache-lookup-bc pion.py
+#mpy-cross -mcache-lookup-bc planning.py
+#mpy-cross -mcache-lookup-bc wifi.py
+
+#mpy-cross -mcache-lookup-bc P4.py
+
+
+mpy-cross AiCwebserver_CMD.py
+mpy-cross AiCwebserver.py
+mpy-cross commande.py
+mpy-cross config.py
+mpy-cross es.py
+#mpy-cross main.py
+mpy-cross mirobot2.py
+mpy-cross P4.py
+mpy-cross pion.py
+mpy-cross planning.py
+mpy-cross wifi.py
+
+

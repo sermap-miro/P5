@@ -236,9 +236,9 @@ def AiCWebserv(port):
                         ibbootstrap_jquery_js = requete.find('jquery-3.3.1.min.js')
                         ibmain_js = requete.find('main.min.js')
                         ibmiro_logo = requete.find('logo.png')
-                        ibexample = requete.find('example.html')
-                        ibtesthtml = requete.find('test.html')
-                        ibtestjs = requete.find('test.js')
+                        #ibexample = requete.find('example.html')
+                        # ibtesthtml = requete.find('test.html')
+                        # ibtestjs = requete.find('test.js')
                         if ibexit > 0:
                             conn.send(bytes("P5 Web Access Closed", "ascii"))
                             Tourne = 0
@@ -334,22 +334,22 @@ def AiCWebserv(port):
                                 while data:
                                     conn.send(bytes(data))
                                     data = f.read(CHUNK_SIZE)
-                        elif ibtestjs > 0 :
-                            conn.sendall(JAVASCRIPT_HEADER)
-                            CHUNK_SIZE = 512
-                            with open('test.js', 'rb') as f:
-                                data = f.read(CHUNK_SIZE)
-                                while data:
-                                    conn.send(bytes(data))
-                                    data = f.read(CHUNK_SIZE)
-                        elif ibtesthtml > 0 :
-                            conn.sendall(HTML_HEADER)
-                            CHUNK_SIZE = 512
-                            with open('test.html', 'rb') as f:
-                                data = f.read(CHUNK_SIZE)
-                                while data:
-                                    conn.send(bytes(data))
-                                    data = f.read(CHUNK_SIZE)
+                        # elif ibtestjs > 0 :
+                        #     conn.sendall(JAVASCRIPT_HEADER)
+                        #     CHUNK_SIZE = 512
+                        #     with open('test.js', 'rb') as f:
+                        #         data = f.read(CHUNK_SIZE)
+                        #         while data:
+                        #             conn.send(bytes(data))
+                        #             data = f.read(CHUNK_SIZE)
+                        # elif ibtesthtml > 0 :
+                        #     conn.sendall(HTML_HEADER)
+                        #     CHUNK_SIZE = 512
+                        #     with open('test.html', 'rb') as f:
+                        #         data = f.read(CHUNK_SIZE)
+                        #         while data:
+                        #             conn.send(bytes(data))
+                        #             data = f.read(CHUNK_SIZE)
                         elif ibmiro_logo > 0 :
                             #print('bootstrap.min.css')
                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=7200, public\nServer: SERMAP\n\n')
@@ -363,15 +363,15 @@ def AiCWebserv(port):
                                 while data:
                                     conn.send(bytes(data))
                                     data = f.read(CHUNK_SIZE)
-                        elif ibexample > 0 :
-                            #print('bootstrap.min.css')
-                            conn.sendall(HTML_HEADER)
-                            CHUNK_SIZE = 512
-                            with open('example.html', 'rb') as f:
-                                data = f.read(CHUNK_SIZE)
-                                while data:
-                                    conn.send(bytes(data))
-                                    data = f.read(CHUNK_SIZE)
+                        # elif ibexample > 0 :
+                        #     #print('bootstrap.min.css')
+                        #     conn.sendall(HTML_HEADER)
+                        #     CHUNK_SIZE = 512
+                        #     with open('example.html', 'rb') as f:
+                        #         data = f.read(CHUNK_SIZE)
+                        #         while data:
+                        #             conn.send(bytes(data))
+                        #             data = f.read(CHUNK_SIZE)
                         elif ibcalibration > 0 :
                             conn.sendall(HTML_HEADER)
                             print("Rafraîchissement calibration")
