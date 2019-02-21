@@ -1,0 +1,23 @@
+            <script language="javascript">
+                function Send_Command(cmd){
+                	var resp, xmlhttp=new XMLHttpRequest();
+                	xmlhttp.onreadystatechange=function() {
+                		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                			resp = xmlhttp.responseText;
+                			console.log(resp);
+                			}
+                	}
+                	xmlhttp.open("GET","Plan=" + cmd,true); xmlhttp.send()	
+                }
+            </script> 
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="miro-nav">
+                            <li><a class="btn btn-secondary mb-2" href="/">Menu principal</a></li>
+                        </ul>
+
+                        <form action="/Edit" method="post">
+                            <button type="submit" name = 's1' class="btn btn-primary mb-2" value="R">Voir</button>
+                            <button type="submit" name = 's1' class="btn btn-primary mb-3" value="W">Sauvegarder</button>
