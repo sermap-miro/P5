@@ -1,3 +1,9 @@
+Le numéro de version doit bien être mis à jour dans le fichier mirobot2.py pour correspondre à la version affiché:
+self.version = x
+
+#Version 37:
+-équivalent à version 36
+
 #Version 36:
 -modification du fichier html correspondant à l'index du site web, pour utiliser un seul bouton de mise à jour de l'horloge
 
