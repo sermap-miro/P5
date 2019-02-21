@@ -1,7 +1,0 @@
-#début du programme
-#Pailleux et multitas
-P 1
-L
-R 0
-B
-#fin du programme
