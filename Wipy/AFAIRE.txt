@@ -10,3 +10,7 @@ TypeError: object of type 'NoneType' has no len()
 
 >>> 
 
+
+-Sécurité capot à proximité d'une platine => déphasé dans son cycle
+-programme de retour en fonction de sa position dans l'installation
+

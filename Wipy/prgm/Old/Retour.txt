@@ -1,8 +1,0 @@
-#Programme Retour
-#Lève la pelle
-L
-#Recule jusqu'à une platine
-R
-#Baisse la pelle
-B
-#Fin du programme

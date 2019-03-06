@@ -1,4 +1,0 @@
-/usr/bin/atom : ligne 130 :  6889 Erreur de segmentation  nohup "$ATOM_PATH" --executed-from="$(pwd)" --pid=$$ "$@" > "$ATOM_HOME/nohup.out" 2>&1
-Gtk-Message: Failed to load module "canberra-gtk-module"
-Failed to get crash dump id.
-Report Id: 
