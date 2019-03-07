@@ -1,0 +1,220 @@
+18,96d17
+< 
+< HTML_HEADER = 'HTTP/1.0 200 OK\r\n'
+< HTML_HEADER += 'Connection: close\r\n'
+< HTML_HEADER += 'Last-Modified: Fri, 1 Jan 2019 23:42:00 GMT\r\n'
+< HTML_HEADER += 'ETag: "03a64df551425fcc55e4d42a148795d9f25f89d4"\r\n'
+< HTML_HEADER += '\r\n'
+< 
+< 
+< JAVASCRIPT_HEADER = 'HTTP/1.0 200 OK\r\n'
+< JAVASCRIPT_HEADER += 'Connection: close\r\n'
+< JAVASCRIPT_HEADER += 'Cache-Control: max-age=2678400, public\r\n'
+< JAVASCRIPT_HEADER += 'Last-Modified: Fri, 1 Jan 2019 23:42:00 GMT\r\n'
+< JAVASCRIPT_HEADER += 'ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"\r\n'
+< JAVASCRIPT_HEADER += 'Server: SERMAP\r\n'
+< JAVASCRIPT_HEADER += "Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\r\n"
+< JAVASCRIPT_HEADER += 'Content-Type: application/javascript; charset=utf-8\r\n'
+< JAVASCRIPT_HEADER += '\r\n'
+< 
+< CSS_HEADER = 'HTTP/1.0 200 OK\r\n'
+< CSS_HEADER += 'Connection: close\r\n'
+< CSS_HEADER += 'Cache-Control: max-age=2678400, public\r\n'
+< CSS_HEADER += 'Last-Modified: Fri, 1 Jan 2019 23:42:00 GMT\r\n'
+< CSS_HEADER += 'ETag: "43a64df551425fcc55e4d42a148795d9f25f89d4"\r\n'
+< CSS_HEADER += 'Server: SERMAP\r\n'
+< CSS_HEADER += 'Content-Type: text/css\r\n'
+< CSS_HEADER += '\r\n'
+< 
+< LOGO_HEADER = 'HTTP/1.0 200 OK\r\n'
+< LOGO_HEADER += 'Connection: close\r\n'
+< LOGO_HEADER += 'Cache-Control: max-age=2678400, public\r\n'
+< LOGO_HEADER += 'Last-Modified: Fri, 1 Jan 2019 23:42:00 GMT\r\n'
+< LOGO_HEADER += 'ETag: "53a64df551425fcc55e4d42a148795d9f25f89d4"\r\n'
+< LOGO_HEADER += 'Server: SERMAP\r\n'
+< LOGO_HEADER += 'Content-Type: image/png\r\n'
+< LOGO_HEADER += '\r\n'
+< 
+< 
+< ICO_HEADER = 'HTTP/1.0 200 OK\r\n'
+< ICO_HEADER += 'Connection: close\r\n'
+< ICO_HEADER += 'Cache-Control: max-age=2678400, public\r\n'
+< ICO_HEADER += 'Last-Modified: Fri, 1 Jan 2019 23:42:00 GMT\r\n'
+< ICO_HEADER += 'ETag: "63a64df551425fcc55e4d42a148795d9f25f89d4"\r\n'
+< ICO_HEADER += 'Server: SERMAP\r\n'
+< ICO_HEADER += 'Content-Type: image/x-icon\r\n'
+< ICO_HEADER += '\r\n'
+< 
+< 
+< POST_HEADER = 'HTTP/1.0 200 OK\r\n'
+< POST_HEADER += 'Connection: close\r\n'
+< 
+< 
+< CONTENT = b"""\
+< HTTP/1.0 200 OK
+< 
+< Hello #%d from MicroPython!
+< """
+< 
+< # JAVASCRIPT_HEADER = "HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n"
+< # JAVASCRIPT_HEADER2 = "HTTP/1.1 200 OK\n"\
+< #                     "Connection: close\n"\
+< #                     "Cache-Control: max-age=2678400, public\n"\
+< #                     "Server: SERMAP\n"\
+< #                     "Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\n"\
+< #                     "Content-Type: application/javascript; charset=utf-8\n\n"
+< # LOGO_HEADER = 'HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: image/png\n\n'
+< # CSS_HEADER = 'HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n'
+< #
+< # JAVASCRIPT_HEADER3 = 'HTTP/1.1 200 OK\n'\
+< #                     'Connection: close\n'
+< #
+< # JAVASCRIPT_HEADER4 = '''HTTP/1.1 200 OK
+< # Connection: close
+< # Cache-Control: max-age=2678400, public
+< # Server: SERMAP
+< # Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';
+< # Content-Type: application/javascript; charset=utf-8
+< #
+< # '''
+< 
+239,241c160
+<                         #ibexample = requete.find('example.html')
+<                         # ibtesthtml = requete.find('test.html')
+<                         # ibtestjs = requete.find('test.js')
+---
+>                         ibexample = requete.find('example.html')
+254,255c173,174
+<                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n')
+<                             conn.sendall(CSS_HEADER)
+---
+>                             conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n') # 1 mois = 31*24*3600 = 2678400
+> 
+268,269c187,188
+<                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n')
+<                             conn.sendall(CSS_HEADER)
+---
+>                             conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n')
+> 
+283,284c202,203
+<                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n')
+<                             conn.sendall(CSS_HEADER)
+---
+>                             conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: text/css\n\n')
+> 
+296,297c215
+<                             #conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n")
+<                             conn.sendall(JAVASCRIPT_HEADER)
+---
+>                             conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript\n\n")
+313,314c231
+<                             #conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n")
+<                             conn.sendall(JAVASCRIPT_HEADER)
+---
+>                             conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript\n\n")
+329,330c246
+<                             #conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript; charset=utf-8\n\n")
+<                             conn.sendall(JAVASCRIPT_HEADER)
+---
+>                             conn.sendall("HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';\nContent-Type: application/javascript\n\n")
+337,352d252
+<                         # elif ibtestjs > 0 :
+<                         #     conn.sendall(JAVASCRIPT_HEADER)
+<                         #     CHUNK_SIZE = 512
+<                         #     with open('test.js', 'rb') as f:
+<                         #         data = f.read(CHUNK_SIZE)
+<                         #         while data:
+<                         #             conn.send(bytes(data))
+<                         #             data = f.read(CHUNK_SIZE)
+<                         # elif ibtesthtml > 0 :
+<                         #     conn.sendall(HTML_HEADER)
+<                         #     CHUNK_SIZE = 512
+<                         #     with open('test.html', 'rb') as f:
+<                         #         data = f.read(CHUNK_SIZE)
+<                         #         while data:
+<                         #             conn.send(bytes(data))
+<                         #             data = f.read(CHUNK_SIZE)
+358,359c258
+<                             #conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: image/png\n\n')
+<                             conn.sendall(LOGO_HEADER)
+---
+>                             conn.sendall('HTTP/1.1 200 OK\nConnection: close\nCache-Control: max-age=2678400, public\nServer: SERMAP\nContent-Type: image/png\n\n')
+366,374c265,272
+<                         # elif ibexample > 0 :
+<                         #     #print('bootstrap.min.css')
+<                         #     conn.sendall(HTML_HEADER)
+<                         #     CHUNK_SIZE = 512
+<                         #     with open('example.html', 'rb') as f:
+<                         #         data = f.read(CHUNK_SIZE)
+<                         #         while data:
+<                         #             conn.send(bytes(data))
+<                         #             data = f.read(CHUNK_SIZE)
+---
+>                         elif ibexample > 0 :
+>                             #print('bootstrap.min.css')
+>                             CHUNK_SIZE = 512
+>                             with open('example.html', 'rb') as f:
+>                                 data = f.read(CHUNK_SIZE)
+>                                 while data:
+>                                     conn.send(bytes(data))
+>                                     data = f.read(CHUNK_SIZE)
+376d273
+<                             conn.sendall(HTML_HEADER)
+395d291
+<                             conn.sendall(POST_HEADER)
+398d293
+<                             conn.sendall(HTML_HEADER)
+408d302
+<                             conn.sendall(ICO_HEADER)
+431,432c325,326
+<                             conn.sendall(HTML_HEADER)
+<                             #conn.send(bytes('<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />', "ascii"))
+---
+> 
+>                             conn.send(bytes('<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />', "ascii"))
+468c362
+<                             conn.sendall(HTML_HEADER)
+---
+> 
+629,630d522
+<                             conn.sendall(POST_HEADER)
+<                             #conn.sendall(HTML_HEADER)
+641,642d532
+< 
+<                             conn.sendall(POST_HEADER)
+645,646d534
+< 
+<                             conn.sendall(HTML_HEADER)
+656d543
+<                             conn.sendall(HTML_HEADER)
+708c595
+<                             conn.sendall(HTML_HEADER)
+---
+> 
+779d665
+<                             conn.sendall(HTML_HEADER)
+887c773
+<                             conn.sendall(HTML_HEADER)
+---
+> 
+944,945d829
+< 
+<                             conn.sendall(HTML_HEADER)
+969c853
+<                             conn.sendall(HTML_HEADER)
+---
+> 
+1116d999
+<                             conn.sendall(HTML_HEADER)
+1168c1051
+<                                         conn.sendall(HTML_HEADER)
+---
+> 
+1176,1179c1059,1060
+< 
+<                                                 #https://stackoverflow.com/questions/39182400/current-date-and-current-time-in-hidden-fields
+<                                                 conn.send(bytes('<input type="hidden" id="h1" name="h1" value="{}" min="0" max="23">'.format(localtime()[3]), "ascii"))
+<                                                 conn.send(bytes('<input type="hidden" id="m1" name="m1" value="{}" min="0" max="59">'.format(localtime()[4]), "ascii"))
+---
+>                                                 conn.send(bytes('<input type="hidden" name="h1" value="{}" min="0" max="23">'.format(localtime()[3]), "ascii"))
+>                                                 conn.send(bytes('<input type="hidden" name="m1" value="{}" min="0" max="59">'.format(localtime()[4]), "ascii"))
