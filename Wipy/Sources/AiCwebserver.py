@@ -22,6 +22,11 @@ HTML_HEADER += 'Last-Modified: Fri, 1 Jan 2019 23:42:00 GMT\r\n'
 HTML_HEADER += 'ETag: "03a64df551425fcc55e4d42a148795d9f25f89d4"\r\n'
 HTML_HEADER += '\r\n'
 
+HTML_HEADER_NOCACHE = 'HTTP/1.0 200 OK\r\n'
+HTML_HEADER_NOCACHE += 'Connection: close\r\n'
+#HTML_HEADER_NOCACHE += 'Last-Modified: Fri, 1 Jan 2019 23:42:00 GMT\r\n'
+#HTML_HEADER_NOCACHE += 'ETag: "03a64df551425fcc55e4d42a148795d9f25f89d4"\r\n'
+HTML_HEADER_NOCACHE += '\r\n'
 
 JAVASCRIPT_HEADER = 'HTTP/1.0 200 OK\r\n'
 JAVASCRIPT_HEADER += 'Connection: close\r\n'
@@ -465,7 +470,7 @@ def AiCWebserv(port):
                         elif ibe > 0 or ibi > 0:
                             # _CONVERSION_FACTOR_CAN_2_AMPERE = 5
                             #conn.send(bytes('<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />', "ascii"))
-                            conn.sendall(HTML_HEADER)
+                            conn.sendall(HTML_HEADER_NOCACHE)
                             try:
                                 with open('AiCmirobot_header.htm', 'r') as html:
                                     #conn.send(html.read())
