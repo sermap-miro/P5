@@ -2,7 +2,18 @@
 #curl "https://software.pycom.io/findupgrade?key=wipy.wipy%20with%20esp32&redirect=false&type=all"
 
 #echo "Reset Complet du Wipy"
+if [ -d IpeCMDlog/ ]; then
+echo "Le Dossier IpeCMDlog existe"
+else
+mkdir IPECMDlog
+fi
 
+ipecmd -TPICD3 -M -Y -P18F4431 -F../../../PIC_18f4431/Moteur_P4/dist/default/production/Moteur_P4.production.hex
+mv log.* IpeCMDlog/
+mv MPLABXLog.xml* IpeCMDlog/
+rm -rf IpeCMDlog
+
+ 
 read -n1 -r -p "Reset Complet du Wipy ? Press space to continue..." key
 #Reset Complet: 
 pycom-fwtool-cli -v -p $1 erase_all
@@ -23,6 +34,3 @@ pycom-fwtool-cli --port $1 --verbose  flash -t WiPy-1.18.1.r1.tar.gz
 read -n1 -r -p "Installation du programme P5 pour le Wipy? Press space to continue..." key
 #Restore
 pycom-fwtool-cli --port $1 --verbose copy -p fs1 -r -f Version_37.bin
-
-
-
