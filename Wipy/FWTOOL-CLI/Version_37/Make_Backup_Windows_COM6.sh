@@ -14,14 +14,14 @@ mv MPLABXLog.xml* IpeCMDlog/
 rm -rf IpeCMDlog
 
  
-#read -n1 -r -p "Reset Complet du Wipy ? Press space to continue..." key
+read -n1 -r -p "Reset Complet du Wipy ? Press space to continue..." key
 #Reset Complet: 
 pycom-fwtool-cli --ftdi -v -p  COM6 erase_all
 
 
 
 #echo "Install du système du Wipy"
-#read -n1 -r -p "Install du système du Wipy? Press space to continue..." key
+read -n1 -r -p "Install du système du Wipy? Press space to continue..." key
 #Update
 pycom-fwtool-cli --ftdi --port COM6 --verbose   flash -t WiPy-1.18.1.r1.tar.gz
 
@@ -31,6 +31,6 @@ pycom-fwtool-cli --ftdi --port COM6 --verbose   flash -t WiPy-1.18.1.r1.tar.gz
 #pycom-fwtool-cli --port /dev/ttyUSB0 --verbose  copy -p fs1
 
 #echo "Installation du programme P5 pour le Wipy"
-#read -n1 -r -p "Installation du programme P5 pour le Wipy? Press space to continue..." key
+read -n1 -r -p "Installation du programme P5 pour le Wipy? Press space to continue..." key
 #Restore
 pycom-fwtool-cli --ftdi --port COM6 --verbose copy -p fs1 -r  -f Version_37.bin
