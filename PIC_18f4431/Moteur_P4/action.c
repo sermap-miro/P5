@@ -262,11 +262,11 @@ void Coupe_Moteur(void) {
     TIMER2_Off();
 
 
-#ifdef PROTO_2
-
-    RELAIS = 0; //Relaxation du relais s'il était en cours d'utilisation
-
-#endif
+//#ifdef PROTO_2
+//
+//    RELAIS = 0; //Relaxation du relais s'il était en cours d'utilisation
+//
+//#endif
 
     //PIE3bits.PTIE = 0;
     //PIE1bits.ADIE = 0;
