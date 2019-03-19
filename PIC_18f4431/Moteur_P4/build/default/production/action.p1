@@ -57,6 +57,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SPI_Check_Buffer `(v ~T0 @X0 0 ef ]
 "66 variable_extern.h
 [v _nb_s_patinage `uc ~T0 @X0 0 e ]
+"39
+[v _Mouvement_Startup `uc ~T0 @X0 0 e ]
+"148
+[v _Option_Multitas `b ~T0 @X0 0 e ]
+"73
+[v _nb_100ms_platine_backup `uc ~T0 @X0 0 e ]
 "16 alarme.h
 [v _Alarme_On `(v ~T0 @X0 0 ef1`uc ]
 "92 variable_extern.h
@@ -4238,67 +4244,69 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pion.h: 15: void Detection_Pion_On(void);
 [; ;pion.h: 16: void Detection_Pion_Off(void);
 [; ;pion.h: 17: void Detection_Pion_Init(void);
-"22 action.c
+[; ;action.c: 25: extern unsigned char Mouvement_Startup;
+[; ;action.c: 26: extern bit Option_Multitas;
+"29 action.c
 [v _Etat_Intitule `(uc ~T0 @X0 1 ef1`uc ]
 {
-[; ;action.c: 22: unsigned char Etat_Intitule(unsigned char Etat_Number) {
+[; ;action.c: 29: unsigned char Etat_Intitule(unsigned char Etat_Number) {
 [e :U _Etat_Intitule ]
 [v _Etat_Number `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;action.c: 24: switch (Etat_Number) {
-"24
+[; ;action.c: 31: switch (Etat_Number) {
+"31
 [e $U 351  ]
 {
-[; ;action.c: 26: case 0: return 'I';
-"26
+[; ;action.c: 33: case 0: return 'I';
+"33
 [e :U 352 ]
 [e ) -> -> 73 `ui `uc ]
 [e $UE 349  ]
-[; ;action.c: 27: case 1: return '!';
-"27
+[; ;action.c: 34: case 1: return '!';
+"34
 [e :U 353 ]
 [e ) -> -> 33 `ui `uc ]
 [e $UE 349  ]
-[; ;action.c: 28: case 2: return 'A';
-"28
+[; ;action.c: 35: case 2: return 'A';
+"35
 [e :U 354 ]
 [e ) -> -> 65 `ui `uc ]
 [e $UE 349  ]
-[; ;action.c: 29: case 3: return 'R';
-"29
+[; ;action.c: 36: case 3: return 'R';
+"36
 [e :U 355 ]
 [e ) -> -> 82 `ui `uc ]
 [e $UE 349  ]
-[; ;action.c: 30: case 4: return 'L';
-"30
+[; ;action.c: 37: case 4: return 'L';
+"37
 [e :U 356 ]
 [e ) -> -> 76 `ui `uc ]
 [e $UE 349  ]
-[; ;action.c: 31: case 5: return 'B';
-"31
+[; ;action.c: 38: case 5: return 'B';
+"38
 [e :U 357 ]
 [e ) -> -> 66 `ui `uc ]
 [e $UE 349  ]
-[; ;action.c: 32: case 6: return 'P';
-"32
+[; ;action.c: 39: case 6: return 'P';
+"39
 [e :U 358 ]
 [e ) -> -> 80 `ui `uc ]
 [e $UE 349  ]
-[; ;action.c: 33: case 255: return 'H';
-"33
+[; ;action.c: 40: case 255: return 'H';
+"40
 [e :U 359 ]
 [e ) -> -> 72 `ui `uc ]
 [e $UE 349  ]
-[; ;action.c: 35: default: return ' ';
-"35
+[; ;action.c: 42: default: return ' ';
+"42
 [e :U 360 ]
 [e ) -> -> 32 `ui `uc ]
 [e $UE 349  ]
-"37
+"44
 }
-[; ;action.c: 37: }
+[; ;action.c: 44: }
 [e $U 350  ]
-"24
+"31
 [e :U 351 ]
 [e [\ _Etat_Number , $ -> -> 0 `i `uc 352
  , $ -> -> 1 `i `uc 353
@@ -4309,1052 +4317,1077 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 6 `i `uc 358
  , $ -> -> 255 `i `uc 359
  360 ]
-"37
+"44
 [e :U 350 ]
-[; ;action.c: 40: }
-"40
+[; ;action.c: 47: }
+"47
 [e :UE 349 ]
 }
-"42
+"49
 [v _Etat_Get `(uc ~T0 @X0 1 ef1`uc ]
 {
-[; ;action.c: 42: unsigned char Etat_Get(unsigned char Etat_Indice) {
+[; ;action.c: 49: unsigned char Etat_Get(unsigned char Etat_Indice) {
 [e :U _Etat_Get ]
 [v _Etat_Indice `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;action.c: 55: return Etat_Log[(unsigned char) ((10 - 1 - Etat_Indice + Etat_Precedent_Index) % 10)];
-"55
+[; ;action.c: 62: return Etat_Log[(unsigned char) ((10 - 1 - Etat_Indice + Etat_Precedent_Index) % 10)];
+"62
 [e ) *U + &U _Etat_Log * -> -> % + - - -> 10 `i -> 1 `i -> _Etat_Indice `i -> _Etat_Precedent_Index `i -> 10 `i `uc `ux -> -> # *U &U _Etat_Log `ui `ux ]
 [e $UE 361  ]
-[; ;action.c: 59: }
-"59
+[; ;action.c: 66: }
+"66
 [e :UE 361 ]
 }
-"61
+"68
 [v _Etat_Precedent_Get `(uc ~T0 @X0 1 ef ]
 {
-[; ;action.c: 61: unsigned char Etat_Precedent_Get(void) {
+[; ;action.c: 68: unsigned char Etat_Precedent_Get(void) {
 [e :U _Etat_Precedent_Get ]
 [f ]
-[; ;action.c: 62: if (Etat_Precedent_Index == 0) return Etat_Log[10 - 1];
-"62
+[; ;action.c: 69: if (Etat_Precedent_Index == 0) return Etat_Log[10 - 1];
+"69
 [e $ ! == -> _Etat_Precedent_Index `i -> 0 `i 363  ]
 [e ) *U + &U _Etat_Log * -> -> - -> 10 `i -> 1 `i `ui `ux -> -> # *U &U _Etat_Log `ui `ux ]
 [e $UE 362  ]
 [e $U 364  ]
-"63
+"70
 [e :U 363 ]
-[; ;action.c: 63: else return Etat_Log[(unsigned char) (Etat_Precedent_Index - 1)];
+[; ;action.c: 70: else return Etat_Log[(unsigned char) (Etat_Precedent_Index - 1)];
 [e ) *U + &U _Etat_Log * -> -> - -> _Etat_Precedent_Index `i -> 1 `i `uc `ux -> -> # *U &U _Etat_Log `ui `ux ]
 [e $UE 362  ]
 [e :U 364 ]
-[; ;action.c: 65: }
-"65
+[; ;action.c: 72: }
+"72
 [e :UE 362 ]
 }
-"67
+"74
 [v _Etat_Update `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;action.c: 67: void Etat_Update(unsigned char etat_new_value) {
+[; ;action.c: 74: void Etat_Update(unsigned char etat_new_value) {
 [e :U _Etat_Update ]
 [v _etat_new_value `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;action.c: 68: Etat_Log[Etat_Precedent_Index] = etat_new_value;
-"68
+[; ;action.c: 75: Etat_Log[Etat_Precedent_Index] = etat_new_value;
+"75
 [e = *U + &U _Etat_Log * -> _Etat_Precedent_Index `ux -> -> # *U &U _Etat_Log `ui `ux _etat_new_value ]
-[; ;action.c: 69: Etat = etat_new_value;
-"69
+[; ;action.c: 76: Etat = etat_new_value;
+"76
 [e = _Etat _etat_new_value ]
-[; ;action.c: 70: Etat_Precedent_Index++;
-"70
+[; ;action.c: 77: Etat_Precedent_Index++;
+"77
 [e ++ _Etat_Precedent_Index -> -> 1 `i `uc ]
-[; ;action.c: 71: if (Etat_Precedent_Index == 10) {
-"71
+[; ;action.c: 78: if (Etat_Precedent_Index == 10) {
+"78
 [e $ ! == -> _Etat_Precedent_Index `i -> 10 `i 366  ]
 {
-[; ;action.c: 72: Etat_Precedent_Index = 0;
-"72
+[; ;action.c: 79: Etat_Precedent_Index = 0;
+"79
 [e = _Etat_Precedent_Index -> -> 0 `i `uc ]
-"73
+"80
 }
 [e :U 366 ]
-[; ;action.c: 73: }
-[; ;action.c: 75: }
-"75
+[; ;action.c: 80: }
+[; ;action.c: 82: }
+"82
 [e :UE 365 ]
 }
-"77
+"84
 [v _Init_Moteur_1 `(v ~T0 @X0 1 ef ]
 {
-[; ;action.c: 77: void Init_Moteur_1(void) {
+[; ;action.c: 84: void Init_Moteur_1(void) {
 [e :U _Init_Moteur_1 ]
 [f ]
-[; ;action.c: 84: Capteur_Capot_Compteur_Temps_S = 0;
-"84
-[e = _Capteur_Capot_Compteur_Temps_S -> -> 0 `i `uc ]
-[; ;action.c: 87: nb_s_fonctionnement = 0;
-"87
-[e = _nb_s_fonctionnement -> -> 0 `i `uc ]
-[; ;action.c: 88: nb_Pion = 0;
-"88
-[e = _nb_Pion -> -> 0 `i `uc ]
-[; ;action.c: 89: nb_100ms_Timer_5 = 0;
-"89
-[e = _nb_100ms_Timer_5 -> -> 0 `i `uc ]
-[; ;action.c: 91: TIMER0_On();
+[; ;action.c: 91: Capteur_Capot_Compteur_Temps_S = 0;
 "91
-[e ( _TIMER0_On ..  ]
-[; ;action.c: 94: Compteur_IRQ_I_Moteur_1 = 0;
+[e = _Capteur_Capot_Compteur_Temps_S -> -> 0 `i `uc ]
+[; ;action.c: 94: nb_s_fonctionnement = 0;
 "94
-[e = _Compteur_IRQ_I_Moteur_1 -> -> 0 `i `uc ]
-[; ;action.c: 95: }
+[e = _nb_s_fonctionnement -> -> 0 `i `uc ]
+[; ;action.c: 95: nb_Pion = 0;
 "95
-[e :UE 367 ]
-}
-"97
-[v _Stop_Moteur_1 `(v ~T0 @X0 1 ef ]
-{
-[; ;action.c: 97: void Stop_Moteur_1(void) {
-[e :U _Stop_Moteur_1 ]
-[f ]
-[; ;action.c: 99: TIMER0_Off();
-"99
-[e ( _TIMER0_Off ..  ]
+[e = _nb_Pion -> -> 0 `i `uc ]
+[; ;action.c: 96: nb_100ms_Timer_5 = 0;
+"96
+[e = _nb_100ms_Timer_5 -> -> 0 `i `uc ]
+[; ;action.c: 98: TIMER0_On();
+"98
+[e ( _TIMER0_On ..  ]
+[; ;action.c: 101: Compteur_IRQ_I_Moteur_1 = 0;
+"101
+[e = _Compteur_IRQ_I_Moteur_1 -> -> 0 `i `uc ]
 [; ;action.c: 102: }
 "102
-[e :UE 368 ]
+[e :UE 367 ]
 }
 "104
+[v _Stop_Moteur_1 `(v ~T0 @X0 1 ef ]
+{
+[; ;action.c: 104: void Stop_Moteur_1(void) {
+[e :U _Stop_Moteur_1 ]
+[f ]
+[; ;action.c: 106: TIMER0_Off();
+"106
+[e ( _TIMER0_Off ..  ]
+[; ;action.c: 109: }
+"109
+[e :UE 368 ]
+}
+"111
 [v _Check_List_Moteur_1 `(v ~T0 @X0 1 ef ]
 {
-[; ;action.c: 104: void Check_List_Moteur_1(void) {
+[; ;action.c: 111: void Check_List_Moteur_1(void) {
 [e :U _Check_List_Moteur_1 ]
 [f ]
-[; ;action.c: 107: if(PORTCbits.RC4 == 0){
-"107
+[; ;action.c: 114: if(PORTCbits.RC4 == 0){
+"114
 [e $ ! == -> . . _PORTCbits 0 4 `i -> 0 `i 370  ]
 {
-[; ;action.c: 108: Compteur_IRQ_I_Moteur_1 = 0;
-"108
+[; ;action.c: 115: Compteur_IRQ_I_Moteur_1 = 0;
+"115
 [e = _Compteur_IRQ_I_Moteur_1 -> -> 0 `i `uc ]
-"109
+"116
 }
 [e :U 370 ]
-[; ;action.c: 109: }
-[; ;action.c: 112: EUSART1_Check_Buffer();
-"112
+[; ;action.c: 116: }
+[; ;action.c: 119: EUSART1_Check_Buffer();
+"119
 [e ( _EUSART1_Check_Buffer ..  ]
-[; ;action.c: 113: SPI_Check_Buffer();
-"113
+[; ;action.c: 120: SPI_Check_Buffer();
+"120
 [e ( _SPI_Check_Buffer ..  ]
-[; ;action.c: 115: if (nb_s_fonctionnement > nb_s_patinage) {
-"115
+[; ;action.c: 122: if (nb_s_fonctionnement > nb_s_patinage) {
+"122
 [e $ ! > -> _nb_s_fonctionnement `i -> _nb_s_patinage `i 371  ]
 {
-[; ;action.c: 120: Alarme_On(3);
-"120
+[; ;action.c: 136: if ((Mouvement_Startup == 1)&& (Option_Multitas==1)){
+"136
+[e $ ! && == -> _Mouvement_Startup `i -> 1 `i == -> _Option_Multitas `i -> 1 `i 372  ]
+{
+[; ;action.c: 139: if (nb_s_fonctionnement > (unsigned char) (1.1 * 8 * nb_100ms_platine_backup / 10.0)){
+"139
+[e $ ! > -> _nb_s_fonctionnement `i -> -> / * * .1.1 -> -> 8 `i `d -> _nb_100ms_platine_backup `d .10.0 `uc `i 373  ]
+{
+[; ;action.c: 140: Alarme_On(11);
+"140
+[e ( _Alarme_On (1 -> -> 11 `i `uc ]
+"141
+}
+[e :U 373 ]
+"143
+}
+[; ;action.c: 141: }
+[; ;action.c: 143: }else{
+[e $U 374  ]
+[e :U 372 ]
+{
+[; ;action.c: 144: Alarme_On(3);
+"144
 [e ( _Alarme_On (1 -> -> 3 `i `uc ]
-"122
+"145
+}
+[e :U 374 ]
+"146
 }
 [e :U 371 ]
-[; ;action.c: 122: }
-[; ;action.c: 125: if (Capteur_Capot_Compteur_Temps_S > 180) {
-"125
-[e $ ! > -> _Capteur_Capot_Compteur_Temps_S `i -> 180 `i 372  ]
+[; ;action.c: 145: }
+[; ;action.c: 146: }
+[; ;action.c: 149: if (Capteur_Capot_Compteur_Temps_S > 180) {
+"149
+[e $ ! > -> _Capteur_Capot_Compteur_Temps_S `i -> 180 `i 375  ]
 {
-[; ;action.c: 126: Capteur_Capot_Nb_Evenement = Capteur_Capot_Nb_Evenement_Autoriser;
-"126
+[; ;action.c: 150: Capteur_Capot_Nb_Evenement = Capteur_Capot_Nb_Evenement_Autoriser;
+"150
 [e = _Capteur_Capot_Nb_Evenement _Capteur_Capot_Nb_Evenement_Autoriser ]
-[; ;action.c: 127: Capteur_Capot_Compteur_Temps_S = 0;
-"127
+[; ;action.c: 151: Capteur_Capot_Compteur_Temps_S = 0;
+"151
 [e = _Capteur_Capot_Compteur_Temps_S -> -> 0 `i `uc ]
-"128
+"152
 }
-[e :U 372 ]
-[; ;action.c: 128: }
-[; ;action.c: 132: }
-"132
+[e :U 375 ]
+[; ;action.c: 152: }
+[; ;action.c: 156: }
+"156
 [e :UE 369 ]
 }
-"134
+"158
 [v _Init_Moteur_2 `(v ~T0 @X0 1 ef ]
 {
-[; ;action.c: 134: void Init_Moteur_2(void) {
+[; ;action.c: 158: void Init_Moteur_2(void) {
 [e :U _Init_Moteur_2 ]
 [f ]
-[; ;action.c: 139: nb_s_fonctionnement = 0;
-"139
+[; ;action.c: 163: nb_s_fonctionnement = 0;
+"163
 [e = _nb_s_fonctionnement -> -> 0 `i `uc ]
-[; ;action.c: 140: nb_Pion = 0;
-"140
+[; ;action.c: 164: nb_Pion = 0;
+"164
 [e = _nb_Pion -> -> 0 `i `uc ]
-[; ;action.c: 141: nb_100ms_Timer_5 = 0;
-"141
+[; ;action.c: 165: nb_100ms_Timer_5 = 0;
+"165
 [e = _nb_100ms_Timer_5 -> -> 0 `i `uc ]
-[; ;action.c: 142: TIMER0_On();
-"142
+[; ;action.c: 166: TIMER0_On();
+"166
 [e ( _TIMER0_On ..  ]
-[; ;action.c: 145: Compteur_IRQ_I_Moteur_2 = 0;
-"145
+[; ;action.c: 169: Compteur_IRQ_I_Moteur_2 = 0;
+"169
 [e = _Compteur_IRQ_I_Moteur_2 -> -> 0 `i `uc ]
-[; ;action.c: 146: LATCbits.LATC2=0;
-"146
+[; ;action.c: 170: LATCbits.LATC2=0;
+"170
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-[; ;action.c: 147: }
-"147
-[e :UE 373 ]
+[; ;action.c: 171: }
+"171
+[e :UE 376 ]
 }
-"149
+"173
 [v _Stop_Moteur_2 `(v ~T0 @X0 1 ef ]
 {
-[; ;action.c: 149: void Stop_Moteur_2(void) {
+[; ;action.c: 173: void Stop_Moteur_2(void) {
 [e :U _Stop_Moteur_2 ]
 [f ]
-[; ;action.c: 151: TIMER0_Off();
-"151
+[; ;action.c: 175: TIMER0_Off();
+"175
 [e ( _TIMER0_Off ..  ]
-[; ;action.c: 154: }
-"154
-[e :UE 374 ]
-}
-"156
-[v _Check_List_Moteur_2 `(v ~T0 @X0 1 ef ]
-{
-[; ;action.c: 156: void Check_List_Moteur_2(void) {
-[e :U _Check_List_Moteur_2 ]
-[f ]
-[; ;action.c: 165: EUSART1_Check_Buffer();
-"165
-[e ( _EUSART1_Check_Buffer ..  ]
-[; ;action.c: 166: SPI_Check_Buffer();
-"166
-[e ( _SPI_Check_Buffer ..  ]
-[; ;action.c: 177: if ((nb_s_fonctionnement >= nb_s_pelle) | ((nb_s_fonctionnement > 2) &&((Image_Courant_Moteur_2 ) >= Pelle_I_Max))) {
-"177
-[e $ ! | >= -> _nb_s_fonctionnement `i -> _nb_s_pelle `i && > -> _nb_s_fonctionnement `i -> 2 `i >= -> _Image_Courant_Moteur_2 `i -> _Pelle_I_Max `i 376  ]
-{
-[; ;action.c: 181: P4_busy = 0;
-"181
-[e = _P4_busy -> -> 0 `i `uc ]
-[; ;action.c: 182: Etat_Update(0);
-"182
-[e ( _Etat_Update (1 -> -> 0 `i `uc ]
-"186
-}
-[e :U 376 ]
-[; ;action.c: 186: }
-[; ;action.c: 187: }
-"187
-[e :UE 375 ]
-}
-"189
-[v _Init_Moteur_Bequille `(v ~T0 @X0 1 ef ]
-{
-[; ;action.c: 189: void Init_Moteur_Bequille(void) {
-[e :U _Init_Moteur_Bequille ]
-[f ]
-[; ;action.c: 194: nb_s_fonctionnement = 0;
-"194
-[e = _nb_s_fonctionnement -> -> 0 `i `uc ]
-[; ;action.c: 195: nb_Pion = 0;
-"195
-[e = _nb_Pion -> -> 0 `i `uc ]
-[; ;action.c: 196: nb_100ms_Timer_5 = 0;
-"196
-[e = _nb_100ms_Timer_5 -> -> 0 `i `uc ]
-[; ;action.c: 197: TIMER0_On();
-"197
-[e ( _TIMER0_On ..  ]
-[; ;action.c: 199: INTCON3bits.INT2IE = 1;
-"199
-[e = . . _INTCON3bits 0 4 -> -> 1 `i `uc ]
-[; ;action.c: 200: Compteur_IRQ_I_Moteur_2 = 0;
-"200
-[e = _Compteur_IRQ_I_Moteur_2 -> -> 0 `i `uc ]
-[; ;action.c: 202: }
-"202
+[; ;action.c: 178: }
+"178
 [e :UE 377 ]
 }
-"204
-[v _Stop_Moteur_Bequille `(v ~T0 @X0 1 ef ]
+"180
+[v _Check_List_Moteur_2 `(v ~T0 @X0 1 ef ]
 {
-[; ;action.c: 204: void Stop_Moteur_Bequille(void) {
-[e :U _Stop_Moteur_Bequille ]
+[; ;action.c: 180: void Check_List_Moteur_2(void) {
+[e :U _Check_List_Moteur_2 ]
 [f ]
-[; ;action.c: 206: TIMER0_Off();
+[; ;action.c: 189: EUSART1_Check_Buffer();
+"189
+[e ( _EUSART1_Check_Buffer ..  ]
+[; ;action.c: 190: SPI_Check_Buffer();
+"190
+[e ( _SPI_Check_Buffer ..  ]
+[; ;action.c: 201: if ((nb_s_fonctionnement >= nb_s_pelle) | ((nb_s_fonctionnement > 2) &&((Image_Courant_Moteur_2 ) >= Pelle_I_Max))) {
+"201
+[e $ ! | >= -> _nb_s_fonctionnement `i -> _nb_s_pelle `i && > -> _nb_s_fonctionnement `i -> 2 `i >= -> _Image_Courant_Moteur_2 `i -> _Pelle_I_Max `i 379  ]
+{
+[; ;action.c: 205: P4_busy = 0;
+"205
+[e = _P4_busy -> -> 0 `i `uc ]
+[; ;action.c: 206: Etat_Update(0);
 "206
-[e ( _TIMER0_Off ..  ]
-[; ;action.c: 207: INTCON3bits.INT2IE = 0;
-"207
-[e = . . _INTCON3bits 0 4 -> -> 0 `i `uc ]
-[; ;action.c: 209: }
-"209
+[e ( _Etat_Update (1 -> -> 0 `i `uc ]
+"210
+}
+[e :U 379 ]
+[; ;action.c: 210: }
+[; ;action.c: 211: }
+"211
 [e :UE 378 ]
 }
-"211
+"213
+[v _Init_Moteur_Bequille `(v ~T0 @X0 1 ef ]
+{
+[; ;action.c: 213: void Init_Moteur_Bequille(void) {
+[e :U _Init_Moteur_Bequille ]
+[f ]
+[; ;action.c: 218: nb_s_fonctionnement = 0;
+"218
+[e = _nb_s_fonctionnement -> -> 0 `i `uc ]
+[; ;action.c: 219: nb_Pion = 0;
+"219
+[e = _nb_Pion -> -> 0 `i `uc ]
+[; ;action.c: 220: nb_100ms_Timer_5 = 0;
+"220
+[e = _nb_100ms_Timer_5 -> -> 0 `i `uc ]
+[; ;action.c: 221: TIMER0_On();
+"221
+[e ( _TIMER0_On ..  ]
+[; ;action.c: 223: INTCON3bits.INT2IE = 1;
+"223
+[e = . . _INTCON3bits 0 4 -> -> 1 `i `uc ]
+[; ;action.c: 224: Compteur_IRQ_I_Moteur_2 = 0;
+"224
+[e = _Compteur_IRQ_I_Moteur_2 -> -> 0 `i `uc ]
+[; ;action.c: 226: }
+"226
+[e :UE 380 ]
+}
+"228
+[v _Stop_Moteur_Bequille `(v ~T0 @X0 1 ef ]
+{
+[; ;action.c: 228: void Stop_Moteur_Bequille(void) {
+[e :U _Stop_Moteur_Bequille ]
+[f ]
+[; ;action.c: 230: TIMER0_Off();
+"230
+[e ( _TIMER0_Off ..  ]
+[; ;action.c: 231: INTCON3bits.INT2IE = 0;
+"231
+[e = . . _INTCON3bits 0 4 -> -> 0 `i `uc ]
+[; ;action.c: 233: }
+"233
+[e :UE 381 ]
+}
+"235
 [v _Check_List_Moteur_Bequille `(v ~T0 @X0 1 ef ]
 {
-[; ;action.c: 211: void Check_List_Moteur_Bequille(void) {
+[; ;action.c: 235: void Check_List_Moteur_Bequille(void) {
 [e :U _Check_List_Moteur_Bequille ]
 [f ]
-[; ;action.c: 215: if(PORTCbits.RC5 == 0){
-"215
-[e $ ! == -> . . _PORTCbits 0 5 `i -> 0 `i 380  ]
+[; ;action.c: 239: if(PORTCbits.RC5 == 0){
+"239
+[e $ ! == -> . . _PORTCbits 0 5 `i -> 0 `i 383  ]
 {
-[; ;action.c: 216: Compteur_IRQ_I_Moteur_2 = 0;
-"216
+[; ;action.c: 240: Compteur_IRQ_I_Moteur_2 = 0;
+"240
 [e = _Compteur_IRQ_I_Moteur_2 -> -> 0 `i `uc ]
-"217
+"241
 }
-[e :U 380 ]
-[; ;action.c: 217: }
-[; ;action.c: 221: EUSART1_Check_Buffer();
-"221
+[e :U 383 ]
+[; ;action.c: 241: }
+[; ;action.c: 245: EUSART1_Check_Buffer();
+"245
 [e ( _EUSART1_Check_Buffer ..  ]
-[; ;action.c: 222: SPI_Check_Buffer();
-"222
+[; ;action.c: 246: SPI_Check_Buffer();
+"246
 [e ( _SPI_Check_Buffer ..  ]
-[; ;action.c: 226: if ((nb_s_fonctionnement >= nb_s_bequille) | ((nb_s_fonctionnement > 2) &&(Image_Courant_Moteur_2 /5 >= Bequille_I_Max))) {
-"226
-[e $ ! | >= -> _nb_s_fonctionnement `i -> _nb_s_bequille `i && > -> _nb_s_fonctionnement `i -> 2 `i >= / -> _Image_Courant_Moteur_2 `i -> 5 `i -> _Bequille_I_Max `i 381  ]
-{
-[; ;action.c: 229: P4_busy = 0;
-"229
-[e = _P4_busy -> -> 0 `i `uc ]
-[; ;action.c: 230: Etat_Update(0);
-"230
-[e ( _Etat_Update (1 -> -> 0 `i `uc ]
-"234
-}
-[e :U 381 ]
-[; ;action.c: 234: }
-[; ;action.c: 235: }
-"235
-[e :UE 379 ]
-}
-"237
-[v _Coupe_Moteur `(v ~T0 @X0 1 ef ]
-{
-[; ;action.c: 237: void Coupe_Moteur(void) {
-[e :U _Coupe_Moteur ]
-[f ]
-[; ;action.c: 238: TIMER2_Off();
-"238
-[e ( _TIMER2_Off ..  ]
-[; ;action.c: 243: LATEbits.LATE2 = 0;
-"243
-[e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
-[; ;action.c: 250: LATCbits.LATC0 = 0;
+[; ;action.c: 250: if ((nb_s_fonctionnement >= nb_s_bequille) | ((nb_s_fonctionnement > 2) &&(Image_Courant_Moteur_2 /5 >= Bequille_I_Max))) {
 "250
-[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
-[; ;action.c: 251: LATCbits.LATC1 = 0;
-"251
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-[; ;action.c: 252: OVDCOND = 0b00000000;
-"252
-[e = _OVDCOND -> -> 0 `i `uc ]
-[; ;action.c: 253: LATD4 = 0;LATD5 = 0;
+[e $ ! | >= -> _nb_s_fonctionnement `i -> _nb_s_bequille `i && > -> _nb_s_fonctionnement `i -> 2 `i >= / -> _Image_Courant_Moteur_2 `i -> 5 `i -> _Bequille_I_Max `i 384  ]
+{
+[; ;action.c: 253: P4_busy = 0;
 "253
-[e = _LATD4 -> -> 0 `i `b ]
-[e = _LATD5 -> -> 0 `i `b ]
-[; ;action.c: 254: LATD6 = 0;LATD7 = 0;
+[e = _P4_busy -> -> 0 `i `uc ]
+[; ;action.c: 254: Etat_Update(0);
 "254
-[e = _LATD6 -> -> 0 `i `b ]
-[e = _LATD7 -> -> 0 `i `b ]
-[; ;action.c: 256: }
-"256
+[e ( _Etat_Update (1 -> -> 0 `i `uc ]
+"258
+}
+[e :U 384 ]
+[; ;action.c: 258: }
+[; ;action.c: 259: }
+"259
 [e :UE 382 ]
 }
-"258
-[v _Init_Moteur_Pelle `(v ~T0 @X0 1 ef ]
+"261
+[v _Coupe_Moteur `(v ~T0 @X0 1 ef ]
 {
-[; ;action.c: 258: void Init_Moteur_Pelle(void) {
-[e :U _Init_Moteur_Pelle ]
+[; ;action.c: 261: void Coupe_Moteur(void) {
+[e :U _Coupe_Moteur ]
 [f ]
-[; ;action.c: 263: TIMER0_On();
-"263
-[e ( _TIMER0_On ..  ]
-[; ;action.c: 265: INTCON3bits.INT2IE = 1;
-"265
-[e = . . _INTCON3bits 0 4 -> -> 1 `i `uc ]
-[; ;action.c: 266: Compteur_IRQ_I_Moteur_2 = 0;
-"266
-[e = _Compteur_IRQ_I_Moteur_2 -> -> 0 `i `uc ]
-[; ;action.c: 268: }
-"268
-[e :UE 383 ]
-}
-"270
-[v _Stop_Moteur_Pelle `(v ~T0 @X0 1 ef ]
-{
-[; ;action.c: 270: void Stop_Moteur_Pelle(void) {
-[e :U _Stop_Moteur_Pelle ]
-[f ]
-[; ;action.c: 272: TIMER0_Off();
-"272
-[e ( _TIMER0_Off ..  ]
-[; ;action.c: 273: INTCON3bits.INT2IE = 0;
-"273
-[e = . . _INTCON3bits 0 4 -> -> 0 `i `uc ]
-[; ;action.c: 275: }
+[; ;action.c: 262: TIMER2_Off();
+"262
+[e ( _TIMER2_Off ..  ]
+[; ;action.c: 267: LATEbits.LATE2 = 0;
+"267
+[e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
+[; ;action.c: 274: LATCbits.LATC0 = 0;
+"274
+[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
+[; ;action.c: 275: LATCbits.LATC1 = 0;
 "275
-[e :UE 384 ]
-}
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+[; ;action.c: 276: OVDCOND = 0b00000000;
+"276
+[e = _OVDCOND -> -> 0 `i `uc ]
+[; ;action.c: 277: LATD4 = 0;LATD5 = 0;
 "277
-[v _Check_List_Moteur_Pelle `(v ~T0 @X0 1 ef ]
-{
-[; ;action.c: 277: void Check_List_Moteur_Pelle(void) {
-[e :U _Check_List_Moteur_Pelle ]
-[f ]
-[; ;action.c: 281: EUSART1_Check_Buffer();
-"281
-[e ( _EUSART1_Check_Buffer ..  ]
-[; ;action.c: 282: SPI_Check_Buffer();
-"282
-[e ( _SPI_Check_Buffer ..  ]
-[; ;action.c: 284: if(PORTCbits.RC5 == 0){
-"284
-[e $ ! == -> . . _PORTCbits 0 5 `i -> 0 `i 386  ]
-{
-[; ;action.c: 285: Compteur_IRQ_I_Moteur_2 = 0;
-"285
-[e = _Compteur_IRQ_I_Moteur_2 -> -> 0 `i `uc ]
-"286
-}
-[e :U 386 ]
-[; ;action.c: 286: }
-[; ;action.c: 288: if (nb_s_fonctionnement >= nb_s_pelle) {
-"288
-[e $ ! >= -> _nb_s_fonctionnement `i -> _nb_s_pelle `i 387  ]
-{
-[; ;action.c: 291: Etat_Update(0);
-"291
-[e ( _Etat_Update (1 -> -> 0 `i `uc ]
-"295
-}
-[e :U 387 ]
-[; ;action.c: 295: }
-[; ;action.c: 296: }
-"296
+[e = _LATD4 -> -> 0 `i `b ]
+[e = _LATD5 -> -> 0 `i `b ]
+[; ;action.c: 278: LATD6 = 0;LATD7 = 0;
+"278
+[e = _LATD6 -> -> 0 `i `b ]
+[e = _LATD7 -> -> 0 `i `b ]
+[; ;action.c: 280: }
+"280
 [e :UE 385 ]
 }
-"763
+"282
+[v _Init_Moteur_Pelle `(v ~T0 @X0 1 ef ]
+{
+[; ;action.c: 282: void Init_Moteur_Pelle(void) {
+[e :U _Init_Moteur_Pelle ]
+[f ]
+[; ;action.c: 287: TIMER0_On();
+"287
+[e ( _TIMER0_On ..  ]
+[; ;action.c: 289: INTCON3bits.INT2IE = 1;
+"289
+[e = . . _INTCON3bits 0 4 -> -> 1 `i `uc ]
+[; ;action.c: 290: Compteur_IRQ_I_Moteur_2 = 0;
+"290
+[e = _Compteur_IRQ_I_Moteur_2 -> -> 0 `i `uc ]
+[; ;action.c: 292: }
+"292
+[e :UE 386 ]
+}
+"294
+[v _Stop_Moteur_Pelle `(v ~T0 @X0 1 ef ]
+{
+[; ;action.c: 294: void Stop_Moteur_Pelle(void) {
+[e :U _Stop_Moteur_Pelle ]
+[f ]
+[; ;action.c: 296: TIMER0_Off();
+"296
+[e ( _TIMER0_Off ..  ]
+[; ;action.c: 297: INTCON3bits.INT2IE = 0;
+"297
+[e = . . _INTCON3bits 0 4 -> -> 0 `i `uc ]
+[; ;action.c: 299: }
+"299
+[e :UE 387 ]
+}
+"301
+[v _Check_List_Moteur_Pelle `(v ~T0 @X0 1 ef ]
+{
+[; ;action.c: 301: void Check_List_Moteur_Pelle(void) {
+[e :U _Check_List_Moteur_Pelle ]
+[f ]
+[; ;action.c: 305: EUSART1_Check_Buffer();
+"305
+[e ( _EUSART1_Check_Buffer ..  ]
+[; ;action.c: 306: SPI_Check_Buffer();
+"306
+[e ( _SPI_Check_Buffer ..  ]
+[; ;action.c: 308: if(PORTCbits.RC5 == 0){
+"308
+[e $ ! == -> . . _PORTCbits 0 5 `i -> 0 `i 389  ]
+{
+[; ;action.c: 309: Compteur_IRQ_I_Moteur_2 = 0;
+"309
+[e = _Compteur_IRQ_I_Moteur_2 -> -> 0 `i `uc ]
+"310
+}
+[e :U 389 ]
+[; ;action.c: 310: }
+[; ;action.c: 312: if (nb_s_fonctionnement >= nb_s_pelle) {
+"312
+[e $ ! >= -> _nb_s_fonctionnement `i -> _nb_s_pelle `i 390  ]
+{
+[; ;action.c: 315: Etat_Update(0);
+"315
+[e ( _Etat_Update (1 -> -> 0 `i `uc ]
+"319
+}
+[e :U 390 ]
+[; ;action.c: 319: }
+[; ;action.c: 320: }
+"320
+[e :UE 388 ]
+}
+"787
 [v _Mouvement_Bequille `(v ~T0 @X0 1 ef3`uc`uc`uc ]
 {
-[; ;action.c: 763: void Mouvement_Bequille(unsigned char direction, unsigned char type_consigne, unsigned char option) {
+[; ;action.c: 787: void Mouvement_Bequille(unsigned char direction, unsigned char type_consigne, unsigned char option) {
 [e :U _Mouvement_Bequille ]
 [v _direction `uc ~T0 @X0 1 r1 ]
 [v _type_consigne `uc ~T0 @X0 1 r2 ]
 [v _option `uc ~T0 @X0 1 r3 ]
 [f ]
-"764
+"788
 [v _i `uc ~T0 @X0 1 a ]
 [v _i_min `uc ~T0 @X0 1 a ]
 [v _i_max `uc ~T0 @X0 1 a ]
-"765
-[v _Option_Temps_S `uc ~T0 @X0 1 a ]
-[; ;action.c: 764: unsigned char i, i_min, i_max;
-[; ;action.c: 765: unsigned char Option_Temps_S;
-[; ;action.c: 772: Surveillance_Consommation_Moteur_2_Desactiver();
-"772
-[e ( _Surveillance_Consommation_Moteur_2_Desactiver ..  ]
-[; ;action.c: 774: Detection_Pion_Off();
-"774
-[e ( _Detection_Pion_Off ..  ]
-[; ;action.c: 777: nb_s_bequille = option;
-"777
-[e = _nb_s_bequille _option ]
-[; ;action.c: 780: consigne = 10;
-"780
-[e = _consigne -> -> 10 `i `uc ]
-"786
-[v _index `ui ~T0 @X0 1 a ]
-[; ;action.c: 786: unsigned int index;
-[; ;action.c: 789: u_Init_PWM();
 "789
-[e ( _u_Init_PWM ..  ]
-[; ;action.c: 791: index = 0;
-"791
-[e = _index -> -> 0 `i `ui ]
-[; ;action.c: 792: TMR2 = 0;
-"792
-[e = _TMR2 -> -> 0 `i `uc ]
-[; ;action.c: 793: TMR2IF = 0;
-"793
-[e = _TMR2IF -> -> 0 `i `b ]
-[; ;action.c: 798: LATEbits.LATE2 = 1;
+[v _Option_Temps_S `uc ~T0 @X0 1 a ]
+[; ;action.c: 788: unsigned char i, i_min, i_max;
+[; ;action.c: 789: unsigned char Option_Temps_S;
+[; ;action.c: 796: Surveillance_Consommation_Moteur_2_Desactiver();
+"796
+[e ( _Surveillance_Consommation_Moteur_2_Desactiver ..  ]
+[; ;action.c: 798: Detection_Pion_Off();
 "798
-[e = . . _LATEbits 0 2 -> -> 1 `i `uc ]
-[; ;action.c: 803: moteur_indice = 3;
-"803
-[e = _moteur_indice -> -> 3 `i `uc ]
-[; ;action.c: 804: Init_ADC_Single_Shoot_I_Moteur_2();
+[e ( _Detection_Pion_Off ..  ]
+[; ;action.c: 801: nb_s_bequille = option;
+"801
+[e = _nb_s_bequille _option ]
+[; ;action.c: 804: consigne = 10;
 "804
+[e = _consigne -> -> 10 `i `uc ]
+"810
+[v _index `ui ~T0 @X0 1 a ]
+[; ;action.c: 810: unsigned int index;
+[; ;action.c: 813: u_Init_PWM();
+"813
+[e ( _u_Init_PWM ..  ]
+[; ;action.c: 815: index = 0;
+"815
+[e = _index -> -> 0 `i `ui ]
+[; ;action.c: 816: TMR2 = 0;
+"816
+[e = _TMR2 -> -> 0 `i `uc ]
+[; ;action.c: 817: TMR2IF = 0;
+"817
+[e = _TMR2IF -> -> 0 `i `b ]
+[; ;action.c: 822: LATEbits.LATE2 = 1;
+"822
+[e = . . _LATEbits 0 2 -> -> 1 `i `uc ]
+[; ;action.c: 827: moteur_indice = 3;
+"827
+[e = _moteur_indice -> -> 3 `i `uc ]
+[; ;action.c: 828: Init_ADC_Single_Shoot_I_Moteur_2();
+"828
 [e ( _Init_ADC_Single_Shoot_I_Moteur_2 ..  ]
-[; ;action.c: 807: if (direction == 0) {
-"807
-[e $ ! == -> _direction `i -> 0 `i 389  ]
+[; ;action.c: 831: if (direction == 0) {
+"831
+[e $ ! == -> _direction `i -> 0 `i 392  ]
 {
-[; ;action.c: 808: LATD7 = 0;LATD6 = 1;
-"808
+[; ;action.c: 832: LATD7 = 0;LATD6 = 1;
+"832
 [e = _LATD7 -> -> 0 `i `b ]
 [e = _LATD6 -> -> 1 `i `b ]
-"809
+"833
 }
-[; ;action.c: 809: } else {
-[e $U 390  ]
-[e :U 389 ]
+[; ;action.c: 833: } else {
+[e $U 393  ]
+[e :U 392 ]
 {
-[; ;action.c: 810: LATD6 = 0;LATD7 = 1;
-"810
+[; ;action.c: 834: LATD6 = 0;LATD7 = 1;
+"834
 [e = _LATD6 -> -> 0 `i `b ]
 [e = _LATD7 -> -> 1 `i `b ]
-"811
-}
-[e :U 390 ]
-[; ;action.c: 811: }
-[; ;action.c: 812: PDC1L = 1 << 2;
-"812
-[e = _PDC1L -> << -> 1 `i -> 2 `i `uc ]
-[; ;action.c: 813: PDC1H = 0;
-"813
-[e = _PDC1H -> -> 0 `i `uc ]
-[; ;action.c: 814: OVDCOND = 0b00000100;
-"814
-[e = _OVDCOND -> -> 4 `i `uc ]
-[; ;action.c: 815: LATCbits.LATC1 = 1;
-"815
-[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
-[; ;action.c: 817: erreur = 1;
-"817
-[e = _erreur -> 1 `i ]
-[; ;action.c: 818: PDC1L = (unsigned char) (((unsigned char) erreur) << 2);
-"818
-[e = _PDC1L -> << -> -> _erreur `uc `i -> 2 `i `uc ]
-[; ;action.c: 819: PDC1H = (unsigned char) (((unsigned char) erreur) >> 6);
-"819
-[e = _PDC1H -> >> -> -> _erreur `uc `i -> 6 `i `uc ]
-[; ;action.c: 822: erreur_accumulator = 0;
-"822
-[e = _erreur_accumulator -> 0 `i ]
-[; ;action.c: 825: Nouvelle_Valeur_ADC = 0;
-"825
-[e = _Nouvelle_Valeur_ADC -> -> 0 `i `b ]
-[; ;action.c: 829: PIE3bits.PTIE = 0;
-"829
-[e = . . _PIE3bits 0 4 -> -> 0 `i `uc ]
-[; ;action.c: 830: PIE1bits.ADIE = 1;
-"830
-[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-[; ;action.c: 831: PIE1bits.ADIE = 1;
-"831
-[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-[; ;action.c: 833: PEIE = 1;
-"833
-[e = _PEIE -> -> 1 `i `b ]
-[; ;action.c: 834: GIE = 1;
-"834
-[e = _GIE -> -> 1 `i `b ]
-[; ;action.c: 835: TIMER2_On();
 "835
-[e ( _TIMER2_On ..  ]
-[; ;action.c: 836: ADIF = 0;
-"836
-[e = _ADIF -> -> 0 `i `b ]
-[; ;action.c: 853: Init_Moteur_Bequille();
-"853
-[e ( _Init_Moteur_Bequille ..  ]
-[; ;action.c: 854: do {
-"854
+}
 [e :U 393 ]
-{
-[; ;action.c: 857: Check_List_Moteur_Bequille();
-"857
-[e ( _Check_List_Moteur_Bequille ..  ]
-"858
-}
-[; ;action.c: 858: } while (((direction == 0) && (Etat == 8)) | ((direction == 1) && (Etat == 9)));
-[e $ | && == -> _direction `i -> 0 `i == -> _Etat `i -> 8 `i && == -> _direction `i -> 1 `i == -> _Etat `i -> 9 `i 393  ]
-[e :U 392 ]
-[; ;action.c: 862: PIE3bits.PTIE = 0;
-"862
+[; ;action.c: 835: }
+[; ;action.c: 836: PDC1L = 1 << 2;
+"836
+[e = _PDC1L -> << -> 1 `i -> 2 `i `uc ]
+[; ;action.c: 837: PDC1H = 0;
+"837
+[e = _PDC1H -> -> 0 `i `uc ]
+[; ;action.c: 838: OVDCOND = 0b00000100;
+"838
+[e = _OVDCOND -> -> 4 `i `uc ]
+[; ;action.c: 839: LATCbits.LATC1 = 1;
+"839
+[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+[; ;action.c: 841: erreur = 1;
+"841
+[e = _erreur -> 1 `i ]
+[; ;action.c: 842: PDC1L = (unsigned char) (((unsigned char) erreur) << 2);
+"842
+[e = _PDC1L -> << -> -> _erreur `uc `i -> 2 `i `uc ]
+[; ;action.c: 843: PDC1H = (unsigned char) (((unsigned char) erreur) >> 6);
+"843
+[e = _PDC1H -> >> -> -> _erreur `uc `i -> 6 `i `uc ]
+[; ;action.c: 846: erreur_accumulator = 0;
+"846
+[e = _erreur_accumulator -> 0 `i ]
+[; ;action.c: 849: Nouvelle_Valeur_ADC = 0;
+"849
+[e = _Nouvelle_Valeur_ADC -> -> 0 `i `b ]
+[; ;action.c: 853: PIE3bits.PTIE = 0;
+"853
 [e = . . _PIE3bits 0 4 -> -> 0 `i `uc ]
-[; ;action.c: 863: PIE1bits.ADIE = 0;
-"863
-[e = . . _PIE1bits 0 6 -> -> 0 `i `uc ]
-[; ;action.c: 869: LATEbits.LATE2 = 0;
-"869
-[e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
-[; ;action.c: 874: Surveillance_Consommation_Moteur_2_Desactiver();
-"874
-[e ( _Surveillance_Consommation_Moteur_2_Desactiver ..  ]
-[; ;action.c: 876: Coupe_Moteur();
-"876
-[e ( _Coupe_Moteur ..  ]
-[; ;action.c: 877: delay_s(1);
+[; ;action.c: 854: PIE1bits.ADIE = 1;
+"854
+[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+[; ;action.c: 855: PIE1bits.ADIE = 1;
+"855
+[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+[; ;action.c: 857: PEIE = 1;
+"857
+[e = _PEIE -> -> 1 `i `b ]
+[; ;action.c: 858: GIE = 1;
+"858
+[e = _GIE -> -> 1 `i `b ]
+[; ;action.c: 859: TIMER2_On();
+"859
+[e ( _TIMER2_On ..  ]
+[; ;action.c: 860: ADIF = 0;
+"860
+[e = _ADIF -> -> 0 `i `b ]
+[; ;action.c: 877: Init_Moteur_Bequille();
 "877
-[e ( _delay_s (1 -> -> 1 `i `uc ]
-[; ;action.c: 886: }
-"886
-[e :UE 388 ]
+[e ( _Init_Moteur_Bequille ..  ]
+[; ;action.c: 878: do {
+"878
+[e :U 396 ]
+{
+[; ;action.c: 881: Check_List_Moteur_Bequille();
+"881
+[e ( _Check_List_Moteur_Bequille ..  ]
+"882
 }
-"896
+[; ;action.c: 882: } while (((direction == 0) && (Etat == 8)) | ((direction == 1) && (Etat == 9)));
+[e $ | && == -> _direction `i -> 0 `i == -> _Etat `i -> 8 `i && == -> _direction `i -> 1 `i == -> _Etat `i -> 9 `i 396  ]
+[e :U 395 ]
+[; ;action.c: 886: PIE3bits.PTIE = 0;
+"886
+[e = . . _PIE3bits 0 4 -> -> 0 `i `uc ]
+[; ;action.c: 887: PIE1bits.ADIE = 0;
+"887
+[e = . . _PIE1bits 0 6 -> -> 0 `i `uc ]
+[; ;action.c: 893: LATEbits.LATE2 = 0;
+"893
+[e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
+[; ;action.c: 898: Surveillance_Consommation_Moteur_2_Desactiver();
+"898
+[e ( _Surveillance_Consommation_Moteur_2_Desactiver ..  ]
+[; ;action.c: 900: Coupe_Moteur();
+"900
+[e ( _Coupe_Moteur ..  ]
+[; ;action.c: 901: delay_s(1);
+"901
+[e ( _delay_s (1 -> -> 1 `i `uc ]
+[; ;action.c: 910: }
+"910
+[e :UE 391 ]
+}
+"920
 [v _Mouvement_Z `(v ~T0 @X0 1 ef3`uc`uc`uc ]
 {
-[; ;action.c: 896: void Mouvement_Z(unsigned char direction, unsigned char type_consigne, unsigned char option) {
+[; ;action.c: 920: void Mouvement_Z(unsigned char direction, unsigned char type_consigne, unsigned char option) {
 [e :U _Mouvement_Z ]
 [v _direction `uc ~T0 @X0 1 r1 ]
 [v _type_consigne `uc ~T0 @X0 1 r2 ]
 [v _option `uc ~T0 @X0 1 r3 ]
 [f ]
-"897
+"921
 [v _i `uc ~T0 @X0 1 a ]
 [v _i_min `uc ~T0 @X0 1 a ]
 [v _i_max `uc ~T0 @X0 1 a ]
-"898
+"922
 [v _Option_Temps_S `uc ~T0 @X0 1 a ]
-[; ;action.c: 897: unsigned char i, i_min, i_max;
-[; ;action.c: 898: unsigned char Option_Temps_S;
-[; ;action.c: 906: Surveillance_Consommation_Moteur_2_Desactiver();
-"906
+[; ;action.c: 921: unsigned char i, i_min, i_max;
+[; ;action.c: 922: unsigned char Option_Temps_S;
+[; ;action.c: 930: Surveillance_Consommation_Moteur_2_Desactiver();
+"930
 [e ( _Surveillance_Consommation_Moteur_2_Desactiver ..  ]
-[; ;action.c: 908: Detection_Pion_Off();
-"908
+[; ;action.c: 932: Detection_Pion_Off();
+"932
 [e ( _Detection_Pion_Off ..  ]
-[; ;action.c: 911: nb_s_pelle = option;
-"911
+[; ;action.c: 935: nb_s_pelle = option;
+"935
 [e = _nb_s_pelle _option ]
-[; ;action.c: 914: consigne = 10;
-"914
-[e = _consigne -> -> 10 `i `uc ]
-"920
-[v _index `ui ~T0 @X0 1 a ]
-[; ;action.c: 920: unsigned int index;
-[; ;action.c: 923: u_Init_PWM();
-"923
-[e ( _u_Init_PWM ..  ]
-[; ;action.c: 925: index = 0;
-"925
-[e = _index -> -> 0 `i `ui ]
-[; ;action.c: 926: TMR2 = 0;
-"926
-[e = _TMR2 -> -> 0 `i `uc ]
-[; ;action.c: 927: TMR2IF = 0;
-"927
-[e = _TMR2IF -> -> 0 `i `b ]
-[; ;action.c: 933: LATEbits.LATE2 = 0;
-"933
-[e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
-[; ;action.c: 938: moteur_indice = 2;
+[; ;action.c: 938: consigne = 10;
 "938
+[e = _consigne -> -> 10 `i `uc ]
+"944
+[v _index `ui ~T0 @X0 1 a ]
+[; ;action.c: 944: unsigned int index;
+[; ;action.c: 947: u_Init_PWM();
+"947
+[e ( _u_Init_PWM ..  ]
+[; ;action.c: 949: index = 0;
+"949
+[e = _index -> -> 0 `i `ui ]
+[; ;action.c: 950: TMR2 = 0;
+"950
+[e = _TMR2 -> -> 0 `i `uc ]
+[; ;action.c: 951: TMR2IF = 0;
+"951
+[e = _TMR2IF -> -> 0 `i `b ]
+[; ;action.c: 957: LATEbits.LATE2 = 0;
+"957
+[e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
+[; ;action.c: 962: moteur_indice = 2;
+"962
 [e = _moteur_indice -> -> 2 `i `uc ]
-[; ;action.c: 939: Init_ADC_Single_Shoot_I_Moteur_2();
-"939
+[; ;action.c: 963: Init_ADC_Single_Shoot_I_Moteur_2();
+"963
 [e ( _Init_ADC_Single_Shoot_I_Moteur_2 ..  ]
-[; ;action.c: 942: if (direction == 1) {
-"942
-[e $ ! == -> _direction `i -> 1 `i 395  ]
+[; ;action.c: 966: if (direction == 1) {
+"966
+[e $ ! == -> _direction `i -> 1 `i 398  ]
 {
-[; ;action.c: 943: LATD7 = 0;LATD6 = 1;
-"943
+[; ;action.c: 967: LATD7 = 0;LATD6 = 1;
+"967
 [e = _LATD7 -> -> 0 `i `b ]
 [e = _LATD6 -> -> 1 `i `b ]
-"944
+"968
 }
-[; ;action.c: 944: } else {
-[e $U 396  ]
-[e :U 395 ]
+[; ;action.c: 968: } else {
+[e $U 399  ]
+[e :U 398 ]
 {
-[; ;action.c: 945: LATD6 = 0;LATD7 = 1;
-"945
+[; ;action.c: 969: LATD6 = 0;LATD7 = 1;
+"969
 [e = _LATD6 -> -> 0 `i `b ]
 [e = _LATD7 -> -> 1 `i `b ]
-"946
-}
-[e :U 396 ]
-[; ;action.c: 946: }
-[; ;action.c: 947: PDC1L = 1 << 2;
-"947
-[e = _PDC1L -> << -> 1 `i -> 2 `i `uc ]
-[; ;action.c: 948: PDC1H = 0;
-"948
-[e = _PDC1H -> -> 0 `i `uc ]
-[; ;action.c: 949: OVDCOND = 0b00000100;
-"949
-[e = _OVDCOND -> -> 4 `i `uc ]
-[; ;action.c: 950: LATCbits.LATC1 = 1;
-"950
-[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
-[; ;action.c: 952: erreur = 1;
-"952
-[e = _erreur -> 1 `i ]
-[; ;action.c: 953: PDC1L = (unsigned char) (((unsigned char) erreur) << 2);
-"953
-[e = _PDC1L -> << -> -> _erreur `uc `i -> 2 `i `uc ]
-[; ;action.c: 954: PDC1H = (unsigned char) (((unsigned char) erreur) >> 6);
-"954
-[e = _PDC1H -> >> -> -> _erreur `uc `i -> 6 `i `uc ]
-[; ;action.c: 957: erreur_accumulator = 0;
-"957
-[e = _erreur_accumulator -> 0 `i ]
-[; ;action.c: 960: Nouvelle_Valeur_ADC = 0;
-"960
-[e = _Nouvelle_Valeur_ADC -> -> 0 `i `b ]
-[; ;action.c: 964: PIE3bits.PTIE = 0;
-"964
-[e = . . _PIE3bits 0 4 -> -> 0 `i `uc ]
-[; ;action.c: 965: PIE1bits.ADIE = 1;
-"965
-[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-[; ;action.c: 966: PIE1bits.ADIE = 1;
-"966
-[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-[; ;action.c: 968: PEIE = 1;
-"968
-[e = _PEIE -> -> 1 `i `b ]
-[; ;action.c: 969: GIE = 1;
-"969
-[e = _GIE -> -> 1 `i `b ]
-[; ;action.c: 970: TIMER2_On();
 "970
-[e ( _TIMER2_On ..  ]
-[; ;action.c: 971: ADIF = 0;
-"971
-[e = _ADIF -> -> 0 `i `b ]
-[; ;action.c: 988: Init_Moteur_2();
-"988
-[e ( _Init_Moteur_2 ..  ]
-[; ;action.c: 989: do {
-"989
+}
 [e :U 399 ]
-{
-[; ;action.c: 992: Check_List_Moteur_2();
-"992
-[e ( _Check_List_Moteur_2 ..  ]
-"993
-}
-[; ;action.c: 993: } while (((direction == 1) && (Etat == 5)) | ((direction == 0) && (Etat == 4)));
-[e $ | && == -> _direction `i -> 1 `i == -> _Etat `i -> 5 `i && == -> _direction `i -> 0 `i == -> _Etat `i -> 4 `i 399  ]
-[e :U 398 ]
-[; ;action.c: 997: PIE3bits.PTIE = 0;
-"997
+[; ;action.c: 970: }
+[; ;action.c: 971: PDC1L = 1 << 2;
+"971
+[e = _PDC1L -> << -> 1 `i -> 2 `i `uc ]
+[; ;action.c: 972: PDC1H = 0;
+"972
+[e = _PDC1H -> -> 0 `i `uc ]
+[; ;action.c: 973: OVDCOND = 0b00000100;
+"973
+[e = _OVDCOND -> -> 4 `i `uc ]
+[; ;action.c: 974: LATCbits.LATC1 = 1;
+"974
+[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+[; ;action.c: 976: erreur = 1;
+"976
+[e = _erreur -> 1 `i ]
+[; ;action.c: 977: PDC1L = (unsigned char) (((unsigned char) erreur) << 2);
+"977
+[e = _PDC1L -> << -> -> _erreur `uc `i -> 2 `i `uc ]
+[; ;action.c: 978: PDC1H = (unsigned char) (((unsigned char) erreur) >> 6);
+"978
+[e = _PDC1H -> >> -> -> _erreur `uc `i -> 6 `i `uc ]
+[; ;action.c: 981: erreur_accumulator = 0;
+"981
+[e = _erreur_accumulator -> 0 `i ]
+[; ;action.c: 984: Nouvelle_Valeur_ADC = 0;
+"984
+[e = _Nouvelle_Valeur_ADC -> -> 0 `i `b ]
+[; ;action.c: 988: PIE3bits.PTIE = 0;
+"988
 [e = . . _PIE3bits 0 4 -> -> 0 `i `uc ]
-[; ;action.c: 998: PIE1bits.ADIE = 0;
-"998
-[e = . . _PIE1bits 0 6 -> -> 0 `i `uc ]
-[; ;action.c: 1003: LATEbits.LATE2 = 0;
-"1003
-[e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
-[; ;action.c: 1010: Surveillance_Consommation_Moteur_2_Desactiver();
-"1010
-[e ( _Surveillance_Consommation_Moteur_2_Desactiver ..  ]
-[; ;action.c: 1012: Coupe_Moteur();
+[; ;action.c: 989: PIE1bits.ADIE = 1;
+"989
+[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+[; ;action.c: 990: PIE1bits.ADIE = 1;
+"990
+[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+[; ;action.c: 992: PEIE = 1;
+"992
+[e = _PEIE -> -> 1 `i `b ]
+[; ;action.c: 993: GIE = 1;
+"993
+[e = _GIE -> -> 1 `i `b ]
+[; ;action.c: 994: TIMER2_On();
+"994
+[e ( _TIMER2_On ..  ]
+[; ;action.c: 995: ADIF = 0;
+"995
+[e = _ADIF -> -> 0 `i `b ]
+[; ;action.c: 1012: Init_Moteur_2();
 "1012
-[e ( _Coupe_Moteur ..  ]
-[; ;action.c: 1013: delay_s(1);
+[e ( _Init_Moteur_2 ..  ]
+[; ;action.c: 1013: do {
 "1013
-[e ( _delay_s (1 -> -> 1 `i `uc ]
-[; ;action.c: 1022: }
-"1022
-[e :UE 394 ]
+[e :U 402 ]
+{
+[; ;action.c: 1016: Check_List_Moteur_2();
+"1016
+[e ( _Check_List_Moteur_2 ..  ]
+"1017
 }
-"1031
+[; ;action.c: 1017: } while (((direction == 1) && (Etat == 5)) | ((direction == 0) && (Etat == 4)));
+[e $ | && == -> _direction `i -> 1 `i == -> _Etat `i -> 5 `i && == -> _direction `i -> 0 `i == -> _Etat `i -> 4 `i 402  ]
+[e :U 401 ]
+[; ;action.c: 1021: PIE3bits.PTIE = 0;
+"1021
+[e = . . _PIE3bits 0 4 -> -> 0 `i `uc ]
+[; ;action.c: 1022: PIE1bits.ADIE = 0;
+"1022
+[e = . . _PIE1bits 0 6 -> -> 0 `i `uc ]
+[; ;action.c: 1027: LATEbits.LATE2 = 0;
+"1027
+[e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
+[; ;action.c: 1034: Surveillance_Consommation_Moteur_2_Desactiver();
+"1034
+[e ( _Surveillance_Consommation_Moteur_2_Desactiver ..  ]
+[; ;action.c: 1036: Coupe_Moteur();
+"1036
+[e ( _Coupe_Moteur ..  ]
+[; ;action.c: 1037: delay_s(1);
+"1037
+[e ( _delay_s (1 -> -> 1 `i `uc ]
+[; ;action.c: 1046: }
+"1046
+[e :UE 397 ]
+}
+"1055
 [v _Mouvement_X `(v ~T0 @X0 1 ef3`uc`uc`uc ]
 {
-[; ;action.c: 1031: void Mouvement_X(unsigned char direction, unsigned char type_consigne, unsigned char option) {
+[; ;action.c: 1055: void Mouvement_X(unsigned char direction, unsigned char type_consigne, unsigned char option) {
 [e :U _Mouvement_X ]
 [v _direction `uc ~T0 @X0 1 r1 ]
 [v _type_consigne `uc ~T0 @X0 1 r2 ]
 [v _option `uc ~T0 @X0 1 r3 ]
 [f ]
-"1033
+"1057
 [v _i `uc ~T0 @X0 1 a ]
 [v _i_min `uc ~T0 @X0 1 a ]
 [v _i_max `uc ~T0 @X0 1 a ]
-"1034
+"1058
 [v _Option_Temps_S `uc ~T0 @X0 1 a ]
-[; ;action.c: 1033: unsigned char i, i_min, i_max;
-[; ;action.c: 1034: unsigned char Option_Temps_S;
-[; ;action.c: 1044: consigne = 10;
-"1044
+[; ;action.c: 1057: unsigned char i, i_min, i_max;
+[; ;action.c: 1058: unsigned char Option_Temps_S;
+[; ;action.c: 1068: consigne = 10;
+"1068
 [e = _consigne -> -> 10 `i `uc ]
-[; ;action.c: 1051: Surveillance_Consommation_Moteur_1_Desactiver();
-"1051
+[; ;action.c: 1075: Surveillance_Consommation_Moteur_1_Desactiver();
+"1075
 [e ( _Surveillance_Consommation_Moteur_1_Desactiver ..  ]
-"1057
+"1081
 [v _index `ui ~T0 @X0 1 a ]
-[; ;action.c: 1057: unsigned int index;
-[; ;action.c: 1060: u_Init_PWM();
-"1060
-[e ( _u_Init_PWM ..  ]
-[; ;action.c: 1062: index = 0;
-"1062
-[e = _index -> -> 0 `i `ui ]
-[; ;action.c: 1063: TMR2 = 0;
-"1063
-[e = _TMR2 -> -> 0 `i `uc ]
-[; ;action.c: 1064: TMR2IF = 0;
-"1064
-[e = _TMR2IF -> -> 0 `i `b ]
-[; ;action.c: 1069: if ((!(option & 0x02))
-[; ;action.c: 1072: ) {
-"1072
-[e $ ! ! != & -> _option `i -> 2 `i -> 0 `i 401  ]
-{
-[; ;action.c: 1074: Capteur_Capot_On();
-"1074
-[e ( _Capteur_Capot_On ..  ]
-"1076
-}
-[e :U 401 ]
-[; ;action.c: 1076: }
-[; ;action.c: 1084: moteur_indice = 1;
+[; ;action.c: 1081: unsigned int index;
+[; ;action.c: 1084: u_Init_PWM();
 "1084
-[e = _moteur_indice -> -> 1 `i `uc ]
-[; ;action.c: 1085: Init_ADC_Single_Shoot_I_Moteur_1();
-"1085
-[e ( _Init_ADC_Single_Shoot_I_Moteur_1 ..  ]
-[; ;action.c: 1088: if (direction == 1) {
+[e ( _u_Init_PWM ..  ]
+[; ;action.c: 1086: index = 0;
+"1086
+[e = _index -> -> 0 `i `ui ]
+[; ;action.c: 1087: TMR2 = 0;
+"1087
+[e = _TMR2 -> -> 0 `i `uc ]
+[; ;action.c: 1088: TMR2IF = 0;
 "1088
-[e $ ! == -> _direction `i -> 1 `i 402  ]
+[e = _TMR2IF -> -> 0 `i `b ]
+[; ;action.c: 1093: if ((!(option & 0x02))
+[; ;action.c: 1096: ) {
+"1096
+[e $ ! ! != & -> _option `i -> 2 `i -> 0 `i 404  ]
 {
-[; ;action.c: 1089: LATD5 = 0;LATD4 = 1;
-"1089
+[; ;action.c: 1098: Capteur_Capot_On();
+"1098
+[e ( _Capteur_Capot_On ..  ]
+"1100
+}
+[e :U 404 ]
+[; ;action.c: 1100: }
+[; ;action.c: 1108: moteur_indice = 1;
+"1108
+[e = _moteur_indice -> -> 1 `i `uc ]
+[; ;action.c: 1109: Init_ADC_Single_Shoot_I_Moteur_1();
+"1109
+[e ( _Init_ADC_Single_Shoot_I_Moteur_1 ..  ]
+[; ;action.c: 1112: if (direction == 1) {
+"1112
+[e $ ! == -> _direction `i -> 1 `i 405  ]
+{
+[; ;action.c: 1113: LATD5 = 0;LATD4 = 1;
+"1113
 [e = _LATD5 -> -> 0 `i `b ]
 [e = _LATD4 -> -> 1 `i `b ]
-"1090
+"1114
 }
-[; ;action.c: 1090: } else {
-[e $U 403  ]
-[e :U 402 ]
+[; ;action.c: 1114: } else {
+[e $U 406  ]
+[e :U 405 ]
 {
-[; ;action.c: 1091: LATD4 = 0;LATD5 = 1;
-"1091
+[; ;action.c: 1115: LATD4 = 0;LATD5 = 1;
+"1115
 [e = _LATD4 -> -> 0 `i `b ]
 [e = _LATD5 -> -> 1 `i `b ]
-"1092
+"1116
 }
-[e :U 403 ]
-[; ;action.c: 1092: }
-[; ;action.c: 1093: PDC0L = 1 << 2;
-"1093
-[e = _PDC0L -> << -> 1 `i -> 2 `i `uc ]
-[; ;action.c: 1094: PDC0H = 0;
-"1094
-[e = _PDC0H -> -> 0 `i `uc ]
-[; ;action.c: 1095: OVDCOND = 0b00000001;
-"1095
-[e = _OVDCOND -> -> 1 `i `uc ]
-[; ;action.c: 1096: LATCbits.LATC0 = 1;
-"1096
-[e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
-[; ;action.c: 1099: erreur = 1;
-"1099
-[e = _erreur -> 1 `i ]
-[; ;action.c: 1100: PDC0L = (unsigned char) (((unsigned char) erreur) << 2);
-"1100
-[e = _PDC0L -> << -> -> _erreur `uc `i -> 2 `i `uc ]
-[; ;action.c: 1101: PDC0H = (unsigned char) (((unsigned char) erreur) >> 6);
-"1101
-[e = _PDC0H -> >> -> -> _erreur `uc `i -> 6 `i `uc ]
-[; ;action.c: 1104: erreur_accumulator = 0;
-"1104
-[e = _erreur_accumulator -> 0 `i ]
-[; ;action.c: 1107: Nouvelle_Valeur_ADC = 0;
-"1107
-[e = _Nouvelle_Valeur_ADC -> -> 0 `i `b ]
-[; ;action.c: 1117: PIE3bits.PTIE = 0;
-"1117
-[e = . . _PIE3bits 0 4 -> -> 0 `i `uc ]
-[; ;action.c: 1118: PIE1bits.ADIE = 1;
-"1118
-[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-[; ;action.c: 1120: PEIE = 1;
-"1120
-[e = _PEIE -> -> 1 `i `b ]
-[; ;action.c: 1121: GIE = 1;
-"1121
-[e = _GIE -> -> 1 `i `b ]
-[; ;action.c: 1122: TIMER2_On();
-"1122
-[e ( _TIMER2_On ..  ]
-[; ;action.c: 1123: ADIF = 0;
-"1123
-[e = _ADIF -> -> 0 `i `b ]
-[; ;action.c: 1127: Init_Moteur_1();
-"1127
-[e ( _Init_Moteur_1 ..  ]
-[; ;action.c: 1130: switch (type_consigne) {
-"1130
-[e $U 405  ]
-{
-[; ;action.c: 1131: case 1:
-"1131
 [e :U 406 ]
-[; ;action.c: 1132: nb_Pion_Objectif = 2;
-"1132
-[e = _nb_Pion_Objectif -> -> 2 `i `uc ]
-[; ;action.c: 1134: nb_s_fonctionnement_souhaiter = (unsigned char) (option >> 4);
-"1134
-[e = _nb_s_fonctionnement_souhaiter -> >> -> _option `i -> 4 `i `uc ]
-[; ;action.c: 1138: if (option & 0x04) {
-"1138
-[e $ ! != & -> _option `i -> 4 `i -> 0 `i 407  ]
-{
-[; ;action.c: 1140: nb_s_fonctionnement_souhaiter *= 3;
-"1140
-[e =* _nb_s_fonctionnement_souhaiter -> -> 3 `i `uc ]
+[; ;action.c: 1116: }
+[; ;action.c: 1117: PDC0L = 1 << 2;
+"1117
+[e = _PDC0L -> << -> 1 `i -> 2 `i `uc ]
+[; ;action.c: 1118: PDC0H = 0;
+"1118
+[e = _PDC0H -> -> 0 `i `uc ]
+[; ;action.c: 1119: OVDCOND = 0b00000001;
+"1119
+[e = _OVDCOND -> -> 1 `i `uc ]
+[; ;action.c: 1120: LATCbits.LATC0 = 1;
+"1120
+[e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
+[; ;action.c: 1123: erreur = 1;
+"1123
+[e = _erreur -> 1 `i ]
+[; ;action.c: 1124: PDC0L = (unsigned char) (((unsigned char) erreur) << 2);
+"1124
+[e = _PDC0L -> << -> -> _erreur `uc `i -> 2 `i `uc ]
+[; ;action.c: 1125: PDC0H = (unsigned char) (((unsigned char) erreur) >> 6);
+"1125
+[e = _PDC0H -> >> -> -> _erreur `uc `i -> 6 `i `uc ]
+[; ;action.c: 1128: erreur_accumulator = 0;
+"1128
+[e = _erreur_accumulator -> 0 `i ]
+[; ;action.c: 1131: Nouvelle_Valeur_ADC = 0;
+"1131
+[e = _Nouvelle_Valeur_ADC -> -> 0 `i `b ]
+[; ;action.c: 1141: PIE3bits.PTIE = 0;
+"1141
+[e = . . _PIE3bits 0 4 -> -> 0 `i `uc ]
+[; ;action.c: 1142: PIE1bits.ADIE = 1;
 "1142
-}
-[e :U 407 ]
-[; ;action.c: 1142: }
-[; ;action.c: 1144: if (Option_Pailleux==1){
+[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+[; ;action.c: 1144: PEIE = 1;
 "1144
-[e $ ! == -> _Option_Pailleux `i -> 1 `i 408  ]
-{
-[; ;action.c: 1154: do {
+[e = _PEIE -> -> 1 `i `b ]
+[; ;action.c: 1145: GIE = 1;
+"1145
+[e = _GIE -> -> 1 `i `b ]
+[; ;action.c: 1146: TIMER2_On();
+"1146
+[e ( _TIMER2_On ..  ]
+[; ;action.c: 1147: ADIF = 0;
+"1147
+[e = _ADIF -> -> 0 `i `b ]
+[; ;action.c: 1151: Init_Moteur_1();
+"1151
+[e ( _Init_Moteur_1 ..  ]
+[; ;action.c: 1154: switch (type_consigne) {
 "1154
-[e :U 411 ]
+[e $U 408  ]
 {
-[; ;action.c: 1155: EUSART1_Check_Buffer();
+[; ;action.c: 1155: case 1:
 "1155
-[e ( _EUSART1_Check_Buffer ..  ]
-[; ;action.c: 1156: SPI_Check_Buffer();
+[e :U 409 ]
+[; ;action.c: 1156: nb_Pion_Objectif = 2;
 "1156
-[e ( _SPI_Check_Buffer ..  ]
-"1167
+[e = _nb_Pion_Objectif -> -> 2 `i `uc ]
+[; ;action.c: 1158: nb_s_fonctionnement_souhaiter = (unsigned char) (option >> 4);
+"1158
+[e = _nb_s_fonctionnement_souhaiter -> >> -> _option `i -> 4 `i `uc ]
+[; ;action.c: 1162: if (option & 0x04) {
+"1162
+[e $ ! != & -> _option `i -> 4 `i -> 0 `i 410  ]
+{
+[; ;action.c: 1164: nb_s_fonctionnement_souhaiter *= 3;
+"1164
+[e =* _nb_s_fonctionnement_souhaiter -> -> 3 `i `uc ]
+"1166
 }
-[; ;action.c: 1167: } while(
-[; ;action.c: 1168: ((Etat == 2) | (Etat == 3))
-[; ;action.c: 1169: &&
-[; ;action.c: 1170: (nb_s_fonctionnement < nb_s_fonctionnement_souhaiter)
-[; ;action.c: 1171: )
-"1171
-[e $ && | == -> _Etat `i -> 2 `i == -> _Etat `i -> 3 `i < -> _nb_s_fonctionnement `i -> _nb_s_fonctionnement_souhaiter `i 411  ]
 [e :U 410 ]
-"1175
-}
-[; ;action.c: 1172: ;
-[; ;action.c: 1175: }
-[e $U 412  ]
-"1176
-[e :U 408 ]
-[; ;action.c: 1176: else{
+[; ;action.c: 1166: }
+[; ;action.c: 1168: if (Option_Pailleux==1){
+"1168
+[e $ ! == -> _Option_Pailleux `i -> 1 `i 411  ]
 {
-[; ;action.c: 1180: do {
-"1180
-[e :U 415 ]
-{
-[; ;action.c: 1181: EUSART1_Check_Buffer();
-"1181
-[e ( _EUSART1_Check_Buffer ..  ]
-[; ;action.c: 1182: SPI_Check_Buffer();
-"1182
-[e ( _SPI_Check_Buffer ..  ]
-"1185
-}
-[; ;action.c: 1185: } while(nb_s_fonctionnement < nb_s_fonctionnement_souhaiter);
-[e $ < -> _nb_s_fonctionnement `i -> _nb_s_fonctionnement_souhaiter `i 415  ]
+[; ;action.c: 1178: do {
+"1178
 [e :U 414 ]
-"1186
-}
-[e :U 412 ]
-[; ;action.c: 1186: }
-[; ;action.c: 1190: Stop_Moteur_1();
-"1190
-[e ( _Stop_Moteur_1 ..  ]
-[; ;action.c: 1191: Capteur_Capot_Off();
-"1191
-[e ( _Capteur_Capot_Off ..  ]
-[; ;action.c: 1194: if ((Etat == 2) | (Etat == 3)) {
-"1194
-[e $ ! | == -> _Etat `i -> 2 `i == -> _Etat `i -> 3 `i 416  ]
 {
-[; ;action.c: 1196: Etat_Update(0);
-"1196
-[e ( _Etat_Update (1 -> -> 0 `i `uc ]
-[; ;action.c: 1197: P4_busy = 0;
-"1197
-[e = _P4_busy -> -> 0 `i `uc ]
+[; ;action.c: 1179: EUSART1_Check_Buffer();
+"1179
+[e ( _EUSART1_Check_Buffer ..  ]
+[; ;action.c: 1180: SPI_Check_Buffer();
+"1180
+[e ( _SPI_Check_Buffer ..  ]
+"1191
+}
+[; ;action.c: 1191: } while(
+[; ;action.c: 1192: ((Etat == 2) | (Etat == 3))
+[; ;action.c: 1193: &&
+[; ;action.c: 1194: (nb_s_fonctionnement < nb_s_fonctionnement_souhaiter)
+[; ;action.c: 1195: )
+"1195
+[e $ && | == -> _Etat `i -> 2 `i == -> _Etat `i -> 3 `i < -> _nb_s_fonctionnement `i -> _nb_s_fonctionnement_souhaiter `i 414  ]
+[e :U 413 ]
 "1199
 }
-[e :U 416 ]
+[; ;action.c: 1196: ;
 [; ;action.c: 1199: }
-[; ;action.c: 1210: break;
-"1210
-[e $U 404  ]
-[; ;action.c: 1213: case 0:
-"1213
-[e :U 417 ]
-[; ;action.c: 1214: nb_Pion_Objectif = option;
-"1214
-[e = _nb_Pion_Objectif _option ]
-[; ;action.c: 1215: nb_Pion = 0;
-"1215
-[e = _nb_Pion -> -> 0 `i `uc ]
-[; ;action.c: 1223: Detection_Pion_Init();
-"1223
-[e ( _Detection_Pion_Init ..  ]
-[; ;action.c: 1224: Detection_Pion_On();
-"1224
-[e ( _Detection_Pion_On ..  ]
-[; ;action.c: 1239: do {
-"1239
-[e :U 420 ]
+[e $U 415  ]
+"1200
+[e :U 411 ]
+[; ;action.c: 1200: else{
 {
-[; ;action.c: 1247: Check_List_Moteur_1();
-"1247
-[e ( _Check_List_Moteur_1 ..  ]
-"1248
+[; ;action.c: 1204: do {
+"1204
+[e :U 418 ]
+{
+[; ;action.c: 1205: EUSART1_Check_Buffer();
+"1205
+[e ( _EUSART1_Check_Buffer ..  ]
+[; ;action.c: 1206: SPI_Check_Buffer();
+"1206
+[e ( _SPI_Check_Buffer ..  ]
+"1209
 }
-[; ;action.c: 1248: } while (
-[; ;action.c: 1249: ((direction == 1) && (Etat == 2))
-[; ;action.c: 1250: |
-[; ;action.c: 1251: ((direction == 0) && (Etat == 3))
-[; ;action.c: 1253: );
-"1253
-[e $ | && == -> _direction `i -> 1 `i == -> _Etat `i -> 2 `i && == -> _direction `i -> 0 `i == -> _Etat `i -> 3 `i 420  ]
-[e :U 419 ]
-[; ;action.c: 1256: Detection_Pion_Off();
-"1256
-[e ( _Detection_Pion_Off ..  ]
-[; ;action.c: 1264: Stop_Moteur_1();
-"1264
+[; ;action.c: 1209: } while(nb_s_fonctionnement < nb_s_fonctionnement_souhaiter);
+[e $ < -> _nb_s_fonctionnement `i -> _nb_s_fonctionnement_souhaiter `i 418  ]
+[e :U 417 ]
+"1210
+}
+[e :U 415 ]
+[; ;action.c: 1210: }
+[; ;action.c: 1214: Stop_Moteur_1();
+"1214
 [e ( _Stop_Moteur_1 ..  ]
-[; ;action.c: 1265: Capteur_Capot_Off();
-"1265
+[; ;action.c: 1215: Capteur_Capot_Off();
+"1215
 [e ( _Capteur_Capot_Off ..  ]
-[; ;action.c: 1267: break;
-"1267
-[e $U 404  ]
-[; ;action.c: 1270: default: break;
-"1270
-[e :U 421 ]
-[e $U 404  ]
-"1273
+[; ;action.c: 1218: if ((Etat == 2) | (Etat == 3)) {
+"1218
+[e $ ! | == -> _Etat `i -> 2 `i == -> _Etat `i -> 3 `i 419  ]
+{
+[; ;action.c: 1220: Etat_Update(0);
+"1220
+[e ( _Etat_Update (1 -> -> 0 `i `uc ]
+[; ;action.c: 1221: P4_busy = 0;
+"1221
+[e = _P4_busy -> -> 0 `i `uc ]
+"1223
 }
-[; ;action.c: 1273: }
-[e $U 404  ]
-"1130
-[e :U 405 ]
-[e [\ _type_consigne , $ -> -> 1 `i `uc 406
- , $ -> -> 0 `i `uc 417
- 421 ]
-"1273
-[e :U 404 ]
-[; ;action.c: 1314: PIE3bits.PTIE = 0;
-"1314
+[e :U 419 ]
+[; ;action.c: 1223: }
+[; ;action.c: 1234: break;
+"1234
+[e $U 407  ]
+[; ;action.c: 1237: case 0:
+"1237
+[e :U 420 ]
+[; ;action.c: 1238: nb_Pion_Objectif = option;
+"1238
+[e = _nb_Pion_Objectif _option ]
+[; ;action.c: 1239: nb_Pion = 0;
+"1239
+[e = _nb_Pion -> -> 0 `i `uc ]
+[; ;action.c: 1247: Detection_Pion_Init();
+"1247
+[e ( _Detection_Pion_Init ..  ]
+[; ;action.c: 1248: Detection_Pion_On();
+"1248
+[e ( _Detection_Pion_On ..  ]
+[; ;action.c: 1263: do {
+"1263
+[e :U 423 ]
+{
+[; ;action.c: 1271: Check_List_Moteur_1();
+"1271
+[e ( _Check_List_Moteur_1 ..  ]
+"1272
+}
+[; ;action.c: 1272: } while (
+[; ;action.c: 1273: ((direction == 1) && (Etat == 2))
+[; ;action.c: 1274: |
+[; ;action.c: 1275: ((direction == 0) && (Etat == 3))
+[; ;action.c: 1277: );
+"1277
+[e $ | && == -> _direction `i -> 1 `i == -> _Etat `i -> 2 `i && == -> _direction `i -> 0 `i == -> _Etat `i -> 3 `i 423  ]
+[e :U 422 ]
+[; ;action.c: 1280: Detection_Pion_Off();
+"1280
+[e ( _Detection_Pion_Off ..  ]
+[; ;action.c: 1288: Stop_Moteur_1();
+"1288
+[e ( _Stop_Moteur_1 ..  ]
+[; ;action.c: 1289: Capteur_Capot_Off();
+"1289
+[e ( _Capteur_Capot_Off ..  ]
+[; ;action.c: 1291: break;
+"1291
+[e $U 407  ]
+[; ;action.c: 1294: default: break;
+"1294
+[e :U 424 ]
+[e $U 407  ]
+"1297
+}
+[; ;action.c: 1297: }
+[e $U 407  ]
+"1154
+[e :U 408 ]
+[e [\ _type_consigne , $ -> -> 1 `i `uc 409
+ , $ -> -> 0 `i `uc 420
+ 424 ]
+"1297
+[e :U 407 ]
+[; ;action.c: 1338: PIE3bits.PTIE = 0;
+"1338
 [e = . . _PIE3bits 0 4 -> -> 0 `i `uc ]
-[; ;action.c: 1315: PIE1bits.ADIE = 0;
-"1315
+[; ;action.c: 1339: PIE1bits.ADIE = 0;
+"1339
 [e = . . _PIE1bits 0 6 -> -> 0 `i `uc ]
-[; ;action.c: 1317: Surveillance_Consommation_Moteur_1_Desactiver();
-"1317
+[; ;action.c: 1341: Surveillance_Consommation_Moteur_1_Desactiver();
+"1341
 [e ( _Surveillance_Consommation_Moteur_1_Desactiver ..  ]
-[; ;action.c: 1319: Coupe_Moteur();
-"1319
+[; ;action.c: 1343: Coupe_Moteur();
+"1343
 [e ( _Coupe_Moteur ..  ]
-[; ;action.c: 1328: }
-"1328
-[e :UE 400 ]
+[; ;action.c: 1352: }
+"1352
+[e :UE 403 ]
 }
