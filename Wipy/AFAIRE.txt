@@ -17,4 +17,6 @@ TypeError: object of type 'NoneType' has no len()
 il faudrait ajouter un drapeau qui dit que la fumière est pleine
 -VREF au lieu de la calibration
 -Rendre le programme multilangue
+-Ajout d'un état bloquer impossible avec la fumière pleine: au démarrage d'un multitas, si on ne quitte pas la platine du début de la fumière alors on doit tout arrêter et mettre le système en défaut avec le message comme quoi la fumière est pleine!
+
 
