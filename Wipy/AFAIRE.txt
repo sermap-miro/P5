@@ -13,4 +13,8 @@ TypeError: object of type 'NoneType' has no len()
 
 -Sécurité capot à proximité d'une platine => déphasé dans son cycle
 -programme de retour en fonction de sa position dans l'installation
+-lorsque le mirobot part en fonction multitas, il ne semble pas faire la détection du faux départ s'il reste sur la platine de multitas:
+il faudrait ajouter un drapeau qui dit que la fumière est pleine
+-VREF au lieu de la calibration
+-Rendre le programme multilangue
 
