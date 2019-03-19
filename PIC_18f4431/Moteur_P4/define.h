@@ -118,7 +118,9 @@ extern "C" {
 #define ALARME_BATTERIE_FAIBLE 8
 #define ALARME_OVERLOAD_CAP_1_1 9
 #define ALARME_OVERLOAD_CAP_1_3 10
-    
+//Ajout d'un <E9>tat d'alamrme avec la fumi<E8>re pleine
+#define ALARME_FUMIERE_PLEINE 11
+  
     
     
 #define OPTION_NULLE 0x00

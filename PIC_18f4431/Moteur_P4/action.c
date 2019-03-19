@@ -1129,7 +1129,7 @@ Surveillance_Consommation_Moteur_1_Desactiver();
 
     switch (type_consigne) {
         case TYPE_MOUVEMENT_TEMPS:
-            nb_Pion_Objectif = 2;
+            nb_Pion_Objectif = 2;// ?????? Cette valeur est peu etre un probl<E8>me! exemple: des clous sont renvers<E9> sur la piste et le capteur m<E9>tal clignote
             //nb_s_fonctionnement_souhaiter = option;
             nb_s_fonctionnement_souhaiter = (unsigned char) (option >> 4);
 
