@@ -113,6 +113,7 @@ class Mirobot:
         #self.Prgm_Indice = ''
         self.print_out = 0
         self.verrou = 0
+        self.Tag_Cmd = 0 # permettra de stocker si nécessaire, un numéro de commande
 
         self.Capteur_Capot_Nb_Evenement_Autoriser = 3
         #self.Capteur_Capot_Nb_Evenement_Autoriser = 5 # Norvege
