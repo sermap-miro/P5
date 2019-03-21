@@ -19,6 +19,13 @@
 #include "alarme.h"
 #include "pion.h"
 
+
+
+
+extern unsigned char Mouvement_Startup;// activer au lancement de la commande moteur, éteint lors d'un front descendant sur le capteur PION
+      extern bit Option_Multitas;  
+
+
 unsigned char Etat_Intitule(unsigned char Etat_Number) {
 
     switch (Etat_Number) {
@@ -117,8 +124,25 @@ void Check_List_Moteur_1(void) {
         //         Etat_Update(ETAT_INACTIF);
         //        Etat_Update(ETAT_ALARME);
         //        Alarme = ALARME_PATINAGE;
-        Alarme_On(ALARME_PATINAGE);
+        
+        
+        
+        //ALARME_FUMIERE_PLEINE
+        
 
+//extern unsigned char Mouvement_Startup;// activer au lancement de la commande moteur, éteint lors d'un front descendant sur le capteur PION
+  //    extern bit Option_Multitas;  
+
+      if ((Mouvement_Startup == 1)&& (Option_Multitas==1)){
+            //nb_100ms_platine = (unsigned char) (NB_PLATINE_POUR_FAUX_DEPART * nb_100ms_platine_backup);
+          
+          if (nb_s_fonctionnement > (unsigned char) (1.1 * NB_PLATINE_POUR_FAUX_DEPART * nb_100ms_platine_backup / 10.0)){
+          Alarme_On(ALARME_FUMIERE_PLEINE);
+      }
+          
+      }else{
+        Alarme_On(ALARME_PATINAGE);
+      }
     }
 
 
@@ -238,11 +262,11 @@ void Coupe_Moteur(void) {
     TIMER2_Off();
 
 
-#ifdef PROTO_2
-
-    RELAIS = 0; //Relaxation du relais s'il était en cours d'utilisation
-
-#endif
+//#ifdef PROTO_2
+//
+//    RELAIS = 0; //Relaxation du relais s'il était en cours d'utilisation
+//
+//#endif
 
     //PIE3bits.PTIE = 0;
     //PIE1bits.ADIE = 0;

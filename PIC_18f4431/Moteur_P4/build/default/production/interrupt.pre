@@ -5814,7 +5814,11 @@ Etat_Update(0);
 
 
 if ((moteur_indice == 1) &&(PORTAbits.RA2 == 0) && (Mouvement_Startup == 1)) {
+if (Option_Multitas==1){
+Alarme_On(11);
+}else{
 Alarme_On(6);
+}
 
 } else {
 P4_busy = 0;
@@ -5916,13 +5920,13 @@ if ((PIE3bits.IC1IE == 1)&&(PIR3bits.IC1IF == 1)) {
 
 IRQ_PION_CHANGEMENT_ETAT();
 
-# 575
+# 579
 } else
 
 if ((PIE3bits.IC2QEIE == 1)&&(PIR3bits.IC2QEIF == 1)) {
 PIR3bits.IC2QEIF = 0;
 
-# 590
+# 594
 } else
 if (PIE1bits.SSPIE == 1 && PIR1bits.SSPIF == 1) {
 SPI_ISR();
@@ -5947,14 +5951,14 @@ RX1_ABR = 0;}
 if (INTCONbits.TMR0IE == 1 && INTCONbits.TMR0IF == 1) {
 IRQ_TIMER_0();
 
-# 618
+# 622
 } else
 
 
 if (PIE3bits.TMR5IE == 1 && PIR3bits.TMR5IF == 1) {
 IRQ_TIMER_5();
 
-# 644
+# 648
 } else
 
 if ((PIE3bits.PTIE == 1) && (PIR3bits.PTIF == 1)) {
@@ -5969,11 +5973,11 @@ IRQ_PWM();
 
 if ((PIE1bits.ADIE == 1) && (PIR1bits.ADIF == 1)) {
 
-# 663
+# 667
 IRQ_ADC();
 }
 
-# 846
+# 850
 }
 
 void Surveillance_Consommation_Moteur_1_Activer(void) {
@@ -6044,7 +6048,7 @@ while(TMR2 > 0) __nop();
 
 LATCbits.LATC1 = 1;
 
-# 928
+# 932
 LATCbits.LATC2^=1;
 INTCON3bits.INT2IF = 0;
 
@@ -6052,7 +6056,7 @@ INTCON3bits.INT2IF = 0;
 
 Compteur_IRQ_I_Moteur_2 = (unsigned char) (Compteur_IRQ_I_Moteur_2 +1);
 
-# 946
+# 950
 }
 
 
@@ -6064,30 +6068,30 @@ void interrupt high_priority HIGH_PRIORITY_IRQ(void) {
 if (PIE1bits.TMR2IE == 1 && PIR1bits.TMR2IF == 1) {
 IRQ_TIMER2();
 
-# 961
+# 965
 }
 else
 if ((INTCONbits.INT0IE == 1) && (INTCONbits.INT0IF == 1))
 {
 IRQ_CAPOT();
 
-# 980
+# 984
 } else
 if ((INTCON3bits.INT1IE == 1)&&(INTCON3bits.INT1IF == 1)) {
 
-# 987
+# 991
 IRQ_I_MOTEUR_1();
 
-# 999
+# 1003
 } else
 if ((INTCON3bits.INT2IE == 1)&&(INTCON3bits.INT2IF == 1)) {
 
-# 1006
+# 1010
 IRQ_I_MOTEUR_2();
 
-# 1016
+# 1020
 }
 
-# 1022
+# 1026
 }
 

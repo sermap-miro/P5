@@ -5687,7 +5687,11 @@ void Detection_Pion_On(void);
 void Detection_Pion_Off(void);
 void Detection_Pion_Init(void);
 
-# 22 "action.c"
+# 25 "action.c"
+extern unsigned char Mouvement_Startup;
+extern bit Option_Multitas;
+
+
 unsigned char Etat_Intitule(unsigned char Etat_Number) {
 
 switch (Etat_Number) {
@@ -5710,7 +5714,7 @@ default: return ' ';
 
 unsigned char Etat_Get(unsigned char Etat_Indice) {
 
-# 55
+# 62
 return Etat_Log[(unsigned char) ((10 - 1 - Etat_Indice + Etat_Precedent_Index) % 10)];
 
 
@@ -5735,7 +5739,7 @@ Etat_Precedent_Index = 0;
 
 void Init_Moteur_1(void) {
 
-# 84
+# 91
 Capteur_Capot_Compteur_Temps_S = 0;
 
 
@@ -5769,11 +5773,17 @@ SPI_Check_Buffer();
 
 if (nb_s_fonctionnement > nb_s_patinage) {
 
+# 136
+if ((Mouvement_Startup == 1)&& (Option_Multitas==1)){
 
 
+if (nb_s_fonctionnement > (unsigned char) (1.1 * 8 * nb_100ms_platine_backup / 10.0)){
+Alarme_On(11);
+}
 
+}else{
 Alarme_On(3);
-
+}
 }
 
 
@@ -5810,11 +5820,11 @@ TIMER0_Off();
 
 void Check_List_Moteur_2(void) {
 
-# 165
+# 189
 EUSART1_Check_Buffer();
 SPI_Check_Buffer();
 
-# 177
+# 201
 if ((nb_s_fonctionnement >= nb_s_pelle) | ((nb_s_fonctionnement > 2) &&((Image_Courant_Moteur_2 ) >= Pelle_I_Max))) {
 
 
@@ -5883,7 +5893,7 @@ TIMER2_Off();
 
 LATEbits.LATE2 = 0;
 
-# 250
+# 274
 LATCbits.LATC0 = 0;
 LATCbits.LATC1 = 0;
 OVDCOND = 0b00000000;
@@ -5932,12 +5942,12 @@ Etat_Update(0);
 }
 }
 
-# 763
+# 787
 void Mouvement_Bequille(unsigned char direction, unsigned char type_consigne, unsigned char option) {
 unsigned char i, i_min, i_max;
 unsigned char Option_Temps_S;
 
-# 772
+# 796
 Surveillance_Consommation_Moteur_2_Desactiver();
 
 Detection_Pion_Off();
@@ -5948,7 +5958,7 @@ nb_s_bequille = option;
 
 consigne = 10;
 
-# 786
+# 810
 unsigned int index;
 
 
@@ -6001,7 +6011,7 @@ GIE = 1;
 TIMER2_On();
 ADIF = 0;
 
-# 853
+# 877
 Init_Moteur_Bequille();
 do {
 
@@ -6014,7 +6024,7 @@ Check_List_Moteur_Bequille();
 PIE3bits.PTIE = 0;
 PIE1bits.ADIE = 0;
 
-# 869
+# 893
 LATEbits.LATE2 = 0;
 
 
@@ -6025,15 +6035,15 @@ Surveillance_Consommation_Moteur_2_Desactiver();
 Coupe_Moteur();
 delay_s(1);
 
-# 886
+# 910
 }
 
-# 896
+# 920
 void Mouvement_Z(unsigned char direction, unsigned char type_consigne, unsigned char option) {
 unsigned char i, i_min, i_max;
 unsigned char Option_Temps_S;
 
-# 906
+# 930
 Surveillance_Consommation_Moteur_2_Desactiver();
 
 Detection_Pion_Off();
@@ -6044,7 +6054,7 @@ nb_s_pelle = option;
 
 consigne = 10;
 
-# 920
+# 944
 unsigned int index;
 
 
@@ -6054,7 +6064,7 @@ index = 0;
 TMR2 = 0;
 TMR2IF = 0;
 
-# 933
+# 957
 LATEbits.LATE2 = 0;
 
 
@@ -6095,7 +6105,7 @@ GIE = 1;
 TIMER2_On();
 ADIF = 0;
 
-# 988
+# 1012
 Init_Moteur_2();
 do {
 
@@ -6113,28 +6123,28 @@ PIE1bits.ADIE = 0;
 
 LATEbits.LATE2 = 0;
 
-# 1010
+# 1034
 Surveillance_Consommation_Moteur_2_Desactiver();
 
 Coupe_Moteur();
 delay_s(1);
 
-# 1022
+# 1046
 }
 
-# 1031
+# 1055
 void Mouvement_X(unsigned char direction, unsigned char type_consigne, unsigned char option) {
 
 unsigned char i, i_min, i_max;
 unsigned char Option_Temps_S;
 
-# 1044
+# 1068
 consigne = 10;
 
-# 1051
+# 1075
 Surveillance_Consommation_Moteur_1_Desactiver();
 
-# 1057
+# 1081
 unsigned int index;
 
 
@@ -6156,7 +6166,7 @@ Capteur_Capot_On();
 
 }
 
-# 1084
+# 1108
 moteur_indice = 1;
 Init_ADC_Single_Shoot_I_Moteur_1();
 
@@ -6182,7 +6192,7 @@ erreur_accumulator = 0;
 
 Nouvelle_Valeur_ADC = 0;
 
-# 1117
+# 1141
 PIE3bits.PTIE = 0;
 PIE1bits.ADIE = 1;
 
@@ -6212,12 +6222,12 @@ nb_s_fonctionnement_souhaiter *= 3;
 
 if (Option_Pailleux==1){
 
-# 1154
+# 1178
 do {
 EUSART1_Check_Buffer();
 SPI_Check_Buffer();
 
-# 1167
+# 1191
 } while(
 ((Etat == 2) | (Etat == 3))
 &&
@@ -6252,7 +6262,7 @@ P4_busy = 0;
 
 }
 
-# 1210
+# 1234
 break;
 
 
@@ -6260,14 +6270,14 @@ case 0:
 nb_Pion_Objectif = option;
 nb_Pion = 0;
 
-# 1223
+# 1247
 Detection_Pion_Init();
 Detection_Pion_On();
 
-# 1239
+# 1263
 do {
 
-# 1247
+# 1271
 Check_List_Moteur_1();
 } while (
 ((direction == 1) && (Etat == 2))
@@ -6279,7 +6289,7 @@ Check_List_Moteur_1();
 
 Detection_Pion_Off();
 
-# 1264
+# 1288
 Stop_Moteur_1();
 Capteur_Capot_Off();
 
@@ -6291,7 +6301,7 @@ default: break;
 
 }
 
-# 1314
+# 1338
 PIE3bits.PTIE = 0;
 PIE1bits.ADIE = 0;
 
@@ -6299,6 +6309,6 @@ Surveillance_Consommation_Moteur_1_Desactiver();
 
 Coupe_Moteur();
 
-# 1328
+# 1352
 }
 

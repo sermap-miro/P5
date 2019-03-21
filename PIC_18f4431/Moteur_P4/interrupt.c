@@ -457,7 +457,11 @@ void IRQ_TIMER_5(void) {
 
         //        LED = 0;
         if ((moteur_indice == MOTEUR_1) &&(PION == METAL_PRESENT) && (Mouvement_Startup == 1)) {
+             if (Option_Multitas==1){
+                 Alarme_On(ALARME_FUMIERE_PLEINE);
+             }else{
             Alarme_On(ALARME_START);
+             }
             //            TIMER5_Off();
         } else {
             P4_busy = P4_BUSY_LIBRE;

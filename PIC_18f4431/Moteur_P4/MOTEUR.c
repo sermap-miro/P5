@@ -141,6 +141,14 @@
 #include "variable_main.h"
 
 void Init_Variable(void) {
+    
+    /*
+     
+     Version 11:
+     * Etat de Fumière pleine lors d'un patinage sur la platine de multitas
+     
+     */
+    
     /*
      Version 10:
      * Ajout d'un temps de dead time (le dead time hard ne semble pas suffisant => Quentin à cramer un MOS)
@@ -169,7 +177,8 @@ void Init_Variable(void) {
  
  
      */
-    Version = 10;
+    Version = 11;
+    //Version = 10;
 
     //Compteur_Fonctionnement=0;
     Batterie_mV = 0;

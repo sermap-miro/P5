@@ -5767,8 +5767,9 @@ volatile unsigned char spiRxBuffer[64];
 # 143 "MOTEUR.c"
 void Init_Variable(void) {
 
-# 172
-Version = 10;
+# 180
+Version = 11;
+
 
 
 Batterie_mV = 0;
@@ -5849,7 +5850,7 @@ Surveillance_Consommation_Moteur_2 = 0;
 
 Detection_Pion_Init();
 
-# 259
+# 268
 Compteur_IRQ_I_Moteur_1 = 0;
 Compteur_IRQ_I_Moteur_2 = 0;
 
@@ -5897,13 +5898,13 @@ spiTxIndex = 0;
 SPI_MODE = 0;
 }
 
-# 312
+# 321
 void Cycle(void) {
 
 
 unsigned char i, j;
 
-# 345
+# 354
 while (1) {
 EUSART1_Check_Buffer();
 
@@ -6032,7 +6033,7 @@ Etat_Update(70);
 break;
 }
 
-# 478
+# 487
 break;
 
 
@@ -6070,7 +6071,7 @@ default: break;
 
 break;
 
-# 522
+# 531
 case 2:
 
 
@@ -6125,7 +6126,7 @@ break;
 
 }
 
-# 585
+# 594
 void main(void) {
 
 OSCCON = 0b01110000;
@@ -6135,17 +6136,17 @@ OSCCON = 0b01110000;
 
 while (IOFS != 1);
 
-# 598
+# 607
 Init_Variable();
 
 
 
 Init_Port();
 
-# 637
+# 646
 Init_IT();
 
-# 656
+# 665
 EUSART1_Initialize();
 Init_SPI();
 
@@ -6160,7 +6161,7 @@ Init_TIMER5();
 
 Init_PWM();
 
-# 730
+# 739
 Cycle();
 
 }
