@@ -41,7 +41,7 @@ adc= machine.ADC()
 #PELLE_TEMPS_s = 60
 
 
-V_BATTERIE_FAIBLE = 22.3 # Volt
+#V_BATTERIE_FAIBLE = 22.3 # Volt
 #Conversion_Volt_Lopy = 3.3/4095 # 11 dB
 Conversion_Volt_Lopy = 1.1/4095 # 0 dB
 #Facteur_Pont_Resistance_30V = 9.3
@@ -158,6 +158,8 @@ class Mirobot:
         #self.Moteur_Z_Limite_Courant = 45
         self.Moteur_Z_Limite_Courant = 22 * 5
         self.Moteur_Bequille_Limite_Courant = 22 * 5
+
+        self.V_BATTERIE_FAIBLE = 22.3 # Volt
 
 
 
@@ -470,7 +472,7 @@ class Mirobot:
         #_BATTERIE = self.BATTERIE()
         _BATTERIE = Batt_Mean(self)
         _BATTERIE = _batterie_reg_a * _BATTERIE + _batterie_reg_b #1 kOhm 33 kOhm # 00013 # Valeurs extrêmes
-        if _BATTERIE <= V_BATTERIE_FAIBLE:
+        if _BATTERIE <= self.V_BATTERIE_FAIBLE:
             self.PIC_ASK('T') # Tension Batterie Defaillante
             time.sleep(0.1)
         #return('{:05.02f}'.format(_BATTERIE))

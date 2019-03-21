@@ -18,5 +18,5 @@ il faudrait ajouter un drapeau qui dit que la fumière est pleine
 -VREF au lieu de la calibration
 -Rendre le programme multilangue
 -Ajout d'un état bloquer impossible avec la fumière pleine: au démarrage d'un multitas, si on ne quitte pas la platine du début de la fumière alors on doit tout arrêter et mettre le système en défaut avec le message comme quoi la fumière est pleine!
-
+-Fonction Relais/Interrupteur... retiré dans coupe_moteur le RELAIS = 0 (ligne 267 dans action.c dans le code du PIC) de la fonction Coupe_Moteur() 
 
