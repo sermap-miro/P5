@@ -361,8 +361,6 @@ void Cycle(void) {
                 /*vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv*/
                 switch (Alarme) {
                     case ALARME_PATINAGE:
-
-
                         switch (Etat_Get(1)) {//Suivant l'état précédent
                             case ETAT_AVANCE:
                                 delay_s(TEMPS_ATTENTE_ALARME);
@@ -432,6 +430,15 @@ void Cycle(void) {
                         break;
                     case ALARME_CAPOT:
                         /*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+
+/*
+ 
+ GESTION DU CAPTEUR CAPOT:
+ * - Nouveau bug relevé par Elie: Lors d'une manoeuvre de capteur capot à proximité d'une platine,
+        le mirobot détecte de nouveau la platine, arrête son action, et passe à la suivante
+        
+ 
+ */
 
                         switch (Etat_Get(1)) {//Suivant l'état précédent
                             case ETAT_AVANCE:
