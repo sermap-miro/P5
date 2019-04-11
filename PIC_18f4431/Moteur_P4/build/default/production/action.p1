@@ -107,18 +107,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Bequille_I_Max `uc ~T0 @X0 0 e ]
 "20 timer.h
 [v _TIMER2_Off `(v ~T0 @X0 0 ef ]
-"2204 /opt/microchip/xc8/v1.42/include/pic18f4431.h
-[s S78 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S78 . LATE0 LATE1 LATE2 ]
-"2209
-[s S79 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S79 . LE0 LE1 LE2 ]
-"2203
-[u S77 `S78 1 `S79 1 ]
-[n S77 . . . ]
-"2215
-[v _LATEbits `VS77 ~T0 @X0 0 e@3981 ]
-"433
+"433 /opt/microchip/xc8/v1.42/include/pic18f4431.h
 [v _OVDCOND `Vuc ~T0 @X0 0 e@3947 ]
 "8120
 [v _LATD4 `Vb ~T0 @X0 0 e@31844 ]
@@ -140,6 +129,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR2 `Vuc ~T0 @X0 0 e@4044 ]
 "8732
 [v _TMR2IF `Vb ~T0 @X0 0 e@31985 ]
+"2204
+[s S78 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S78 . LATE0 LATE1 LATE2 ]
+"2209
+[s S79 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S79 . LE0 LE1 LE2 ]
+"2203
+[u S77 `S78 1 `S79 1 ]
+[n S77 . . . ]
+"2215
+[v _LATEbits `VS77 ~T0 @X0 0 e@3981 ]
 "135 variable_extern.h
 [v _moteur_indice `Vuc ~T0 @X0 0 e ]
 "20 adc.h
@@ -4674,9 +4674,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;action.c: 262: TIMER2_Off();
 "262
 [e ( _TIMER2_Off ..  ]
-[; ;action.c: 267: LATEbits.LATE2 = 0;
-"267
-[e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
 [; ;action.c: 274: LATCbits.LATC0 = 0;
 "274
 [e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
