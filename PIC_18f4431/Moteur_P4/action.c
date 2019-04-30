@@ -349,6 +349,9 @@ void Stop_Moteur_Pelle(void) {
 void Check_List_Moteur_Pelle(void) {
 
     
+       if (BTN_ARRET_URGENCE==0){ //Les entrées sont inversées
+        
+        
     
     EUSART1_Check_Buffer();
         SPI_Check_Buffer();
@@ -365,6 +368,17 @@ void Check_List_Moteur_Pelle(void) {
 
 
     }
+        
+        
+        
+    }else{//Le bouton d'arret d'urgence est en position URGENCE
+           
+            Coupe_Moteur();
+            Alarme_On(ALARME_AU);
+            //Etat_Update(ETAT_BLOQUER_DEFINITIVEMENT); //On bloque definitivement lorsque l'on recule
+        }
+      
+        
 }
 //
 //void Moteur_Pelle(unsigned char direction, unsigned char option) {
@@ -1228,6 +1242,14 @@ Surveillance_Consommation_Moteur_1_Desactiver();
         SPI_Check_Buffer();
                 
                 
+       if (BTN_ARRET_URGENCE==1){ //Btn Urgence enfoncé
+        
+            Coupe_Moteur();
+            Alarme_On(ALARME_AU);
+            //Etat_Update(ETAT_BLOQUER_DEFINITIVEMENT); //On bloque definitivement lorsque l'on recule
+        }
+      
+        
              //   if(nb_s_fonctionnement)
 //            Detection_Pion_Init();
 //            Detection_Pion_On();
@@ -1254,7 +1276,7 @@ Surveillance_Consommation_Moteur_1_Desactiver();
         SPI_Check_Buffer();
                 //LED^=1;
                 // } while (nb_s_fonctionnement < (option >> 4)); //les quatres bit de poid fort de l'option détermine le temps a fonctionner en dure
-            } while(nb_s_fonctionnement < nb_s_fonctionnement_souhaiter); 
+            } while((BTN_ARRET_URGENCE==0) && (nb_s_fonctionnement < nb_s_fonctionnement_souhaiter)); 
             }
 
            
