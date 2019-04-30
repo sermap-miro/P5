@@ -358,7 +358,7 @@ void Cycle(void) {
         SPI_Check_Buffer();
 
         
-       if (BTN_ARRET_URGENCE==1){
+       if (BTN_ARRET_URGENCE==0){ //Les entrées sont inversées
         
         
         

@@ -4611,9 +4611,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MOTEUR.c: 358: SPI_Check_Buffer();
 "358
 [e ( _SPI_Check_Buffer ..  ]
-[; ;MOTEUR.c: 361: if (PORTBbits.RB4==1){
+[; ;MOTEUR.c: 361: if (PORTBbits.RB4==0){
 "361
-[e $ ! == -> . . _PORTBbits 0 4 `i -> 1 `i 357  ]
+[e $ ! == -> . . _PORTBbits 0 4 `i -> 0 `i 357  ]
 {
 [; ;MOTEUR.c: 366: switch (Etat) {
 "366
@@ -5090,72 +5090,72 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MOTEUR.c: 599: Alarme_On(7);
 "599
 [e ( _Alarme_On (1 -> -> 7 `i `uc ]
-"600
+"601
 }
 [e :U 401 ]
-"602
+"603
 }
 [e :U 354 ]
 "355
 [e $U 355  ]
 [e :U 356 ]
-[; ;MOTEUR.c: 600: }
-[; ;MOTEUR.c: 602: }
-[; ;MOTEUR.c: 604: }
-"604
+[; ;MOTEUR.c: 601: }
+[; ;MOTEUR.c: 603: }
+[; ;MOTEUR.c: 605: }
+"605
 [e :UE 353 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"615
+"616
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;MOTEUR.c: 615: void main(void) {
+[; ;MOTEUR.c: 616: void main(void) {
 [e :U _main ]
 [f ]
-[; ;MOTEUR.c: 617: OSCCON = 0b01110000;
-"617
+[; ;MOTEUR.c: 618: OSCCON = 0b01110000;
+"618
 [e = _OSCCON -> -> 112 `i `uc ]
-[; ;MOTEUR.c: 622: while (IOFS != 1);
-"622
+[; ;MOTEUR.c: 623: while (IOFS != 1);
+"623
 [e $U 403  ]
 [e :U 404 ]
 [e :U 403 ]
 [e $ != -> _IOFS `i -> 1 `i 404  ]
 [e :U 405 ]
-[; ;MOTEUR.c: 628: Init_Variable();
-"628
+[; ;MOTEUR.c: 629: Init_Variable();
+"629
 [e ( _Init_Variable ..  ]
-[; ;MOTEUR.c: 632: Init_Port();
-"632
+[; ;MOTEUR.c: 633: Init_Port();
+"633
 [e ( _Init_Port ..  ]
-[; ;MOTEUR.c: 667: Init_IT();
-"667
+[; ;MOTEUR.c: 668: Init_IT();
+"668
 [e ( _Init_IT ..  ]
-[; ;MOTEUR.c: 686: EUSART1_Initialize();
-"686
-[e ( _EUSART1_Initialize ..  ]
-[; ;MOTEUR.c: 687: Init_SPI();
+[; ;MOTEUR.c: 687: EUSART1_Initialize();
 "687
+[e ( _EUSART1_Initialize ..  ]
+[; ;MOTEUR.c: 688: Init_SPI();
+"688
 [e ( _Init_SPI ..  ]
-[; ;MOTEUR.c: 691: Init_ADC();
-"691
+[; ;MOTEUR.c: 692: Init_ADC();
+"692
 [e ( _Init_ADC ..  ]
-[; ;MOTEUR.c: 693: Init_TIMER0();
-"693
-[e ( _Init_TIMER0 ..  ]
-[; ;MOTEUR.c: 694: Init_TIMER2();
+[; ;MOTEUR.c: 694: Init_TIMER0();
 "694
-[e ( _Init_TIMER2 ..  ]
-[; ;MOTEUR.c: 695: Init_TIMER5();
+[e ( _Init_TIMER0 ..  ]
+[; ;MOTEUR.c: 695: Init_TIMER2();
 "695
+[e ( _Init_TIMER2 ..  ]
+[; ;MOTEUR.c: 696: Init_TIMER5();
+"696
 [e ( _Init_TIMER5 ..  ]
-[; ;MOTEUR.c: 698: Init_PWM();
-"698
+[; ;MOTEUR.c: 699: Init_PWM();
+"699
 [e ( _Init_PWM ..  ]
-[; ;MOTEUR.c: 760: Cycle();
-"760
+[; ;MOTEUR.c: 761: Cycle();
+"761
 [e ( _Cycle ..  ]
-[; ;MOTEUR.c: 762: }
-"762
+[; ;MOTEUR.c: 763: }
+"763
 [e :UE 402 ]
 }

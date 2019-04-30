@@ -111,6 +111,13 @@ void Stop_Moteur_1(void) {
 void Check_List_Moteur_1(void) {
 
     
+     
+       if (BTN_ARRET_URGENCE==0){ //Les entrées sont inversées
+        
+        
+        
+    
+    
     if(MOT1_COURANT == 0){
      Compteur_IRQ_I_Moteur_1 = 0;
     }
@@ -152,6 +159,16 @@ void Check_List_Moteur_1(void) {
     }
 
 
+        
+    }else{//Le bouton d'arret d'urgence est en position URGENCE
+           
+            Coupe_Moteur();
+            Alarme_On(ALARME_AU);
+            //Etat_Update(ETAT_BLOQUER_DEFINITIVEMENT); //On bloque definitivement lorsque l'on recule
+        }
+      
+        
+        
 
 }
 
@@ -186,6 +203,11 @@ void Check_List_Moteur_2(void) {
 //    }
 //    
     
+     
+       if (BTN_ARRET_URGENCE==0){ //Les entrées sont inversées
+        
+        
+        
     EUSART1_Check_Buffer();
         SPI_Check_Buffer();
 
@@ -208,6 +230,17 @@ void Check_List_Moteur_2(void) {
 
 
     }
+        
+        
+    }else{//Le bouton d'arret d'urgence est en position URGENCE
+           
+            Coupe_Moteur();
+            Alarme_On(ALARME_AU);
+            //Etat_Update(ETAT_BLOQUER_DEFINITIVEMENT); //On bloque definitivement lorsque l'on recule
+        }
+      
+        
+        
 }
 
 void Init_Moteur_Bequille(void) {
@@ -235,6 +268,11 @@ void Stop_Moteur_Bequille(void) {
 void Check_List_Moteur_Bequille(void) {
 
     
+     
+       if (BTN_ARRET_URGENCE==0){ //Les entrées sont inversées
+        
+        
+        
     
     if(MOT2_COURANT == 0){
      Compteur_IRQ_I_Moteur_2 = 0;
@@ -256,6 +294,16 @@ void Check_List_Moteur_Bequille(void) {
 
 
     }
+        
+        
+    }else{//Le bouton d'arret d'urgence est en position URGENCE
+           
+            Coupe_Moteur();
+            Alarme_On(ALARME_AU);
+            //Etat_Update(ETAT_BLOQUER_DEFINITIVEMENT); //On bloque definitivement lorsque l'on recule
+        }
+      
+        
 }
 
 void Coupe_Moteur(void) {

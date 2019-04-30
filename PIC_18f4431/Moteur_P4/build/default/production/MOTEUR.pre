@@ -5914,7 +5914,7 @@ EUSART1_Check_Buffer();
 SPI_Check_Buffer();
 
 
-if (PORTBbits.RB4==1){
+if (PORTBbits.RB4==0){
 
 
 
@@ -6134,13 +6134,14 @@ break;
 
 Coupe_Moteur();
 Alarme_On(7);
-}
 
 }
 
 }
 
-# 615
+}
+
+# 616
 void main(void) {
 
 OSCCON = 0b01110000;
@@ -6150,17 +6151,17 @@ OSCCON = 0b01110000;
 
 while (IOFS != 1);
 
-# 628
+# 629
 Init_Variable();
 
 
 
 Init_Port();
 
-# 667
+# 668
 Init_IT();
 
-# 686
+# 687
 EUSART1_Initialize();
 Init_SPI();
 
@@ -6175,7 +6176,7 @@ Init_TIMER5();
 
 Init_PWM();
 
-# 760
+# 761
 Cycle();
 
 }
