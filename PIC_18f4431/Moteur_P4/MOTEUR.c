@@ -597,6 +597,7 @@ void Cycle(void) {
            
             Coupe_Moteur();
             Alarme_On(ALARME_AU);
+            //Etat_Update(ETAT_BLOQUER_DEFINITIVEMENT); //On bloque definitivement lorsque l'on recule
         }
 
     }
