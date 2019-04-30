@@ -5602,6 +5602,9 @@ void Detection_Pion_On(void);
 void Detection_Pion_Off(void);
 void Detection_Pion_Init(void);
 
+# 16 "alarme.h"
+void Alarme_On(unsigned char alarme_new_value);
+
 # 17 "variable_main.h"
 unsigned long long Compteur_Fonctionnement;
 
@@ -5764,10 +5767,10 @@ volatile unsigned char spiRxIndex;
 volatile unsigned char SPI_RX_TEXT[64];
 volatile unsigned char spiRxBuffer[64];
 
-# 143 "MOTEUR.c"
+# 144 "MOTEUR.c"
 void Init_Variable(void) {
 
-# 180
+# 181
 Version = 11;
 
 
@@ -5850,7 +5853,7 @@ Surveillance_Consommation_Moteur_2 = 0;
 
 Detection_Pion_Init();
 
-# 268
+# 269
 Compteur_IRQ_I_Moteur_1 = 0;
 Compteur_IRQ_I_Moteur_2 = 0;
 
@@ -5898,25 +5901,29 @@ spiTxIndex = 0;
 SPI_MODE = 0;
 }
 
-# 321
+# 322
 void Cycle(void) {
 
 
 unsigned char i, j;
 
-# 354
+# 355
 while (1) {
 EUSART1_Check_Buffer();
 
 SPI_Check_Buffer();
+
+
+if (PORTBbits.RB4==1){
+
+
+
 
 switch (Etat) {
 case 1:
 
 switch (Alarme) {
 case 3:
-
-
 switch (Etat_Get(1)) {
 case 2:
 delay_s(1);
@@ -5986,7 +5993,7 @@ break;
 break;
 case 4:
 
-
+# 450
 switch (Etat_Get(1)) {
 case 2:
 delay_s(1);
@@ -6033,7 +6040,7 @@ Etat_Update(70);
 break;
 }
 
-# 487
+# 501
 break;
 
 
@@ -6071,7 +6078,7 @@ default: break;
 
 break;
 
-# 531
+# 545
 case 2:
 
 
@@ -6122,11 +6129,18 @@ break;
 
 }
 
+
+}else{
+
+Coupe_Moteur();
+Alarme_On(7);
 }
 
 }
 
-# 594
+}
+
+# 615
 void main(void) {
 
 OSCCON = 0b01110000;
@@ -6136,17 +6150,17 @@ OSCCON = 0b01110000;
 
 while (IOFS != 1);
 
-# 607
+# 628
 Init_Variable();
 
 
 
 Init_Port();
 
-# 646
+# 667
 Init_IT();
 
-# 665
+# 686
 EUSART1_Initialize();
 Init_SPI();
 
@@ -6161,7 +6175,7 @@ Init_TIMER5();
 
 Init_PWM();
 
-# 739
+# 760
 Cycle();
 
 }

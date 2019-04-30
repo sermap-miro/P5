@@ -125,6 +125,7 @@
 #include "spi.h"
 #include "horloge.h"
 #include "pion.h"
+#include "alarme.h"
 
 
 //
@@ -356,6 +357,12 @@ void Cycle(void) {
         //   LED = 0;
         SPI_Check_Buffer();
 
+        
+       if (BTN_ARRET_URGENCE==1){
+        
+        
+        
+        
         switch (Etat) {
             case ETAT_ALARME:
                 /*vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv*/
@@ -482,7 +489,7 @@ void Cycle(void) {
                                 break;
                             default://Empeche les faux démarrage (avec capot ouvert)
                                 P4_busy = P4_BUSY_LIBRE;
-                                Etat_Update(ETAT_BLOQUER_IMPOSSIBLE); //SEmble etre  normal finalement { (Pas normal (ne devrait jamais se produire)... mais au cas ou}
+                                Etat_Update(ETAT_BLOQUER_IMPOSSIBLE); //Semble etre  normal finalement { (Pas normal (ne devrait jamais se produire)... mais au cas ou}
                                 break;
                         }
 
@@ -583,6 +590,13 @@ void Cycle(void) {
                 break;
 
 
+        }
+        
+        
+       }else{//Le bouton d'arret d'urgence est en position URGENCE
+           
+            Coupe_Moteur();
+            Alarme_On(ALARME_AU);
         }
 
     }
