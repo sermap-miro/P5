@@ -971,7 +971,7 @@ def AiCWebserv(port):
                         elif ibf > 0 :
                             _wifi=0
                             print("Rafraîchissement f")
-                            conn.sendall(HTML_HEADER)
+                           #conn.sendall(HTML_HEADER)
                             if request[0:3]!='GET':
                                 #m.request = request
                                 #print('request = {}'.format(request))
@@ -1028,6 +1028,7 @@ def AiCWebserv(port):
 
                             else:
                                 try:
+                                    conn.sendall(HTML_HEADER)
                                     with open('AiCmirobot_wifi.htm', 'r') as html:
                                         #conn.send(html.read())
                                         for line in html.readlines():
