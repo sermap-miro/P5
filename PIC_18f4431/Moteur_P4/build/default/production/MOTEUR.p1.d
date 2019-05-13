@@ -14,4 +14,5 @@ pion.h  \
 interrupt.h  \
 eusart.h  \
 action.h  \
+alarme.h  \
 horloge.h 

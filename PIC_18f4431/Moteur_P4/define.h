@@ -12,6 +12,11 @@
 extern "C" {
 #endif
 
+    
+  #define BTN_ARRET_URGENCE PORTBbits.RB4
+    
+    
+    
 #define P4_BUSY_OCCUPER 1
 #define P4_BUSY_LIBRE 0
     

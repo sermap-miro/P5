@@ -125,6 +125,7 @@
 #include "spi.h"
 #include "horloge.h"
 #include "pion.h"
+#include "alarme.h"
 
 
 //
@@ -141,6 +142,13 @@
 #include "variable_main.h"
 
 void Init_Variable(void) {
+    
+    /*
+     
+     Version 12: Résolution du bug découvert par Pascal Karas
+     * 
+     */
+    
     
     /*
      
@@ -177,7 +185,7 @@ void Init_Variable(void) {
  
  
      */
-    Version = 11;
+    Version = 12;
     //Version = 10;
 
     //Compteur_Fonctionnement=0;
@@ -356,6 +364,12 @@ void Cycle(void) {
         //   LED = 0;
         SPI_Check_Buffer();
 
+        
+       if (BTN_ARRET_URGENCE==0){ //Les entrées sont inversées
+        
+        
+        
+        
         switch (Etat) {
             case ETAT_ALARME:
                 /*vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv*/
@@ -482,7 +496,7 @@ void Cycle(void) {
                                 break;
                             default://Empeche les faux démarrage (avec capot ouvert)
                                 P4_busy = P4_BUSY_LIBRE;
-                                Etat_Update(ETAT_BLOQUER_IMPOSSIBLE); //SEmble etre  normal finalement { (Pas normal (ne devrait jamais se produire)... mais au cas ou}
+                                Etat_Update(ETAT_BLOQUER_IMPOSSIBLE); //Semble etre  normal finalement { (Pas normal (ne devrait jamais se produire)... mais au cas ou}
                                 break;
                         }
 
@@ -583,6 +597,14 @@ void Cycle(void) {
                 break;
 
 
+        }
+        
+        
+       }else{//Le bouton d'arret d'urgence est en position URGENCE
+           
+            Coupe_Moteur();
+            Alarme_On(ALARME_AU);
+            //Etat_Update(ETAT_BLOQUER_DEFINITIVEMENT); //On bloque definitivement lorsque l'on recule
         }
 
     }

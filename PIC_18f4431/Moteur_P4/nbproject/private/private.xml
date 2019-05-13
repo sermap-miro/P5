@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/sam/MPLABXProjects/P5/PIC_18f4431/Moteur_P4/adc.c</file>
+            <file>file:/home/sam/MPLABXProjects/P5/PIC_18f4431/Moteur_P4/action.h</file>
+            <file>file:/home/sam/MPLABXProjects/P5/PIC_18f4431/Moteur_P4/MOTEUR.c</file>
+            <file>file:/home/sam/MPLABXProjects/P5/PIC_18f4431/Moteur_P4/action.c</file>
+            <file>file:/home/sam/MPLABXProjects/P5/PIC_18f4431/Moteur_P4/define.h</file>
+            <file>file:/home/sam/MPLABXProjects/P5/PIC_18f4431/Moteur_P4/interrupt.c</file>
+            <file>file:/home/sam/MPLABXProjects/P5/PIC_18f4431/Moteur_P4/init.c</file>
+            <file>file:/home/sam/MPLABXProjects/P5/PIC_18f4431/Moteur_P4/eusart.c</file>
+            <file>file:/home/sam/MPLABXProjects/P5/PIC_18f4431/Moteur_P4/init.h</file>
+            <file>file:/home/sam/MPLABXProjects/P5/PIC_18f4431/Moteur_P4/alarme.c</file>
+        </group>
     </open-files>
 </project-private>
