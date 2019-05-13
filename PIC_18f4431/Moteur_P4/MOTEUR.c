@@ -145,6 +145,13 @@ void Init_Variable(void) {
     
     /*
      
+     Version 12: Résolution du bug découvert par Pascal Karas
+     * 
+     */
+    
+    
+    /*
+     
      Version 11:
      * Etat de Fumière pleine lors d'un patinage sur la platine de multitas
      
@@ -178,7 +185,7 @@ void Init_Variable(void) {
  
  
      */
-    Version = 11;
+    Version = 12;
     //Version = 10;
 
     //Compteur_Fonctionnement=0;

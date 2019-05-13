@@ -4351,722 +4351,722 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MOTEUR.c: 144: void Init_Variable(void) {
 [e :U _Init_Variable ]
 [f ]
-[; ;MOTEUR.c: 181: Version = 11;
-"181
-[e = _Version -> -> 11 `i `uc ]
-[; ;MOTEUR.c: 185: Batterie_mV = 0;
-"185
-[e = _Batterie_mV -> -> 0 `i `ui ]
+[; ;MOTEUR.c: 188: Version = 12;
 "188
+[e = _Version -> -> 12 `i `uc ]
+[; ;MOTEUR.c: 192: Batterie_mV = 0;
+"192
+[e = _Batterie_mV -> -> 0 `i `ui ]
+"195
 [v _i `uc ~T0 @X0 1 a ]
-[; ;MOTEUR.c: 188: unsigned char i;
-[; ;MOTEUR.c: 190: for (i = 0; i < 10; i++) {
-"190
+[; ;MOTEUR.c: 195: unsigned char i;
+[; ;MOTEUR.c: 197: for (i = 0; i < 10; i++) {
+"197
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 10 `i 350  ]
 [e $U 351  ]
 [e :U 350 ]
 {
-[; ;MOTEUR.c: 191: Etat_Log[i] = 255;
-"191
+[; ;MOTEUR.c: 198: Etat_Log[i] = 255;
+"198
 [e = *U + &U _Etat_Log * -> _i `ux -> -> # *U &U _Etat_Log `ui `ux -> -> 255 `i `uc ]
-"194
+"201
 }
-"190
+"197
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 10 `i 350  ]
 [e :U 351 ]
-"194
+"201
 }
-[; ;MOTEUR.c: 194: }
-[; ;MOTEUR.c: 196: Etat_Precedent_Index = 0;
-"196
-[e = _Etat_Precedent_Index -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 197: Etat = 255;
-"197
-[e = _Etat -> -> 255 `i `uc ]
-[; ;MOTEUR.c: 200: Alarme = 0;
-"200
-[e = _Alarme -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 202: nb_s_fonctionnement_souhaiter = 0;
-"202
-[e = _nb_s_fonctionnement_souhaiter -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 203: nb_s_fonctionnement = 0;
+[; ;MOTEUR.c: 201: }
+[; ;MOTEUR.c: 203: Etat_Precedent_Index = 0;
 "203
-[e = _nb_s_fonctionnement -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 206: nb_s_patinage = 90;
-"206
-[e = _nb_s_patinage -> -> 90 `i `uc ]
-[; ;MOTEUR.c: 207: nb_s_patinage = 45;
+[e = _Etat_Precedent_Index -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 204: Etat = 255;
+"204
+[e = _Etat -> -> 255 `i `uc ]
+[; ;MOTEUR.c: 207: Alarme = 0;
 "207
-[e = _nb_s_patinage -> -> 45 `i `uc ]
-[; ;MOTEUR.c: 208: nb_s_patinage = 50;
-"208
-[e = _nb_s_patinage -> -> 50 `i `uc ]
-[; ;MOTEUR.c: 211: nb_100ms_Timer_5 = 0;
-"211
-[e = _nb_100ms_Timer_5 -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 213: nb_100ms_pion = 2;
+[e = _Alarme -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 209: nb_s_fonctionnement_souhaiter = 0;
+"209
+[e = _nb_s_fonctionnement_souhaiter -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 210: nb_s_fonctionnement = 0;
+"210
+[e = _nb_s_fonctionnement -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 213: nb_s_patinage = 90;
 "213
-[e = _nb_100ms_pion -> -> 2 `i `uc ]
-[; ;MOTEUR.c: 214: nb_100ms_platine = 30;
+[e = _nb_s_patinage -> -> 90 `i `uc ]
+[; ;MOTEUR.c: 214: nb_s_patinage = 45;
 "214
-[e = _nb_100ms_platine -> -> 30 `i `uc ]
-[; ;MOTEUR.c: 216: nb_s_pelle = 30;
-"216
-[e = _nb_s_pelle -> -> 30 `i `uc ]
-[; ;MOTEUR.c: 217: nb_s_bequille = 10;
-"217
-[e = _nb_s_bequille -> -> 10 `i `uc ]
-[; ;MOTEUR.c: 219: Detecteur_Pion = 0;
-"219
-[e = _Detecteur_Pion -> -> 0 `i `b ]
-[; ;MOTEUR.c: 220: nb_Pion = 0;
+[e = _nb_s_patinage -> -> 45 `i `uc ]
+[; ;MOTEUR.c: 215: nb_s_patinage = 50;
+"215
+[e = _nb_s_patinage -> -> 50 `i `uc ]
+[; ;MOTEUR.c: 218: nb_100ms_Timer_5 = 0;
+"218
+[e = _nb_100ms_Timer_5 -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 220: nb_100ms_pion = 2;
 "220
-[e = _nb_Pion -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 221: nb_Pion_Objectif = 0;
+[e = _nb_100ms_pion -> -> 2 `i `uc ]
+[; ;MOTEUR.c: 221: nb_100ms_platine = 30;
 "221
-[e = _nb_Pion_Objectif -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 222: Mouvement_Startup = 0;
-"222
-[e = _Mouvement_Startup -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 224: delay_s_counter = 0;
+[e = _nb_100ms_platine -> -> 30 `i `uc ]
+[; ;MOTEUR.c: 223: nb_s_pelle = 30;
+"223
+[e = _nb_s_pelle -> -> 30 `i `uc ]
+[; ;MOTEUR.c: 224: nb_s_bequille = 10;
 "224
-[e = _delay_s_counter -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 226: moteur_indice = 1;
+[e = _nb_s_bequille -> -> 10 `i `uc ]
+[; ;MOTEUR.c: 226: Detecteur_Pion = 0;
 "226
-[e = _moteur_indice -> -> 1 `i `uc ]
-[; ;MOTEUR.c: 227: consigne = 0;
+[e = _Detecteur_Pion -> -> 0 `i `b ]
+[; ;MOTEUR.c: 227: nb_Pion = 0;
 "227
-[e = _consigne -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 228: direction = 0;
+[e = _nb_Pion -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 228: nb_Pion_Objectif = 0;
 "228
-[e = _direction -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 229: mouvement_option = 0;
+[e = _nb_Pion_Objectif -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 229: Mouvement_Startup = 0;
 "229
-[e = _mouvement_option -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 230: Option_Multitas = 0;
-"230
-[e = _Option_Multitas -> -> 0 `i `b ]
-[; ;MOTEUR.c: 231: type_consigne = 0;
+[e = _Mouvement_Startup -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 231: delay_s_counter = 0;
 "231
-[e = _type_consigne -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 232: Consigne_Max = 20 * 5;
-"232
-[e = _Consigne_Max -> * -> 20 `i -> 5 `i `uc ]
-[; ;MOTEUR.c: 233: Consigne_Max_Moteur_X = 20 * 5;
+[e = _delay_s_counter -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 233: moteur_indice = 1;
 "233
-[e = _Consigne_Max_Moteur_X -> * -> 20 `i -> 5 `i `uc ]
-[; ;MOTEUR.c: 234: Consigne_Max_Moteur_Z = 20 * 5;
+[e = _moteur_indice -> -> 1 `i `uc ]
+[; ;MOTEUR.c: 234: consigne = 0;
 "234
-[e = _Consigne_Max_Moteur_Z -> * -> 20 `i -> 5 `i `uc ]
-[; ;MOTEUR.c: 235: Consigne_Max_Moteur_Bequille = 20 * 5;
+[e = _consigne -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 235: direction = 0;
 "235
-[e = _Consigne_Max_Moteur_Bequille -> * -> 20 `i -> 5 `i `uc ]
-[; ;MOTEUR.c: 237: Moteur_I_Max = 100;
+[e = _direction -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 236: mouvement_option = 0;
+"236
+[e = _mouvement_option -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 237: Option_Multitas = 0;
 "237
-[e = _Moteur_I_Max -> -> 100 `i `uc ]
-[; ;MOTEUR.c: 238: Pelle_I_Max = 45;
+[e = _Option_Multitas -> -> 0 `i `b ]
+[; ;MOTEUR.c: 238: type_consigne = 0;
 "238
-[e = _Pelle_I_Max -> -> 45 `i `uc ]
-[; ;MOTEUR.c: 239: Bequille_I_Max = 22;
+[e = _type_consigne -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 239: Consigne_Max = 20 * 5;
 "239
-[e = _Bequille_I_Max -> -> 22 `i `uc ]
-[; ;MOTEUR.c: 242: Consigne_en_A = 4;
+[e = _Consigne_Max -> * -> 20 `i -> 5 `i `uc ]
+[; ;MOTEUR.c: 240: Consigne_Max_Moteur_X = 20 * 5;
+"240
+[e = _Consigne_Max_Moteur_X -> * -> 20 `i -> 5 `i `uc ]
+[; ;MOTEUR.c: 241: Consigne_Max_Moteur_Z = 20 * 5;
+"241
+[e = _Consigne_Max_Moteur_Z -> * -> 20 `i -> 5 `i `uc ]
+[; ;MOTEUR.c: 242: Consigne_Max_Moteur_Bequille = 20 * 5;
 "242
-[e = _Consigne_en_A -> -> 4 `i `uc ]
-[; ;MOTEUR.c: 243: consigne = (char) (Consigne_en_A * 5);
-"243
-[e = _consigne -> * -> _Consigne_en_A `i -> 5 `i `uc ]
-[; ;MOTEUR.c: 246: Patinage_Nb_Essai_Autoriser = 3;
+[e = _Consigne_Max_Moteur_Bequille -> * -> 20 `i -> 5 `i `uc ]
+[; ;MOTEUR.c: 244: Moteur_I_Max = 100;
+"244
+[e = _Moteur_I_Max -> -> 100 `i `uc ]
+[; ;MOTEUR.c: 245: Pelle_I_Max = 45;
+"245
+[e = _Pelle_I_Max -> -> 45 `i `uc ]
+[; ;MOTEUR.c: 246: Bequille_I_Max = 22;
 "246
-[e = _Patinage_Nb_Essai_Autoriser -> -> 3 `i `uc ]
-[; ;MOTEUR.c: 247: Capteur_Capot_Nb_Evenement_Autoriser = 3;
-"247
-[e = _Capteur_Capot_Nb_Evenement_Autoriser -> -> 3 `i `uc ]
-[; ;MOTEUR.c: 248: Capteur_Capot_Compteur_Temps_S = 0;
-"248
-[e = _Capteur_Capot_Compteur_Temps_S -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 249: Patinage_Nb_Essai = 0;
+[e = _Bequille_I_Max -> -> 22 `i `uc ]
+[; ;MOTEUR.c: 249: Consigne_en_A = 4;
 "249
-[e = _Patinage_Nb_Essai -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 250: Capteur_Capot_Nb_Evenement = 0;
+[e = _Consigne_en_A -> -> 4 `i `uc ]
+[; ;MOTEUR.c: 250: consigne = (char) (Consigne_en_A * 5);
 "250
-[e = _Capteur_Capot_Nb_Evenement -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 252: TIMER0_Etat = 0;
-"252
-[e = _TIMER0_Etat -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 254: consigne_moteur_1 = 20;
+[e = _consigne -> * -> _Consigne_en_A `i -> 5 `i `uc ]
+[; ;MOTEUR.c: 253: Patinage_Nb_Essai_Autoriser = 3;
+"253
+[e = _Patinage_Nb_Essai_Autoriser -> -> 3 `i `uc ]
+[; ;MOTEUR.c: 254: Capteur_Capot_Nb_Evenement_Autoriser = 3;
 "254
-[e = _consigne_moteur_1 -> -> 20 `i `uc ]
-[; ;MOTEUR.c: 255: consigne_moteur_2 = 50;
+[e = _Capteur_Capot_Nb_Evenement_Autoriser -> -> 3 `i `uc ]
+[; ;MOTEUR.c: 255: Capteur_Capot_Compteur_Temps_S = 0;
 "255
-[e = _consigne_moteur_2 -> -> 50 `i `uc ]
-[; ;MOTEUR.c: 256: consigne_moteur_3 = 50;
+[e = _Capteur_Capot_Compteur_Temps_S -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 256: Patinage_Nb_Essai = 0;
 "256
-[e = _consigne_moteur_3 -> -> 50 `i `uc ]
-[; ;MOTEUR.c: 258: Surveillance_Consommation_Moteur_1 = 0;
-"258
-[e = _Surveillance_Consommation_Moteur_1 -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 259: Surveillance_Consommation_Moteur_2 = 0;
+[e = _Patinage_Nb_Essai -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 257: Capteur_Capot_Nb_Evenement = 0;
+"257
+[e = _Capteur_Capot_Nb_Evenement -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 259: TIMER0_Etat = 0;
 "259
-[e = _Surveillance_Consommation_Moteur_2 -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 261: Detection_Pion_Init();
+[e = _TIMER0_Etat -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 261: consigne_moteur_1 = 20;
 "261
+[e = _consigne_moteur_1 -> -> 20 `i `uc ]
+[; ;MOTEUR.c: 262: consigne_moteur_2 = 50;
+"262
+[e = _consigne_moteur_2 -> -> 50 `i `uc ]
+[; ;MOTEUR.c: 263: consigne_moteur_3 = 50;
+"263
+[e = _consigne_moteur_3 -> -> 50 `i `uc ]
+[; ;MOTEUR.c: 265: Surveillance_Consommation_Moteur_1 = 0;
+"265
+[e = _Surveillance_Consommation_Moteur_1 -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 266: Surveillance_Consommation_Moteur_2 = 0;
+"266
+[e = _Surveillance_Consommation_Moteur_2 -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 268: Detection_Pion_Init();
+"268
 [e ( _Detection_Pion_Init ..  ]
-[; ;MOTEUR.c: 269: Compteur_IRQ_I_Moteur_1 = 0;
-"269
+[; ;MOTEUR.c: 276: Compteur_IRQ_I_Moteur_1 = 0;
+"276
 [e = _Compteur_IRQ_I_Moteur_1 -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 270: Compteur_IRQ_I_Moteur_2 = 0;
-"270
+[; ;MOTEUR.c: 277: Compteur_IRQ_I_Moteur_2 = 0;
+"277
 [e = _Compteur_IRQ_I_Moteur_2 -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 273: P4_busy = 0;
-"273
-[e = _P4_busy -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 278: Pailleux_Valeur = 0;
-"278
-[e = _Pailleux_Valeur -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 280: Pailleux_Compteur = 0;
+[; ;MOTEUR.c: 280: P4_busy = 0;
 "280
-[e = _Pailleux_Compteur -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 282: Pailleux_Nb_S = 30;
-"282
-[e = _Pailleux_Nb_S -> -> 30 `i `uc ]
-[; ;MOTEUR.c: 285: DVT_Temps_Pause = 0;
+[e = _P4_busy -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 285: Pailleux_Valeur = 0;
 "285
-[e = _DVT_Temps_Pause -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 287: DVT_Compteur = 0;
+[e = _Pailleux_Valeur -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 287: Pailleux_Compteur = 0;
 "287
-[e = _DVT_Compteur -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 289: DVT_Tableau_Pause[0] = 9;
+[e = _Pailleux_Compteur -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 289: Pailleux_Nb_S = 30;
 "289
-[e = *U + &U _DVT_Tableau_Pause * -> -> -> 0 `i `ui `ux -> -> # *U &U _DVT_Tableau_Pause `ui `ux -> -> 9 `i `uc ]
-[; ;MOTEUR.c: 290: DVT_Tableau_Pause[1] = 7;
-"290
-[e = *U + &U _DVT_Tableau_Pause * -> -> -> 1 `i `ui `ux -> -> # *U &U _DVT_Tableau_Pause `ui `ux -> -> 7 `i `uc ]
-[; ;MOTEUR.c: 291: DVT_Tableau_Pause[2] = 6;
-"291
-[e = *U + &U _DVT_Tableau_Pause * -> -> -> 2 `i `ui `ux -> -> # *U &U _DVT_Tableau_Pause `ui `ux -> -> 6 `i `uc ]
-[; ;MOTEUR.c: 292: DVT_Tableau_Pause[3] = 5;
+[e = _Pailleux_Nb_S -> -> 30 `i `uc ]
+[; ;MOTEUR.c: 292: DVT_Temps_Pause = 0;
 "292
-[e = *U + &U _DVT_Tableau_Pause * -> -> -> 3 `i `ui `ux -> -> # *U &U _DVT_Tableau_Pause `ui `ux -> -> 5 `i `uc ]
-[; ;MOTEUR.c: 293: DVT_Tableau_Pause[4] = 4;
-"293
-[e = *U + &U _DVT_Tableau_Pause * -> -> -> 4 `i `ui `ux -> -> # *U &U _DVT_Tableau_Pause `ui `ux -> -> 4 `i `uc ]
-[; ;MOTEUR.c: 294: DVT_Tableau_Pause[5] = 3;
+[e = _DVT_Temps_Pause -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 294: DVT_Compteur = 0;
 "294
-[e = *U + &U _DVT_Tableau_Pause * -> -> -> 5 `i `ui `ux -> -> # *U &U _DVT_Tableau_Pause `ui `ux -> -> 3 `i `uc ]
-[; ;MOTEUR.c: 299: Multitas_Temps = 0;
+[e = _DVT_Compteur -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 296: DVT_Tableau_Pause[0] = 9;
+"296
+[e = *U + &U _DVT_Tableau_Pause * -> -> -> 0 `i `ui `ux -> -> # *U &U _DVT_Tableau_Pause `ui `ux -> -> 9 `i `uc ]
+[; ;MOTEUR.c: 297: DVT_Tableau_Pause[1] = 7;
+"297
+[e = *U + &U _DVT_Tableau_Pause * -> -> -> 1 `i `ui `ux -> -> # *U &U _DVT_Tableau_Pause `ui `ux -> -> 7 `i `uc ]
+[; ;MOTEUR.c: 298: DVT_Tableau_Pause[2] = 6;
+"298
+[e = *U + &U _DVT_Tableau_Pause * -> -> -> 2 `i `ui `ux -> -> # *U &U _DVT_Tableau_Pause `ui `ux -> -> 6 `i `uc ]
+[; ;MOTEUR.c: 299: DVT_Tableau_Pause[3] = 5;
 "299
-[e = _Multitas_Temps -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 301: Multitas_Compteur = 0;
+[e = *U + &U _DVT_Tableau_Pause * -> -> -> 3 `i `ui `ux -> -> # *U &U _DVT_Tableau_Pause `ui `ux -> -> 5 `i `uc ]
+[; ;MOTEUR.c: 300: DVT_Tableau_Pause[4] = 4;
+"300
+[e = *U + &U _DVT_Tableau_Pause * -> -> -> 4 `i `ui `ux -> -> # *U &U _DVT_Tableau_Pause `ui `ux -> -> 4 `i `uc ]
+[; ;MOTEUR.c: 301: DVT_Tableau_Pause[5] = 3;
 "301
-[e = _Multitas_Compteur -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 303: Multitas_Courant_Max = 20 * 5 ;
-"303
-[e = _Multitas_Courant_Max -> * -> 20 `i -> 5 `i `uc ]
-[; ;MOTEUR.c: 306: UART_TEST = 0;
+[e = *U + &U _DVT_Tableau_Pause * -> -> -> 5 `i `ui `ux -> -> # *U &U _DVT_Tableau_Pause `ui `ux -> -> 3 `i `uc ]
+[; ;MOTEUR.c: 306: Multitas_Temps = 0;
 "306
-[e = _UART_TEST -> -> 0 `i `b ]
-[; ;MOTEUR.c: 307: RX1_ABR = 0;
-"307
-[e = _RX1_ABR -> -> 0 `i `b ]
-[; ;MOTEUR.c: 308: RX1_full = 0;
+[e = _Multitas_Temps -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 308: Multitas_Compteur = 0;
 "308
-[e = _RX1_full -> -> 0 `i `b ]
-[; ;MOTEUR.c: 309: SPI_full = 0;
-"309
-[e = _SPI_full -> -> 0 `i `b ]
-[; ;MOTEUR.c: 311: spiRxIndex = 0;
-"311
-[e = _spiRxIndex -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 312: spiTxIndex = 0;
-"312
-[e = _spiTxIndex -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 313: SPI_MODE = 0;
+[e = _Multitas_Compteur -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 310: Multitas_Courant_Max = 20 * 5 ;
+"310
+[e = _Multitas_Courant_Max -> * -> 20 `i -> 5 `i `uc ]
+[; ;MOTEUR.c: 313: UART_TEST = 0;
 "313
-[e = _SPI_MODE -> -> 0 `i `b ]
-[; ;MOTEUR.c: 314: }
+[e = _UART_TEST -> -> 0 `i `b ]
+[; ;MOTEUR.c: 314: RX1_ABR = 0;
 "314
+[e = _RX1_ABR -> -> 0 `i `b ]
+[; ;MOTEUR.c: 315: RX1_full = 0;
+"315
+[e = _RX1_full -> -> 0 `i `b ]
+[; ;MOTEUR.c: 316: SPI_full = 0;
+"316
+[e = _SPI_full -> -> 0 `i `b ]
+[; ;MOTEUR.c: 318: spiRxIndex = 0;
+"318
+[e = _spiRxIndex -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 319: spiTxIndex = 0;
+"319
+[e = _spiTxIndex -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 320: SPI_MODE = 0;
+"320
+[e = _SPI_MODE -> -> 0 `i `b ]
+[; ;MOTEUR.c: 321: }
+"321
 [e :UE 349 ]
 }
-"322
+"329
 [v _Cycle `(v ~T0 @X0 1 ef ]
 {
-[; ;MOTEUR.c: 322: void Cycle(void) {
+[; ;MOTEUR.c: 329: void Cycle(void) {
 [e :U _Cycle ]
 [f ]
-"325
+"332
 [v _i `uc ~T0 @X0 1 a ]
 [v _j `uc ~T0 @X0 1 a ]
-[; ;MOTEUR.c: 325: unsigned char i, j;
-[; ;MOTEUR.c: 355: while (1) {
-"355
+[; ;MOTEUR.c: 332: unsigned char i, j;
+[; ;MOTEUR.c: 362: while (1) {
+"362
 [e :U 355 ]
 {
-[; ;MOTEUR.c: 356: EUSART1_Check_Buffer();
-"356
+[; ;MOTEUR.c: 363: EUSART1_Check_Buffer();
+"363
 [e ( _EUSART1_Check_Buffer ..  ]
-[; ;MOTEUR.c: 358: SPI_Check_Buffer();
-"358
+[; ;MOTEUR.c: 365: SPI_Check_Buffer();
+"365
 [e ( _SPI_Check_Buffer ..  ]
-[; ;MOTEUR.c: 361: if (PORTBbits.RB4==0){
-"361
+[; ;MOTEUR.c: 368: if (PORTBbits.RB4==0){
+"368
 [e $ ! == -> . . _PORTBbits 0 4 `i -> 0 `i 357  ]
 {
-[; ;MOTEUR.c: 366: switch (Etat) {
-"366
+[; ;MOTEUR.c: 373: switch (Etat) {
+"373
 [e $U 359  ]
 {
-[; ;MOTEUR.c: 367: case 1:
-"367
+[; ;MOTEUR.c: 374: case 1:
+"374
 [e :U 360 ]
-[; ;MOTEUR.c: 369: switch (Alarme) {
-"369
+[; ;MOTEUR.c: 376: switch (Alarme) {
+"376
 [e $U 362  ]
 {
-[; ;MOTEUR.c: 370: case 3:
-"370
+[; ;MOTEUR.c: 377: case 3:
+"377
 [e :U 363 ]
-[; ;MOTEUR.c: 371: switch (Etat_Get(1)) {
-"371
+[; ;MOTEUR.c: 378: switch (Etat_Get(1)) {
+"378
 [e $U 365  ]
 {
-[; ;MOTEUR.c: 372: case 2:
-"372
+[; ;MOTEUR.c: 379: case 2:
+"379
 [e :U 366 ]
-[; ;MOTEUR.c: 373: delay_s(1);
-"373
+[; ;MOTEUR.c: 380: delay_s(1);
+"380
 [e ( _delay_s (1 -> -> 1 `i `uc ]
-[; ;MOTEUR.c: 377: if (Option_Multitas == 0) {
-"377
+[; ;MOTEUR.c: 384: if (Option_Multitas == 0) {
+"384
 [e $ ! == -> _Option_Multitas `i -> 0 `i 367  ]
 {
-[; ;MOTEUR.c: 380: Mouvement_X(0, 1, 0x02 | 0x60);
-"380
+[; ;MOTEUR.c: 387: Mouvement_X(0, 1, 0x02 | 0x60);
+"387
 [e ( _Mouvement_X (3 , , -> -> 0 `i `uc -> -> 1 `i `uc -> | -> 2 `i -> 96 `i `uc ]
-[; ;MOTEUR.c: 384: Patinage_Nb_Essai -= 1;
-"384
+[; ;MOTEUR.c: 391: Patinage_Nb_Essai -= 1;
+"391
 [e =- _Patinage_Nb_Essai -> -> 1 `i `uc ]
-[; ;MOTEUR.c: 385: if (Patinage_Nb_Essai > 0) {
-"385
+[; ;MOTEUR.c: 392: if (Patinage_Nb_Essai > 0) {
+"392
 [e $ ! > -> _Patinage_Nb_Essai `i -> 0 `i 368  ]
 {
-[; ;MOTEUR.c: 386: nb_s_fonctionnement = 0;
-"386
-[e = _nb_s_fonctionnement -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 391: delay_s(3);
-"391
-[e ( _delay_s (1 -> -> 3 `i `uc ]
-[; ;MOTEUR.c: 392: Etat_Update(2);
-"392
-[e ( _Etat_Update (1 -> -> 2 `i `uc ]
+[; ;MOTEUR.c: 393: nb_s_fonctionnement = 0;
 "393
+[e = _nb_s_fonctionnement -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 398: delay_s(3);
+"398
+[e ( _delay_s (1 -> -> 3 `i `uc ]
+[; ;MOTEUR.c: 399: Etat_Update(2);
+"399
+[e ( _Etat_Update (1 -> -> 2 `i `uc ]
+"400
 }
-[; ;MOTEUR.c: 393: } else {
+[; ;MOTEUR.c: 400: } else {
 [e $U 369  ]
 [e :U 368 ]
 {
-[; ;MOTEUR.c: 394: Etat_Update(2);
-"394
+[; ;MOTEUR.c: 401: Etat_Update(2);
+"401
 [e ( _Etat_Update (1 -> -> 2 `i `uc ]
-[; ;MOTEUR.c: 396: P4_busy = 0;
-"396
+[; ;MOTEUR.c: 403: P4_busy = 0;
+"403
 [e = _P4_busy -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 397: Etat_Update(7);
-"397
+[; ;MOTEUR.c: 404: Etat_Update(7);
+"404
 [e ( _Etat_Update (1 -> -> 7 `i `uc ]
-"398
+"405
 }
 [e :U 369 ]
-"400
+"407
 }
-[; ;MOTEUR.c: 398: }
-[; ;MOTEUR.c: 400: } else {
+[; ;MOTEUR.c: 405: }
+[; ;MOTEUR.c: 407: } else {
 [e $U 370  ]
 [e :U 367 ]
 {
-[; ;MOTEUR.c: 402: Etat_Update(0);
-"402
+[; ;MOTEUR.c: 409: Etat_Update(0);
+"409
 [e ( _Etat_Update (1 -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 404: P4_busy = 0;
-"404
+[; ;MOTEUR.c: 411: P4_busy = 0;
+"411
 [e = _P4_busy -> -> 0 `i `uc ]
-"406
+"413
 }
 [e :U 370 ]
-[; ;MOTEUR.c: 406: }
-[; ;MOTEUR.c: 410: break;
-"410
-[e $U 364  ]
-[; ;MOTEUR.c: 411: case 3:
-"411
-[e :U 371 ]
-[; ;MOTEUR.c: 412: delay_s(1);
-"412
-[e ( _delay_s (1 -> -> 1 `i `uc ]
-[; ;MOTEUR.c: 415: Mouvement_X(1, 1, 0x02 | 0x60);
-"415
-[e ( _Mouvement_X (3 , , -> -> 1 `i `uc -> -> 1 `i `uc -> | -> 2 `i -> 96 `i `uc ]
-[; ;MOTEUR.c: 416: Patinage_Nb_Essai -= 1;
-"416
-[e =- _Patinage_Nb_Essai -> -> 1 `i `uc ]
-[; ;MOTEUR.c: 417: if (Patinage_Nb_Essai > 0) {
+[; ;MOTEUR.c: 413: }
+[; ;MOTEUR.c: 417: break;
 "417
+[e $U 364  ]
+[; ;MOTEUR.c: 418: case 3:
+"418
+[e :U 371 ]
+[; ;MOTEUR.c: 419: delay_s(1);
+"419
+[e ( _delay_s (1 -> -> 1 `i `uc ]
+[; ;MOTEUR.c: 422: Mouvement_X(1, 1, 0x02 | 0x60);
+"422
+[e ( _Mouvement_X (3 , , -> -> 1 `i `uc -> -> 1 `i `uc -> | -> 2 `i -> 96 `i `uc ]
+[; ;MOTEUR.c: 423: Patinage_Nb_Essai -= 1;
+"423
+[e =- _Patinage_Nb_Essai -> -> 1 `i `uc ]
+[; ;MOTEUR.c: 424: if (Patinage_Nb_Essai > 0) {
+"424
 [e $ ! > -> _Patinage_Nb_Essai `i -> 0 `i 372  ]
 {
-[; ;MOTEUR.c: 418: nb_s_fonctionnement = 0;
-"418
+[; ;MOTEUR.c: 425: nb_s_fonctionnement = 0;
+"425
 [e = _nb_s_fonctionnement -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 419: delay_s(3);
-"419
+[; ;MOTEUR.c: 426: delay_s(3);
+"426
 [e ( _delay_s (1 -> -> 3 `i `uc ]
-[; ;MOTEUR.c: 420: Etat_Update(3);
-"420
+[; ;MOTEUR.c: 427: Etat_Update(3);
+"427
 [e ( _Etat_Update (1 -> -> 3 `i `uc ]
-"421
+"428
 }
-[; ;MOTEUR.c: 421: } else {
+[; ;MOTEUR.c: 428: } else {
 [e $U 373  ]
 [e :U 372 ]
 {
-[; ;MOTEUR.c: 422: Etat_Update(3);
-"422
+[; ;MOTEUR.c: 429: Etat_Update(3);
+"429
 [e ( _Etat_Update (1 -> -> 3 `i `uc ]
-[; ;MOTEUR.c: 424: P4_busy = 0;
-"424
+[; ;MOTEUR.c: 431: P4_busy = 0;
+"431
 [e = _P4_busy -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 425: Etat_Update(7);
-"425
+[; ;MOTEUR.c: 432: Etat_Update(7);
+"432
 [e ( _Etat_Update (1 -> -> 7 `i `uc ]
-"426
+"433
 }
 [e :U 373 ]
-[; ;MOTEUR.c: 426: }
-[; ;MOTEUR.c: 427: break;
-"427
+[; ;MOTEUR.c: 433: }
+[; ;MOTEUR.c: 434: break;
+"434
 [e $U 364  ]
-[; ;MOTEUR.c: 428: default:
-"428
+[; ;MOTEUR.c: 435: default:
+"435
 [e :U 374 ]
-[; ;MOTEUR.c: 429: P4_busy = 0;
-"429
+[; ;MOTEUR.c: 436: P4_busy = 0;
+"436
 [e = _P4_busy -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 430: Etat_Update(70);
-"430
+[; ;MOTEUR.c: 437: Etat_Update(70);
+"437
 [e ( _Etat_Update (1 -> -> 70 `i `uc ]
-[; ;MOTEUR.c: 431: break;
-"431
+[; ;MOTEUR.c: 438: break;
+"438
 [e $U 364  ]
-"432
+"439
 }
-[; ;MOTEUR.c: 432: }
+[; ;MOTEUR.c: 439: }
 [e $U 364  ]
-"371
+"378
 [e :U 365 ]
 [e [\ ( _Etat_Get (1 -> -> 1 `i `uc , $ -> -> 2 `i `uc 366
  , $ -> -> 3 `i `uc 371
  374 ]
-"432
+"439
 [e :U 364 ]
-[; ;MOTEUR.c: 437: break;
-"437
+[; ;MOTEUR.c: 444: break;
+"444
 [e $U 361  ]
-[; ;MOTEUR.c: 438: case 4:
-"438
+[; ;MOTEUR.c: 445: case 4:
+"445
 [e :U 375 ]
-[; ;MOTEUR.c: 450: switch (Etat_Get(1)) {
-"450
+[; ;MOTEUR.c: 457: switch (Etat_Get(1)) {
+"457
 [e $U 377  ]
 {
-[; ;MOTEUR.c: 451: case 2:
-"451
+[; ;MOTEUR.c: 458: case 2:
+"458
 [e :U 378 ]
-[; ;MOTEUR.c: 452: delay_s(1);
-"452
+[; ;MOTEUR.c: 459: delay_s(1);
+"459
 [e ( _delay_s (1 -> -> 1 `i `uc ]
-[; ;MOTEUR.c: 455: Mouvement_X(0, 1, 0x02 | 0x60);
-"455
+[; ;MOTEUR.c: 462: Mouvement_X(0, 1, 0x02 | 0x60);
+"462
 [e ( _Mouvement_X (3 , , -> -> 0 `i `uc -> -> 1 `i `uc -> | -> 2 `i -> 96 `i `uc ]
-[; ;MOTEUR.c: 456: Capteur_Capot_Nb_Evenement -= 1;
-"456
+[; ;MOTEUR.c: 463: Capteur_Capot_Nb_Evenement -= 1;
+"463
 [e =- _Capteur_Capot_Nb_Evenement -> -> 1 `i `uc ]
-[; ;MOTEUR.c: 457: if (Capteur_Capot_Nb_Evenement > 0) {
-"457
+[; ;MOTEUR.c: 464: if (Capteur_Capot_Nb_Evenement > 0) {
+"464
 [e $ ! > -> _Capteur_Capot_Nb_Evenement `i -> 0 `i 379  ]
 {
-[; ;MOTEUR.c: 458: Capteur_Capot_Compteur_Temps_S = 0;
-"458
+[; ;MOTEUR.c: 465: Capteur_Capot_Compteur_Temps_S = 0;
+"465
 [e = _Capteur_Capot_Compteur_Temps_S -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 459: delay_s(3);
-"459
+[; ;MOTEUR.c: 466: delay_s(3);
+"466
 [e ( _delay_s (1 -> -> 3 `i `uc ]
-[; ;MOTEUR.c: 460: Etat_Update(2);
-"460
+[; ;MOTEUR.c: 467: Etat_Update(2);
+"467
 [e ( _Etat_Update (1 -> -> 2 `i `uc ]
-"461
+"468
 }
-[; ;MOTEUR.c: 461: } else {
+[; ;MOTEUR.c: 468: } else {
 [e $U 380  ]
 [e :U 379 ]
 {
-[; ;MOTEUR.c: 462: Etat_Update(2);
-"462
+[; ;MOTEUR.c: 469: Etat_Update(2);
+"469
 [e ( _Etat_Update (1 -> -> 2 `i `uc ]
-[; ;MOTEUR.c: 465: P4_busy = 0;
-"465
+[; ;MOTEUR.c: 472: P4_busy = 0;
+"472
 [e = _P4_busy -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 466: Etat_Update(7);
-"466
+[; ;MOTEUR.c: 473: Etat_Update(7);
+"473
 [e ( _Etat_Update (1 -> -> 7 `i `uc ]
-"468
+"475
 }
 [e :U 380 ]
-[; ;MOTEUR.c: 468: }
-[; ;MOTEUR.c: 469: break;
-"469
-[e $U 376  ]
-[; ;MOTEUR.c: 470: case 3:
-"470
-[e :U 381 ]
-[; ;MOTEUR.c: 471: delay_s(1);
-"471
-[e ( _delay_s (1 -> -> 1 `i `uc ]
-[; ;MOTEUR.c: 474: Mouvement_X(1, 1, 0x02 | 0x60);
-"474
-[e ( _Mouvement_X (3 , , -> -> 1 `i `uc -> -> 1 `i `uc -> | -> 2 `i -> 96 `i `uc ]
-[; ;MOTEUR.c: 475: Capteur_Capot_Nb_Evenement -= 1;
-"475
-[e =- _Capteur_Capot_Nb_Evenement -> -> 1 `i `uc ]
-[; ;MOTEUR.c: 476: if (Capteur_Capot_Nb_Evenement > 0) {
+[; ;MOTEUR.c: 475: }
+[; ;MOTEUR.c: 476: break;
 "476
+[e $U 376  ]
+[; ;MOTEUR.c: 477: case 3:
+"477
+[e :U 381 ]
+[; ;MOTEUR.c: 478: delay_s(1);
+"478
+[e ( _delay_s (1 -> -> 1 `i `uc ]
+[; ;MOTEUR.c: 481: Mouvement_X(1, 1, 0x02 | 0x60);
+"481
+[e ( _Mouvement_X (3 , , -> -> 1 `i `uc -> -> 1 `i `uc -> | -> 2 `i -> 96 `i `uc ]
+[; ;MOTEUR.c: 482: Capteur_Capot_Nb_Evenement -= 1;
+"482
+[e =- _Capteur_Capot_Nb_Evenement -> -> 1 `i `uc ]
+[; ;MOTEUR.c: 483: if (Capteur_Capot_Nb_Evenement > 0) {
+"483
 [e $ ! > -> _Capteur_Capot_Nb_Evenement `i -> 0 `i 382  ]
 {
-[; ;MOTEUR.c: 477: Capteur_Capot_Compteur_Temps_S = 0;
-"477
+[; ;MOTEUR.c: 484: Capteur_Capot_Compteur_Temps_S = 0;
+"484
 [e = _Capteur_Capot_Compteur_Temps_S -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 478: delay_s(3);
-"478
+[; ;MOTEUR.c: 485: delay_s(3);
+"485
 [e ( _delay_s (1 -> -> 3 `i `uc ]
-[; ;MOTEUR.c: 479: Etat_Update(3);
-"479
+[; ;MOTEUR.c: 486: Etat_Update(3);
+"486
 [e ( _Etat_Update (1 -> -> 3 `i `uc ]
-"480
+"487
 }
-[; ;MOTEUR.c: 480: } else {
+[; ;MOTEUR.c: 487: } else {
 [e $U 383  ]
 [e :U 382 ]
 {
-[; ;MOTEUR.c: 481: Etat_Update(3);
-"481
-[e ( _Etat_Update (1 -> -> 3 `i `uc ]
-[; ;MOTEUR.c: 483: P4_busy = 0;
-"483
-[e = _P4_busy -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 486: Etat_Update(77);
-"486
-[e ( _Etat_Update (1 -> -> 77 `i `uc ]
+[; ;MOTEUR.c: 488: Etat_Update(3);
 "488
+[e ( _Etat_Update (1 -> -> 3 `i `uc ]
+[; ;MOTEUR.c: 490: P4_busy = 0;
+"490
+[e = _P4_busy -> -> 0 `i `uc ]
+[; ;MOTEUR.c: 493: Etat_Update(77);
+"493
+[e ( _Etat_Update (1 -> -> 77 `i `uc ]
+"495
 }
 [e :U 383 ]
-[; ;MOTEUR.c: 488: }
-[; ;MOTEUR.c: 489: break;
-"489
+[; ;MOTEUR.c: 495: }
+[; ;MOTEUR.c: 496: break;
+"496
 [e $U 376  ]
-[; ;MOTEUR.c: 490: default:
-"490
+[; ;MOTEUR.c: 497: default:
+"497
 [e :U 384 ]
-[; ;MOTEUR.c: 491: P4_busy = 0;
-"491
+[; ;MOTEUR.c: 498: P4_busy = 0;
+"498
 [e = _P4_busy -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 492: Etat_Update(70);
-"492
+[; ;MOTEUR.c: 499: Etat_Update(70);
+"499
 [e ( _Etat_Update (1 -> -> 70 `i `uc ]
-[; ;MOTEUR.c: 493: break;
-"493
+[; ;MOTEUR.c: 500: break;
+"500
 [e $U 376  ]
-"494
+"501
 }
-[; ;MOTEUR.c: 494: }
+[; ;MOTEUR.c: 501: }
 [e $U 376  ]
-"450
+"457
 [e :U 377 ]
 [e [\ ( _Etat_Get (1 -> -> 1 `i `uc , $ -> -> 2 `i `uc 378
  , $ -> -> 3 `i `uc 381
  384 ]
-"494
-[e :U 376 ]
-[; ;MOTEUR.c: 501: break;
 "501
-[e $U 361  ]
-[; ;MOTEUR.c: 506: case 1:
-"506
-[e :U 385 ]
-[; ;MOTEUR.c: 507: P4_busy = 1;
-"507
-[e = _P4_busy -> -> 1 `i `uc ]
-[; ;MOTEUR.c: 508: Etat_Update(77);
+[e :U 376 ]
+[; ;MOTEUR.c: 508: break;
 "508
+[e $U 361  ]
+[; ;MOTEUR.c: 513: case 1:
+"513
+[e :U 385 ]
+[; ;MOTEUR.c: 514: P4_busy = 1;
+"514
+[e = _P4_busy -> -> 1 `i `uc ]
+[; ;MOTEUR.c: 515: Etat_Update(77);
+"515
 [e ( _Etat_Update (1 -> -> 77 `i `uc ]
-[; ;MOTEUR.c: 509: for (i = 0; i < 4; i++) {
-"509
+[; ;MOTEUR.c: 516: for (i = 0; i < 4; i++) {
+"516
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 4 `i 386  ]
 [e $U 387  ]
 [e :U 386 ]
 {
-[; ;MOTEUR.c: 510: Buzzer_Etat((unsigned char) 1);
-"510
+[; ;MOTEUR.c: 517: Buzzer_Etat((unsigned char) 1);
+"517
 [e ( _Buzzer_Etat (1 -> -> 1 `i `uc ]
-[; ;MOTEUR.c: 511: delay_n_100ms(4);
-"511
+[; ;MOTEUR.c: 518: delay_n_100ms(4);
+"518
 [e ( _delay_n_100ms (1 -> -> 4 `i `uc ]
-[; ;MOTEUR.c: 512: Buzzer_Etat((unsigned char) 0);
-"512
+[; ;MOTEUR.c: 519: Buzzer_Etat((unsigned char) 0);
+"519
 [e ( _Buzzer_Etat (1 -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 513: delay_n_100ms(2);
-"513
+[; ;MOTEUR.c: 520: delay_n_100ms(2);
+"520
 [e ( _delay_n_100ms (1 -> -> 2 `i `uc ]
-"514
+"521
 }
-"509
+"516
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 4 `i 386  ]
 [e :U 387 ]
-"514
+"521
 }
-[; ;MOTEUR.c: 514: }
-[; ;MOTEUR.c: 515: break;
-"515
+[; ;MOTEUR.c: 521: }
+[; ;MOTEUR.c: 522: break;
+"522
 [e $U 361  ]
-[; ;MOTEUR.c: 516: case 2:
-"516
-[e :U 389 ]
-[; ;MOTEUR.c: 518: P4_busy = 1;
-"518
-[e = _P4_busy -> -> 1 `i `uc ]
-[; ;MOTEUR.c: 519: Etat_Update(77);
-"519
-[e ( _Etat_Update (1 -> -> 77 `i `uc ]
-[; ;MOTEUR.c: 523: for (i = 0; i < 4; i++) {
+[; ;MOTEUR.c: 523: case 2:
 "523
+[e :U 389 ]
+[; ;MOTEUR.c: 525: P4_busy = 1;
+"525
+[e = _P4_busy -> -> 1 `i `uc ]
+[; ;MOTEUR.c: 526: Etat_Update(77);
+"526
+[e ( _Etat_Update (1 -> -> 77 `i `uc ]
+[; ;MOTEUR.c: 530: for (i = 0; i < 4; i++) {
+"530
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 4 `i 390  ]
 [e $U 391  ]
 [e :U 390 ]
 {
-[; ;MOTEUR.c: 524: Buzzer_Etat((unsigned char) 1);
-"524
+[; ;MOTEUR.c: 531: Buzzer_Etat((unsigned char) 1);
+"531
 [e ( _Buzzer_Etat (1 -> -> 1 `i `uc ]
-[; ;MOTEUR.c: 525: delay_n_100ms(4);
-"525
+[; ;MOTEUR.c: 532: delay_n_100ms(4);
+"532
 [e ( _delay_n_100ms (1 -> -> 4 `i `uc ]
-[; ;MOTEUR.c: 526: Buzzer_Etat((unsigned char) 0);
-"526
+[; ;MOTEUR.c: 533: Buzzer_Etat((unsigned char) 0);
+"533
 [e ( _Buzzer_Etat (1 -> -> 0 `i `uc ]
-[; ;MOTEUR.c: 527: delay_n_100ms(2);
-"527
+[; ;MOTEUR.c: 534: delay_n_100ms(2);
+"534
 [e ( _delay_n_100ms (1 -> -> 2 `i `uc ]
-"528
+"535
 }
-"523
+"530
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 4 `i 390  ]
 [e :U 391 ]
-"528
+"535
 }
-[; ;MOTEUR.c: 528: }
-[; ;MOTEUR.c: 529: break;
-"529
+[; ;MOTEUR.c: 535: }
+[; ;MOTEUR.c: 536: break;
+"536
 [e $U 361  ]
-[; ;MOTEUR.c: 531: default: break;
-"531
+[; ;MOTEUR.c: 538: default: break;
+"538
 [e :U 393 ]
 [e $U 361  ]
-"532
+"539
 }
-[; ;MOTEUR.c: 532: }
+[; ;MOTEUR.c: 539: }
 [e $U 361  ]
-"369
+"376
 [e :U 362 ]
 [e [\ _Alarme , $ -> -> 3 `i `uc 363
  , $ -> -> 4 `i `uc 375
  , $ -> -> 1 `i `uc 385
  , $ -> -> 2 `i `uc 389
  393 ]
-"532
+"539
 [e :U 361 ]
-[; ;MOTEUR.c: 536: break;
-"536
+[; ;MOTEUR.c: 543: break;
+"543
 [e $U 358  ]
-[; ;MOTEUR.c: 545: case 2:
-"545
+[; ;MOTEUR.c: 552: case 2:
+"552
 [e :U 394 ]
-[; ;MOTEUR.c: 549: Mouvement_X(direction, type_consigne, mouvement_option);
-"549
-[e ( _Mouvement_X (3 , , _direction _type_consigne _mouvement_option ]
-[; ;MOTEUR.c: 550: break;
-"550
-[e $U 358  ]
-[; ;MOTEUR.c: 553: case 3:
-"553
-[e :U 395 ]
-[; ;MOTEUR.c: 555: Mouvement_X(direction, type_consigne, mouvement_option);
-"555
+[; ;MOTEUR.c: 556: Mouvement_X(direction, type_consigne, mouvement_option);
+"556
 [e ( _Mouvement_X (3 , , _direction _type_consigne _mouvement_option ]
 [; ;MOTEUR.c: 557: break;
 "557
 [e $U 358  ]
-[; ;MOTEUR.c: 559: case 5:
-"559
-[e :U 396 ]
-[; ;MOTEUR.c: 561: Mouvement_Z(direction, type_consigne, mouvement_option);
-"561
-[e ( _Mouvement_Z (3 , , _direction _type_consigne _mouvement_option ]
-[; ;MOTEUR.c: 562: break;
+[; ;MOTEUR.c: 560: case 3:
+"560
+[e :U 395 ]
+[; ;MOTEUR.c: 562: Mouvement_X(direction, type_consigne, mouvement_option);
 "562
+[e ( _Mouvement_X (3 , , _direction _type_consigne _mouvement_option ]
+[; ;MOTEUR.c: 564: break;
+"564
 [e $U 358  ]
-[; ;MOTEUR.c: 565: case 4:
-"565
-[e :U 397 ]
-[; ;MOTEUR.c: 567: Mouvement_Z(direction, type_consigne, mouvement_option);
-"567
+[; ;MOTEUR.c: 566: case 5:
+"566
+[e :U 396 ]
+[; ;MOTEUR.c: 568: Mouvement_Z(direction, type_consigne, mouvement_option);
+"568
 [e ( _Mouvement_Z (3 , , _direction _type_consigne _mouvement_option ]
 [; ;MOTEUR.c: 569: break;
 "569
 [e $U 358  ]
-[; ;MOTEUR.c: 571: case 9:
-"571
-[e :U 398 ]
-[; ;MOTEUR.c: 574: Mouvement_Bequille(direction, type_consigne, mouvement_option);
+[; ;MOTEUR.c: 572: case 4:
+"572
+[e :U 397 ]
+[; ;MOTEUR.c: 574: Mouvement_Z(direction, type_consigne, mouvement_option);
 "574
-[e ( _Mouvement_Bequille (3 , , _direction _type_consigne _mouvement_option ]
+[e ( _Mouvement_Z (3 , , _direction _type_consigne _mouvement_option ]
 [; ;MOTEUR.c: 576: break;
 "576
 [e $U 358  ]
-[; ;MOTEUR.c: 579: case 8:
-"579
-[e :U 399 ]
-[; ;MOTEUR.c: 582: Mouvement_Bequille(direction, type_consigne, mouvement_option);
-"582
+[; ;MOTEUR.c: 578: case 9:
+"578
+[e :U 398 ]
+[; ;MOTEUR.c: 581: Mouvement_Bequille(direction, type_consigne, mouvement_option);
+"581
 [e ( _Mouvement_Bequille (3 , , _direction _type_consigne _mouvement_option ]
-[; ;MOTEUR.c: 585: break;
-"585
+[; ;MOTEUR.c: 583: break;
+"583
 [e $U 358  ]
-[; ;MOTEUR.c: 588: default:
-"588
+[; ;MOTEUR.c: 586: case 8:
+"586
+[e :U 399 ]
+[; ;MOTEUR.c: 589: Mouvement_Bequille(direction, type_consigne, mouvement_option);
+"589
+[e ( _Mouvement_Bequille (3 , , _direction _type_consigne _mouvement_option ]
+[; ;MOTEUR.c: 592: break;
+"592
+[e $U 358  ]
+[; ;MOTEUR.c: 595: default:
+"595
 [e :U 400 ]
-[; ;MOTEUR.c: 590: break;
-"590
+[; ;MOTEUR.c: 597: break;
+"597
 [e $U 358  ]
-"593
+"600
 }
-[; ;MOTEUR.c: 593: }
+[; ;MOTEUR.c: 600: }
 [e $U 358  ]
-"366
+"373
 [e :U 359 ]
 [e [\ _Etat , $ -> -> 1 `i `uc 360
  , $ -> -> 2 `i `uc 394
@@ -5076,86 +5076,86 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 9 `i `uc 398
  , $ -> -> 8 `i `uc 399
  400 ]
-"593
+"600
 [e :U 358 ]
-"596
+"603
 }
-[; ;MOTEUR.c: 596: }else{
+[; ;MOTEUR.c: 603: }else{
 [e $U 401  ]
 [e :U 357 ]
 {
-[; ;MOTEUR.c: 598: Coupe_Moteur();
-"598
+[; ;MOTEUR.c: 605: Coupe_Moteur();
+"605
 [e ( _Coupe_Moteur ..  ]
-[; ;MOTEUR.c: 599: Alarme_On(7);
-"599
+[; ;MOTEUR.c: 606: Alarme_On(7);
+"606
 [e ( _Alarme_On (1 -> -> 7 `i `uc ]
-"601
+"608
 }
 [e :U 401 ]
-"603
+"610
 }
 [e :U 354 ]
-"355
+"362
 [e $U 355  ]
 [e :U 356 ]
-[; ;MOTEUR.c: 601: }
-[; ;MOTEUR.c: 603: }
-[; ;MOTEUR.c: 605: }
-"605
+[; ;MOTEUR.c: 608: }
+[; ;MOTEUR.c: 610: }
+[; ;MOTEUR.c: 612: }
+"612
 [e :UE 353 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"616
+"623
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;MOTEUR.c: 616: void main(void) {
+[; ;MOTEUR.c: 623: void main(void) {
 [e :U _main ]
 [f ]
-[; ;MOTEUR.c: 618: OSCCON = 0b01110000;
-"618
+[; ;MOTEUR.c: 625: OSCCON = 0b01110000;
+"625
 [e = _OSCCON -> -> 112 `i `uc ]
-[; ;MOTEUR.c: 623: while (IOFS != 1);
-"623
+[; ;MOTEUR.c: 630: while (IOFS != 1);
+"630
 [e $U 403  ]
 [e :U 404 ]
 [e :U 403 ]
 [e $ != -> _IOFS `i -> 1 `i 404  ]
 [e :U 405 ]
-[; ;MOTEUR.c: 629: Init_Variable();
-"629
+[; ;MOTEUR.c: 636: Init_Variable();
+"636
 [e ( _Init_Variable ..  ]
-[; ;MOTEUR.c: 633: Init_Port();
-"633
+[; ;MOTEUR.c: 640: Init_Port();
+"640
 [e ( _Init_Port ..  ]
-[; ;MOTEUR.c: 668: Init_IT();
-"668
+[; ;MOTEUR.c: 675: Init_IT();
+"675
 [e ( _Init_IT ..  ]
-[; ;MOTEUR.c: 687: EUSART1_Initialize();
-"687
-[e ( _EUSART1_Initialize ..  ]
-[; ;MOTEUR.c: 688: Init_SPI();
-"688
-[e ( _Init_SPI ..  ]
-[; ;MOTEUR.c: 692: Init_ADC();
-"692
-[e ( _Init_ADC ..  ]
-[; ;MOTEUR.c: 694: Init_TIMER0();
+[; ;MOTEUR.c: 694: EUSART1_Initialize();
 "694
-[e ( _Init_TIMER0 ..  ]
-[; ;MOTEUR.c: 695: Init_TIMER2();
+[e ( _EUSART1_Initialize ..  ]
+[; ;MOTEUR.c: 695: Init_SPI();
 "695
-[e ( _Init_TIMER2 ..  ]
-[; ;MOTEUR.c: 696: Init_TIMER5();
-"696
-[e ( _Init_TIMER5 ..  ]
-[; ;MOTEUR.c: 699: Init_PWM();
+[e ( _Init_SPI ..  ]
+[; ;MOTEUR.c: 699: Init_ADC();
 "699
+[e ( _Init_ADC ..  ]
+[; ;MOTEUR.c: 701: Init_TIMER0();
+"701
+[e ( _Init_TIMER0 ..  ]
+[; ;MOTEUR.c: 702: Init_TIMER2();
+"702
+[e ( _Init_TIMER2 ..  ]
+[; ;MOTEUR.c: 703: Init_TIMER5();
+"703
+[e ( _Init_TIMER5 ..  ]
+[; ;MOTEUR.c: 706: Init_PWM();
+"706
 [e ( _Init_PWM ..  ]
-[; ;MOTEUR.c: 761: Cycle();
-"761
+[; ;MOTEUR.c: 768: Cycle();
+"768
 [e ( _Cycle ..  ]
-[; ;MOTEUR.c: 763: }
-"763
+[; ;MOTEUR.c: 770: }
+"770
 [e :UE 402 ]
 }
