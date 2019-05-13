@@ -115,7 +115,8 @@ class Mirobot:
         self.verrou = 0
         self.Tag_Cmd = 0 # permettra de stocker si nécessaire, un numéro de commande
 
-        self.Capteur_Capot_Nb_Evenement_Autoriser = 3
+        #self.Capteur_Capot_Nb_Evenement_Autoriser = 3
+        self.Capteur_Capot_Nb_Evenement_Autoriser = 5 # 13 mai 2019
         #self.Capteur_Capot_Nb_Evenement_Autoriser = 5 # Norvege
         self.Capteur_Capot_Nb_Evenement = 0
         self.Capteur_Capot_Evenement = 0
