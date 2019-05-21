@@ -81,8 +81,11 @@ def Planning_Record(request=''):
         _Erreur = 0
         #_planning = list()
         #_Fichier_Planning_Data = ''
+        m.bug_michel = request
         for _ in range(20):
             try:
+                #print('erreur: {} => _a={},_h={},_m={},_p={}'.format(_,_activation, _h, _m, _prgm))
+                print('data a extraire = {}'.format(_))
                 _activation = True if _planning_brut.find('&c{0}='.format(_+1))>0 else False
                 print('{}:_a={}'.format(_,_activation))
                 _h = int(Extract_Data(_planning_brut=_planning_brut, _type='h', _indice=_+1))
@@ -93,9 +96,10 @@ def Planning_Record(request=''):
                 #m.affiche('')
                 _planning.append((str(_h)+':'+str(_m), _activation, '{}'.format(_prgm)))
                 print('{}:_a={},_h={},_m={},_p={}'.format(_,_activation, _h, _m, _prgm))
-            except:
+            except Exception as Erreur:
                 _Erreur = 1
                 print('erreur: {} => _a={},_h={},_m={},_p={}'.format(_,_activation, _h, _m, _prgm))
+                print('erreur = {}'.format(Erreur)) # Erreur
                 pass
         #exec('planning = planning_get()')
         if _Erreur == 0:

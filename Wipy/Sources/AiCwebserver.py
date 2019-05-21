@@ -139,7 +139,8 @@ def AiCWebserv(port):
                         try:
                             conn.settimeout(1)
                             #request = conn.recv(1024) # Ici semble se situe le problème web/déconnexion
-                            request = conn.recv(1024) # Ici semble se situe le problème web/déconnexion
+                            #request = conn.recv(1024) # Ici semble se situe le problème web/déconnexion
+                            request = conn.recv(2048) # Ici semble se situe le problème web/déconnexion # tentative de résolution du bug de michel a propos du planning
                             conn.settimeout(None)
                             m.web = 'Requete Accept'
 
