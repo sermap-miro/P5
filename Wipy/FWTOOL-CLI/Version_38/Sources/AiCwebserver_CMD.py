@@ -226,12 +226,12 @@ def Planning_Print(conn):
                         m.affiche("Envoi conn.send {} {} {} {}".format(_activation, _h, _m, _prgm))
                         #conn.send(bytes('Dans boucle Planning_Print', "ascii"))
                         #conn.send(bytes("""
-                        conn.send(bytes('<div>\n', "ascii"))
-                        conn.send(bytes('{0:02}'.format(_+1), "ascii"))
-                        conn.send(bytes('<input type="number" name="h{0}" value="{1}" min="0" max="23">'.format(_+1, _h), "ascii"))
-                        conn.send(bytes('<input type="number" name="m{0}" value="{1}" min="0" max="59">'.format(_+1, _m), "ascii"))
-                        conn.send(bytes('<input type="checkbox" id="v{0}" name="c{0}"{1}/>'.format(_+1, '' if _activation==False else ' checked'), "ascii"))
-                        conn.send(bytes('<SELECT name="p{0}" size="1">'.format(_+1), "ascii"))
+                        conn.send(bytes('<tr>', "ascii"))
+                        conn.send(bytes('<th scope="col">{0:02}</th>'.format(_+1), "ascii"))
+                        conn.send(bytes('<th scope="col"><input type="number" name="h{0}" value="{1}" min="0" max="23"></th>'.format(_+1, _h), "ascii"))
+                        conn.send(bytes('<th scope="col"><input type="number" name="m{0}" value="{1}" min="0" max="59"></th>'.format(_+1, _m), "ascii"))
+                        conn.send(bytes('<th scope="col"><input type="checkbox" id="v{0}" name="c{0}"{1}/></th>'.format(_+1, '' if _activation==False else ' checked'), "ascii"))
+                        conn.send(bytes('<th scope="col"><SELECT name="p{0}" size="1">'.format(_+1), "ascii"))
                         for _option in ('1', '2', '3', '4', '5', '6', '7', '8', '9', 'Standard', 'Pailleux', 'DVT', 'MultiTas'):
                             conn.send(bytes('<OPTION{}>{}</OPTION>'.format('' if _option!=_prgm else ' selected=""', _option), "ascii"))
                         # conn.send(bytes('<OPTION>1</OPTION>', "ascii"))
@@ -248,8 +248,8 @@ def Planning_Print(conn):
                         # conn.send(bytes('<OPTION>DVT</OPTION>', "ascii"))
                         # conn.send(bytes('<OPTION>MultiTas</OPTION>', "ascii"))
 
-                        conn.send(bytes('</SELECT>', "ascii"))
-                        conn.send(bytes('</div>', "ascii"))
+                        conn.send(bytes('</SELECT></th>', "ascii"))
+                        conn.send(bytes('</tr>', "ascii"))
                         _+=1
                         #""".format(_+1, _h, _m, _activation, _prgm), "ascii"))
 

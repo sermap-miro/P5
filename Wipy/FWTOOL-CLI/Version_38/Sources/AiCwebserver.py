@@ -731,9 +731,7 @@ def AiCWebserv(port):
                             #m.affiche("Avant Appel Planning_Print")
                             Planning_Print(conn)
                             #m.affiche("Après Appel Planning_Print")
-
-
-                            conn.send(bytes('</form></body></html>', "ascii"))
+                            conn.send(bytes('</tbody></table></form></main></body></html>', "ascii"))
                             # try:
                             #     with open('AiCmirobot_planning.htm', 'r') as html:
                             #         #conn.send(html.read())
