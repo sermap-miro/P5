@@ -228,8 +228,8 @@ def Planning_Print(conn):
                         #conn.send(bytes("""
                         conn.send(bytes('<tr>', "ascii"))
                         conn.send(bytes('<th scope="col">{0:02}</th>'.format(_+1), "ascii"))
-                        conn.send(bytes('<th scope="col"><input type="number" name="h{0}" value="{1}" min="0" max="23"></th>'.format(_+1, _h), "ascii"))
-                        conn.send(bytes('<th scope="col"><input type="number" name="m{0}" value="{1}" min="0" max="59"></th>'.format(_+1, _m), "ascii"))
+                        conn.send(bytes('<th scope="col"><input class="case_1" type="number" name="h{0}" value="{1}" min="0" max="23"></th>'.format(_+1, _h), "ascii"))
+                        conn.send(bytes('<th scope="col"><input class="case_1" type="number" name="m{0}" value="{1}" min="0" max="59"></th>'.format(_+1, _m), "ascii"))
                         conn.send(bytes('<th scope="col"><input type="checkbox" id="v{0}" name="c{0}"{1}/></th>'.format(_+1, '' if _activation==False else ' checked'), "ascii"))
                         conn.send(bytes('<th scope="col"><SELECT name="p{0}" size="1">'.format(_+1), "ascii"))
                         for _option in ('1', '2', '3', '4', '5', '6', '7', '8', '9', 'Standard', 'Pailleux', 'DVT', 'MultiTas'):
