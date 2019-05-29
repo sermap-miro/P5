@@ -1,3 +1,7 @@
+Intégrer dans le site web embarqué, la possibilité de modifier la variable: m.Capteur_Capot_Nb_Evenement_Autoriser
+
+
+
 >>> 
 >>> 
 >>> Unhandled exception in thread started by <function check_fly at 0x3f950390>
