@@ -712,21 +712,21 @@ def AiCWebserv(port):
                             #     print("GET ABSENT = > POST? = {}".format(request[0:2]))
 
                             conn.sendall(HTML_HEADER)
-                            #try:
-                            #    with open('AiCmirobot_header.htm', 'r') as html:
+                            try:
+                                with open('AiCmirobot_header.htm', 'r') as html:
                                     #conn.send(html.read())
-                            #        for line in html.readlines():
+                                    for line in html.readlines():
                                         conn.send(line)
-                            #except:
-                            #    print("Envoi AiCmirobot_header.htm Failed!")
+                            except:
+                                print("Envoi AiCmirobot_header.htm Failed!")
 
-                            #try:
-                            #    with open('AiCmirobot_planning_header.htm', 'r') as html:
+                            try:
+                                with open('AiCmirobot_planning_header.htm', 'r') as html:
                                     #conn.send(html.read())
-                            #        for line in html.readlines():
+                                    for line in html.readlines():
                                         conn.send(line)
-                            #except:
-                            #    print("Envoi AiCmirobot_planning_header.htm Failed!")
+                            except:
+                                print("Envoi AiCmirobot_planning_header.htm Failed!")
 
                             #m.affiche("Avant Appel Planning_Print")
                             Planning_Print(conn)
@@ -734,13 +734,13 @@ def AiCWebserv(port):
 
 
                             conn.send(bytes('</form></body></html>', "ascii"))
-                             try:
-                                 with open('AiCmirobot_planning.htm', 'r') as html:
-                                     #conn.send(html.read())
-                                     for line in html.readlines():
-                                         conn.send(line)
-                             except:
-                                 print("Envoi AiCmirobot_planning.htm Failed!")
+                            # try:
+                            #     with open('AiCmirobot_planning.htm', 'r') as html:
+                            #         #conn.send(html.read())
+                            #         for line in html.readlines():
+                            #             conn.send(line)
+                            # except:
+                            #     print("Envoi AiCmirobot_planning.htm Failed!")
 
 
                             #request=request.decode('utf8')
