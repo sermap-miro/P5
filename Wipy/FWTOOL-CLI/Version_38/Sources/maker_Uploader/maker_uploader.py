@@ -8,13 +8,13 @@ class Maker_U:
 	file2 = "Uploader_Project_P5.sh"
 	wc = "r"
 	head = "#!/bin/bash\n"
-	login="sermap"
-	passw="sermapP5"
+	login="micro"
+	passw="python"
 	ip="192.168.4.1"
 	port="21"
 	Curl_opt="-3 --ftp-ssl"
 	w_folder=".."
-	mpy_folder="../MPYFOLDER"
+	mpy_folder="../MPYFILES"
 	prgm_f="../prgm"
 	
 	
@@ -122,10 +122,95 @@ class Maker_U:
 			except IOError:
 				print("Impossible d'ouvrir le fichier {}.".format(self.file2))
 				sys.exit(-1)
-		elif f_ext == "":
-			print("Paramètre vide")
+		elif (f_ext == "assets"):
+			system("cd ../{0}/css && ls *.css > ../../maker_Uploader/css.txt && cd ../../maker_Uploader/".format(f_ext))
+			
+			file_t ="css.txt"
+			liste_py = open(file_t,"r")
+			try:	
+				texte = liste_py.read()
+				filecss = texte.split('\n')
+				filecss.remove("")
+				print(len(filecss))
+				liste_py.close()
+		
+			except IOError:
+				print("Impossible d'ouvrir le fichier {}.".format(self.file_t))
+				sys.exit(-1)
+			system("cd ../{0}/js && ls *.js > ../../maker_Uploader/js.txt && cd ../../maker_Uploader/".format(f_ext))
+			
+			file_t ="js.txt"
+			liste_py = open(file_t,"r")
+			try:	
+				texte = liste_py.read()
+				filejs = texte.split('\n')
+				filejs.remove("")
+				print(len(filejs))
+				liste_py.close()
+		
+			except IOError:
+				print("Impossible d'ouvrir le fichier {}.".format(self.file_t))
+				sys.exit(-1)
+
+			system("cd ../{0}/img && ls * > ../../maker_Uploader/img.txt && cd ../../maker_Uploader/".format(f_ext))
+			
+			file_t ="img.txt"
+			liste_py = open(file_t,"r")
+			try:	
+				texte = liste_py.read()
+				fileimg = texte.split('\n')
+				fileimg.remove("")
+				print(len(fileimg))
+				liste_py.close()
+		
+			except IOError:
+				print("Impossible d'ouvrir le fichier {}.".format(self.file_t))
+				sys.exit(-1)
+		
+			try:
+				self.f_Up = open(self.file2,"a")
+				self.f_Up.write("#\t\t\tListe des feuilles de style css.\n".format(f_ext))
+				for i in filecss:
+					self.f_Up.write('echo "Chargement du fichier {0}" \n'.format(i))
+					word = "curl {0} -T ../{1}/css/{2} ftp://{3}:{4}@{5}:{6}/flash/assets/css/\n".format(self.Curl_opt,f_ext,i,self.login,self.passw,self.ip,self.port)
+					self.f_Up.write(word)
+				self.f_Up.write("\n")
+				self.f_Up.close()
+				
+			except IOError:
+				print("Impossible d'ouvrir le fichier {}.".format(self.file2))
+				sys.exit(-1)
+			try:
+				self.f_Up = open(self.file2,"a")
+				self.f_Up.write("#\t\t\tListe des js.\n".format(f_ext))
+				for i in filejs:
+					self.f_Up.write('echo "Chargement du fichier {0}" \n'.format(i))
+					word = "curl {0} -T ../{1}/js/{2} ftp://{3}:{4}@{5}:{6}/flash/assets/js/\n".format(self.Curl_opt,f_ext,i,self.login,self.passw,self.ip,self.port)
+					self.f_Up.write(word)
+				self.f_Up.write("\n")
+				self.f_Up.close()
+				
+			except IOError:
+				print("Impossible d'ouvrir le fichier {}.".format(self.file2))
+				sys.exit(-1)
+			
+			try:
+				self.f_Up = open(self.file2,"a")
+				self.f_Up.write("#\t\t\tListe des img.\n".format(f_ext))
+				for i in fileimg:
+					self.f_Up.write('echo "Chargement du fichier {0}" \n'.format(i))
+					word = "curl {0} -T ../{1}/img/{2} ftp://{3}:{4}@{5}:{6}/flash/assets/img/\n".format(self.Curl_opt,f_ext,i,self.login,self.passw,self.ip,self.port)
+					self.f_Up.write(word)
+				self.f_Up.write("\n")
+				self.f_Up.close()
+				
+			except IOError:
+				print("Impossible d'ouvrir le fichier {}.".format(self.file2))
+				sys.exit(-1)
+		elif (f_ext == ""):
+			print("Parametre vide")
 		else:
-			print("Paramètre non reconnnu")
+			print("Parametre non reconnnu")
 
 mak = Maker_U()
 mak.first_step()
@@ -134,4 +219,5 @@ mak.repf("ico")
 mak.repf("main.py")
 mak.repf("txt")
 mak.repf("prgm")
+mak.repf("assets")
 
