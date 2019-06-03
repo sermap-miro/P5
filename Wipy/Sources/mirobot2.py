@@ -99,7 +99,7 @@ class Mirobot:
     def __init__(self):
     #def __init__(self, mir_id = 0, arm_id="00000", communication_socket=s):
     #def __init__(self, mir_id = 0, arm_id="00000", communication_socket=communication_socket):
-        self.version = 37 # 'Massar Banc Épreuve'
+        self.version = 38 # Correction Bug page Planning
         #self.version = 16
         self.nom = 'm'
         self.STATUT_BRUT = ''

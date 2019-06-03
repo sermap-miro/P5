@@ -1,7 +1,7 @@
 #!/bin/bash
 ./COMPILE_PY
-LOGIN=sermap
-PASS=sermapP5
+LOGIN=micro
+PASS=python
 IP=192.168.4.1
 PORT=21
 CURL_OPTION="-3 --ftp-ssl"
@@ -18,6 +18,7 @@ curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/main.py ftp://${LOGIN}:${PASS}@${IP}:${
 curl ${CURL_OPTION} -T ${MPY_FOLDER}/mirobot2.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
 curl ${CURL_OPTION} -T ${MPY_FOLDER}/P4.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
 curl ${CURL_OPTION} -T ${MPY_FOLDER}/pion.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+curl ${CURL_OPTION} -T ${MPY_FOLDER}/planning.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
 curl ${CURL_OPTION} -T ${MPY_FOLDER}/wifi.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
 #HTM FILES
 curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/AiCmirobot_calibration.htm ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
@@ -36,11 +37,19 @@ curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/AiCmirobot_planning.htm ftp://${LOGIN}:
 #FAVICON.ICO
 curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/favicon.ico ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
 #ASSETS
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/css/bootstrap.min.css ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/css/miro.css ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/css/miro.responsive.css ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/img/logo.png ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/js/bootstrap.bundle.min.js ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/js/jquery-3.3.1.min.js ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/js/main.min.js ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
-
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/css/bootstrap.min.css ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/assets/css/
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/css/miro.css ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/assets/css/
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/css/miro.responsive.css ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/assets/css/
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/img/logo.png ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/assets/img/
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/js/bootstrap.bundle.min.js ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/assets/js/
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/js/jquery-3.3.1.min.js ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/assets/js/
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/assets/js/main.min.js ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/assets/js/
+#PLANNING.TXT
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/planning.txt ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+#PRGM 
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/prgm/1.txt ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/prgm/
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/prgm/DVT.txt ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/prgm/
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/prgm/MultiTas.txt ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/prgm/
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/prgm/Pailleux.txt ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/prgm/
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/prgm/Retour.txt ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/prgm/
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/prgm/Standard.txt ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/prgm/
