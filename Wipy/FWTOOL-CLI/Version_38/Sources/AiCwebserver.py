@@ -694,7 +694,7 @@ def AiCWebserv(port):
                             #m.affiche("Après Appel Planning_Print")
 
                             conn.send(bytes('</tbody></table></form></main>', "ascii"))
-							conn.send(bytes('<footer><p class="mb-1">Copyright © <a href="http://miro.fr" target="_blank">Miro</a> 2018</p><p>Réalisation <a href="http://vt-design.com" target="_blank">vt-design</a></p></footer></body></html>', "ascii"))
+			    conn.send(bytes('<footer><p class="mb-1">Copyright © <a href="http://miro.fr" target="_blank">Miro</a> 2018</p><p>Réalisation <a href="http://vt-design.com" target="_blank">vt-design</a></p></footer></body></html>', "ascii"))
 
                         elif ibn > 0 :
                             #m.affiche('Web Request={}'.format(request))
@@ -728,7 +728,7 @@ def AiCWebserv(port):
                             Planning_Print(conn)
                             #m.affiche("Après Appel Planning_Print")
                             conn.send(bytes('</tbody></table></form></main>', "ascii"))
-							conn.send(bytes('<footer><p class="mb-1">Copyright © <a href="http://miro.fr" target="_blank">Miro</a> 2018</p><p>Réalisation <a href="http://vt-design.com" target="_blank">vt-design</a></p></footer></body></html>', "ascii"))
+			    conn.send(bytes('<footer><p class="mb-1">Copyright © <a href="http://miro.fr" target="_blank">Miro</a> 2018</p><p>Réalisation <a href="http://vt-design.com" target="_blank">vt-design</a></p></footer></body></html>', "ascii"))
 							
                             # try:
                             #     with open('AiCmirobot_planning.htm', 'r') as html:
