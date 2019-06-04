@@ -497,7 +497,7 @@ def AiCWebserv(port):
 
                             #conn.send(bytes("Mise au point", "ascii"))
 
-                            conn.send(bytes("<div class='table-responsive'><table class='table table-bordered'>", "ascii"))
+                            conn.send(bytes("<div class='table-responsive'><table class='table'>", "ascii"))
                             # conn.send(bytes("<table class='table'>", "ascii"))
 
                             _statut_brut = '{} {} {} {} {}'.format(m.PIC_ASK('S'), m.version, ARRET_URGENCE(), m.batterie(), m.wifi_name)
