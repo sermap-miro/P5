@@ -5,11 +5,11 @@ import re
 import os
 class Maker_U:
 	file1 = "liste_python.txt"
-	file2 = "Uploader_Project_P5.sh"
+	file2 = "Uploader_Project_P5_charged.sh"
 	wc = "r"
 	head = "#!/bin/bash\n"
-	login="micro"
-	passw="python"
+	login="sermap"
+	passw="sermapP5"
 	ip="192.168.4.1"
 	port="21"
 	Curl_opt="-3 --ftp-ssl"
