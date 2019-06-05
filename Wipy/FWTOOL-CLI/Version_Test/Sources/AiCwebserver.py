@@ -380,7 +380,7 @@ def AiCWebserv(port):
                             printhtm(footer,conn)
                         elif ibn > 0 : # Page Planning, ouverture depuis le menu principal
                             conn.sendall(HTML_HEADER)
-                             printhtm(head,conn)
+                            printhtm(head,conn)
                             printhtm(header,conn)
                             printhtm("planning.htm",conn)
                             Planning_Print(conn)
@@ -416,6 +416,7 @@ def AiCWebserv(port):
                             _statut_brut = '{} {} {} {} {}'.format(m.PIC_ASK('S'), m.version, ARRET_URGENCE(), m.batterie(), m.wifi_name)
                             data = _statut_brut.split(' ')
                             if request[0:3]!='GET':
+                                try:
                                     _m = int(float(Extract_Data(_planning_brut=request, _type='m', _indice=1))) * Facteur_Conversion_Ampere_2_CAN
                                     if 0<=_m<=255:
                                         m.Moteur_X_Consigne = _m
