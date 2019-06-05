@@ -120,7 +120,7 @@ def Planning_Print(conn):
                         _+=1
                     except:
                         pass
-			conn.send(bytes('</tbody></table></form></div></div></div></main>', "ascii"))	
+            conn.send(bytes('</tbody></table></form></div></div></div></main>', "ascii"))    
 
 def Commande_Manuel(Indice):
     print('Commande Manuel Indice = {}'.format(Indice))
@@ -208,3 +208,12 @@ def Execution_Calibration(Indice):
         for _ in range (10):
             exec("Signal_Sonore()")
             sleep(0.1)
+    
+    
+def printhtm(file,con):
+    try:
+        with open(file, 'r') as html:
+            for line in html.readlines():
+                con.send(line)
+    except:
+        print("Envoi {0} Failed!".format(file))

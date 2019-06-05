@@ -67,17 +67,17 @@ HTTP/1.0 200 OK
 Hello #%d from MicroPython!
 """
 def AiCWebserv(port):
-	head = "head.htm"
-	header = "header.htm"
-	footer = "footer.htm"
-	
+    head = "head.htm"
+    header = "header.htm"
+    footer = "footer.htm"
+    
     import socket
     import gc
     while True:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.bind(('', port))
-            s.listen(0)	#
+            s.listen(0)#
             Tourne = 1
             _wifi = 0
             _CONVERSION_FACTOR_CAN_2_AMPERE = 5
@@ -168,7 +168,7 @@ def AiCWebserv(port):
                                 while data:
                                     conn.send(bytes(data))
                                     data = f.read(CHUNK_SIZE)
-									
+                                    
                         elif ibmiro_css > 0 :
                             CHUNK_SIZE = 512
                             conn.sendall(CSS_HEADER)
@@ -177,7 +177,7 @@ def AiCWebserv(port):
                                 while data:
                                     conn.send(bytes(data))
                                     data = f.read(CHUNK_SIZE)
-									
+                                    
                         elif ibmiroresponsive_css > 0 :
                             CHUNK_SIZE = 512
                             conn.sendall(CSS_HEADER)
@@ -195,7 +195,7 @@ def AiCWebserv(port):
                                 while data:
                                     conn.send(bytes(data))
                                     data = f.read(CHUNK_SIZE)
-									
+                                    
                         elif ibbootstrap_jquery_js > 0 :
                             conn.sendall(JAVASCRIPT_HEADER)
                             CHUNK_SIZE = 512
@@ -204,7 +204,7 @@ def AiCWebserv(port):
                                 while data:
                                     conn.send(bytes(data))
                                     data = f.read(CHUNK_SIZE)
-									
+                                    
                         elif ibmain_js > 0 :
                             conn.sendall(JAVASCRIPT_HEADER)
                             CHUNK_SIZE = 512
@@ -213,7 +213,7 @@ def AiCWebserv(port):
                                 while data:
                                     conn.send(bytes(data))
                                     data = f.read(CHUNK_SIZE)
-									
+                                    
                         elif ibmiro_logo > 0 :
                             conn.sendall(LOGO_HEADER)
                             CHUNK_SIZE = 512
@@ -222,25 +222,25 @@ def AiCWebserv(port):
                                 while data:
                                     conn.send(bytes(data))
                                     data = f.read(CHUNK_SIZE)
-									
+                                    
                         elif ibcalibration > 0 : #Page Calibration
                             conn.sendall(HTML_HEADER)
                             printhtm(head,conn)
-							printhtm(header,conn)
-							printhtm("calibration.htm",conn)
-							printhtm(footer,conn)
+                            printhtm(header,conn)
+                            printhtm("calibration.htm",conn)
+                            printhtm(footer,conn)
                         elif ibvc > 0 : #Commandes Calibration
                             ie = request.find(' ', ibvc)
                             Val = request[ibvc+5:ie]
                             Execution_Calibration(Val)
                             conn.sendall(POST_HEADER)
                             conn.send(Val)
-							
+                            
                         elif ibs > 0 : #Commandes Info
                             conn.sendall(HTML_HEADER)
                             conn.send(bytes("<p>", "ascii"))
                             conn.send(bytes('{} {} {} {} {}'.format(m.PIC_ASK('S'), m.version, ARRET_URGENCE(), m.batterie(), m.wifi_name), "ascii"))
-							
+                            
                         elif ibfavicon > 0 :#http://michaldul.com/python/sendfile/ # https://convertico.com/
                             CHUNK_SIZE = 512
                             conn.sendall(ICO_HEADER)
@@ -249,7 +249,7 @@ def AiCWebserv(port):
                                 while data:
                                     conn.send(bytes(data))
                                     data = ico.read(CHUNK_SIZE)
-									
+                                    
                         elif ibh > 0 : #Réglage horloge
                             ie = request.find(' ', ibh)
                             Val = request[ibh+2:ie] 
@@ -272,7 +272,7 @@ def AiCWebserv(port):
                                         conn.send(bytes("<p>", "ascii"))
                                         conn.send(bytes("Mise à jour de l'horloge => Heure par défaut: 12h00", "ascii"))
                                         pass
-										
+                                        
                             RTC(datetime=(2018, 1, 1, _h, _m, 0, 0, None)) # <= cette date permettra ultérieurement
                             conn.send(bytes("<p>", "ascii"))
                             conn.send(bytes('Nouvelle Heure = {}'.format(_h), "ascii"))
@@ -280,13 +280,13 @@ def AiCWebserv(port):
                             conn.send(bytes('Nouvelle Minute = {}'.format(_m), "ascii"))
                             conn.send(bytes("<p>", "ascii"))
                             conn.send(bytes('<a href="/">Menu Principal</a>', "ascii"))
-							
+                            
                         elif ibe > 0 or ibi > 0: # Page Information
                             conn.sendall(HTML_HEADER_NOCACHE)
                             printhtm(head,conn)
-							printhtm(header,conn)
-							printhtm("info.htm",conn)
-	
+                            printhtm(header,conn)
+                            printhtm("info.htm",conn)
+    
                             conn.send(bytes("<div class='table-responsive'><table class='table'>", "ascii"))
                             _statut_brut = '{} {} {} {} {}'.format(m.PIC_ASK('S'), m.version, ARRET_URGENCE(), m.batterie(), m.wifi_name)
                             try:
@@ -344,47 +344,47 @@ def AiCWebserv(port):
                                     if m.wifi_password != '':
                                         conn.send(bytes('<tr><td>Wifi password</td><td class="text-right">{}'.format(m.wifi_password), "ascii"))
                                 conn.send(bytes('</table></div></div></div></div></main>\n', "ascii"))                   
-							    printhtm(footer,conn)
+                                printhtm(footer,conn)
                             except:
                                 pass
-								
+                                
                         elif ib > 0 : #Val (Manuel_cmd(cmd))
                             ie = request.find(' ', ib)
                             Val = request[ib+4:ie]
                             Commande_Manuel(Val)
                             conn.sendall(POST_HEADER)
                             conn.send(Val)
-							
+                            
                         elif ibvp > 0 : #Valp (Programme_cmd(cmd))
                             ie = request.find(' ', ibvp)
                             Val = request[ibvp+5:ie]
                             Execution_Programme(Val)
                             conn.sendall(POST_HEADER)
                             conn.send(Val)
-							
+                            
                         elif ibp > 0 : #Page Programme 
                             conn.sendall(HTML_HEADER)
                             printhtm(head,conn)
-							printhtm(header,conn)
-							printhtm("programme.htm",conn)
-							printhtm(footer,conn)
+                            printhtm(header,conn)
+                            printhtm("programme.htm",conn)
+                            printhtm(footer,conn)
                         elif ib3 > 0 : # Page Planning apres enregistrement
                             conn.sendall(HTML_HEADER)
                             conn.send(bytes("<p>", "ascii"))
                             m.requete=request
                             Planning_Record(request=m.requete)
-							printhtm(head,conn)
-							printhtm(header,conn)
-							printhtm("planning.htm",conn)
+                            printhtm(head,conn)
+                            printhtm(header,conn)
+                            printhtm("planning.htm",conn)
                             Planning_Print(conn)
-							printhtm(footer,conn)
+                            printhtm(footer,conn)
                         elif ibn > 0 : # Page Planning, ouverture depuis le menu principal
                             conn.sendall(HTML_HEADER)
- 							printhtm(head,conn)
-							printhtm(header,conn)
-							printhtm("planning.htm",conn)
+                             printhtm(head,conn)
+                            printhtm(header,conn)
+                            printhtm("planning.htm",conn)
                             Planning_Print(conn)
-							printhtm(footer,conn)
+                            printhtm(footer,conn)
                         elif ibc > 0 : # Page Horloge
                             _clock_set = 0
                             if request[0:3]!='GET':
@@ -401,16 +401,16 @@ def AiCWebserv(port):
                                     print('m.web_debug = {}\nm.request = {}'.format(m.web_debug, m.request))
                                     pass
                             conn.sendall(HTML_HEADER)
-							
+                            
                             printhtm(head,conn)
-							printhtm(header,conn)
-							printhtm("clock.htm",conn)
+                            printhtm(header,conn)
+                            printhtm("clock.htm",conn)
 
                             if _clock_set == 1:
                                 conn.send(bytes('<p>Horloge mis à jour<p><br><br>', "ascii"))
                             conn.send(bytes('<input class="form-control col-6" type="number" name="h1" value="{}" min="0" max="23">'.format(localtime()[3]), "ascii"))
                             conn.send(bytes('<input class="form-control col-6" type="number" name="m1" value="{}" min="0" max="59"></form></div></div></div></main>'.format(localtime()[4]), "ascii"))
-							printhtm(footer,conn)
+                            printhtm(footer,conn)
                         elif ibo > 0 : # Page Configuration
                             _conf_set = 0
                             _statut_brut = '{} {} {} {} {}'.format(m.PIC_ASK('S'), m.version, ARRET_URGENCE(), m.batterie(), m.wifi_name)
@@ -451,8 +451,8 @@ def AiCWebserv(port):
                                     pass
                             conn.sendall(HTML_HEADER)
                             printhtm(head,conn)
-							printhtm(header,conn)
-							printhtm("configuration.htm")
+                            printhtm(header,conn)
+                            printhtm("configuration.htm")
                             if _conf_set == 1:
                                 conn.send(bytes('<p>Configuration mis à jour<p>', "ascii"))
                             conn.send(bytes('<p>Consigne Moteur (A):<input type="number" name="m1" value="{}" min="0" max="50">'.format(m.Moteur_X_Consigne/Facteur_Conversion_Ampere_2_CAN), "ascii"))
@@ -465,15 +465,15 @@ def AiCWebserv(port):
                             conn.send(bytes('<p>Temps (Platine) (ms):<input type="number" name="l1" value="{}" min="0" max="5000">'.format(int(data[9],16)*100), "ascii"))
                             conn.send(bytes('<p>Temps pelle (s):<input type="number" name="e1" value="{}" min="0" max="600">'.format(int(data[10],16)), "ascii"))
                             conn.send(bytes('</form></div></div></div></main>', "ascii"))
-							printhtm(footer,conn)
+                            printhtm(footer,conn)
 
                         elif ibm > 0 : #Page Manuel
                             print("Rafraîchissement m")
                             conn.sendall(HTML_HEADER)
                             printhtm(head,conn)
-							printhtm(header,conn)
-							printhtm("manuel.htm",conn)
-							printhtm(footer,conn)
+                            printhtm(header,conn)
+                            printhtm("manuel.htm",conn)
+                            printhtm(footer,conn)
 
                         elif ibf > 0 : #Page Wifi
                             _wifi=0
@@ -522,9 +522,9 @@ def AiCWebserv(port):
 
                             else:
                                 printhtm(head,conn)
-								printhtm(header,conn)
-								printhtm("wifi.htm",conn)
-								printhtm(footer,conn)
+                                printhtm(header,conn)
+                                printhtm("wifi.htm",conn)
+                                printhtm(footer,conn)
                         elif ibw > 0 : #Page Edit
                             _error = 0
 
@@ -586,8 +586,8 @@ def AiCWebserv(port):
                                 _prgm ='1'
                             conn.sendall(HTML_HEADER)
                             printhtm(head,conn)
-							printhtm(header,conn)
-							printhtm("edit.htm",conn)
+                            printhtm(header,conn)
+                            printhtm("edit.htm",conn)
                             if _error > 0:
                                 conn.send(bytes("<p>Erreur lors de l'écriture du programme", "ascii"))
                             conn.send(bytes('<p><SELECT name="p1" size="1" class="custom-select">', "ascii"))
@@ -602,7 +602,7 @@ def AiCWebserv(port):
                         else: #Menu Principal
                             m.affiche('Rafraîchissement Menu Principal (else): requete = {}'.format(request))
                             if len(request)>0:
-								printhtm(head,conn)
+                                printhtm(head,conn)
                                 try:
                                     with open("header_mp", 'r') as html:
                                         conn.sendall(HTML_HEADER)
@@ -616,7 +616,7 @@ def AiCWebserv(port):
                                 except:
                                     print("Envoi AiCmirobot_menu_principal_begin.htm Failed!")
                                 printhtm("menu_principal.htm",conn)
-								printhtm(footer,conn)                               
+                                printhtm(footer,conn)                               
                         if _wifi==0:
                             conn.sendall('\n')
                             conn.close()
@@ -637,11 +637,3 @@ def AiCWebserv(port):
             m.affiche(m.web)
             m.web_debug = m.web # ne devrait pas arriver en théorie
             pass
-			
-def printhtm(file,con):
-	try:
-		with open(file, 'r') as html:
-			for line in html.readlines():
-				con.send(line)
-	except:
-        print("Envoi {0} Failed!".format(file))
