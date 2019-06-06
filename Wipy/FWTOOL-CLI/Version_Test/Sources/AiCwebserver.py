@@ -484,7 +484,7 @@ def AiCWebserv(port):
 							conn.send(bytes('<p>Temps (Pion) (ms):<input type="number" name="i1" value="{}" min="0" max="3000">'.format(int(data[8],16)*100), "ascii"))
 							conn.send(bytes('<p>Temps (Platine) (ms):<input type="number" name="l1" value="{}" min="0" max="5000">'.format(int(data[9],16)*100), "ascii"))
 							conn.send(bytes('<p>Temps pelle (s):<input type="number" name="e1" value="{}" min="0" max="600">'.format(int(data[10],16)), "ascii"))
-							conn.send(bytes('</form></div></div></div></main>', "ascii"))
+							conn.send(bytes('</form></div></div></div></div></main>', "ascii"))
 							Print_HTM(footer,conn)
 
 						elif ibm > 0 : #Page Manuel
