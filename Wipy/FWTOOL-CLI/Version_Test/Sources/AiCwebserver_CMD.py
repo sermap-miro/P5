@@ -210,10 +210,12 @@ def Execution_Calibration(Indice):
             sleep(0.1)
     
     
-def printhtm(file,con):
+def printhtm(fily,conn):
     try:
-        with open(file, 'r') as html:
+        with open(fily, 'r') as html:
             for line in html.readlines():
-                con.send(line)
+                conn.send(bytes(line,"ascii"))
+                m.affiche(line)
+
     except:
-        print("Envoi {0} Failed!".format(file))
+        print("Envoi {0} Failed!".format(fily))

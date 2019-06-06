@@ -211,6 +211,8 @@ class Maker_U:
 			print("Parametre vide")
 		else:
 			print("Parametre non reconnnu")
+	def launch(self):
+		system("sh {}".format(self.file2))
 
 mak = Maker_U()
 mak.first_step()
@@ -220,4 +222,5 @@ mak.repf("main.py")
 mak.repf("txt")
 mak.repf("prgm")
 mak.repf("assets")
+mak.launch()
 

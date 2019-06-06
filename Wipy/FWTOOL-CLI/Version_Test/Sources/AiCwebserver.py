@@ -67,9 +67,9 @@ HTTP/1.0 200 OK
 Hello #%d from MicroPython!
 """
 def AiCWebserv(port):
-    head = "head.htm"
-    header = "header.htm"
-    footer = "footer.htm"
+    head = 'head.htm'
+    header = 'header.htm'
+    footer = 'footer.htm'
     
     import socket
     import gc
@@ -227,7 +227,7 @@ def AiCWebserv(port):
                             conn.sendall(HTML_HEADER)
                             printhtm(head,conn)
                             printhtm(header,conn)
-                            printhtm("calibration.htm",conn)
+                            printhtm('calibration.htm',conn)
                             printhtm(footer,conn)
                         elif ibvc > 0 : #Commandes Calibration
                             ie = request.find(' ', ibvc)
@@ -366,7 +366,7 @@ def AiCWebserv(port):
                             conn.sendall(HTML_HEADER)
                             printhtm(head,conn)
                             printhtm(header,conn)
-                            printhtm("programme.htm",conn)
+                            printhtm('programme.htm',conn)
                             printhtm(footer,conn)
                         elif ib3 > 0 : # Page Planning apres enregistrement
                             conn.sendall(HTML_HEADER)
@@ -375,14 +375,14 @@ def AiCWebserv(port):
                             Planning_Record(request=m.requete)
                             printhtm(head,conn)
                             printhtm(header,conn)
-                            printhtm("planning.htm",conn)
+                            printhtm('planning.htm',conn)
                             Planning_Print(conn)
                             printhtm(footer,conn)
                         elif ibn > 0 : # Page Planning, ouverture depuis le menu principal
                             conn.sendall(HTML_HEADER)
                             printhtm(head,conn)
                             printhtm(header,conn)
-                            printhtm("planning.htm",conn)
+                            printhtm('planning.htm',conn)
                             Planning_Print(conn)
                             printhtm(footer,conn)
                         elif ibc > 0 : # Page Horloge
@@ -404,12 +404,12 @@ def AiCWebserv(port):
                             
                             printhtm(head,conn)
                             printhtm(header,conn)
-                            printhtm("clock.htm",conn)
+                            printhtm('clock.htm',conn)
 
                             if _clock_set == 1:
                                 conn.send(bytes('<p>Horloge mis à jour<p><br><br>', "ascii"))
                             conn.send(bytes('<input class="form-control col-6" type="number" name="h1" value="{}" min="0" max="23">'.format(localtime()[3]), "ascii"))
-                            conn.send(bytes('<input class="form-control col-6" type="number" name="m1" value="{}" min="0" max="59"></form></div></div></div></main>'.format(localtime()[4]), "ascii"))
+                            conn.send(bytes('<input class="form-control col-6" type="number" name="m1" value="{}" min="0" max="59"</form></div></div></div></main>'.format(localtime()[4]), "ascii"))
                             printhtm(footer,conn)
                         elif ibo > 0 : # Page Configuration
                             _conf_set = 0
@@ -453,7 +453,7 @@ def AiCWebserv(port):
                             conn.sendall(HTML_HEADER)
                             printhtm(head,conn)
                             printhtm(header,conn)
-                            printhtm("configuration.htm")
+                            printhtm('configuration.htm',conn)
                             if _conf_set == 1:
                                 conn.send(bytes('<p>Configuration mis à jour<p>', "ascii"))
                             conn.send(bytes('<p>Consigne Moteur (A):<input type="number" name="m1" value="{}" min="0" max="50">'.format(m.Moteur_X_Consigne/Facteur_Conversion_Ampere_2_CAN), "ascii"))
@@ -473,7 +473,7 @@ def AiCWebserv(port):
                             conn.sendall(HTML_HEADER)
                             printhtm(head,conn)
                             printhtm(header,conn)
-                            printhtm("manuel.htm",conn)
+                            printhtm('manuel.htm',conn)
                             printhtm(footer,conn)
 
                         elif ibf > 0 : #Page Wifi
@@ -588,7 +588,7 @@ def AiCWebserv(port):
                             conn.sendall(HTML_HEADER)
                             printhtm(head,conn)
                             printhtm(header,conn)
-                            printhtm("edit.htm",conn)
+                            printhtm('edit.htm',conn)
                             if _error > 0:
                                 conn.send(bytes("<p>Erreur lors de l'écriture du programme", "ascii"))
                             conn.send(bytes('<p><SELECT name="p1" size="1" class="custom-select">', "ascii"))
@@ -616,7 +616,7 @@ def AiCWebserv(port):
                                             conn.send(line)
                                 except:
                                     print("Envoi AiCmirobot_menu_principal_begin.htm Failed!")
-                                printhtm("menu_principal.htm",conn)
+                                printhtm('menu_principal.htm',conn)
                                 printhtm(footer,conn)                               
                         if _wifi==0:
                             conn.sendall('\n')
