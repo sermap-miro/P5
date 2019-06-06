@@ -4,7 +4,7 @@ from machine import RTC
 from time import localtime, sleep
 from planning import planning_save
 from commande import Send_Prgm, Write_Prgm
-from AiCwebserver_CMD import Extract_Data, Planning_Record, Planning_Print_old, Planning_Print, Commande_Manuel, Execution_Programme, Execution_Calibration
+from AiCwebserver_CMD import Extract_Data, Planning_Record, Planning_Print_old, Planning_Print, Commande_Manuel, Execution_Programme, Execution_Calibration, Print_HTM
 from wifi import wlan
 from gc import collect
 
