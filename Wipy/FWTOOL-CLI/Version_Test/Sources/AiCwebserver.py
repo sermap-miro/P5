@@ -603,9 +603,15 @@ def AiCWebserv(port):
                         else: #Menu Principal
                             m.affiche('Rafraîchissement Menu Principal (else): requete = {}'.format(request))
                             if len(request)>0:
-                                printhtm(head,conn)
+							    try:
+                                    with open('head.htm', 'r') as html:
+                                        for line in html.readlines():
+                                            conn.send(bytes(line,"ascii"))
+                                            m.affiche(line)
+								except:
+										print("Ouvertude de head.htm impossible!")										
                                 try:
-                                    with open("header_mp", 'r') as html:
+                                    with open("header_mp.htm", 'r') as html:
                                         conn.sendall(HTML_HEADER)
                                         for line in html.readlines():
                                             if str('<p id="clock"></p>') in line:                                           
@@ -616,8 +622,20 @@ def AiCWebserv(port):
                                             conn.send(line)
                                 except:
                                     print("Envoi AiCmirobot_menu_principal_begin.htm Failed!")
-                                printhtm('menu_principal.htm',conn)
-                                printhtm(footer,conn)                               
+							    try:
+                                    with open('menu_principal.htm', 'r') as html:
+                                        for line in html.readlines():
+                                            conn.send(bytes(line,"ascii"))
+                                            m.affiche(line)
+								except:
+										print("Ouvertude de menu_principal.htm impossible!")									
+							    try:
+                                    with open('footer.htm', 'r') as html:
+                                        for line in html.readlines():
+                                            conn.send(bytes(line,"ascii"))
+                                            m.affiche(line)
+								except:
+										print("Ouvertude de footer.htm impossible!")                               
                         if _wifi==0:
                             conn.sendall('\n')
                             conn.close()
