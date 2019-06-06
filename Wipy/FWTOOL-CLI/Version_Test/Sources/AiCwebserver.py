@@ -367,25 +367,25 @@ def AiCWebserv(port):
 								with open('head.htm', 'r') as html:
 									for line in html.readlines():
 										conn.send(bytes(line,"ascii"))
-								except:
+							except:
 									print("Ouvertude de head.htm impossible!")
 							try:
 								with open('header.htm', 'r') as html:
 									for line in html.readlines():
 										conn.send(bytes(line,"ascii"))
-								except:
+							except:
 									print("Ouvertude de header.htm impossible!")
 							try:
 								with open('programme.htm', 'r') as html:
 									for line in html.readlines():
 										conn.send(bytes(line,"ascii"))
-								except:
+							except:
 									print("Ouvertude de programme.htm impossible!")
 							try:
 								with open('footer.htm', 'r') as html:
 									for line in html.readlines():
 										conn.send(bytes(line,"ascii"))
-								except:
+							except:
 									print("Ouvertude de footer.htm impossible!")
 						elif ib3 > 0 : # Page Planning apres enregistrement
 							conn.sendall(HTML_HEADER)
