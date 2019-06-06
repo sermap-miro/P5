@@ -1,1 +1,0 @@
-pycom-fwtool-cli --port COM6 --verbose  copy -p fs1 -b -ftdi -f Version_37.bin
