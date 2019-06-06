@@ -225,10 +225,10 @@ def AiCWebserv(port):
                                     
                         elif ibcalibration > 0 : #Page Calibration
                             conn.sendall(HTML_HEADER)
-                            printhtm(head,conn)
-                            printhtm(header,conn)
-                            printhtm('calibration.htm',conn)
-                            printhtm(footer,conn)
+                            Print_HTM(head,conn)
+                            Print_HTM(header,conn)
+                            Print_HTM('calibration.htm',conn)
+                            Print_HTM(footer,conn)
                         elif ibvc > 0 : #Commandes Calibration
                             ie = request.find(' ', ibvc)
                             Val = request[ibvc+5:ie]
@@ -283,9 +283,9 @@ def AiCWebserv(port):
                             
                         elif ibe > 0 or ibi > 0: # Page Information
                             conn.sendall(HTML_HEADER_NOCACHE)
-                            printhtm(head,conn)
-                            printhtm(header,conn)
-                            printhtm("info.htm",conn)
+                            Print_HTM(head,conn)
+                            Print_HTM(header,conn)
+                            Print_HTM("info.htm",conn)
     
                             conn.send(bytes("<div class='table-responsive'><table class='table'>", "ascii"))
                             _statut_brut = '{} {} {} {} {}'.format(m.PIC_ASK('S'), m.version, ARRET_URGENCE(), m.batterie(), m.wifi_name)
@@ -344,7 +344,7 @@ def AiCWebserv(port):
                                     if m.wifi_password != '':
                                         conn.send(bytes('<tr><td>Wifi password</td><td class="text-right">{}'.format(m.wifi_password), "ascii"))
                                 conn.send(bytes('</table></div></div></div></div></main>\n', "ascii"))                   
-                                printhtm(footer,conn)
+                                Print_HTM(footer,conn)
                             except:
                                 pass
                                 
@@ -364,27 +364,27 @@ def AiCWebserv(port):
                             
                         elif ibp > 0 : #Page Programme 
                             conn.sendall(HTML_HEADER)
-                            printhtm(head,conn)
-                            printhtm(header,conn)
-                            printhtm('programme.htm',conn)
-                            printhtm(footer,conn)
+                            Print_HTM(head,conn)
+                            Print_HTM(header,conn)
+                            Print_HTM('programme.htm',conn)
+                            Print_HTM(footer,conn)
                         elif ib3 > 0 : # Page Planning apres enregistrement
                             conn.sendall(HTML_HEADER)
                             conn.send(bytes("<p>", "ascii"))
                             m.requete=request
                             Planning_Record(request=m.requete)
-                            printhtm(head,conn)
-                            printhtm(header,conn)
-                            printhtm('planning.htm',conn)
+                            Print_HTM(head,conn)
+                            Print_HTM(header,conn)
+                            Print_HTM('planning.htm',conn)
                             Planning_Print(conn)
-                            printhtm(footer,conn)
+                            Print_HTM(footer,conn)
                         elif ibn > 0 : # Page Planning, ouverture depuis le menu principal
                             conn.sendall(HTML_HEADER)
-                            printhtm(head,conn)
-                            printhtm(header,conn)
-                            printhtm('planning.htm',conn)
+                            Print_HTM(head,conn)
+                            Print_HTM(header,conn)
+                            Print_HTM('planning.htm',conn)
                             Planning_Print(conn)
-                            printhtm(footer,conn)
+                            Print_HTM(footer,conn)
                         elif ibc > 0 : # Page Horloge
                             _clock_set = 0
                             if request[0:3]!='GET':
@@ -402,15 +402,15 @@ def AiCWebserv(port):
                                     pass
                             conn.sendall(HTML_HEADER)
                             
-                            printhtm(head,conn)
-                            printhtm(header,conn)
-                            printhtm('clock.htm',conn)
+                            Print_HTM(head,conn)
+                            Print_HTM(header,conn)
+                            Print_HTM('clock.htm',conn)
 
                             if _clock_set == 1:
                                 conn.send(bytes('<p>Horloge mis à jour<p><br><br>', "ascii"))
                             conn.send(bytes('<input class="form-control col-6" type="number" name="h1" value="{}" min="0" max="23">'.format(localtime()[3]), "ascii"))
                             conn.send(bytes('<input class="form-control col-6" type="number" name="m1" value="{}" min="0" max="59"</form></div></div></div></main>'.format(localtime()[4]), "ascii"))
-                            printhtm(footer,conn)
+                            Print_HTM(footer,conn)
                         elif ibo > 0 : # Page Configuration
                             _conf_set = 0
                             _statut_brut = '{} {} {} {} {}'.format(m.PIC_ASK('S'), m.version, ARRET_URGENCE(), m.batterie(), m.wifi_name)
@@ -451,9 +451,9 @@ def AiCWebserv(port):
                                 except:
                                     pass
                             conn.sendall(HTML_HEADER)
-                            printhtm(head,conn)
-                            printhtm(header,conn)
-                            printhtm('configuration.htm',conn)
+                            Print_HTM(head,conn)
+                            Print_HTM(header,conn)
+                            Print_HTM('configuration.htm',conn)
                             if _conf_set == 1:
                                 conn.send(bytes('<p>Configuration mis à jour<p>', "ascii"))
                             conn.send(bytes('<p>Consigne Moteur (A):<input type="number" name="m1" value="{}" min="0" max="50">'.format(m.Moteur_X_Consigne/Facteur_Conversion_Ampere_2_CAN), "ascii"))
@@ -466,15 +466,15 @@ def AiCWebserv(port):
                             conn.send(bytes('<p>Temps (Platine) (ms):<input type="number" name="l1" value="{}" min="0" max="5000">'.format(int(data[9],16)*100), "ascii"))
                             conn.send(bytes('<p>Temps pelle (s):<input type="number" name="e1" value="{}" min="0" max="600">'.format(int(data[10],16)), "ascii"))
                             conn.send(bytes('</form></div></div></div></main>', "ascii"))
-                            printhtm(footer,conn)
+                            Print_HTM(footer,conn)
 
                         elif ibm > 0 : #Page Manuel
                             print("Rafraîchissement m")
                             conn.sendall(HTML_HEADER)
-                            printhtm(head,conn)
-                            printhtm(header,conn)
-                            printhtm('manuel.htm',conn)
-                            printhtm(footer,conn)
+                            Print_HTM(head,conn)
+                            Print_HTM(header,conn)
+                            Print_HTM('manuel.htm',conn)
+                            Print_HTM(footer,conn)
 
                         elif ibf > 0 : #Page Wifi
                             _wifi=0
@@ -522,10 +522,10 @@ def AiCWebserv(port):
                                 exec('Wifi_Local()')
 
                             else:
-                                printhtm(head,conn)
-                                printhtm(header,conn)
-                                printhtm("wifi.htm",conn)
-                                printhtm(footer,conn)
+                                Print_HTM(head,conn)
+                                Print_HTM(header,conn)
+                                Print_HTM("wifi.htm",conn)
+                                Print_HTM(footer,conn)
                         elif ibw > 0 : #Page Edit
                             _error = 0
 
@@ -586,9 +586,9 @@ def AiCWebserv(port):
                             else:
                                 _prgm ='1'
                             conn.sendall(HTML_HEADER)
-                            printhtm(head,conn)
-                            printhtm(header,conn)
-                            printhtm('edit.htm',conn)
+                            Print_HTM(head,conn)
+                            Print_HTM(header,conn)
+                            Print_HTM('edit.htm',conn)
                             if _error > 0:
                                 conn.send(bytes("<p>Erreur lors de l'écriture du programme", "ascii"))
                             conn.send(bytes('<p><SELECT name="p1" size="1" class="custom-select">', "ascii"))
@@ -599,7 +599,7 @@ def AiCWebserv(port):
                             conn.send(bytes('{}'.format(Send_Prgm(_prgm)), "ascii"))
                             conn.send(bytes('</TEXTAREA>', "ascii"))
                             conn.send(bytes('</form></div></div></div></main>', "ascii"))
-                            printhtm(footer,conn)
+                            Print_HTM(footer,conn)
                         else: #Menu Principal
                             m.affiche('Rafraîchissement Menu Principal (else): requete = {}'.format(request))        
                             conn.sendall(HTML_HEADER)
