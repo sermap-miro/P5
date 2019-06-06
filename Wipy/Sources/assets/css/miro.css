@@ -1,6 +1,8 @@
-html, body {
+html {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
+    position: relative;
+    cursor: pointer;
 }
 
 body {
@@ -11,6 +13,7 @@ body {
 /* HEADER */
 .header {
     background: #fff;
+    height : 15%;
 }
 
 .header h1 {
@@ -68,17 +71,13 @@ body {
     border-color: #333;
 }
 
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
     background-color: #BF073E !important;
     box-shadow: none;
     border-color: #333;
 }
 
-.btn-primary:not(:disabled):not(.disabled).active, 
-.btn-primary:not(:disabled):not(.disabled):active, 
-.show > .btn-primary.dropdown-toggle {
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
     border-color: #333;
     box-shadow: none;
 }
@@ -155,7 +154,7 @@ body {
 
 /* MAIN */
 main#main {
-    margin-bottom: 5rem;
+    margin-bottom : 44px;
 }
 
 /* TABLE */
@@ -182,22 +181,27 @@ main#main {
     font-size: 22px;
     text-transform: uppercase;
 }
-
+div .Conf {
+    text-align:left;
+    font-weight :700;
+    .input {
+        
+    }
+}
 /* FORM */
+
 form .form-row {
     margin: 0 auto;
     width: 100%;
-    text-align: center;
+    text-align:left ;
 }
 
-form .form-control,
-form .custom-select {
+form .form-control, form .custom-select {
     border-radius: 0;
     font-size: 0.7rem;
 }
 
-form .form-control:focus,
-form .custom-select:focus {
+form .form-control:focus, form .custom-select:focus {
     border-color: #BF073E;
     box-shadow: none;
 }
@@ -211,10 +215,7 @@ form .custom-select:focus {
     color: #fff;
 }
 
-.custom-select option:hover,
-.custom-select option:focus,
-.custom-select option:active,
-.custom-select option[selected] {
+.custom-select option:hover, .custom-select option:focus, .custom-select option:active, .custom-select option[selected] {
     background-color: #333;
     color: #fff;
 }
@@ -223,7 +224,7 @@ form .custom-select:focus {
 footer {
     background: #333;
     color: #fff;
-    /*position: fixed;*/
+    position: absolute;
     bottom: 0;
     right: 0;
     left: 0;
@@ -248,8 +249,6 @@ footer a {
     color: #BF073E;
 }
 
-footer a:hover,
-footer a:active,
-footer a:focus {
+footer a:hover, footer a:active, footer a:focus {
     color: #ffffff;
 }
