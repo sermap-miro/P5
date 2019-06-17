@@ -33,4 +33,4 @@ pycom-fwtool-cli --port /dev/ttyUSB0 --verbose  flash -t WiPy-1.18.1.r1.tar.gz
 #echo "Installation du programme P5 pour le Wipy"
 read -n1 -r -p "Installation du programme P5 pour le Wipy? Press space to continue..." key
 #Restore
-pycom-fwtool-cli --port /dev/ttyUSB0 --verbose copy -p fs1 -r -f Version_37.bin
+pycom-fwtool-cli --port /dev/ttyUSB0 --verbose copy -p fs1 -r -f Version_38.1.bin
