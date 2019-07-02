@@ -13,8 +13,8 @@
 *
 */
 
-/* iPhone 5 */
-@media (max-width: 320px) { 
+/* jusqua iPhone X */
+@media (max-width: 380px) { 
     .header .logo img {
         padding-top: 10px;
         max-width: 100px;
@@ -32,4 +32,19 @@
     input.form-control {
         padding: 0;
     }
+	.case_1 {
+		width: 56.25px;
+	}
 }
+
+/* iPhone 7/8 
+@media only screen 
+    and (device-width : 375px) 
+    and (device-height : 667px) { 
+	
+	}
+} */
+.pad19 {
+	margin : 0 auto;
+	text-align : center
+	}

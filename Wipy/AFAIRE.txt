@@ -23,4 +23,4 @@ il faudrait ajouter un drapeau qui dit que la fumière est pleine
 -Rendre le programme multilangue
 -Ajout d'un état bloquer impossible avec la fumière pleine: au démarrage d'un multitas, si on ne quitte pas la platine du début de la fumière alors on doit tout arrêter et mettre le système en défaut avec le message comme quoi la fumière est pleine!
 -Fonction Relais/Interrupteur... retiré dans coupe_moteur le RELAIS = 0 (ligne 267 dans action.c dans le code du PIC) de la fonction Coupe_Moteur() 
-
+-sur la version 31/32, lorsque l'on change certain paramètres de la page: http://192.168.4.1 ils ne sont pas mis correctement a jour dans la page qui s'actualise tout seul. Par contre si on l'actualise nous meme alors, on voit les modifications apportés => à regarder si il y a le même comportement avec la version 38 et supérieur
