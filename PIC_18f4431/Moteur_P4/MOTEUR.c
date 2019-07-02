@@ -145,7 +145,7 @@ void Init_Variable(void) {
     
     /*
      
-     Version 12: Résolution du bug découvert par Pascal Karas
+     Version 12: Résolution du bug découvert par Pascal Karas: Pour le bouton d'arret d'urgence
      * 
      */
     
