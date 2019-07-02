@@ -1,0 +1,7 @@
+M	Wipy/Backup/VT-Design/flash/AiCmirobot.htm
+M	Wipy/Backup/VT-Design/flash/AiCmirobot_header.htm
+M	Wipy/Backup/VT-Design/flash/AiCmirobot_menu_principal_begin.htm
+M	Wipy/Backup/VT-Design/flash/AiCmirobot_menu_principal_begin_original.htm
+M	Wipy/Backup/VT-Design/flash/AiCmirobot_p.htm
+M	Wipy/Backup/VT-Design/flash/AiCmirobot_wifi.htm
+

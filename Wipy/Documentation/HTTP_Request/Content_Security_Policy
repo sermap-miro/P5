@@ -1,0 +1,11 @@
+https://blog.dareboost.com/fr/2016/08/comment-implementer-content-security-policy/
+
+Les directives xxx-src peuvent accepter comme valeur : ‘none’, le caractère * (tout autoriser) ou une combinaison de ces valeurs :
+
+    ‘self’ (le domaine courant)
+    liste de domaines (séparés par une virgule, avec utilisation possible de *.mondomaine.com )
+    data: (par exemple pour autoriser les images en base64)
+
+script-src et style-src acceptent également la valeur ‘unsafe-inline’ pour autoriser l’utilisation de scripts ou de styles inline dans votre HTML.
+
+Attention donc aux effets de bord que vous pourriez rencontrer avec une directive “default-src” qui ne propose pas de valeur ‘unsafe-inline’. L’utilisation d’un “default-src” non complétée d’un style-src ‘unsafe-inline’ conduira donc au blocage des styles inline !

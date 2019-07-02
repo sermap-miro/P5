@@ -1,0 +1,28 @@
+<script language="javascript">
+function Send_Command(cmd){
+	var resp, xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			resp = xmlhttp.responseText;
+			console.log(resp);
+			}
+	}
+	xmlhttp.open("GET","Plan=" + cmd,true); xmlhttp.send()	
+}
+</script> 
+</head> 
+<body> 
+
+
+
+
+
+<button class="button 150px-width" onclick="location.href='/'">Menu Principal</button>
+<p>
+<form action="/Edit" method="post">
+
+<div>
+<button type="submit" name = 's1' class="button 150px-width" value="R">Voir</button>
+<button type="submit" name = 's1' class="button 150px-width" value="W">Sauvegarder</button>
+</div>
+

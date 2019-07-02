@@ -1,0 +1,22 @@
+<script language="javascript">
+function Send_Command(cmd){
+	var resp, xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			resp = xmlhttp.responseText;
+			console.log(resp);
+			}
+	}
+	xmlhttp.open("GET","Plan=" + cmd,true); xmlhttp.send()	
+}
+</script> 
+</head> 
+<body> 
+
+
+
+
+<button class="button 150px-width" onclick="location.href='http://192.168.4.1/'">Menu Principal</button>
+
+
+

@@ -1,0 +1,117 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head> 
+<title>P5</title> 
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+  <style type="text/css" id="style">
+  
+  @media screen and (min-device-width:698px) {
+  div#showgrid {
+    width: 698px;
+    margin: auto;
+  }
+}
+
+div.column {
+  border-style: solid;
+  border-width: 0px;
+}
+
+.row {
+  width: 100%;
+  margin: auto;
+vertical-align: middle;
+}
+
+@media (min-device-width: 698px) {
+  .column {
+    width: 200px;
+    height: 77px;
+    display: inline;
+    float: left;
+  }
+}
+
+.column {
+  width: 200px;
+  height: 77px;
+  margin: auto;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+    vertical-align: middle;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.button {
+  display: inline;
+  /*display: inline-block;*/
+  /*display: table-cell;*/
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  vertical-align: middle;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #8e3e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.150px-width{
+ width: 150px;
+}
+
+  </style>
+<script language="javascript">
+function Send_Command(cmd){
+	var resp, xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			resp = xmlhttp.responseText;
+			console.log(resp);
+			}
+	}
+	xmlhttp.open("GET","Valc=" + cmd,true); xmlhttp.send()	
+}
+</script> 
+</head> 
+<body> 
+<div id="showgrid">
+  <div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="Send_Command(1)">10 V</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="Send_Command(2)">30 V</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="Send_Command(3)">Bip</button></div>
+  </div>
+  <div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="Send_Command(4)">LED ON</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="Send_Command(5)">LED OFF</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="Send_Command(6)">00:00</button></div>
+  </div>
+  <div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='/'">Menu Principal</button></div>
+  </div>
+</div>
+</body>
+</html>

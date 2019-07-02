@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#curl "https://software.pycom.io/findupgrade?key=wipy.wipy%20with%20esp32&redirect=false&type=all"
+#Reset Complet: 
+#pycom-fwtool-cli -v -p /dev/ttyUSB0 erase_all
+
+pycom-fwtool-cli -v -p /dev/ttyUSB0 flash -t WiPy-1.18.0.tar.gz
+
