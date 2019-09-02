@@ -1,0 +1,7 @@
+
+#Version Production Actuelle: 12
+
+#Fichier équivalent pour le rézo:
+#"C261 0005 00 P.hex"
+
+cp dist/default/production/Moteur_P4.production.hex  ~/Rezo/Plans_PDF/C261\ 0005\ 00\ P.hex
