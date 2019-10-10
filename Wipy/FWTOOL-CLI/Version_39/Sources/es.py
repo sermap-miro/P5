@@ -28,6 +28,7 @@ def Start_Prgm(numero_programme):
 
 
 def Arret_Urgence(arg):
+    _etat_irq = machine.disable_irq()
     global _en_urgence
     global _nombre_de_seconde_capture
     if not _en_urgence:
@@ -53,8 +54,9 @@ def Arret_Urgence(arg):
                     _thread.start_new_thread(Start_Prgm, (1,))
             if _compteur_impulsion_arret_urgence == 3: # au moins trois aller/retour du bouton arrêt urgence
                 if not ARRET_URGENCE(): # le bouton arrêt urgence doit etre désactivé avant les 5 secondes pour autorisé le départ
-                    _thread.start_new_thread(Start_Prgm, (2,))
+                    thread.start_new_thread(Start_Prgm, (2,))
         _en_urgence = False
+    machine.enable_irq(_etat_irq)
 
 ARRET_URGENCE.callback(machine.Pin.IRQ_RISING , Arret_Urgence)
 
