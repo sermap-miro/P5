@@ -22,7 +22,7 @@ def Extract_Data(_planning_brut='', _type='h', _indice=1):
 			if _planning_brut[0] == '&':
 				return ('')
 			else:
-				m.affiche(_planning_brut)
+				print(_planning_brut)
 				return(_planning_brut)
 		else:
 			return ('')
@@ -134,22 +134,22 @@ def Planning_Record(request=''):
 		_planning_brut = request[ibe:]
 		_Erreur = 0
 		m.bug_michel = request
-		m.affiche('Function Planning_Record  =====> =====>====>')
+		print('Function Planning_Record  =====> =====>====>')
 		for _ in range(20):
 			
 			try:
 				#print('erreur: {} => _a={},_h={},_m={},_p={}'.format(_,_activation, _h, _m, _prgm))
-				m.affiche('data a extraire = {}'.format(_))
+				print('data a extraire = {}'.format(_))
 				_activation = Extract_Data(_planning_brut=_planning_brut, _type='c', _indice=_+1)
-				m.affiche('{}:_a={}'.format(_,_activation))
+				print('{}:_a={}'.format(_,_activation))
 				_h = int(Extract_Data(_planning_brut=_planning_brut, _type='h', _indice=_+1))
-				m.affiche('{}:_h={}'.format(_, _h))
+				print('{}:_h={}'.format(_, _h))
 				_m = int(Extract_Data(_planning_brut=_planning_brut, _type='m', _indice=_+1))
-				m.affiche('{}:_m={}'.format(_, _m))
+				print('{}:_m={}'.format(_, _m))
 				_prgm = Extract_Data(_planning_brut=_planning_brut, _type='p', _indice=_+1)
-				#m.affiche('')
+				#print('')
 				_planning.append((str(_h)+':'+str(_m), _activation, '{}'.format(_prgm)))
-				m.affiche('{}:_a={},_h={},_m={},_p={}'.format(_,_activation, _h, _m, _prgm))
+				print('{}:_a={},_h={},_m={},_p={}'.format(_,_activation, _h, _m, _prgm))
 			except Exception as Erreur:
 				_Erreur = 1
 				print('erreur: {} => _a={},_h={},_m={},_p={}'.format(_,_activation, _h, _m, _prgm))
@@ -158,7 +158,7 @@ def Planning_Record(request=''):
 		if _Erreur == 0:
 			planning_save(_planning)
 			exec('planning = planning_get()')
-			m.affiche('Function Planning_Record : Enregistrement terminé')
+			print('Function Planning_Record : Enregistrement terminé')
 	except:
 		pass
 	

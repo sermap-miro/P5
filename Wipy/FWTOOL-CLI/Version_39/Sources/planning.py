@@ -99,8 +99,8 @@ def set_date(annee=2017,mois=12,jour=13,heure=12,minute=0,seconde=0):
     planning = planning_time_adjust(planning, _diff_min)
     RTC(datetime=(_annee, _mois, _jour, _heure, _minute, _seconde, 0, None))
     _date_update = rtc.now()
-    m.affiche('Heure antérieure: {}'.format(_date_ancienne))
-    m.affiche('Heure mis à jour: {}'.format(_date_update))
+    print('Heure antérieure: {}'.format(_date_ancienne))
+    print('Heure mis à jour: {}'.format(_date_update))
 
 
 
@@ -111,7 +111,7 @@ def set_date(annee=2017,mois=12,jour=13,heure=12,minute=0,seconde=0):
 #_diff_min = (_heure * 60 + _minute) - (_heure_ancienne * 60 + _minute_ancienne)
 def planning_time_adjust(planning, diff_en_min):
     #global planning
-    #m.affiche('planning = {}'.format(planning))
+    #print('planning = {}'.format(planning))
     _planning = list()
     for depart in planning:
         _activation = depart[1]
@@ -128,7 +128,7 @@ def planning_time_adjust(planning, diff_en_min):
         _h_actuelle = _h_actuelle[0:2]
         _m_actuelle = '{:02.0f}'.format(depart_en_min_actuelle%60)
         _planning.append(('{}:{}'.format(_h_actuelle, _m_actuelle), _activation, '{}'.format(_prgm)))
-        m.affiche('ancienne heure ({:02.0f}:{:02.0f}) => nouvelle heure ({}:{})'.format(_h, _m, _h_actuelle, _m_actuelle))
+        print('ancienne heure ({:02.0f}:{:02.0f}) => nouvelle heure ({}:{})'.format(_h, _m, _h_actuelle, _m_actuelle))
     return _planning
 
 
@@ -142,7 +142,7 @@ def planning_get():
     with open('/flash/'+Fichier_Depart, 'r') as fichier_depart:
         for depart in fichier_depart:
             #d=depart
-            #m.affiche(depart)
+            #print(depart)
             depart=depart.strip()
             depart=depart.split(':')
             #if len(depart)==4:
@@ -168,7 +168,7 @@ def planning_save(planning):
     if Fichier_Depart in uos.listdir('/flash'):
         uos.remove('/flash/'+Fichier_Depart)
     for depart in planning:
-        m.affiche(depart)
+        print(depart)
         fichier_depart = open('/flash/'+Fichier_Depart, 'a')
         #fichier_depart.write(depart+'\n')
         fichier_depart.write('{}:{}:{}\n'.format(depart[1],depart[0],depart[2]))
@@ -187,7 +187,7 @@ def planning_prochain_depart(planning):
         depart=depart[0].split(':')
         _h = int(depart[0])
         _m = int(depart[1])
-        #m.affiche('{:02}:{:02}'.format(_h,_m))
+        #print('{:02}:{:02}'.format(_h,_m))
         _planning.append(_h*3600+_m*60)
     _planning.sort()
     date_now = rtc.now()
@@ -198,12 +198,12 @@ def planning_prochain_depart(planning):
     #cela veut dire que le prochain départ se situe le jour suivant
     #on ajoute donc la valeur d'un jour en seconde au _planning actuelle
     if date_s > _planning[-1]:
-        m.affiche('Demain')
+        print('Demain')
         _planning = [depart+24*3600 for depart in _planning]
     for depart in _planning:
         if depart >= date_s:
             countdown = depart - date_s
-            #m.affiche('Reste {} s avant le prochaine départ ({} min ou {} h)'.format(countdown,countdown/60,countdown/3600))
+            #print('Reste {} s avant le prochaine départ ({} min ou {} h)'.format(countdown,countdown/60,countdown/3600))
             return countdown
 
 #_planning = planning_prochain_depart()
@@ -223,7 +223,7 @@ def planning_prochain_depart_valeur(planning):
         depart=depart[0].split(':')
         _h = int(depart[0])
         _m = int(depart[1])
-        #m.affiche('{:02}:{:02}'.format(_h,_m))
+        #print('{:02}:{:02}'.format(_h,_m))
         if _activation == True:
             _planning.append((_h*3600+_m*60, _prgm))
         #_planning.append((str(_h)+':'+str(_m), _activation, '{}'.format(_prgm)))
@@ -238,14 +238,14 @@ def planning_prochain_depart_valeur(planning):
     #cela veut dire que le prochain départ se situe le jour suivant
     #on ajoute donc la valeur d'un jour en seconde au _planning actuelle
     if date_s > _planning[-1][0]:
-        m.affiche('Demain')
+        print('Demain')
         #_planning = [depart+24*3600 for depart in _planning]
         date_s -= 24*3600
         #return
     for depart in _planning:
         if depart[0] >= date_s:
             countdown = depart[0] - date_s
-            #m.affiche('Reste {} s avant le prochaine départ ({} min ou {} h)'.format(countdown,countdown/60,countdown/3600))
+            #print('Reste {} s avant le prochaine départ ({} min ou {} h)'.format(countdown,countdown/60,countdown/3600))
             return countdown, depart[1] #renvoi le nombre de seconde restant avant le démarrage du programme contenu dans depart[1]
 
 
