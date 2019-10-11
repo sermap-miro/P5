@@ -170,20 +170,12 @@ def Read_Prgm(Prgm_Indice):
 #Write_Prgm(5, 'A\nL\nR\nB\n')
 #def Write_Prgm(Data_From_Socket):
 def Write_Prgm(Prgm_Indice, Data_From_Socket):
-    #Data_From_Socket = Data_From_Socket.split(':')
-    #Prgm_Indice = Data_From_Socket[0]
-    #Data_From_Socket = Data_From_Socket[1:]
     if Prgm_Indice in {'r', 'R', 'Retour'}:
         Prgm_Indice = 'Retour'
     with open('/flash/prgm/{}.txt'.format(Prgm_Indice), 'w') as Fichier:
         Fichier.write(Data_From_Socket)
 
-#Send_Prgm('1')
-#def Write_Prgm(Data_From_Socket):
 def Send_Prgm(Prgm_Indice):
-    #Data_From_Socket = Data_From_Socket.split(':')
-    #Prgm_Indice = Data_From_Socket[0]
-    #Data_From_Socket = Data_From_Socket[1:]
     if Prgm_Indice in{'r', 'R'}:
         Prgm_Indice = 'Retour'
     try:
@@ -381,9 +373,9 @@ def Multitas(Patinage=150):#Modif du 18 avril
     nvs_set('TMA', int(m.Nb_Seconde_Maintenance))
     m.PIC_PARAM_UPDATE() #on remet les paramètres par defaut
     #refresh_statut()
-    m.affiche('Multitas: m.Etat={}, m.Erreur={}, m.Run_Prgm'.format(m.Etat, m.Erreur, m.Run_Prgm))
+    m.affiche('Multitas: m.Etat={}, m.Erreur={}, m.Run_Prgm={}'.format(m.Etat, m.Erreur, m.Run_Prgm))
     m.get_statut_PIC()
-    m.affiche('Multitas: m.Etat={}, m.Erreur={}, m.Run_Prgm'.format(m.Etat, m.Erreur, m.Run_Prgm))
+    m.affiche('Multitas: m.Etat={}, m.Erreur={}, m.Run_Prgm={}'.format(m.Etat, m.Erreur, m.Run_Prgm))
     #if m.Etat == 'Platine' or m.Etat == 'Inactif' or (m.Etat == 'Alarme' and m.Erreur == 'Patinage'):
     if m.Etat == 'Platine' or (m.Etat == 'Inactif' and m.Erreur == 'Patinage') and m.Run_Prgm == 1:
     #'Bloquer'
@@ -397,7 +389,7 @@ def Multitas(Patinage=150):#Modif du 18 avril
         return _EXECUTION_OK
     else:
         m.affiche('Multitas => Erreur')
-        m.affiche('Multitas: m.Etat={}, m.Erreur={}, m.Run_Prgm'.format(m.Etat, m.Erreur, m.Run_Prgm))
+        m.affiche('Multitas: m.Etat={}, m.Erreur={}, m.Run_Prgm={}'.format(m.Etat, m.Erreur, m.Run_Prgm))
         return _EXECUTION_ERREUR
 
 def Pelle_Baisse():

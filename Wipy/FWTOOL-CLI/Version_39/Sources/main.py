@@ -25,7 +25,9 @@ from planning import Planificateur, planning_make,planning_time_adjust,planning_
 
 from machine import Timer
 import machine
-
+#from network import WLAN
+#wlan = WLAN()
+#wlan.ifconfig(id=1,config=("192.168.4.1","255.255.255.252","192.168.4.1","0.0.0.0")) # AP
 
 from machine import RTC
 # RTC(datetime=(2017, 12, 13, 17, 14, 50, 0, None))

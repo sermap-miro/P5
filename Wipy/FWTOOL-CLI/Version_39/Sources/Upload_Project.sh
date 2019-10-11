@@ -6,6 +6,7 @@ IP=192.168.4.1
 PORT=21
 CURL_OPTION="-3 --ftp-ssl"
 CURRENT_FOLDER=.
+LIB=lib
 
 #Création des dossiers
 echo Création du dossier assets
@@ -23,29 +24,29 @@ curl ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/assets/img/ --ftp-create-dirs
 
 echo 'PYTHON FILES=12(11 mpy + 1 py)'
 echo AiCwebserver_CMD.mpy
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/AiCwebserver_CMD.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+curl ${CURL_OPTION} -T ${LIB}/AiCwebserver_CMD.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 echo AiCwebserver.mpy
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/AiCwebserver.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+curl ${CURL_OPTION} -T ${LIB}/AiCwebserver.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 echo commande.mpy
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/commande.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+curl ${CURL_OPTION} -T ${LIB}/commande.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 echo config.mpy
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/config.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+curl ${CURL_OPTION} -T ${LIB}/config.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 echo es.mpy
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/es.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+curl ${CURL_OPTION} -T ${LIB}/es.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 echo main_metlahome.mpy
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/main_metlahome.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+curl ${CURL_OPTION} -T ${LIB}/main_metlahome.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 echo main.py
 curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/main.py ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
 echo mirobot2.mpy
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/mirobot2.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+curl ${CURL_OPTION} -T ${LIB}/mirobot2.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 echo P4.mpy
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/P4.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+curl ${CURL_OPTION} -T ${LIB}/P4.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 echo pion.mpy
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/pion.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+curl ${CURL_OPTION} -T ${LIB}/pion.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 echo planning.mpy
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/planning.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+curl ${CURL_OPTION} -T ${LIB}/planning.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 echo wifi.mpy
-curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/wifi.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+curl ${CURL_OPTION} -T ${LIB}/wifi.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 
 echo HTML FILE
 echo index.html
