@@ -17,7 +17,7 @@ from time import sleep, time
 
 _en_urgence = False
 
-_nombre_de_seconde_capture = 2
+_nombre_de_seconde_capture = 5
 
 import _thread
 
@@ -40,7 +40,7 @@ def Arret_Urgence(arg):
             m.reset()
         else:
             _tps_depart=time()
-            _compteur_impulsion_arret_urgence = 1
+            _compteur_impulsion_arret_urgence = 0
             _etat_arret_urgence = ARRET_URGENCE()
             while time()  - _tps_depart < _nombre_de_seconde_capture: # on fait une vérification pendant les 5 prochaines secondes du nombre d'allez-retour
                 _ARRET_URGENCE = ARRET_URGENCE()
@@ -52,9 +52,9 @@ def Arret_Urgence(arg):
             if _compteur_impulsion_arret_urgence == 1: # au moins trois aller/retour du bouton arrêt urgence
                 if not ARRET_URGENCE(): # le bouton arrêt urgence doit etre désactivé avant les 5 secondes pour autorisé le départ
                     _thread.start_new_thread(Start_Prgm, (1,))
-            if _compteur_impulsion_arret_urgence == 3: # au moins trois aller/retour du bouton arrêt urgence
+            if _compteur_impulsion_arret_urgence >= 2: # au moins trois aller/retour du bouton arrêt urgence
                 if not ARRET_URGENCE(): # le bouton arrêt urgence doit etre désactivé avant les 5 secondes pour autorisé le départ
-                    thread.start_new_thread(Start_Prgm, (2,))
+                    _thread.start_new_thread(Start_Prgm, (2,))
         _en_urgence = False
     #machine.enable_irq(_etat_irq)
 

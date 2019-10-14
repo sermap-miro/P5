@@ -337,35 +337,124 @@ function Info() {
 }
 /* Fichier JSON récupéré, affichage des informations */
 function generate_info(jsonObj) {
+    try {
     var T_vol = jsonObj["Temps de vol"];
+    }catch(error) {
+        console.log(error);
+     }
+    try{
     var mdp = jsonObj["mdp wifi"];
-
+    }catch(error) {
+        console.log(error);
+     }
+    try {
     document.getElementById('derniere_alarme').innerHTML = jsonObj["Derniere alarme"];
-    document.getElementById('etat_p5').innerHTML = jsonObj["Etat P5"];
-    document.getElementById('etat_p_p5').innerHTML = jsonObj["Etat precedant"];
-    document.getElementById('pions').innerHTML = jsonObj["Pions"];
-    document.getElementById('tension').innerHTML = jsonObj["Tension"] + ' V';
-    document.getElementById('c_pion').innerHTML = jsonObj["Capteur pion"] ? '<span class="badge badge-dark">Metal Absent</span>' : '<span class="badge badge-primary">Metal Présent</span>';
-    document.getElementById('c_capot').innerHTML = jsonObj["Capteur capot"] ? '<span class="badge badge-success">En place</span>' : '<span class="badge badge-danger">En défaut</span>';
-    document.getElementById('arret_urgence').innerHTML = jsonObj["Arret urgence"] ? '<span class="badge badge-danger">En Urgence</span>' : '<span class="badge badge-success">Position Normal</span>';
-    document.getElementById('relais').innerHTML = jsonObj["Relais"] ? 'Activé' : 'Désactivé';
-    document.getElementById('im1').innerHTML = jsonObj["i Moteur 1"] + ' A';
-    document.getElementById('im2').innerHTML = jsonObj["i Moteur 2"] + ' A';
-    document.getElementById('patinage').innerHTML = jsonObj["Patinage"] + ' s';
-    document.getElementById('t_pion').innerHTML = jsonObj["Temps pion"] + '  ms';
-    document.getElementById('t_platine').innerHTML = jsonObj["Temps platine"] + ' ms';
-    document.getElementById('t_pelle').innerHTML = jsonObj["Temps pelle"] + ' s';
-    if (T_vol < 60) {
-        document.getElementById('t_vol').innerHTML = T_vol + ' s';
-    } else if (T_vol < 3600) {
-        document.getElementById('t_vol').innerHTML = T_vol / 60 + ' min';
-    } else {
-        document.getElementById('t_vol').innerHTML = T_vol / 3600 + ' h';
     }
+    catch(error) {
+       console.log(error);
+    }
+    try {
+    document.getElementById('etat_p5').innerHTML = jsonObj["Etat P5"];
+    }
+    catch(error) {
+        console.log(error);
+     }
+     try{
+    document.getElementById('etat_p_p5').innerHTML = jsonObj["Etat precedant"];
+     }
+     catch(error) {
+        console.log(error);
+     }
+     try {
+    document.getElementById('pions').innerHTML = jsonObj["Pions"];
+     }catch(error) {
+        console.log(error);
+     }
+     try {
+    document.getElementById('tension').innerHTML = jsonObj["Tension"] + ' V';
+     }catch(error) {
+        console.log(error);
+     }
+     try {
+    document.getElementById('c_pion').innerHTML = jsonObj["Capteur pion"] ? '<span class="badge badge-dark">Metal Absent</span>' : '<span class="badge badge-primary">Metal Présent</span>';
+     }catch(error) {
+        console.log(error);
+     }
+     try {
+
+
+    document.getElementById('c_capot').innerHTML = jsonObj["Capteur capot"] ? '<span class="badge badge-success">En place</span>' : '<span class="badge badge-danger">En défaut</span>';
+     }catch(error) {
+        console.log(error);
+     }
+     try {
+    document.getElementById('arret_urgence').innerHTML = jsonObj["Arret urgence"] ? '<span class="badge badge-danger">En Urgence</span>' : '<span class="badge badge-success">Position Normal</span>';
+     }catch(error) {
+        console.log(error);
+     }
+     try {
+    document.getElementById('relais').innerHTML = jsonObj["Relais"] ? 'Activé' : 'Désactivé';
+     }catch(error) {
+        console.log(error);
+     }
+     try  {
+    document.getElementById('im1').innerHTML = jsonObj["i Moteur 1"] + ' A';
+}catch(error) {
+    console.log(error);
+ }
+try {
+    document.getElementById('im2').innerHTML = jsonObj["i Moteur 2"] + ' A';
+}catch(error) {
+    console.log(error);
+ }
+try {
+    document.getElementById('patinage').innerHTML = jsonObj["Patinage"] + ' s';
+}catch(error) {
+    console.log(error);
+ }
+try {
+    document.getElementById('t_pion').innerHTML = jsonObj["Temps pion"] + '  ms';
+}catch(error) {
+    console.log(error);
+ }
+try {    document.getElementById('t_platine').innerHTML = jsonObj["Temps platine"] + ' ms';
+}catch(error) {
+    console.log(error);
+ }
+try {
+    document.getElementById('t_pelle').innerHTML = jsonObj["Temps pelle"] + ' s';
+}catch(error) {
+    console.log(error);
+ }
+    if (T_vol <= 60) {
+        document.getElementById('t_vol').innerHTML = Math.round10(T_vol) + ' s';
+    } else if (T_vol < 3600) {
+        document.getElementById('t_vol').innerHTML = Math.round10(T_vol/60,-2) + ' min';
+    } else {
+        document.getElementById('t_vol').innerHTML = Math.round10(T_vol/3600,-2) + ' h';
+    }
+    try {
     document.getElementById('v_pic_wipy').innerHTML = jsonObj["Version PIC"] + ':' + jsonObj["Version Wipy"];
-    document.getElementById('t_demarrage').innerHTML = jsonObj["Temps demarrage"] + ' s';
+    }catch(error) {
+        console.log(error);
+     }
+    try {
+    document.getElementById('t_demarrage').innerHTML = Math.round10(jsonObj["Temps demarrage"],-2) + ' s';
+    }catch(error) {
+        console.log(error);
+     }
+    try {
     document.getElementById('w_name').innerHTML = jsonObj["WIFI"];
+    }catch(error) {
+        console.log(error);
+     }
+    try {
+    
     document.getElementById('w_pass').innerHTML = (mdp != "undefined") ? mdp : '';
+    }
+    catch(error) {
+        console.log(error);
+     }
 }
 // Afichage de la page Configuration
 // function f_conf(){
@@ -385,15 +474,52 @@ function generate_info(jsonObj) {
 // }
 // Affichage du contenu de la page configuration
 function generate_conf(jsonObj) {
+    try{
     document.getElementById('Consigne_Moteur').value = jsonObj['Consigne Moteur'];
+}catch (error){
+    console.log(error);
+}
+try{
     document.getElementById('Consigne_Pelle').value = jsonObj['Consigne Pelle'];
+}catch (error){
+    console.log(error);
+}
+try{
     document.getElementById('Seuil_Pelle').value = jsonObj['Seuil Pelle'];
+}catch (error){
+    console.log(error);
+}
+try{
     document.getElementById('Consigne_Bequille').value = jsonObj['Consigne Bequille'];
+}catch (error){
+    console.log(error);
+}
+try{
     document.getElementById('Seuil_Bequille').value = jsonObj['Seuil Bequille'];
+}catch (error){
+    console.log(error);
+}
+try{
     document.getElementById('Patinage').value = jsonObj['Patinage'];
+}catch (error){
+    console.log(error);
+}
+try{
     document.getElementById('Temps_Pion').value = jsonObj['Temps Pion'];
+}
+catch (error){
+    console.log(error);
+}
+try{
     document.getElementById('Temps_Platine').value = jsonObj['Temps Platine'];
+}catch (error){
+    console.log(error);
+}
+try{
     document.getElementById('Temps_Pelle').value = jsonObj['Temps Pelle'];
+}catch (error){
+    console.log(error);
+}
 }
 /* Affichage de la page edit */
 function g_edit() {
@@ -721,8 +847,50 @@ function save_h() {
     }
 }
 
+(function(){
+
+	function decimalAdjust(type, value, exp) {
+		// Si l'exposant vaut undefined ou zero...
+		if (typeof exp === 'undefined' || +exp === 0) {
+			return Math[type](value);
+		}
+		value = +value;
+		exp = +exp;
+		// Si value n'est pas un nombre 
+        // ou si l'exposant n'est pas entier
+		if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+			return NaN;
+		}
+		// Décalage
+		value = value.toString().split('e');
+		value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+		// Re "calage"
+		value = value.toString().split('e');
+		return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+	}
+
+	// Arrondi décimal
+	if (!Math.round10) {
+		Math.round10 = function(value, exp) {
+			return decimalAdjust('round', value, exp);
+		};
+	}
+	// Arrondi décimal inférieur
+	if (!Math.floor10) {
+		Math.floor10 = function(value, exp) {
+			return decimalAdjust('floor', value, exp);
+		};
+	}
+	// Arrondi décimal supérieur
+	if (!Math.ceil10) {
+		Math.ceil10 = function(value, exp) {
+			return decimalAdjust('ceil', value, exp);
+		};
+	}
+
+})();
 var home = ["home", '', "home"];
-var clock = ["clock", '<div class="container center-block"><div class="row center-block" style=""><div class="center-block" style="float:none;margin: auto;"><div class="row prgm-nav"><li style="margin: auto;"><a onclick="save_h()" class="btn btn-miro mb-3" id="clk_save">Sauvegarder</a></li></div><div class="row"><p style="margin: auto;">Heure:</p><p style="margin: auto;">Minute:</p></div><div class="row center-block" style="margin: auto;"><input style="margin: auto;" class="col-3" type="text" id="h1" name="h1"  pattern="[0-9]{1,2}" size="2" type="time"><input class="col-3" type="text" name="m1" id="m1" type="time" size="2" pattern="[0-9]{1,2}" style="margin: auto;"></div></div></div></div>', "page_clk"];
+var clock = ["clock", '<div class="container center-block"><div class="row center-block" style=""><div class="center-block" style="float:none;margin: auto;"><div class="row prgm-nav"><li style="margin: auto;"><a onclick="save_h()" class="btn btn-miro mb-3" id="clk_save">Sauvegarder</a></li></div><div class="row"><p style="margin: auto;">Heure:</p><p style="margin: auto;">Minute:</p></div><div class="row center-block" style="margin: auto;"><input style="margin: auto;" type="text" id="h1" name="h1"  pattern="[0-9]{1,2}" size="5" ><input type="text" name="m1" id="m1" size="5" pattern="[0-9]{1,2}" style="margin: auto;"></div></div></div></div>', "page_clk"];
 var wifi = ["wifi", '<div class="container"><div class="row"><div class="col-12 "><div class="form-group"><div>Nouveau nom Wifi = "P5 - {Nom saisi}"</div><input type="text" id="n1" name="n1" maxlength="8" pattern="[a-zA-Z0-9_ ]{1,8}"></div><div class="form-group"><div>Mot de passe</div> <input type="text" id="p1" name="p1" minlength="8" maxlength="20" pattern="[a-zA-Z0-9_-]{8,20}"><div>Caractères autorisés : chiffre et lettre (minuscule et majuscule) ayant minumum 8 Caractères</div></div><div class="form-group"><label>Canal</label> <SELECT name="c1" id="c1" size="1" class="custom-select"></SELECT></div><button onclick="change_wifi()" class="btn btn-miro">Sauvegarde</button></div></div><div class="row"><div class="col-12 wifi-change"><div class="col-4" id="w_name"></div><div class="col-4" id="w_pass"></div><div class="col-4" id="w_channel"></div></div></div></div>', "page_wifi"];
 var planning = ["planning", '<div class="container"><div class="row"><div class="col-12"><button onclick="save_plan()" class="btn btn-miro mb-3">Sauvegarder</button><div class="table-responsive"><table class="table"><thead><tr><th scope="col">#</th><th scope="col">Heure</th><th scope="col">Minute</th><th scope="col">A / D</th><th scope="col">Programme</th></tr></thead><tbody id="f_tab"></tbody></table></div></div></div>', "page_plan"];
 var edit = ["edit", '<div class="container"><div class="row"><div class="col-12"><button onclick="save_edit()" class="btn btn-miro mb-3" >Sauvegarder</button><p><SELECT name="p1" size="1" class="custom-select"id="opt_edit"><OPTION value="" selected>Choisissez le fichier à éditer</OPTION><OPTION value="1">1</OPTION><OPTION value="2">2</OPTION><OPTION value="3">3</OPTION><OPTION value="4">4</OPTION><OPTION value="5">5</OPTION><OPTION value="6">6</OPTION><OPTION value="7">7</OPTION><OPTION value="8">8</OPTION><OPTION value="9">9</OPTION><OPTION value="Retour">Retour</OPTION> </SELECT></p><TEXTAREA class="form-control" name="d1" rows=15 cols=15 id="put_text"></TEXTAREA></div></div></div>', "page_edit"];
