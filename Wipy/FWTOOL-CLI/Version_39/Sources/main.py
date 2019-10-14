@@ -4,7 +4,7 @@ from machine import Timer,Pin
 chrono = Timer.Chrono()
 chrono.start()
 
-
+import ujson
 from wifi import Wifi_Init, Wifi_Perso, Wifi_Connect, Wifi_Local, Wifi_Lock, Wifi_Connect, Wipy_Server_Init
 Pin('P12', mode=Pin.OUT)(True)
 Wipy_Server_Init()
@@ -289,43 +289,94 @@ def Chrono_Store(Fonctionnement=m.Nb_Seconde_Fonctionnement, Maintenance=m.Nb_Se
     nvs_set('TPS', int(Fonctionnement))
     nvs_set('TMA', int(Maintenance))
 
+doc = {}
+try: 
+    with open('/flash/assets/json/conf.json') as f:
+        doc = ujson.load(f)
+    f.close()
+except:
+    print('Unable to read conf.json')
+
 #### Relecture des paramètres de bases
 Memory_Value = nvs_get('TPS') # Seconde de fonctionnement Total
 if Memory_Value is not None:
     m.Nb_Seconde_Fonctionnement = Memory_Value
+
 Memory_Value = nvs_get('TMA') # Seconde depuis la dernier maintenance
 if Memory_Value is not None:
     m.Nb_Seconde_Maintenance = Memory_Value
-
-
 Memory_Value = nvs_get('PAT')
 if Memory_Value is not None:
     m.PATINAGE_TEMPS_s = Memory_Value
+else :
+    try:
+        m.Nb_Seconde_Fonctionnement = doc["Patinage"]
+    except:
+        pass
 Memory_Value = nvs_get('MXC')
 if Memory_Value is not None:
     m.Moteur_X_Consigne = Memory_Value
+else :
+    try:  
+        m.Moteur_X_Consigne = doc["Consigne Moteur"] * 5
+    except: 
+        pass
 Memory_Value = nvs_get('MZC')
 if Memory_Value is not None:
     m.Moteur_Z_Consigne = Memory_Value
+else :
+    try: 
+        m.Moteur_Z_Consigne = doc["Consigne Pelle"]*5
+    except:
+        pass
 Memory_Value = nvs_get('MZS')
 if Memory_Value is not None:
     m.Moteur_Z_Limite_Courant = Memory_Value
+else:
+    try:
+        m.Moteur_Z_Limite_Courant = doc["Seuil Pelle"]*5
+    except:
+        pass
 Memory_Value = nvs_get('MBC')
 if Memory_Value is not None:
     m.Moteur_Bequille_Consigne = Memory_Value
+else:
+    try:
+        m.Moteur_Bequille_Consigne = doc["Consigne Bequille"]*5
+    except:
+        pass
 Memory_Value = nvs_get('MBS')
 if Memory_Value is not None:
     m.Moteur_Bequille_Limite_Courant = Memory_Value
+else:
+    try:
+        m.Moteur_Bequille_Limite_Courant = doc["Seuil Bequille"]*5
+    except:
+        pass
 Memory_Value = nvs_get('NSP')
 if Memory_Value is not None:
     m.Nb_Seconde_Pelle = Memory_Value
+else :
+    try:
+        m.Nb_Seconde_Pelle = doc["Temps Pelle"]
+    except:
+        pass
 Memory_Value = nvs_get('IT1')
 if Memory_Value is not None:
     m.PION_TEMPS_100ms = Memory_Value
+else :
+    try:
+        m.PION_TEMPS_100ms = doc["Temps Pion"]/100
+    except:
+        pass
 Memory_Value = nvs_get('LT1')
 if Memory_Value is not None:
     m.PLATINE_TEMPS_100ms = Memory_Value
-
+else:
+    try:
+        m.PLATINE_TEMPS_100ms = doc["Temps Platine"]/100
+    except:
+        pass
 
 Memory_Value = nvs_get('BV1')
 if Memory_Value is not None:
