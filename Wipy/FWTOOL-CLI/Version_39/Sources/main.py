@@ -302,7 +302,6 @@ except:
 Memory_Value = nvs_get('TPS') # Seconde de fonctionnement Total
 if Memory_Value is not None:
     m.Nb_Seconde_Fonctionnement = Memory_Value
-
 Memory_Value = nvs_get('TMA') # Seconde depuis la dernier maintenance
 if Memory_Value is not None:
     m.Nb_Seconde_Maintenance = Memory_Value

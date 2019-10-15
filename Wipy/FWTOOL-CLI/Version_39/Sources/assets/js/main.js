@@ -130,7 +130,7 @@ function Calibration_cmd(e) {
     commande("Valc=", e)
 }
 /* Envoi de l'heure locale vers le P5 */
-function Send_Clock_hidden2() {
+function maj_clock() {
     var e = new Date,
         n = e.getHours(),
         t = e.getMinutes();
@@ -143,6 +143,9 @@ function Send_Clock_hidden2() {
         data: "HORLOGE",
         success: function () {
             alerter("Horloge", 'L\'horloge à été mise a jour', "", "");
+            (t < 10) ? (t="0"+t):t;
+            (n < 10) ? (n="0"+n):t;
+            document.getElementById('m_time').innerHTML = 'P5 : ' + n + ':' + t;
         }
     })
 }
@@ -306,10 +309,10 @@ function g_time() {
 /* Recuperation et affichage de l'heure */
 function up_date_time(jsonObj) {
     var l_heure = jsonObj['h'];
-    (l_heure < 10) ? (l_heure = "0" + l_heure) : l_heure;
     var la_minute = jsonObj['m'];
+    (l_heure < 10) ? (l_heure = "0" + l_heure) : l_heure;
     (la_minute < 10) ? (la_minute = "0" + la_minute) : la_minute;
-    document.getElementById('m_time').innerHTML = 'Heure P5 :' + l_heure + ':' + la_minute;
+    document.getElementById('m_time').innerHTML = 'P5 : ' + l_heure + ':' + la_minute;
 }
 
 function Info() {
@@ -338,123 +341,120 @@ function Info() {
 /* Fichier JSON récupéré, affichage des informations */
 function generate_info(jsonObj) {
     try {
-    var T_vol = jsonObj["Temps de vol"];
-    }catch(error) {
+        var T_vol = jsonObj["Temps de vol"];
+    } catch (error) {
         console.log(error);
-     }
-    try{
-    var mdp = jsonObj["mdp wifi"];
-    }catch(error) {
-        console.log(error);
-     }
-    try {
-    document.getElementById('derniere_alarme').innerHTML = jsonObj["Derniere alarme"];
-    }
-    catch(error) {
-       console.log(error);
     }
     try {
-    document.getElementById('etat_p5').innerHTML = jsonObj["Etat P5"];
+        var mdp = jsonObj["mdp wifi"];
+    } catch (error) {
+        console.log(error);
     }
-    catch(error) {
+    try {
+        document.getElementById('derniere_alarme').innerHTML = jsonObj["Derniere alarme"];
+    } catch (error) {
         console.log(error);
-     }
-     try{
-    document.getElementById('etat_p_p5').innerHTML = jsonObj["Etat precedant"];
-     }
-     catch(error) {
+    }
+    try {
+        document.getElementById('etat_p5').innerHTML = jsonObj["Etat P5"];
+    } catch (error) {
         console.log(error);
-     }
-     try {
-    document.getElementById('pions').innerHTML = jsonObj["Pions"];
-     }catch(error) {
+    }
+    try {
+        document.getElementById('etat_p_p5').innerHTML = jsonObj["Etat precedant"];
+    } catch (error) {
         console.log(error);
-     }
-     try {
-    document.getElementById('tension').innerHTML = jsonObj["Tension"] + ' V';
-     }catch(error) {
+    }
+    try {
+        document.getElementById('pions').innerHTML = jsonObj["Pions"];
+    } catch (error) {
         console.log(error);
-     }
-     try {
-    document.getElementById('c_pion').innerHTML = jsonObj["Capteur pion"] ? '<span class="badge badge-dark">Metal Absent</span>' : '<span class="badge badge-primary">Metal Présent</span>';
-     }catch(error) {
+    }
+    try {
+        document.getElementById('tension').innerHTML = jsonObj["Tension"] + ' V';
+    } catch (error) {
         console.log(error);
-     }
-     try {
+    }
+    try {
+        document.getElementById('c_pion').innerHTML = jsonObj["Capteur pion"] ? '<span class="badge badge-dark">Metal Absent</span>' : '<span class="badge badge-primary">Metal Présent</span>';
+    } catch (error) {
+        console.log(error);
+    }
+    try {
 
 
-    document.getElementById('c_capot').innerHTML = jsonObj["Capteur capot"] ? '<span class="badge badge-success">En place</span>' : '<span class="badge badge-danger">En défaut</span>';
-     }catch(error) {
+        document.getElementById('c_capot').innerHTML = jsonObj["Capteur capot"] ? '<span class="badge badge-success">En place</span>' : '<span class="badge badge-danger">En défaut</span>';
+    } catch (error) {
         console.log(error);
-     }
-     try {
-    document.getElementById('arret_urgence').innerHTML = jsonObj["Arret urgence"] ? '<span class="badge badge-danger">En Urgence</span>' : '<span class="badge badge-success">Position Normal</span>';
-     }catch(error) {
+    }
+    try {
+        document.getElementById('arret_urgence').innerHTML = jsonObj["Arret urgence"] ? '<span class="badge badge-danger">En Urgence</span>' : '<span class="badge badge-success">Position Normal</span>';
+    } catch (error) {
         console.log(error);
-     }
-     try {
-    document.getElementById('relais').innerHTML = jsonObj["Relais"] ? 'Activé' : 'Désactivé';
-     }catch(error) {
+    }
+    try {
+        document.getElementById('relais').innerHTML = jsonObj["Relais"] ? 'Activé' : 'Désactivé';
+    } catch (error) {
         console.log(error);
-     }
-     try  {
-    document.getElementById('im1').innerHTML = jsonObj["i Moteur 1"] + ' A';
-}catch(error) {
-    console.log(error);
- }
-try {
-    document.getElementById('im2').innerHTML = jsonObj["i Moteur 2"] + ' A';
-}catch(error) {
-    console.log(error);
- }
-try {
-    document.getElementById('patinage').innerHTML = jsonObj["Patinage"] + ' s';
-}catch(error) {
-    console.log(error);
- }
-try {
-    document.getElementById('t_pion').innerHTML = jsonObj["Temps pion"] + '  ms';
-}catch(error) {
-    console.log(error);
- }
-try {    document.getElementById('t_platine').innerHTML = jsonObj["Temps platine"] + ' ms';
-}catch(error) {
-    console.log(error);
- }
-try {
-    document.getElementById('t_pelle').innerHTML = jsonObj["Temps pelle"] + ' s';
-}catch(error) {
-    console.log(error);
- }
+    }
+    try {
+        document.getElementById('im1').innerHTML = jsonObj["i Moteur 1"] + ' A';
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        document.getElementById('im2').innerHTML = jsonObj["i Moteur 2"] + ' A';
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        document.getElementById('patinage').innerHTML = jsonObj["Patinage"] + ' s';
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        document.getElementById('t_pion').innerHTML = jsonObj["Temps pion"] + '  ms';
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        document.getElementById('t_platine').innerHTML = jsonObj["Temps platine"] + ' ms';
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        document.getElementById('t_pelle').innerHTML = jsonObj["Temps pelle"] + ' s';
+    } catch (error) {
+        console.log(error);
+    }
     if (T_vol <= 60) {
         document.getElementById('t_vol').innerHTML = Math.round10(T_vol) + ' s';
     } else if (T_vol < 3600) {
-        document.getElementById('t_vol').innerHTML = Math.round10(T_vol/60,-2) + ' min';
+        document.getElementById('t_vol').innerHTML = Math.round10(T_vol / 60, -2) + ' min';
     } else {
-        document.getElementById('t_vol').innerHTML = Math.round10(T_vol/3600,-2) + ' h';
+        document.getElementById('t_vol').innerHTML = Math.round10(T_vol / 3600, -2) + ' h';
     }
     try {
-    document.getElementById('v_pic_wipy').innerHTML = jsonObj["Version PIC"] + ':' + jsonObj["Version Wipy"];
-    }catch(error) {
+        document.getElementById('v_pic_wipy').innerHTML = jsonObj["Version PIC"] + ':' + jsonObj["Version Wipy"];
+    } catch (error) {
         console.log(error);
-     }
-    try {
-    document.getElementById('t_demarrage').innerHTML = Math.round10(jsonObj["Temps demarrage"],-2) + ' s';
-    }catch(error) {
-        console.log(error);
-     }
-    try {
-    document.getElementById('w_name').innerHTML = jsonObj["WIFI"];
-    }catch(error) {
-        console.log(error);
-     }
-    try {
-    
-    document.getElementById('w_pass').innerHTML = (mdp != "undefined") ? mdp : '';
     }
-    catch(error) {
+    try {
+        document.getElementById('t_demarrage').innerHTML = Math.round10(jsonObj["Temps demarrage"], -2) + ' s';
+    } catch (error) {
         console.log(error);
-     }
+    }
+    try {
+        document.getElementById('w_name').innerHTML = jsonObj["WIFI"];
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+
+        document.getElementById('w_pass').innerHTML = (mdp != "undefined") ? mdp : '';
+    } catch (error) {
+        console.log(error);
+    }
 }
 // Afichage de la page Configuration
 // function f_conf(){
@@ -474,52 +474,51 @@ try {
 // }
 // Affichage du contenu de la page configuration
 function generate_conf(jsonObj) {
-    try{
-    document.getElementById('Consigne_Moteur').value = jsonObj['Consigne Moteur'];
-}catch (error){
-    console.log(error);
-}
-try{
-    document.getElementById('Consigne_Pelle').value = jsonObj['Consigne Pelle'];
-}catch (error){
-    console.log(error);
-}
-try{
-    document.getElementById('Seuil_Pelle').value = jsonObj['Seuil Pelle'];
-}catch (error){
-    console.log(error);
-}
-try{
-    document.getElementById('Consigne_Bequille').value = jsonObj['Consigne Bequille'];
-}catch (error){
-    console.log(error);
-}
-try{
-    document.getElementById('Seuil_Bequille').value = jsonObj['Seuil Bequille'];
-}catch (error){
-    console.log(error);
-}
-try{
-    document.getElementById('Patinage').value = jsonObj['Patinage'];
-}catch (error){
-    console.log(error);
-}
-try{
-    document.getElementById('Temps_Pion').value = jsonObj['Temps Pion'];
-}
-catch (error){
-    console.log(error);
-}
-try{
-    document.getElementById('Temps_Platine').value = jsonObj['Temps Platine'];
-}catch (error){
-    console.log(error);
-}
-try{
-    document.getElementById('Temps_Pelle').value = jsonObj['Temps Pelle'];
-}catch (error){
-    console.log(error);
-}
+    try {
+        document.getElementById('Consigne_Moteur').value = jsonObj['Consigne Moteur'];
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        document.getElementById('Consigne_Pelle').value = jsonObj['Consigne Pelle'];
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        document.getElementById('Seuil_Pelle').value = jsonObj['Seuil Pelle'];
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        document.getElementById('Consigne_Bequille').value = jsonObj['Consigne Bequille'];
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        document.getElementById('Seuil_Bequille').value = jsonObj['Seuil Bequille'];
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        document.getElementById('Patinage').value = jsonObj['Patinage'];
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        document.getElementById('Temps_Pion').value = jsonObj['Temps Pion'];
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        document.getElementById('Temps_Platine').value = jsonObj['Temps Platine'];
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        document.getElementById('Temps_Pelle').value = jsonObj['Temps Pelle'];
+    } catch (error) {
+        console.log(error);
+    }
 }
 /* Affichage de la page edit */
 function g_edit() {
@@ -778,14 +777,12 @@ function save_edit() {
             ligne = 0,
             ev = 0;
         var tosend = fichier + contenu + mode;
-        var reg = new RegExp("(^[ADMPRSE] [1-9][0-9]{0,3}$)|(^O [DG]$)|(^[ARBL]$)|^([AR] 0)$|(^\#[\t A-Za-z0-9_'*]*$)|(^[\t ]*$)", "gm");
+        var reg = new RegExp("(^[ADMPRSE] [1-9][0-9]{0,3}$)|(^O [DG]$)|(^[ARBL]$)|(^[AR] 0$)|(^\#[\t A-Za-z0-9_'*\#\-]*$)|(^[\t ]*$)", "gm");
         var reg2 = new RegExp("[\n]");
         console.log(val_txt.match(reg));
         tab = val_txt.match(reg);
         tab2 = val_txt.split(reg2);
         if (val_txt.length > 0) {
-
-
             if (tab.length != tab2.length) {
                 err = 1;
             }
@@ -833,6 +830,9 @@ function save_h() {
                 data: dataString,
                 success: function () {
                     alerter("Horloge", "L'horloge à été mis à jour", "", "");
+                    (h1 < 10) ? (h1="0"+h1):h1;
+                    (m1 < 10) ? (m1="0"+m1):m1;
+                    document.getElementById('m_time').innerHTML = 'P5 : ' + h1 + ':' + m1;
                 }
             });
 
@@ -847,46 +847,46 @@ function save_h() {
     }
 }
 
-(function(){
+(function () {
 
-	function decimalAdjust(type, value, exp) {
-		// Si l'exposant vaut undefined ou zero...
-		if (typeof exp === 'undefined' || +exp === 0) {
-			return Math[type](value);
-		}
-		value = +value;
-		exp = +exp;
-		// Si value n'est pas un nombre 
+    function decimalAdjust(type, value, exp) {
+        // Si l'exposant vaut undefined ou zero...
+        if (typeof exp === 'undefined' || +exp === 0) {
+            return Math[type](value);
+        }
+        value = +value;
+        exp = +exp;
+        // Si value n'est pas un nombre 
         // ou si l'exposant n'est pas entier
-		if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
-			return NaN;
-		}
-		// Décalage
-		value = value.toString().split('e');
-		value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
-		// Re "calage"
-		value = value.toString().split('e');
-		return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
-	}
+        if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+            return NaN;
+        }
+        // Décalage
+        value = value.toString().split('e');
+        value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+        // Re "calage"
+        value = value.toString().split('e');
+        return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+    }
 
-	// Arrondi décimal
-	if (!Math.round10) {
-		Math.round10 = function(value, exp) {
-			return decimalAdjust('round', value, exp);
-		};
-	}
-	// Arrondi décimal inférieur
-	if (!Math.floor10) {
-		Math.floor10 = function(value, exp) {
-			return decimalAdjust('floor', value, exp);
-		};
-	}
-	// Arrondi décimal supérieur
-	if (!Math.ceil10) {
-		Math.ceil10 = function(value, exp) {
-			return decimalAdjust('ceil', value, exp);
-		};
-	}
+    // Arrondi décimal
+    if (!Math.round10) {
+        Math.round10 = function (value, exp) {
+            return decimalAdjust('round', value, exp);
+        };
+    }
+    // Arrondi décimal inférieur
+    if (!Math.floor10) {
+        Math.floor10 = function (value, exp) {
+            return decimalAdjust('floor', value, exp);
+        };
+    }
+    // Arrondi décimal supérieur
+    if (!Math.ceil10) {
+        Math.ceil10 = function (value, exp) {
+            return decimalAdjust('ceil', value, exp);
+        };
+    }
 
 })();
 var home = ["home", '', "home"];
