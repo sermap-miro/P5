@@ -750,7 +750,8 @@ function save_conf() {
     } else if (vide) {
         alerter(z_c, "Il y a " + vide + " cases vides, remplissez les!", "", "");
     } else if (cons) {
-        alerter(z_c, "Il y a " + cons + " consigne(s) au dessus de 20 A, corrigez la/les!", "", "");
+        alerter(z_c, "Il y a " 
+        + cons + " consigne(s) au dessus de 20 A, corrigez la/les!", "", "");
     } else if (pat) {
         alerter(z_c, "Les variables de patinage et de Temps pelle doivent être inferieure à 255 secondes!", "", "");
     } else if (t_ms) {
