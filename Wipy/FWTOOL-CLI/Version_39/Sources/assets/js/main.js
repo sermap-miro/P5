@@ -108,7 +108,7 @@ function alerter(type, message, cible, val) {
 hostP5 = "192.168.4.1/flash"
 localhost = 'localhost/P5/Wipy/FWTOOL-CLI/Version_39/Sources'
 uwamp = 'localhost/Sources'
-host = uwamp // racine du projet
+host = hostP5 // racine du projet
 /* Requetes pour la page programme, manuel, et calibration */
 function commande(cmd, opt) {
     $.post({
