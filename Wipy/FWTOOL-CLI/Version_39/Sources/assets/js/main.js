@@ -314,7 +314,7 @@ function up_date_time(jsonObj) {
     (la_minute < 10) ? (la_minute = "0" + la_minute) : la_minute;
     document.getElementById('m_time').innerHTML = 'P5 : ' + l_heure + ':' + la_minute;
 }
-
+/* Le tableau est généré, on fait appel au serveur  pour récupurer les informations */
 function Info() {
     try {
         if (document.getElementById('derniere_alarme')) { // On verifie que la page info est affichée
@@ -525,13 +525,13 @@ function g_edit() {
     comd(edit);
     event_edit();
 }
-
+/* Génération de la page édit*/
 function event_edit() {
-    var access = localStorage.getItem('mdp_conf_cali');
-    var x = document.getElementById('opt_edit');
+    var access = localStorage.getItem('mdp_conf_cali'); 
+    var x = document.getElementById('opt_edit'); 
     var tab = ['Standard', 'Pailleux', 'DVT', 'MultiTas'];
 
-    if (access == 'tracker777') {
+    if (access == 'tracker777') { /* Si le mot de passe est bon alors on affiche les fichiers Standard, Pailleux, DVT, Multitas */
         for (var add in tab) {
             var opt = document.createElement('option');
             opt.value = tab[add];
@@ -540,7 +540,7 @@ function event_edit() {
         }
     }
 
-    x.addEventListener("change", function () {
+    x.addEventListener("change", function () { // Affichage des fichiers 1 à 9 et Retour + Standard,Multitas,Pailleux,DVT,MultiTas
         if (x.value != '') {
             $.get({
                 url: 'prgm/' + x.value + '.txt', //Recuperation du texte
@@ -562,7 +562,7 @@ function event_edit() {
 }
 // Page Planning 
 function g_planning() {
-    comd(planning);
+    comd(planning); // Affichage en-tête planning 
     $.get({
         url: 'planning.txt',
         headers: {
@@ -570,17 +570,17 @@ function g_planning() {
             'Pragma': 'no-cache',
             'Expires': '0'
         },
-        cache: false,
+        cache: false, 
         dataType: 'text',
         success: function (contenu) {
-            var texte = '';
-            var reg = new RegExp(["\n"]);
+            var texte = ''; 
+            var reg = new RegExp(["\n"]); 
             var reg2 = new RegExp([":"]);
             var col = 1;
             var tab_opt = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Standard', 'Pailleux', 'DVT', 'MultiTas'];
-            tab_l = contenu.split(reg);
+            tab_l = contenu.split(reg); // On coupe le texte en saut de ligne
             for (var ligne in tab_l) {
-                tab_c = tab_l[ligne].split(reg2);
+                tab_c = tab_l[ligne].split(reg2); // On coupe la ligne en 4 grace à :
                 if (tab_c.length == 4) {
                     var txt_opt = '';
                     if (tab_c[0] == 'True') {
@@ -660,7 +660,7 @@ function save_plan() {
         alerter(nom_fnc, m_m, "", "");
     }
 }
-
+// Lorsque on appuye sur le bouton de changement de WIFI
 function change_wifi() {
     var reg = new RegExp('^[a-zA-Z0-9_-]{8,20}');
     var reg2 = new RegExp('^[a-zA-Z0-9]{0,8}');
