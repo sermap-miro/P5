@@ -1,6 +1,0 @@
-1.txt
-DVT.txt
-MultiTas.txt
-Pailleux.txt
-Retour.txt
-Standard.txt

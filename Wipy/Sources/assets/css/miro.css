@@ -1,8 +1,52 @@
-html {
-    width: 100%;
-    min-height: 100%;
+/* Mes couleurs predefinies  */
+:root{
+	--color-miro:#bf073e; /* Rouge Miro */
+    --color-miro2:#2d2c2c;
+    --color2:white; /* Blanc */
+    --color3:black; /* Noir */
+    --color4:#cecece; /* Gris */
+    --color5:#0062cc; /* Bleu */
+    --color6:#007BFF; /* Bleu Link */
+    --color7:#dc3545; /* Rouge Danger */
+    --c_grey:#9c8465;
+    --color8:#CFCFC4;
+    --color9:#d60035;
+    --color10:#00b2c6;  
+    --color-navbar:var(--color-miro2);
+    --c_footer:var(--color-miro2);
+    --c_menu: white;
+    --c_clicked : var(--color9);
+    --color_btn: var(--color-miro2); 
+    --color_btn_in:white; 
+    --color_btn_out:var(--color-miro); 
+    --background-middle:white; 
+    --color_btn_hover:white; 
+    --color_btn_hover_in:var(--color3); 
+    --color_btn_hover_out:var(--color4); 
+    --color_btn_active:var(--color-miro); 
+    --color_btn_active_in:white; 
+    --color_btn_active_out:var(--color4); 
+    --c_dialog_border:var(--color-miro); 
+    --c_dialog_in:var(--color4); 
+    --c_dialog_text:var(--color3); 
+    --c_dialog_text_top:var(--color3); 
+    --c_dialog_top:var(--color4); 
+}
+
+
+@media (min-width: 576px) and  (max-width: 800px) { 
+	body {
+		font-size:18px!important;
+	}
+	a, button,.conf{
+    font-size: 1.2em!important;
+	}
+}
+
+html{
+    width: 100%; /* Largeur de la page html */
+    min-height: 100%; /* Taille minimale de la page html */
     position: relative;
-    cursor: pointer;
 }
 
 body {
@@ -11,99 +55,58 @@ body {
 }
 
 /* HEADER */
-.header {
-    background: #fff;
-    height : 15%;
+header {
+    background: #2d2c2c;
+    height : 15%; /* Longueur de l'en-tête */
+	margin-bottom:6px; /* Marge entre la navigation et le contenu de 6 pixels */
+	/* Bordure de 3 pixels , continu , couleur rouge miro  */
+	border-bottom: 3px solid #bf073e!important;
 }
-
-.header h1 {
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: bold;
-    color: #ffffff;
-    font-size: 28px;
-    padding: 7px 0;
-    margin: 0;
+/* Emplacement du logo */
+.navbar a.navbar-brand {
+	float:left; /*Placé à gauche */
+	width: auto!important;
 }
-
-.header .container {
+a, button{
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+/* Mettre le curseur pointeur sur un link */
+a {
+	cursor : pointer;
+}
+input {
+	size : 5;
+}
+/* Les liens de la barre de navigation ,(Manuel, Programmes, Editions,...) */ 
+a.nav-link {
+	color:white!important; 
+	font-size:0.8rem;
+	text-transform: uppercase;
+	font-weight: bold;
+	}
+a.bright-miro{
+	font-weight: bold;
+	font-size:0.8rem;
+	color:#d60035 !important;
+	display: block;
+    padding: .5rem 1rem;
+	padding-right: 0;
     padding-left: 0;
-    padding-right: 0;
+	text-transform: uppercase;
 }
 
-.header .logo img {
-    padding-top: 7px;
-    padding-left: 5px;
-    padding-bottom: 5px;
-    max-width: 135px;
-}
-
-.header .title {
-    background: #BF073E;
-    padding-right: 0;
-    padding-left: 0;
-}
-
-.header .title:before {
-    content: "";
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 0 47px 47px;
-    border-color: transparent transparent #BF073E transparent;
-    position: absolute;
-    top: 0;
-    left: -47px;
-    bottom: 0;
-}
-
-/* BUTTON */
-.btn {
-    width: 100%;
-    text-transform: uppercase;
-    border-radius: 0;
-    border-width: 2px;
-}
-
-.btn-primary {
-    background-color: #BF073E;
-    color: #ffffff !important;
-    border-color: #333;
-}
-
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-    background-color: #BF073E !important;
-    box-shadow: none;
-    border-color: #333;
-}
-
-.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
-    border-color: #333;
-    box-shadow: none;
-}
-
-.btn-secondary {
-    background-color: #0062cc;
-    color: #ffffff !important;
-    border-color: #333;
-}
-
-.btn-primary.disabled, .btn-primary:disabled {
-    background-color: #BF073E;
-    color: #ffffff !important;
-    border-color: #333;
-}
-
-/* TIME */
 .time {
-    background: #333;
+    background: #0062CC;
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
 .time p {
-    color: #fff;
+    color: white;
     text-transform: uppercase;
     vertical-align: middle;
     margin: 0;
@@ -113,7 +116,7 @@ body {
 
 .time #clock {
     font-weight: bold;
-    color: #fff;
+    color: white;
     text-transform: uppercase;
     font-size: 14px;
 }
@@ -122,11 +125,47 @@ body {
     width: auto;
     font-size: 11px;
 }
+/* Les boutons  */
+
+.btn-miro{
+	background-color:#2D2C2C !important;
+    color: white !important;
+	text-transform: uppercase;
+	border: #BF073E;
+	border-radius:1px;
+	font-weight:bold;
+}
+/* Quand la souris passe au dessus */
+.btn-miro:hover, .btn-miro:focus{
+    background-color: white!important;
+	color: black !important;
+	box-shadow: 3px 2px 4px 4px rgba(0,0,0,0.43); /*Ombre au bouton */
+    border:#CECECE!important;
+}
+/* Au clic changement de couleurs */
+.btn-miro:active {
+	background-color: #BF073E!important;
+	color: white !important; 
+	box-shadow: none;
+    border-color: #CECECE!important;
+}
+ 
+.btn-miro:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+    border-color: #CECECE;
+    box-shadow: none;
+}
+/* Bouton désactivé, lors de l'affichage d'une boîte de dialogue */
+.btn-miro.disabled, .btn-miro:disabled {
+    background-color: #CECECE;
+    color: white !important;
+    border-color: #CECECE;
+}
+
 
 /* NAV */
 .miro-nav {
     padding: 0;
-    margin: 0;
+    margin-bottom: 10px;
     width: 100%;
 }
 
@@ -144,19 +183,66 @@ body {
 
 .prgm-nav li {
     display: inline-block;
+	padding: 0.2rem;
 }
 
 .prgm-nav li a {
     padding-right: 44.5px;
     padding-left: 44.5px;
-    font-size: 34px;
+    /* font-size: 34px; */
 }
-
+.navbar-inner div{
+	text-align: center;
+	display : table;
+	margin : 0 auto;	
+}
 /* MAIN */
 main#main {
-    margin-bottom : 44px;
+	margin-bottom: 60px;
+	text-align: -webkit-center;
+}
+/*PAGE_PRINCIPALE */
+.update_js div {
+	z-index:1;
+	border:0;
+	padding:0;
+	height:fit-content;
+	text-align: -webkit-center;
+}
+.wifi-change{
+	margin:auto;
+	width:70%;
+	height :30%;
+}
+/*Page conf*/
+.conf{
+	margin:auto;
+	font-size : 1rem;
+}
+.name_conf{
+	text-align : left!important;
+}
+.u_conf{
+	text-align:right!important;
 }
 
+/* Largeur des boutons dans manuel et programmes */
+
+a.prgm_manu:not([href]):not([tabindex]),#wifi div input,.custom-select {
+    width: 70%;
+}
+
+a.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.debut-txt {
+	display:inline-block;
+	color:white;
+	font-size:20px;
+	height:-webkit-fill-available;
+}
 /* TABLE */
 .table tr td:first-child {
     text-transform: uppercase;
@@ -184,9 +270,6 @@ main#main {
 div .Conf {
     text-align:left;
     font-weight :700;
-    .input {
-        
-    }
 }
 /* FORM */
 
@@ -212,18 +295,23 @@ form .form-control:focus, form .custom-select:focus {
 
 .custom-select option {
     background-color: #BF073E;
-    color: #fff;
+    color: white;
 }
 
 .custom-select option:hover, .custom-select option:focus, .custom-select option:active, .custom-select option[selected] {
-    background-color: #333;
-    color: #fff;
+    background-color: #CECECE;
+    color: white;
 }
+
+.pad19 {
+	margin-bottom:6px;
+	text-align : center
+	}
 
 /* FOOTER */
 footer {
-    background: #333;
-    color: #fff;
+    background: #2D2C2C;
+    color: white;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -250,5 +338,86 @@ footer a {
 }
 
 footer a:hover, footer a:active, footer a:focus {
-    color: #ffffff;
+    color: white;
+}
+/* LA DIV ALERT ENTIERE */
+
+div.center-div{
+	z-index:3;
+	margin:auto;
+	width:70%;
+	height :30%;
+	border : solid #2D2C2C 1px;
+	border-radius:10px;
+	background-color: #CECECE;
+	position: absolute;
+}
+
+/* TOP */
+.in-alert{
+	border-radius:inherit;
+	height: 100%;
+}
+.alert-top{
+	height:20%;
+	border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+	background-color:#CECECE!important;
+	color : black;
+	font-size: 1rem;	
+}
+
+.alert-top .title_alt{
+	border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+	border : outset;
+}
+
+/* CONTEXTE */
+.context{
+	height:60%;
+	border-left:2px solid #2D2C2C;
+	border-right:2px solid #2D2C2C;
+	font-size: 1rem;
+	color : black;
+}
+
+/* LES REPONSES */
+.response{
+	height:20%;
+	border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+	text-align:center;
+}
+.response .oui,.response .non{
+	border : solid #2D2C2C 1px;
+	border: outset;
+	color:transparent;
+}
+
+.response .oui{
+	background: url("http://192.168.4.1/flash/assets/img/done.png") no-repeat local 50% 50%;
+	border-bottom-left-radius: inherit;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.response .non{
+	background: url("http://192.168.4.1/flash/assets/img/clear.png") no-repeat local 50% 50%;
+	border-bottom-right-radius: inherit;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.response .oui:active,.response .non:active{
+	border: inset;
+}
+:disabled,.disabled{
+	cursor :not-allowed;
+}
+
+input:active, textarea:active,input:focus, textarea:focus,select:active,select:focus{
+	border-color:#BF073E;
 }

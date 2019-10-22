@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from machine import Timer
+from machine import Timer,Pin
 chrono = Timer.Chrono()
 chrono.start()
 
-
+import ujson
 from wifi import Wifi_Init, Wifi_Perso, Wifi_Connect, Wifi_Local, Wifi_Lock, Wifi_Connect, Wipy_Server_Init
-
+Pin('P12', mode=Pin.OUT)(True)
 Wipy_Server_Init()
 Wifi_Perso()
 
@@ -25,7 +25,9 @@ from planning import Planificateur, planning_make,planning_time_adjust,planning_
 
 from machine import Timer
 import machine
-
+#from network import WLAN
+#wlan = WLAN()
+#wlan.ifconfig(id=1,config=("192.168.4.1","255.255.255.252","192.168.4.1","0.0.0.0")) # AP
 
 from machine import RTC
 # RTC(datetime=(2017, 12, 13, 17, 14, 50, 0, None))
@@ -192,7 +194,7 @@ def planifie_prochain_cycle():
     (_prochain_depart_en_s, _prgm_planifier) = planning_prochain_depart_valeur(planning)
     #planificateur.allow_to_fly = 0
     if _prochain_depart_en_s is not None:
-        print("Il reste {} s (= {:2.1f} min = {:2.1f} h ) d'attente pour le prochain départ (programme {})".format(_prochain_depart_en_s, _prochain_depart_en_s/60.0, _prochain_depart_en_s/3600.0, _prgm_planifier))
+        m.affiche("Il reste {} s (= {:2.1f} min = {:2.1f} h ) d'attente pour le prochain départ (programme {})".format(_prochain_depart_en_s, _prochain_depart_en_s/60.0, _prochain_depart_en_s/3600.0, _prgm_planifier))
         #planificateur.start(sleep_seconde=_prochain_depart_en_s)
         depart_planifier = 1
         if(_prochain_depart_en_s > 30):
@@ -202,13 +204,13 @@ def planifie_prochain_cycle():
             #time.sleep(10)
             Attente_Prochaine_Verification_Depart(10)
         else:
-            print('Départ dans {}'.format(_prochain_depart_en_s))
+            m.affiche('Départ dans {}'.format(_prochain_depart_en_s))
             time.sleep(_prochain_depart_en_s)
             allow_to_fly = 1
             prgm_planifier = _prgm_planifier
     else:
         depart_planifier = 0
-        print("Pas de départ activé dans le planning actuel (réveil dans 30 s)")
+        m.affiche("Pas de départ activé dans le planning actuel (réveil dans 30 s)")
         #time.sleep(30)
         Attente_Prochaine_Verification_Depart(30)
     #planificateur.start(m, sleep_seconde=planning_prochain_depart())
@@ -287,6 +289,15 @@ def Chrono_Store(Fonctionnement=m.Nb_Seconde_Fonctionnement, Maintenance=m.Nb_Se
     nvs_set('TPS', int(Fonctionnement))
     nvs_set('TMA', int(Maintenance))
 
+time.sleep(0.1)
+doc = {}
+try: 
+    with open('/flash/assets/json/conf.json') as f:
+        doc = ujson.load(f)
+    f.close()
+except:
+    print('Unable to read conf.json')
+
 #### Relecture des paramètres de bases
 Memory_Value = nvs_get('TPS') # Seconde de fonctionnement Total
 if Memory_Value is not None:
@@ -294,44 +305,95 @@ if Memory_Value is not None:
 Memory_Value = nvs_get('TMA') # Seconde depuis la dernier maintenance
 if Memory_Value is not None:
     m.Nb_Seconde_Maintenance = Memory_Value
-
-
 Memory_Value = nvs_get('PAT')
 if Memory_Value is not None:
     m.PATINAGE_TEMPS_s = Memory_Value
+else :
+    try:
+        m.Nb_Seconde_Fonctionnement = int(doc["Patinage"])
+    except:
+        pass
 Memory_Value = nvs_get('MXC')
 if Memory_Value is not None:
     m.Moteur_X_Consigne = Memory_Value
+else :
+    try:  
+        m.Moteur_X_Consigne = int(doc["Consigne Moteur"] * 5)
+    except: 
+        pass
 Memory_Value = nvs_get('MZC')
 if Memory_Value is not None:
     m.Moteur_Z_Consigne = Memory_Value
+else :
+    try: 
+        m.Moteur_Z_Consigne = int(doc["Consigne Pelle"]*5)
+    except:
+        pass
 Memory_Value = nvs_get('MZS')
 if Memory_Value is not None:
     m.Moteur_Z_Limite_Courant = Memory_Value
+else:
+    try:
+        m.Moteur_Z_Limite_Courant = int(doc["Seuil Pelle"]*5)
+    except:
+        pass
 Memory_Value = nvs_get('MBC')
 if Memory_Value is not None:
     m.Moteur_Bequille_Consigne = Memory_Value
+else:
+    try:
+        m.Moteur_Bequille_Consigne = int(doc["Consigne Bequille"]*5)
+    except:
+        pass
 Memory_Value = nvs_get('MBS')
 if Memory_Value is not None:
     m.Moteur_Bequille_Limite_Courant = Memory_Value
+else:
+    try:
+        m.Moteur_Bequille_Limite_Courant = int(doc["Seuil Bequille"]*5)
+    except:
+        pass
 Memory_Value = nvs_get('NSP')
 if Memory_Value is not None:
     m.Nb_Seconde_Pelle = Memory_Value
+else :
+    try:
+        m.Nb_Seconde_Pelle = int(doc["Temps Pelle"])
+    except:
+        pass
 Memory_Value = nvs_get('IT1')
 if Memory_Value is not None:
     m.PION_TEMPS_100ms = Memory_Value
+else :
+    try:
+        m.PION_TEMPS_100ms = int(doc["Temps Pion"]/100)
+    except:
+        pass
 Memory_Value = nvs_get('LT1')
 if Memory_Value is not None:
     m.PLATINE_TEMPS_100ms = Memory_Value
-
+else:
+    try:
+        m.PLATINE_TEMPS_100ms = int(doc["Temps Platine"]/100)
+    except:
+        pass
 
 Memory_Value = nvs_get('BV1')
 if Memory_Value is not None:
     m.batterie_10_v = Memory_Value / 10
+else:
+    try:
+        m.batterie_10_v = m.d_calib["10V"]
+    except:
+        pass
 Memory_Value = nvs_get('BV3')
 if Memory_Value is not None:
     m.batterie_30_v = Memory_Value / 10
-
+else:
+    try:
+        m.batterie_30_v = m.d_calib["30V"]
+    except:
+        pass
 Memory_Value = nvs_get('COL')
 if Memory_Value is not None:
     m.Capteur_Capot_Nb_Evenement_Autoriser = Memory_Value

@@ -107,7 +107,7 @@ def Read_Prgm(Prgm_Indice):
         return 1
     m.get_statut_PIC()
     if m.Etat == 'Bloquer Définitivement':
-        print("Le mirobot n'est pas disponible à executer des commandes")
+        m.affiche("Le mirobot n'est pas disponible à executer des commandes")
         return 0 #on autorise pas le prochain départ
     _Prgm_Indice = Prgm_Indice
     try:
@@ -115,7 +115,7 @@ def Read_Prgm(Prgm_Indice):
             try:
                 m.Run_Prgm = 1 #on déclare le mirobot en instance d'execution de programme
                 for ligne in Fichier:
-                    print(ligne)
+                    m.affiche(ligne)
                     Resultat=_EXECUTION_IMPOSSIBLE
                     try:
                         ligne = ligne.split('#')[0]
@@ -140,20 +140,20 @@ def Read_Prgm(Prgm_Indice):
                     except:
                         pass
                     if Resultat == _EXECUTION_ERREUR:
-                        #print("Erreur d'execution du programme on sort de tout")
+                        #m.affiche("Erreur d'execution du programme on sort de tout")
                         raise MonException("Erreur d'execution du programme on sort de tout")
             except:
-                print("Erreur de fonctionnement => lecture du programme abandonné")
+                m.affiche("Erreur de fonctionnement => lecture du programme abandonné")
                 if (_Prgm_Indice!= 'Retour') and (m.Run_Prgm == 1):
-                    print("Tentative de retour")
+                    m.affiche("Tentative de retour")
                     m.PIC_SEND('e\x00') # RAZ du robot
                     Resultat_Execution = Read_Prgm('Retour')
                     if Resultat_Execution == 1:
-                        print("Le mirobot a réussi a effectuer son retour")
+                        m.affiche("Le mirobot a réussi a effectuer son retour")
                         m.Run_Prgm = 0
                         return 1 #on autorise le prochain départ
                     else:
-                        print("Le mirobot n'a pas réussi à rentré")
+                        m.affiche("Le mirobot n'a pas réussi à rentré")
                         #m.PIC_SEND('e\x4D') # Etat bloquer definitivement
                         #m.alarme()
                         Alarme()
@@ -163,27 +163,19 @@ def Read_Prgm(Prgm_Indice):
                     m.Run_Prgm = 0
                     return 0 #on autorise pas le prochain départ (car on était justement en train d'effectuer le retour)
     except:
-        print("Erreur de lecture du programme")
+        m.affiche("Erreur de lecture du programme")
     m.Run_Prgm = 0
     return 1
 
 #Write_Prgm(5, 'A\nL\nR\nB\n')
 #def Write_Prgm(Data_From_Socket):
 def Write_Prgm(Prgm_Indice, Data_From_Socket):
-    #Data_From_Socket = Data_From_Socket.split(':')
-    #Prgm_Indice = Data_From_Socket[0]
-    #Data_From_Socket = Data_From_Socket[1:]
     if Prgm_Indice in {'r', 'R', 'Retour'}:
         Prgm_Indice = 'Retour'
     with open('/flash/prgm/{}.txt'.format(Prgm_Indice), 'w') as Fichier:
         Fichier.write(Data_From_Socket)
 
-#Send_Prgm('1')
-#def Write_Prgm(Data_From_Socket):
 def Send_Prgm(Prgm_Indice):
-    #Data_From_Socket = Data_From_Socket.split(':')
-    #Prgm_Indice = Data_From_Socket[0]
-    #Data_From_Socket = Data_From_Socket[1:]
     if Prgm_Indice in{'r', 'R'}:
         Prgm_Indice = 'Retour'
     try:
@@ -381,9 +373,9 @@ def Multitas(Patinage=150):#Modif du 18 avril
     nvs_set('TMA', int(m.Nb_Seconde_Maintenance))
     m.PIC_PARAM_UPDATE() #on remet les paramètres par defaut
     #refresh_statut()
-    m.affiche('Multitas: m.Etat={}, m.Erreur={}, m.Run_Prgm'.format(m.Etat, m.Erreur, m.Run_Prgm))
+    m.affiche('Multitas: m.Etat={}, m.Erreur={}, m.Run_Prgm={}'.format(m.Etat, m.Erreur, m.Run_Prgm))
     m.get_statut_PIC()
-    m.affiche('Multitas: m.Etat={}, m.Erreur={}, m.Run_Prgm'.format(m.Etat, m.Erreur, m.Run_Prgm))
+    m.affiche('Multitas: m.Etat={}, m.Erreur={}, m.Run_Prgm={}'.format(m.Etat, m.Erreur, m.Run_Prgm))
     #if m.Etat == 'Platine' or m.Etat == 'Inactif' or (m.Etat == 'Alarme' and m.Erreur == 'Patinage'):
     if m.Etat == 'Platine' or (m.Etat == 'Inactif' and m.Erreur == 'Patinage') and m.Run_Prgm == 1:
     #'Bloquer'
@@ -397,7 +389,7 @@ def Multitas(Patinage=150):#Modif du 18 avril
         return _EXECUTION_OK
     else:
         m.affiche('Multitas => Erreur')
-        m.affiche('Multitas: m.Etat={}, m.Erreur={}, m.Run_Prgm'.format(m.Etat, m.Erreur, m.Run_Prgm))
+        m.affiche('Multitas: m.Etat={}, m.Erreur={}, m.Run_Prgm={}'.format(m.Etat, m.Erreur, m.Run_Prgm))
         return _EXECUTION_ERREUR
 
 def Pelle_Baisse():

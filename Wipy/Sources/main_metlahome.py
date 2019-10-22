@@ -187,7 +187,7 @@ def planifie_prochain_cycle():
     (_prochain_depart_en_s, _prgm_planifier) = planning_prochain_depart_valeur(planning)
     #planificateur.allow_to_fly = 0
     if _prochain_depart_en_s is not None:
-        print("Il reste {} s (= {:2.1f} min = {:2.1f} h ) d'attente pour le prochain départ (programme {})".format(_prochain_depart_en_s, _prochain_depart_en_s/60.0, _prochain_depart_en_s/3600.0, _prgm_planifier))
+        m.affiche("Il reste {} s (= {:2.1f} min = {:2.1f} h ) d'attente pour le prochain départ (programme {})".format(_prochain_depart_en_s, _prochain_depart_en_s/60.0, _prochain_depart_en_s/3600.0, _prgm_planifier))
         #planificateur.start(sleep_seconde=_prochain_depart_en_s)
         depart_planifier = 1
         if(_prochain_depart_en_s > 30):
@@ -197,13 +197,13 @@ def planifie_prochain_cycle():
             #time.sleep(10)
             Attente_Prochaine_Verification_Depart(10)
         else:
-            print('Départ dans {}'.format(_prochain_depart_en_s))
+            m.affiche('Départ dans {}'.format(_prochain_depart_en_s))
             time.sleep(_prochain_depart_en_s)
             allow_to_fly = 1
             prgm_planifier = _prgm_planifier
     else:
         depart_planifier = 0
-        print("Pas de départ activé dans le planning actuel (réveil dans 30 s)")
+        m.affiche("Pas de départ activé dans le planning actuel (réveil dans 30 s)")
         #time.sleep(30)
         Attente_Prochaine_Verification_Depart(30)
     #planificateur.start(m, sleep_seconde=planning_prochain_depart())

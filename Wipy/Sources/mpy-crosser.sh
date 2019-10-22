@@ -1,23 +1,12 @@
 #!/bin/bash
-
-mpy-cross AiCwebserver_CMD.py
-mv  AiCwebserver_CMD.mpy ./MPYFILES
-mpy-cross AiCwebserver.py 
-mv AiCwebserver.mpy ./MPYFILES
-mpy-cross commande.py 
-mv commande.mpy ./MPYFILES
-mpy-cross config.py 
-mv config.mpy  ./MPYFILES
-mpy-cross es.py 
-mv es.mpy ./MPYFILES
-mpy-cross main_metlahome.py 
-mv main_metlahome.mpy ./MPYFILES
-mpy-cross mirobot2.py 
-mv mirobot2.mpy ./MPYFILES
-mpy-cross P4.py 
-mv P4.mpy ./MPYFILES
-mpy-cross pion.py 
-mv pion.mpy ./MPYFILES
-mpy-cross wifi.py 
-mv wifi.mpy ./MPYFILES
-
+mpy-cross AiCwebserver_CMD.py -o lib/AiCwebserver_CMD.mpy
+mpy-cross AiCwebserver.py -o lib/AiCwebserver.mpy
+mpy-cross commande.py -o lib/commande.mpy
+mpy-cross config.py -o lib/config.mpy
+mpy-cross es.py -o lib/es.mpy
+mpy-cross main_metlahome.py -o lib/main_metlahome.mpy
+mpy-cross mirobot2.py -o lib/mirobot2.mpy
+mpy-cross P4.py -o lib/P4.mpy
+mpy-cross pion.py -o lib/pion.mpy
+mpy-cross wifi.py -o lib/wifi.mpy
+mpy-cross planning.py -o lib/planning.mpy

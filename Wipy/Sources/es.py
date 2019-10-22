@@ -1,6 +1,6 @@
 
 import machine
-
+#from commande import Read_Prgm
 
 #Entrée
 #BP = machine.Pin('P17', mode=machine.Pin.IN, pull=None)
@@ -13,13 +13,50 @@ BUZZER = machine.Pin('P19', mode=machine.Pin.OUT)#Version 3.3V
 BUZZER(False)
 
 from mirobot2 import m
-from time import sleep
+from time import sleep, time
+
+_en_urgence = False
+
+_nombre_de_seconde_capture = 5
+
+import _thread
+
+def Start_Prgm(numero_programme):
+    from commande import Read_Prgm
+    print("Démarrage du programme {}".format(numero_programme))
+    Resultat_Execution = Read_Prgm(numero_programme) # on lance le programme 1 comme programme par défaut
+
 
 def Arret_Urgence(arg):
-    m.bloque()
-    sleep(1)
-    m.bloque()
-    m.reset()
+    #_etat_irq = machine.disable_irq()
+    global _en_urgence
+    global _nombre_de_seconde_capture
+    if not _en_urgence:
+        _en_urgence = True # pour empecher d'executer en parallèle des cycles de détection de départ
+        m.bloque()
+        if m.Run_Prgm == 1:
+            sleep(1)
+            m.bloque()
+            m.reset()
+        else:
+            _tps_depart=time()
+            _compteur_impulsion_arret_urgence = 0
+            _etat_arret_urgence = ARRET_URGENCE()
+            while time()  - _tps_depart < _nombre_de_seconde_capture: # on fait une vérification pendant les 5 prochaines secondes du nombre d'allez-retour
+                _ARRET_URGENCE = ARRET_URGENCE()
+                if _etat_arret_urgence != _ARRET_URGENCE:
+                    _etat_arret_urgence = _ARRET_URGENCE
+                    _compteur_impulsion_arret_urgence += 1 # On compte chaque changement d'état (pas le nombre d'enfoncement)
+                    sleep(0.2) # protection anti-rebond
+            print('Compteur Impulsion = {}'.format(_compteur_impulsion_arret_urgence))
+            if _compteur_impulsion_arret_urgence == 1: # au moins trois aller/retour du bouton arrêt urgence
+                if not ARRET_URGENCE(): # le bouton arrêt urgence doit etre désactivé avant les 5 secondes pour autorisé le départ
+                    _thread.start_new_thread(Start_Prgm, (1,))
+            if _compteur_impulsion_arret_urgence >= 2: # au moins trois aller/retour du bouton arrêt urgence
+                if not ARRET_URGENCE(): # le bouton arrêt urgence doit etre désactivé avant les 5 secondes pour autorisé le départ
+                    _thread.start_new_thread(Start_Prgm, (2,))
+        _en_urgence = False
+    #machine.enable_irq(_etat_irq)
 
 ARRET_URGENCE.callback(machine.Pin.IRQ_RISING , Arret_Urgence)
 

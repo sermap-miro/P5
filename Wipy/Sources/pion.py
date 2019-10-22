@@ -3,6 +3,7 @@ from machine import Timer
 import machine
 #from mirobot2 import Mirobot
 
+
 CAPTEUR_PION = machine.Pin('P19', mode=machine.Pin.IN, pull=None)
 
 #PION_TEMPS_ms = 2000 # Debug
