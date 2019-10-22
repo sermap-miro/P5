@@ -3,11 +3,11 @@ from es import ARRET_URGENCE #, BUZZER, BUZZER_INPUT
 
 from machine import RTC
 from time import localtime, sleep
-
+from config import Batt_Mean 
 from planning import planning_save
 
 from commande import Send_Prgm, Write_Prgm
-
+import ujson
 def Extract_Data(_planning_brut='', _type='h', _indice=1):
 	try:
 		_cellule_rechercher = '{}{}='.format(_type, _indice)
@@ -230,6 +230,12 @@ def Execution_Programme(Indice):
 
 def Execution_Calibration(Indice):
 	exec("Signal_Sonore()")
+	try:
+		with open(m.calib_json,"r") as f:
+			m.d_calib = ujson.load(f)
+		f.close()
+	except:
+		print('Unable to open calib.json')
 	#print('Execution Programme Indice = {}'.format(Indice))
 	try:
 		Indice = int(Indice)
@@ -237,15 +243,24 @@ def Execution_Calibration(Indice):
 		Indice = 0
 	if (Indice == 1):
 		exec("m.batterie_10_v=Batt_Mean(m);m.PARAM_STORE();")
+		m.d_calib["10V"] = Batt_Mean(m)
 	elif (Indice == 2):
 		exec("m.batterie_30_v=Batt_Mean(m);m.PARAM_STORE();")
+		m.d_calib["30V"] = Batt_Mean(m)
 	elif (Indice == 4):
 		exec("m.PIC_LED(1); m.LED(True);m.PIC_SEND('R1');")
 	elif (Indice == 5):
 		exec("m.PIC_LED(0); m.LED(False);m.PIC_SEND('R0');")
 	elif (Indice == 6):
-		exec("RTC(datetime=(2018, 1, 1, 0, 0, 0, 0, None))")
+		exec("RTC(datetime=(2020, 1, 1, 0, 0, 0, 0, None))")
 	elif (Indice == 3):
 		for _ in range (10):
 			exec("Signal_Sonore()")
 			sleep(0.1)
+	j = ujson.dumps(m.d_calib)
+	try:
+		with open(m.calib_json,"w") as f:
+			f.write(j)
+		f.close()
+	except: 
+		print('Unable to write on files')

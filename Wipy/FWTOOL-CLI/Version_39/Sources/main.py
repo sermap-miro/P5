@@ -381,10 +381,19 @@ else:
 Memory_Value = nvs_get('BV1')
 if Memory_Value is not None:
     m.batterie_10_v = Memory_Value / 10
+else:
+    try:
+        m.batterie_10_v = m.d_calib["10V"]
+    except:
+        pass
 Memory_Value = nvs_get('BV3')
 if Memory_Value is not None:
     m.batterie_30_v = Memory_Value / 10
-
+else:
+    try:
+        m.batterie_30_v = m.d_calib["30V"]
+    except:
+        pass
 Memory_Value = nvs_get('COL')
 if Memory_Value is not None:
     m.Capteur_Capot_Nb_Evenement_Autoriser = Memory_Value

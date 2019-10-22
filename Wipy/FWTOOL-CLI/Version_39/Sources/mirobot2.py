@@ -263,11 +263,13 @@ class Mirobot:
 		1 : 'Ar'}
 		self.Day_Time = { 1 : 'Mon', 2 : 'Tue', 3 :'Wed',4 :'Thu', 5 : 'Fri', 6: 'Sat', 7 : 'Sun'}
 		self.Month_Time = { 1: 'January', 2: 'February', 3 : 'March', 4 :'April' ,5 : 'May' , 6 :'June', 7 : 'July', 8 : 'August', 9 : 'September', 10 : 'October', 11 : 'November', 12 : 'Decemeber'}
-
-		self.clk_json = 'assets/json/clock.json' #Emplacements des données
-		self.info_json = 'assets/json/info.json'
-		self.conf_json = 'assets/json/conf.json'
-		self.channel_json = 'assets/json/channel.json'
+		self.d_calib = {}
+		
+		self.clk_json = '/flash/assets/json/clock.json' #Emplacements des données
+		self.info_json = '/flash/assets/json/info.json'
+		self.conf_json = '/flash/assets/json/conf.json'
+		self.channel_json = '/flash/assets/json/channel.json'
+		self.calib_json = '/flash/assets/json/calib.json'
 		#self._alarm = machine.Timer.Alarm(self.clk_up, 60, periodic=True)
 		#self._alarm2 = machine.Timer.Alarm(self.update_info, 60, periodic=False)
 		
