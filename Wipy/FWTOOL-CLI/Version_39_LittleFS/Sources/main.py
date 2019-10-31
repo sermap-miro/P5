@@ -291,7 +291,7 @@ def Chrono_Store(Fonctionnement=m.Nb_Seconde_Fonctionnement, Maintenance=m.Nb_Se
 
 time.sleep(0.1)
 doc = {}
-try: 
+try:
     with open('/flash/assets/json/conf.json') as f:
         doc = ujson.load(f)
     f.close()
@@ -299,104 +299,68 @@ except:
     print('Unable to read conf.json')
 
 #### Relecture des paramètres de bases
-Memory_Value = nvs_get('TPS') # Seconde de fonctionnement Total
-if Memory_Value is not None:
-    m.Nb_Seconde_Fonctionnement = Memory_Value
-Memory_Value = nvs_get('TMA') # Seconde depuis la dernier maintenance
-if Memory_Value is not None:
-    m.Nb_Seconde_Maintenance = Memory_Value
-Memory_Value = nvs_get('PAT')
-if Memory_Value is not None:
-    m.PATINAGE_TEMPS_s = Memory_Value
-else :
-    try:
-        m.Nb_Seconde_Fonctionnement = int(doc["Patinage"])
-    except:
-        pass
-Memory_Value = nvs_get('MXC')
-if Memory_Value is not None:
-    m.Moteur_X_Consigne = Memory_Value
-else :
-    try:  
-        m.Moteur_X_Consigne = int(doc["Consigne Moteur"] * 5)
-    except: 
-        pass
-Memory_Value = nvs_get('MZC')
-if Memory_Value is not None:
-    m.Moteur_Z_Consigne = Memory_Value
-else :
-    try: 
-        m.Moteur_Z_Consigne = int(doc["Consigne Pelle"]*5)
-    except:
-        pass
-Memory_Value = nvs_get('MZS')
-if Memory_Value is not None:
-    m.Moteur_Z_Limite_Courant = Memory_Value
-else:
-    try:
-        m.Moteur_Z_Limite_Courant = int(doc["Seuil Pelle"]*5)
-    except:
-        pass
-Memory_Value = nvs_get('MBC')
-if Memory_Value is not None:
-    m.Moteur_Bequille_Consigne = Memory_Value
-else:
-    try:
-        m.Moteur_Bequille_Consigne = int(doc["Consigne Bequille"]*5)
-    except:
-        pass
-Memory_Value = nvs_get('MBS')
-if Memory_Value is not None:
-    m.Moteur_Bequille_Limite_Courant = Memory_Value
-else:
-    try:
-        m.Moteur_Bequille_Limite_Courant = int(doc["Seuil Bequille"]*5)
-    except:
-        pass
-Memory_Value = nvs_get('NSP')
-if Memory_Value is not None:
-    m.Nb_Seconde_Pelle = Memory_Value
-else :
-    try:
-        m.Nb_Seconde_Pelle = int(doc["Temps Pelle"])
-    except:
-        pass
-Memory_Value = nvs_get('IT1')
-if Memory_Value is not None:
-    m.PION_TEMPS_100ms = Memory_Value
-else :
-    try:
-        m.PION_TEMPS_100ms = int(doc["Temps Pion"]/100)
-    except:
-        pass
-Memory_Value = nvs_get('LT1')
-if Memory_Value is not None:
-    m.PLATINE_TEMPS_100ms = Memory_Value
-else:
-    try:
-        m.PLATINE_TEMPS_100ms = int(doc["Temps Platine"]/100)
-    except:
-        pass
+from memory import memory_get
+m.Nb_Seconde_Fonctionnement = memory_get('TPS', m.Nb_Seconde_Fonctionnement)
+m.Nb_Seconde_Maintenance = memory_get('TMA', m.Nb_Seconde_Maintenance)
+# Memory_Value = nvs_get('TPS') # Seconde de fonctionnement Total
+# if Memory_Value is not None:
+#     m.Nb_Seconde_Fonctionnement = Memory_Value
+# Memory_Value = nvs_get('TMA') # Seconde depuis la dernier maintenance
+# if Memory_Value is not None:
+#     m.Nb_Seconde_Maintenance = Memory_Value
 
-Memory_Value = nvs_get('BV1')
-if Memory_Value is not None:
-    m.batterie_10_v = Memory_Value / 10
-else:
-    try:
-        m.batterie_10_v = m.d_calib["10V"]
-    except:
-        pass
-Memory_Value = nvs_get('BV3')
-if Memory_Value is not None:
-    m.batterie_30_v = Memory_Value / 10
-else:
-    try:
-        m.batterie_30_v = m.d_calib["30V"]
-    except:
-        pass
-Memory_Value = nvs_get('COL')
-if Memory_Value is not None:
-    m.Capteur_Capot_Nb_Evenement_Autoriser = Memory_Value
+
+m.PATINAGE_TEMPS_s = memory_get('PAT', m.PATINAGE_TEMPS_s)
+m.Moteur_X_Consigne = memory_get('MXC', m.Moteur_X_Consigne)
+m.Moteur_Z_Consigne = memory_get('MZC', m.Moteur_Z_Consigne)
+m.Moteur_Z_Limite_Courant = memory_get('MZS', m.Moteur_Z_Limite_Courant)
+m.Moteur_Bequille_Consigne = memory_get('MBC', m.Moteur_Bequille_Consigne)
+m.Moteur_Bequille_Limite_Courant = memory_get('MBS', m.Moteur_Bequille_Limite_Courant)
+m.Nb_Seconde_Pelle = memory_get('NSP', m.Nb_Seconde_Pelle)
+m.PION_TEMPS_100ms = memory_get('IT1', m.PION_TEMPS_100ms)
+m.PLATINE_TEMPS_100ms = memory_get('LT1', m.PLATINE_TEMPS_100ms)
+# Memory_Value = nvs_get('PAT')
+# if Memory_Value is not None:
+#     m.PATINAGE_TEMPS_s = Memory_Value
+# Memory_Value = nvs_get('MXC')
+# if Memory_Value is not None:
+#     m.Moteur_X_Consigne = Memory_Value
+# Memory_Value = nvs_get('MZC')
+# if Memory_Value is not None:
+#     m.Moteur_Z_Consigne = Memory_Value
+# Memory_Value = nvs_get('MZS')
+# if Memory_Value is not None:
+#     m.Moteur_Z_Limite_Courant = Memory_Value
+# Memory_Value = nvs_get('MBC')
+# if Memory_Value is not None:
+#     m.Moteur_Bequille_Consigne = Memory_Value
+# Memory_Value = nvs_get('MBS')
+# if Memory_Value is not None:
+#     m.Moteur_Bequille_Limite_Courant = Memory_Value
+# Memory_Value = nvs_get('NSP')
+# if Memory_Value is not None:
+#     m.Nb_Seconde_Pelle = Memory_Value
+# Memory_Value = nvs_get('IT1')
+# if Memory_Value is not None:
+#     m.PION_TEMPS_100ms = Memory_Value
+# Memory_Value = nvs_get('LT1')
+# if Memory_Value is not None:
+#     m.PLATINE_TEMPS_100ms = Memory_Value
+
+
+m.batterie_10_v = memory_get('BV1', m.batterie_10_v)
+m.batterie_30_v = memory_get('BV3', m.batterie_30_v)
+# Memory_Value = nvs_get('BV1')
+# if Memory_Value is not None:
+#     m.batterie_10_v = Memory_Value / 10
+# Memory_Value = nvs_get('BV3')
+# if Memory_Value is not None:
+#     m.batterie_30_v = Memory_Value / 10
+
+m.Capteur_Capot_Nb_Evenement_Autoriser = memory_get('COL', m.Capteur_Capot_Nb_Evenement_Autoriser)
+# Memory_Value = nvs_get('COL')
+# if Memory_Value is not None:
+#     m.Capteur_Capot_Nb_Evenement_Autoriser = Memory_Value
 
 
 m.PIC_PARAM_UPDATE()
