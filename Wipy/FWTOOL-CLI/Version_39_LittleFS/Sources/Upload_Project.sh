@@ -33,10 +33,12 @@ echo config.mpy
 curl ${CURL_OPTION} -T ${LIB}/config.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 echo es.mpy
 curl ${CURL_OPTION} -T ${LIB}/es.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
-echo main_metlahome.mpy
-curl ${CURL_OPTION} -T ${LIB}/main_metlahome.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
+#echo main_metlahome.mpy
+#curl ${CURL_OPTION} -T ${LIB}/main_metlahome.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 echo main.py
 curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/main.py ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
+echo memory.py
+curl ${CURL_OPTION} -T ${CURRENT_FOLDER}/memory.py ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/
 echo mirobot2.mpy
 curl ${CURL_OPTION} -T ${LIB}/mirobot2.mpy ftp://${LOGIN}:${PASS}@${IP}:${PORT}/flash/${LIB}/
 echo P4.mpy
