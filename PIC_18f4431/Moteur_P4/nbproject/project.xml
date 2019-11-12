@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>MOTEUR P4_GIT</name>
+            <name>Moteur_P4</name>
             <creation-uuid>bae648e2-558c-4091-a0be-e8df4f8624f6</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
