@@ -1,4 +1,10 @@
 /* AFFICHAGE DE BOITE DE DIALOGUE + MISE EN AU CENTRE de l'ecran*/
+$.fn.atcenter = function () {
+    this.css({
+        'margin-top': -this.height() / 2 + "px",
+        'margin-left': -this.width() / 2 + "px",
+    })
+}
 $.fn.center = function () {
     this.css({
         'visibility': 'visible',
@@ -42,12 +48,15 @@ function fermeture_pos(cible, val, number) {
 }
 /* Accès page conf et Calibration via un mot de passe */
 function acces_conf(number) {
+    var centrer;
     $('#show_mdp').center();
-    var val_mdp
+    centrer = setInterval("$('#show_mdp').atcenter()",500);
+    var val_mdp;
     var yes = document.getElementById("y_pass").onclick = function () {
         val_mdp = document.getElementById('motdepasse').value;
         document.getElementById('motdepasse').value = "";
         $('#show_mdp').closing();
+        clearInterval(centrer);
         if (val_mdp == 'Conf') {
             localStorage.setItem('mdp_conf_cali', 'tracker777');
             date_y = Date.now();
@@ -83,6 +92,7 @@ function acces_conf(number) {
     var no = document.getElementById("n_pass").onclick = function () {
         document.getElementById('motdepasse').value = "";
         $('#show_mdp').closing();
+        clearInterval(centrer);
         if (number[0] == 'edit') {
             g_HTML(number[1]);
             event_edit();
@@ -92,16 +102,20 @@ function acces_conf(number) {
 }
 /* Boite de dialogue : Un titre, un message , deux reponses possibles */
 function alerter(type, message, cible, val) {
+    var centrer;
     $('#alerter').center();
+    centrer = setInterval("$('#alerter').atcenter()",500);
     $('#title_alt').text(type);
     $('#error-msg').text(message);
     var y = document.getElementById('y_alert');
     var n = document.getElementById("n_alert");
     var ent = document.getElementById("alerter");
     var no = n.onclick = function () {
+        clearInterval(centrer);
         fermeture_pos(cible, val, 0);
     };
     var yes = y.onclick = function () {
+        clearInterval(centrer);
         fermeture_pos(cible, val, 1);
     };
 }
@@ -298,16 +312,24 @@ function g_time() {
             'Expires': '0'
         },
         cache: false,
-        dataType: 'json',
+        dataType: 'json', 
+        error: function() {
+              not_ok();
+            },
         // lors de la recuperation du fichier on fait appel à up_date time pour traiter le fichier JSON
         success: function (jsonObj) {
             up_date_time(jsonObj);
         }
+       
     });
     setTimeout('g_time();', 15000); // Actualisation toutes les 15 secondes
 }
+function not_ok(){
+    document.getElementById("etat_co").innerHTML = "Non connecté";
+}
 /* Recuperation et affichage de l'heure */
 function up_date_time(jsonObj) {
+    document.getElementById("etat_co").innerHTML = "Connecté";
     var l_heure = jsonObj['h'];
     var la_minute = jsonObj['m'];
     (l_heure < 10) ? (l_heure = "0" + l_heure) : l_heure;

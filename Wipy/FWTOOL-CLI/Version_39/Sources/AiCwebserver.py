@@ -305,7 +305,7 @@ def AiCWebserv(port):
 								data = f.read(CHUNK_SIZE)
 								while data:
 									conn.send(bytes(data))
-									data = f.read(CHUNK_SIZE)		
+									data = f.read(CHUNK_SIZE)
 						elif ibmain_js > 0 :
 							conn.sendall(Rep_Server('jsc'))
 							CHUNK_SIZE = 512

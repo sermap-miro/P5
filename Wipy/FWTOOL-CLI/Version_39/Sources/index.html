@@ -4,7 +4,7 @@
 			<meta charset="utf-8">
 			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-			<title>P5</title>
+			<title id="thetitle">P5</title>
 			<link rel="icon" href="favicon.ico" type="image/x-icon"/>
 			<link href="assets/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 			<link href="assets/css/miro.css" type="text/css" rel="stylesheet">
@@ -18,13 +18,14 @@
 				<div class="container-fluid" id="main_nav">
 						<nav class="navbar navbar-expand-lg navbar-dark">
 							<a class="navbar-brand" onclick="comd(home); set_active()"id="home" data-toggle="collapse" data-target="#navbarColor01"><img src="assets/img/l_white.png" width="90"/></a>
+							<h3 id="etat_co">Non Connecté</h3>
 							<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 									<span class="navbar-toggler-icon"></span>
 								</button>
 								
 								<div class="navbar-collapse collapse" id="navbarColor01">
 									<ul class="navbar-nav mr-auto">
-										<li class="nav-item" id="nav_manu">
+										<li class="nav-item" id="nav_manu" ">
 											<a class="nav-link" id ="page_manu" data-toggle="collapse" data-target="#navbarColor01" onclick="comd(manu);set_active()">Manuel</a>
 										</li>
 										<li class="nav-item"id="nav_prog">
