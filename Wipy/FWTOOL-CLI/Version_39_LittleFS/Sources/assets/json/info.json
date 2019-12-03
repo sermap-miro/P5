@@ -1,0 +1,23 @@
+{
+	"PIC_ASK(S)" : "00 00 00 00 00 00 64 32 02 1E 1E 1 1 0 000C 0A",
+	"Derniere alarme" : "Patinage",
+	"Etat P5" : "Avance",
+	"Etat precedant" : "Inactif",
+	"Pions" : 50,
+	"Tension" : 24.01,
+	"Capteur pion" : 1,
+	"Capteur capot" : 1,
+	"Arret urgence" : 0,
+	"Relais" : 0,
+	"i Moteur 1" : 14.38,
+	"i Moteur 2" : 6,
+	"Patinage" : 51,
+	"Temps pion" : 200,
+	"Temps platine" : 3000,
+	"Temps pelle" : 15,
+	"Temps de vol" : 7.45,
+	"Version PIC" : 12,
+	"Version Wipy" : 39,
+	"Temps demarrage" : 15.31,
+	"mdp wifi" : ""
+}
