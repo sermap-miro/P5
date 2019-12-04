@@ -176,8 +176,12 @@ function main_view() {
     }
 }
 x = 0;
+nom_wifi = "";
+auth_wifi = "";
+channel_wifi = "";
 /* A l'ouverture de la page */
 function init() {
+    var connexion;
     // Affichage de l'heure locale dans la div comportant l'id 'now' 
     g_time(); // Affichage de l'heure du P5 
     if (localStorage.getItem("y") === null) {
@@ -188,8 +192,29 @@ function init() {
     }
     compteur(1800, cle = "mdp_conf_cali", value = "no"); // Compteur de 30 pour l'activation de la page CONF et CALI
     set_active();
+    connexion = setInterval(get_wifi_datas,5000);
 }
-
+function get_wifi_datas(){
+    $.get({
+        url: 'assets/json/wifi.json',
+        headers: {
+            'Cache-Control': 'no-cache, no-store',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+        },
+        cache: false,
+        dataType: 'json',
+        success: function (jsonObj) {
+            nom_wifi=jsonObj["ssid"];
+            auth_wifi=jsonObj["auth"];
+            channel_wifi=jsonObj["canal"];
+            linked(1);
+        },
+        error:function(){
+            linked(0);
+        }
+    })
+}
 function compteur(nb, cle, value) {
     var diff = Date.now();
     if ((diff - localStorage.getItem('y')) >= nb * 1000) {
@@ -270,7 +295,7 @@ function set_active() {
 function g_wifi() {
     comd(wifi);
     $.get({
-        url: 'assets/json/channel.json',
+        url: 'assets/json/wifi.json',
         headers: {
             'Cache-Control': 'no-cache, no-store, must-revalidate',
             'Pragma': 'no-cache',
@@ -314,22 +339,41 @@ function g_time() {
         cache: false,
         dataType: 'json', 
         error: function() {
-              not_ok();
+              linked(0);
             },
         // lors de la recuperation du fichier on fait appel à up_date time pour traiter le fichier JSON
         success: function (jsonObj) {
             up_date_time(jsonObj);
         }
-       
     });
     setTimeout('g_time();', 15000); // Actualisation toutes les 15 secondes
 }
-function not_ok(){
-    document.getElementById("etat_co").innerHTML = "Non connecté";
+function linked(connected){
+    var Lscreen = window.innerWidth;
+    if (!connected){
+    
+        if (Lscreen < 1200){
+            document.getElementById("etat_co").innerHTML = "Non connecté";
+        }
+        else{
+            document.getElementById("etat_co").innerHTML = "";  
+        }
+        document.getElementById("thetitle").innerHTML = "Non connecté";
+        }
+    else {
+        if (Lscreen < 1200){
+            document.getElementById("etat_co").innerHTML = nom_wifi;
+            }
+        else{
+            document.getElementById("etat_co").innerHTML = "";
+            }
+        document.getElementById("thetitle").innerHTML = nom_wifi;
 }
+}
+
 /* Recuperation et affichage de l'heure */
 function up_date_time(jsonObj) {
-    document.getElementById("etat_co").innerHTML = "Connecté";
+    
     var l_heure = jsonObj['h'];
     var la_minute = jsonObj['m'];
     (l_heure < 10) ? (l_heure = "0" + l_heure) : l_heure;
@@ -351,6 +395,9 @@ function Info() {
                 dataType: 'json',
                 success: function (jsonObj) {
                     generate_info(jsonObj);
+                },
+                error: function(){
+                    linked(0);
                 }
             })
         } else {
@@ -468,6 +515,7 @@ function generate_info(jsonObj) {
     }
     try {
         document.getElementById('w_name').innerHTML = jsonObj["WIFI"];
+        nom_wifi = jsonObj["WIFI"];
     } catch (error) {
         console.log(error);
     }
@@ -704,8 +752,10 @@ function change_wifi() {
                     if (wifi_name != '') {
 
                         document.getElementById('w_name').innerHTML = 'Nom Wifi : P5 -' + wifi_name;
+                        nom_wifi = "P5 - "+wifi_name;
                     } else {
                         document.getElementById('w_name').innerHTML = 'Nom Wifi : P5';
+                        nom_wifi = "P5";
                     }
                     document.getElementById('w_pass').innerHTML = 'Mot de passe : ' + pass_;
                     document.getElementById('w_channel').innerHTML = 'Canal: ' + canal;

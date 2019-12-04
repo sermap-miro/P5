@@ -43,8 +43,10 @@
 	}
 }
 #etat_co{
-    font-family: 'Segoe UI';
+    font-family: 'Quantify','Segoe UI',Arial;
     color:white;
+    text-transform: uppercase;
+    font-weight:bold;
 }
 html{
     width: 100%; /* Largeur de la page html */
@@ -53,7 +55,7 @@ html{
 }
 
 body {
-    font-family: Arial;
+    font-family: 'Quantify','Segoe UI',Arial;
     font-size: 12px;
 }
 

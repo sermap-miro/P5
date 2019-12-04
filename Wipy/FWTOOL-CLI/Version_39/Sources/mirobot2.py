@@ -268,7 +268,7 @@ class Mirobot:
 		self.clk_json = '/flash/assets/json/clock.json' #Emplacements des données
 		self.info_json = '/flash/assets/json/info.json'
 		self.conf_json = '/flash/assets/json/conf.json'
-		self.channel_json = '/flash/assets/json/channel.json'
+		self.wifi_json = '/flash/assets/json/wifi.json'
 		self.calib_json = '/flash/assets/json/calib.json'
 		#self._alarm = machine.Timer.Alarm(self.clk_up, 60, periodic=True)
 		#self._alarm2 = machine.Timer.Alarm(self.update_info, 60, periodic=False)
@@ -880,13 +880,25 @@ class Mirobot:
 			self.affiche('Channel_Wifi : Not OK')
 			d["canal"] = 7
 		self.affiche(d)
+		try:
+			self.affiche('Channel_Wifi : OK')
+			d["ssid"] = wlan.ssid()
+		except:
+			self.affiche('Channel_Wifi : Not OK')
+			d["ssid"] = "P5"
+		try:
+			self.affiche('Channel_Wifi : OK')
+			d["auth"] = wlan.auth()
+		except:
+			self.affiche('Channel_Wifi : Not OK')
+			d["auth"] = ""
 		j = ujson.dumps(d)
 		try:
-			with open(self.channel_json,'w') as f:
+			with open(self.wifi_json,'w') as f:
 				f.write(j)
 			f.close()
-			self.affiche("Ecriture canal réussie")
+			self.affiche("Ecriture données wifi réussies")
 		except:
-			self.affiche("Impossible d 'ecrire dans le fichier {}".format(self.channel_json))
+			self.affiche("Impossible d 'ecrire dans le fichier {}".format(self.wifi_json))
 					
 m=Mirobot()
