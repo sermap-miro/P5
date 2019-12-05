@@ -1,0 +1,3 @@
+Réajustement automatique de la boite de dialogue
+Indicateur de connexion
+Mot de passe pour le calibrage
