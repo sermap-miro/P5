@@ -59,9 +59,9 @@ function acces_conf(number) {
         clearInterval(centrer);
         if (val_mdp == 'Conf') {
             localStorage.setItem('mdp_conf_cali', 'tracker777');
-            date_y = Date.now();
+            var date_y = Date.now();
             localStorage.setItem('y', date_y);
-            compteur(1800, cle = "mdp_conf_cali", value = "no");
+            compteur(1800, cle = "mdp_conf_cali", value = "no",date_y);
             g_HTML(number[1]);
             if (number[0] == 'edit') {
                 event_edit();
@@ -87,6 +87,38 @@ function acces_conf(number) {
                 g_HTML(number[1]);
                 event_edit();
             }
+        }
+    };
+    var no = document.getElementById("n_pass").onclick = function () {
+        document.getElementById('motdepasse').value = "";
+        $('#show_mdp').closing();
+        clearInterval(centrer);
+        if (number[0] == 'edit') {
+            g_HTML(number[1]);
+            event_edit();
+        }
+    };
+
+}
+function acces_calib(number)
+{
+    var centrer
+    $('#show_mdp').center();
+    centrer = setInterval("$('#show_mdp').atcenter()",500);
+    var val_mdp;
+    var yes = document.getElementById("y_pass").onclick = function () {
+        val_mdp = document.getElementById('motdepasse').value;
+        document.getElementById('motdepasse').value = "";
+        $('#show_mdp').closing();
+        clearInterval(centrer);
+        if (val_mdp == 'Sermap25510') {
+            localStorage.setItem('Cali_access', 'Triple-Double');
+            var date_y = Date.now();
+            localStorage.setItem('cy', date_y);
+            compteur(1800, cle = "Cali_access", value = "no",date_y);
+            g_HTML(number[1]);
+        } else {
+            alerter("Page Conf et Calib", "Mot de passe érroné", "", "");
         }
     };
     var no = document.getElementById("n_pass").onclick = function () {
@@ -181,16 +213,31 @@ auth_wifi = "";
 channel_wifi = "";
 /* A l'ouverture de la page */
 function init() {
-    var connexion;
+    var connexion, time1,time2;
     // Affichage de l'heure locale dans la div comportant l'id 'now' 
     g_time(); // Affichage de l'heure du P5 
     if (localStorage.getItem("y") === null) {
         localStorage.setItem("y", 0); // Initialisation des variables locales
     }
+    else 
+    {
+        time1 = localStorage.getItem("y");
+    }
+    if (localStorage.getItem("cy") === null) {
+        localStorage.setItem("cy", 0); // Initialisation des variables locales
+    }
+    else 
+    {
+        time2 = localStorage.getItem("cy");
+    }
     if (localStorage.getItem("mdp_conf_cali") === null) {
         localStorage.setItem("mdp_conf_cali", "no");
     }
-    compteur(1800, cle = "mdp_conf_cali", value = "no"); // Compteur de 30 pour l'activation de la page CONF et CALI
+    if (localStorage.getItem("Cali_access") === null) {
+        localStorage.setItem("Cali_access", "no");
+    }
+    compteur(1800, cle = "mdp_conf_cali", value = "no",time1); // Compteur de 30 pour l'activation de la page CONF et CALI
+    compteur(1800, cle = "Cali_access", value = "no",time2);
     set_active();
     connexion = setInterval(get_wifi_datas,5000);
 }
@@ -215,12 +262,12 @@ function get_wifi_datas(){
         }
     })
 }
-function compteur(nb, cle, value) {
+function compteur(nb, cle, value,t) {
     var diff = Date.now();
-    if ((diff - localStorage.getItem('y')) >= nb * 1000) {
+    if ((diff - t) >= nb * 1000) {
         localStorage.setItem(this.cle, this.value);
     } else {
-        setTimeout("compteur(" + nb + ",this.cle,this.value)", "1000");
+        setTimeout("compteur(" + nb + ",this.cle,this.value,this.t)", "1000");
     }
 }
 /* Appel de la fonction venant du menu */
@@ -230,10 +277,10 @@ function comd(number) {
     if (number[0] == 'home') {
         $("body").css("background-image", ""); // Affichage à nouveau du Background
     }
-    if ((number[0] == 'calibration') || (number[0] == 'conf') || (number[0] == 'edit')) {
+    if ((number[0] == 'conf') || (number[0] == 'edit')) {
 
-        cali = localStorage.getItem('mdp_conf_cali');
-        if (cali != 'tracker777') {
+        mdp_conf = localStorage.getItem('mdp_conf_cali');
+        if (mdp_conf != 'tracker777') {
             acces_conf(number);
         } else {
             g_HTML(number[1]);
@@ -255,7 +302,19 @@ function comd(number) {
                 })
             }
         }
-    } else {
+    } else if ((number[0] == 'calibration'))
+    {
+        mdp_cali = localStorage.getItem('Cali_access'); 
+        if(mdp_cali != 'Triple-Double')
+        {
+            acces_calib(number);
+        }
+        else {
+            g_HTML(number[1]);
+        }
+    }
+    else
+    {
         g_HTML(number[1]); // Affichage du contenu 
     }
     if (number[0] == 'info') {
