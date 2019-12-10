@@ -1,11 +1,11 @@
 {
-    "Consigne Moteur": 15,
-    "Consigne Pelle": 14,
-    "Seuil Pelle": 14,
-    "Consigne Bequille": 10,
-    "Seuil Bequille":10,
+    "Consigne Moteur": 20,
+    "Consigne Pelle": 20,
+    "Seuil Pelle": 20,
+    "Consigne Bequille": 20,
+    "Seuil Bequille":20,
     "Patinage": 60,
-    "Temps Pion": 300,
-    "Temps Platine": 4000,
+    "Temps Pion": 200,
+    "Temps Platine": 3000,
     "Temps Pelle": 15
 }

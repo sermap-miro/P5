@@ -430,7 +430,7 @@ function linked(connected){
 }
 }
 
-/* Recuperation et affichage de l'heure */
+/* Recupération et affichage de l'heure */
 function up_date_time(jsonObj) {
     
     var l_heure = jsonObj['h'];
@@ -509,8 +509,6 @@ function generate_info(jsonObj) {
         console.log(error);
     }
     try {
-
-
         document.getElementById('c_capot').innerHTML = jsonObj["Capteur capot"] ? '<span class="badge badge-success">En place</span>' : '<span class="badge badge-danger">En défaut</span>';
     } catch (error) {
         console.log(error);
