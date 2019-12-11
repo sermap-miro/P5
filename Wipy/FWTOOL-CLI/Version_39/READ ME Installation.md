@@ -15,17 +15,26 @@
 ###### Pour installer le binaire vous devez vous rendre sur P5/Wipy/FWTOOL-CLI/Version_39/win
 ###### Avant cela, vérifiez que vous avez votre câble FTDI avec vous et branché sur le module W01.
 ###### Cliquez sur B6.bat
+avec Git Bash :
+```
+cd P5/Wipy/FWTOOL-CLI/Version_39/win
+sh B6.bat
+```
 -----
 #### Sur Linux
 ###### Pour installer le binaire vous devez vous rendre sur P5/Wipy/FWTOOL-CLI/Version_39/linux
-###### Avant cela, vérifiez que vous avez votre câble FTDI avec vous et branché sur le module W01.
+###### Lancez la commande ci-dessous:
+```
+cd P5/Wipy/FWTOOL-CLI/Version_39/linux
+```
+###### Avant de lancer la commande ci-dessous, vérifiez que vous avez votre câble FTDI avec vous et branché sur le module W01.
 ```
 sh Create_Binary_Linux_V39.sh
 ```
-
-
 -----
-###### L'installation se fera en 3 étapes :
+###### Pour être en mode FTDI, vous devez à la fois shunter le bloc SJ1 et appuyer sur le bouton reset de votre module FTDI.
+
+###### L'installation se fera en 3 étapes, et tout cela en mode FTDI:
 ###### - Suppression totale des éléments dans le Wipy
 ###### - Installation du fichier binaire wipy (v1.18.r1)
 ###### - Installation de la version 39.2
