@@ -1,4 +1,4 @@
-### Requis pour installer un fichier binaire dans le P5
+### Requis pour installer un fichier binaire dans le wipy du P5
 ###### - [git bash](https://gitforwindows.org/)(Windows)
 ###### - [fwtool-cli](https://docs.pycom.io/advance/cli/)
 
