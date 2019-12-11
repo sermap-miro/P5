@@ -39,6 +39,6 @@ sh Create_Binary_Linux_V39.sh
 ###### - Suppression totale des éléments dans le Wipy
 ###### - Installation du fichier binaire wipy (v1.18.r1)
 ###### - Installation de la version 39.2
-###### Une fois l'installation terminée, redemarrez le module (En coupant l'alimention ou en contactant le bloc SJ1, sur la carte qui est au dessus du Wipy W01)
+###### Une fois l'installation terminée, redemarrez le module (En coupant l'alimention ou en shuntant le bloc SJ1, sur la carte qui est au dessus du Wipy W01)
 ###### Vous devriez voir la LED3 s'allumer.
 
