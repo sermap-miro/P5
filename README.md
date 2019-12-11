@@ -168,7 +168,7 @@ elif cmd[0] == 80: #caractère "P"
 
 
 ###Version 6:
-#18 Avril
+#####18 Avril
 
 ##### Multitas:
 ###### Le paramètre dans les programmes concernant le nombre de seconde de patinage est désormais le nombre de centaine de milliseconde
@@ -176,7 +176,7 @@ elif cmd[0] == 80: #caractère "P"
 
 
 ###Version 7:
-#14 Juin
+#####14 Juin
 
 ###### Vérification de l'horloge au démarrage du lopy
 ###### Comptage des heures de fonctionnement
