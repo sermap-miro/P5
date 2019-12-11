@@ -238,8 +238,8 @@ function init() {
     }
     compteur(1800, cle = "mdp_conf_cali", value = "no",time1); // Compteur de 30 pour l'activation de la page CONF et CALI
     compteur(1800, cle = "Cali_access", value = "no",time2);
-    set_active();
     connexion = setInterval(get_wifi_datas,5000);
+    activeur(-1);
 }
 function get_wifi_datas(){
     $.get({
@@ -275,7 +275,8 @@ function compteur(nb, cle, value,t) {
 function comd(number) {
     $("body").css("background-image", "none"); // Suppression l'image en arriere plan SERMAP
     if (number[0] == 'home') {
-        $("body").css("background-image", ""); // Affichage à nouveau du Background
+        $("body").css("background-image", "");
+         // Affichage à nouveau du Background
     }
     if ((number[0] == 'conf') || (number[0] == 'edit')) {
 
@@ -283,6 +284,7 @@ function comd(number) {
         if (mdp_conf != 'tracker777') {
             acces_conf(number);
         } else {
+            activeur(number[2]);
             g_HTML(number[1]);
             // Affichage du contenu
             if (number[0] == 'conf') {
@@ -310,11 +312,13 @@ function comd(number) {
             acces_calib(number);
         }
         else {
+            activeur(number[2]);
             g_HTML(number[1]);
         }
     }
     else
     {
+        activeur(number[2]);
         g_HTML(number[1]); // Affichage du contenu 
     }
     if (number[0] == 'info') {
@@ -328,29 +332,45 @@ function comd(number) {
     }
 }
 
-function set_active() {
-    var logo = document.getElementById("home");
-    logo.addEventListener("click", function () {
-        var acti = document.getElementsByClassName("bright-miro");
-        if (acti.length > 0) {
-            acti[0].className = acti[0].className.replace("bright-miro", "nav-link");
+// function set_active() {
+    // var logo = document.getElementById("home");
+    // logo.addEventListener("click", function () {
+        // var acti = document.getElementsByClassName("bright-miro");
+        // if (acti.length > 0) {
+            // acti[0].className = acti[0].className.replace("bright-miro", "nav-link");
+        // }
+    // })
+    // var li_btn = document.getElementById("navbarColor01");
+    // var btns = li_btn.getElementsByTagName("a");
+    // for (var i = 0; i < btns.length - 2; i++) {
+        // btns[i].addEventListener("click", function () {
+            // var current = document.getElementsByClassName("bright-miro");
+            // //If there's no active class
+            // if (current.length > 0) {
+                // current[0].className = current[0].className.replace("bright-miro", "nav-link");
+            // }
+            // //Add the active class to the current/clicked button
+            // this.className = "bright-miro";
+        // });
+    // }
+// }
+function activeur(la_page){
+	var acti = document.getElementsByClassName("bright-miro");
+    if (acti.length > 0) {
+            acti[0].className = acti[0].className.replace("bright-miro", "nav-link");    
         }
-    })
+    var current = document.getElementsByClassName("bright-miro");
+    // If there's no active class
+    if (current.length > 0) {
+            current[0].className = current[0].className.replace("bright-miro", "nav-link");
+    }
     var li_btn = document.getElementById("navbarColor01");
-    var btns = li_btn.getElementsByTagName("a");
-    for (var i = 0; i < btns.length - 2; i++) {
-        btns[i].addEventListener("click", function () {
-            var current = document.getElementsByClassName("bright-miro");
-            // If there's no active class
-            if (current.length > 0) {
-                current[0].className = current[0].className.replace("bright-miro", "nav-link");
-            }
-            // Add the active class to the current/clicked button
-            this.className = "bright-miro";
-        });
+    var btns = li_btn.getElementsByTagName("a");        
+    if (la_page > -1)
+    {
+        btns[la_page].className = "bright-miro";
     }
 }
-
 function g_wifi() {
     comd(wifi);
     $.get({
@@ -838,7 +858,7 @@ function save_conf() {
         diff = 0,
         neg = 0,
         a_z = 0;
-    if ((tab2[5] >= 255) || (tab2[8] >= 255)) {
+    if ((tab2[5] > 255) || (tab2[8] > 255)) { // Correction:  on prend la valeur 255 
         pat = 1;
     }
     for (nb in tab) {
@@ -863,7 +883,6 @@ function save_conf() {
                 t_ms += 1;
             }
         }
-
     }
     try {
         diff = tab2[7] - tab2[6];
@@ -1019,16 +1038,18 @@ function save_h() {
     }
 
 })();
-var home = ["home", '', "home"];
-var clock = ["clock", '<div class="container center-block"><div class="row center-block" style=""><div class="center-block" style="float:none;margin: auto;"><div class="row prgm-nav"><li style="margin: auto;"><a onclick="save_h()" class="btn btn-miro mb-3" id="clk_save">Sauvegarder</a></li></div><div class="row"><p style="margin: auto;">Heure:</p><p style="margin: auto;">Minute:</p></div><div class="row center-block" style="margin: auto;"><input style="margin: auto;" type="text" id="h1" name="h1"  pattern="[0-9]{1,2}" size="5" ><input type="text" name="m1" id="m1" size="5" pattern="[0-9]{1,2}" style="margin: auto;"></div></div></div></div>', "page_clk"];
-var wifi = ["wifi", '<div class="container"><div class="row"><div class="col-12 "><div class="form-group"><div>Nouveau nom Wifi = "P5 - {Nom saisi}"</div><input type="text" id="n1" name="n1" maxlength="8" pattern="[a-zA-Z0-9_ ]{1,8}"></div><div class="form-group"><div>Mot de passe</div> <input type="text" id="p1" name="p1" minlength="8" maxlength="20" pattern="[a-zA-Z0-9_-]{8,20}"><div>Caractères autorisés : chiffre et lettre (minuscule et majuscule) ayant minumum 8 Caractères</div></div><div class="form-group"><label>Canal</label> <SELECT name="c1" id="c1" size="1" class="custom-select"></SELECT></div><button onclick="change_wifi()" class="btn btn-miro">Sauvegarde</button></div></div><div class="row"><div class="col-12 wifi-change"><div class="col-4" id="w_name"></div><div class="col-4" id="w_pass"></div><div class="col-4" id="w_channel"></div></div></div></div>', "page_wifi"];
-var planning = ["planning", '<div class="container"><div class="row"><div class="col-12"><button onclick="save_plan()" class="btn btn-miro mb-3">Sauvegarder</button><div class="table-responsive"><table class="table"><thead><tr><th scope="col">#</th><th scope="col">Heure</th><th scope="col">Minute</th><th scope="col">A / D</th><th scope="col">Programme</th></tr></thead><tbody id="f_tab"></tbody></table></div></div></div>', "page_plan"];
-var edit = ["edit", '<div class="container"><div class="row"><div class="col-12"><button onclick="save_edit()" class="btn btn-miro mb-3" >Sauvegarder</button><p><SELECT name="p1" size="1" class="custom-select"id="opt_edit"><OPTION value="" selected>Choisissez le fichier à éditer</OPTION><OPTION value="1">1</OPTION><OPTION value="2">2</OPTION><OPTION value="3">3</OPTION><OPTION value="4">4</OPTION><OPTION value="5">5</OPTION><OPTION value="6">6</OPTION><OPTION value="7">7</OPTION><OPTION value="8">8</OPTION><OPTION value="9">9</OPTION><OPTION value="Retour">Retour</OPTION> </SELECT></p><TEXTAREA class="form-control" name="d1" rows=15 cols=15 id="put_text"></TEXTAREA></div></div></div>', "page_edit"];
-var info = ["info", '<div class="container"><div class="row"><div class="col-12"><div class="table-responsive"><table class="table"><tr><td>Dernière alarme</td><td id="derniere_alarme" class="text-right"></td><tr><td>Etat P5</td><td id="etat_p5" class="text-right"></td><tr><td>Etat précédant P5</td><td id="etat_p_p5"class="text-right"></td><tr><td>Pions</td><td id="pions"class="text-right"></td><tr><td>Batterie</td><td id="tension"class="text-right"></td><tr><td>Capteur pion</td><td id="c_pion"class="text-right"></td><tr><td>Capteur capot</td><td id="c_capot" class="text-right"></td><tr><td>Arret Urgence</td><td id="arret_urgence" class="text-right"></td><tr><td>Relais</td><td id="relais"class="text-right"></td><tr><td>I Moteur 1</td><td id="im1"class="text-right"></td><tr><td>I Moteur 2</td><td id="im2"class="text-right"></td><tr><td>Patinage</td><td id="patinage"class="text-right"></td><tr><td>Temps pion</td><td id="t_pion"class="text-right"></td><tr><td>Temps platine</td><td id="t_platine"class="text-right"></td><tr><td>Temps pelle</td><td id="t_pelle"class="text-right"></td><tr><td>Temps de vol</td><td id="t_vol"class="text-right"></td><tr><td>Version PIC:Wipy</td><td id="v_pic_wipy"class="text-right"></td><tr><td>Temps de démarrage</td><td id="t_demarrage"class="text-right"></td><tr><td>Nom wifi <a onclick=g_wifi()>SSID</a></td><td id="w_name"class="text-right"></td><tr><td>Mot de passe wifi</td><td id="w_pass"class="text-right"></td></table></div></div></div></div>', "page_info"];
-var manu = ["manu", '<div class="container"><div class="row"><div class="col-12"><ul class="miro-nav"><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(1)">Cycle (Standard)</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(2)">Avant</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(3)">Lever Pelle</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(4)">Sort (Bequille)</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(5)">STOP</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(6)">Rentre (Bequille)</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(7)">Cycle (Retour)</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(8)">Arrière</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(9)">Baisser Pelle</a></li></ul></div></div></div>', "page_manu"];
-var calibration = ["calibration", '<div class="container"><div class="row"><div class="col-12"><div class="pad19"><div class="row mb-2"><div class="col-12"><ul class="prgm-nav"><li><a class="btn btn-miro btn-lg" onclick="Calibration_cmd(1)">10 V</a></li><li><a class="btn btn-miro btn-lg" onclick="Calibration_cmd(2)">30 V</a></li><li><a class="btn btn-miro btn-lg" onclick="Calibration_cmd(3)">Bip</a></li></ul></div></div></div><div class="row mb-2"><div class="col-12"><ul class="prgm-nav"><li><a class="btn btn-miro btn-lg" onclick="Calibration_cmd(4)">LED ON</a></li><li><a class="btn btn-miro btn-lg" onclick="Calibration_cmd(5)">LED OFF</a></li><li><a class="btn btn-miro btn-lg" onclick="Calibration_cmd(6)">00:00</a></li></ul></div></div></div></div></div></div>', "page_cali"];
-var programme = ["programme", '<div class="container"><div class="row"><div class="col-12"><div class="pad19"><div class="row"><div class="col-12"><ul class="prgm-nav"><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(1)">1</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(2)">2</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(3)">3</a></li> </ul></div></div><div class="row"><div class="col-12"><ul class="prgm-nav"><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(4)">4</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(5)">5</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(6)">6</a></li></ul></div></div><div class="row"><div class="col-12"><ul class="prgm-nav"><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(7)">7</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(8)">8</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(9)">9</a></li></ul></div></div></div><ul class="miro-nav"><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(10)">Standard</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(11)">Pailleux</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(12)">DVT</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(13)">MultiTas</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(14)">Retour</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(15)">STOP</a></li></ul></div></div></div>', "page_prog"];
-var conf = ["conf", '<div class="container"><div class="row"><div class="col-12 "><button class="btn btn-miro" onclick="save_conf()">Enregistrer les modifications</button><div class="col-6 conf"><div class="row"><div class="col-6 name_conf"><label>Consigne Moteur:</label></div><div class="col-4 in_conf"><input required="required" type="text" id="Consigne_Moteur" name="m1"  min="0" max="50" size="5"/></div><div class="col-2 u_conf"> A</div></div><div class="row"><div class="col-6 name_conf"><label>Consigne Pelle: </label></div><div class="col-4 in_conf"><input required="required" id="Consigne_Pelle" type="text" name="c1"  min="0" max="50"size="5"/></div><div class="col-2 u_conf"> A</div></div><div class="row"><div class="col-6 name_conf"><label>Seuil Pelle: </label></div><div class="col-4 in_conf"><input required="required" id="Seuil_Pelle" type="text" name="s1"  min="0" max="50" size="5"/></div><div class="col-2 u_conf"> A</div></div><div class="row"><div class="col-6 name_conf"><label>Consigne Bequille: </label></div><div class="col-4 in_conf"><input type="text" required="required" id="Consigne_Bequille" name="b1"  min="0" max="50" size="5"/></div><div class="col-2 u_conf"> A</div></div><div class="row"><div class="col-6 name_conf"><label>Seuil Bequille: </label></div><div class="col-4 in_conf"><input required="required" id="Seuil_Bequille" type="text" name="d1"  min="0" max="50" size="5"/></div><div class="col-2 u_conf"> A</div></div><div class="row"><div class="col-6 name_conf"><label>Patinage: </label></div><div class="col-4 in_conf"><input id="Patinage" type="text" required="required" name="p1"  min="0" max="500" size="5"/></div><div class="col-2 u_conf"> s</div></div><div class="row"><div class="col-6 name_conf"><label>Temps Pion: </label></div><div class="col-4 in_conf"><input type="text" id="Temps_Pion" required="required" name="i1"  min="0" max="3000" size="5"/></div><div class="col-2 u_conf"> ms</div></div><div class="row"><div class="col-6 name_conf"><label>Temps Platine: </label></div><div class="col-4 in_conf"><input required="required" id="Temps_Platine" type="text" name="l1"  min="0" max="5000" size="5"/></div><div class="col-2 u_conf"> ms</div></div><div class="row"><div class="col-6 name_conf"><label>Temps pelle: </label></div><div class="col-4 in_conf"><input id="Temps_Pelle" required="required" type="text" name="e1"  min="0" max="600" size="5"/></div><div class="col-2 u_conf"> s</div></div></div></div></div></div>', "page_conf"];
+pages = {"manu": 0,"programme":1,"clock":2,"info":3,"edit":4,"planning":5,"conf":6,"calibration":7,"wifi":8}
+var home = ["home", '', -1];
+var manu = ["manu", '<div class="container"><div class="row"><div class="col-12"><ul class="miro-nav"><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(1)">Cycle (Standard)</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(2)">Avant</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(3)">Lever Pelle</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(4)">Sort (Bequille)</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(5)">STOP</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(6)">Rentre (Bequille)</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(7)">Cycle (Retour)</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(8)">Arrière</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(9)">Baisser Pelle</a></li></ul></div></div></div>', 0];
+var programme = ["programme", '<div class="container"><div class="row"><div class="col-12"><div class="pad19"><div class="row"><div class="col-12"><ul class="prgm-nav"><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(1)">1</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(2)">2</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(3)">3</a></li> </ul></div></div><div class="row"><div class="col-12"><ul class="prgm-nav"><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(4)">4</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(5)">5</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(6)">6</a></li></ul></div></div><div class="row"><div class="col-12"><ul class="prgm-nav"><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(7)">7</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(8)">8</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(9)">9</a></li></ul></div></div></div><ul class="miro-nav"><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(10)">Standard</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(11)">Pailleux</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(12)">DVT</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(13)">MultiTas</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(14)">Retour</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(15)">STOP</a></li></ul></div></div></div>', 1];
+var clock = ["clock", '<div class="container center-block"><div class="row center-block" style=""><div class="center-block" style="float:none;margin: auto;"><div class="row prgm-nav"><li style="margin: auto;"><a onclick="save_h()" class="btn btn-miro mb-3" id="clk_save">Sauvegarder</a></li></div><div class="row"><p style="margin: auto;">Heure:</p><p style="margin: auto;">Minute:</p></div><div class="row center-block" style="margin: auto;"><input style="margin: auto;" type="text" id="h1" name="h1"  pattern="[0-9]{1,2}" size="5" ><input type="text" name="m1" id="m1" size="5" pattern="[0-9]{1,2}" style="margin: auto;"></div></div></div></div>', 2];
+var info = ["info", '<div class="container"><div class="row"><div class="col-12"><div class="table-responsive"><table class="table"><tr><td>Dernière alarme</td><td id="derniere_alarme" class="text-right"></td><tr><td>Etat P5</td><td id="etat_p5" class="text-right"></td><tr><td>Etat précédant P5</td><td id="etat_p_p5"class="text-right"></td><tr><td>Pions</td><td id="pions"class="text-right"></td><tr><td>Batterie</td><td id="tension"class="text-right"></td><tr><td>Capteur pion</td><td id="c_pion"class="text-right"></td><tr><td>Capteur capot</td><td id="c_capot" class="text-right"></td><tr><td>Arret Urgence</td><td id="arret_urgence" class="text-right"></td><tr><td>Relais</td><td id="relais"class="text-right"></td><tr><td>I Moteur 1</td><td id="im1"class="text-right"></td><tr><td>I Moteur 2</td><td id="im2"class="text-right"></td><tr><td>Patinage</td><td id="patinage"class="text-right"></td><tr><td>Temps pion</td><td id="t_pion"class="text-right"></td><tr><td>Temps platine</td><td id="t_platine"class="text-right"></td><tr><td>Temps pelle</td><td id="t_pelle"class="text-right"></td><tr><td>Temps de vol</td><td id="t_vol"class="text-right"></td><tr><td>Version PIC:Wipy</td><td id="v_pic_wipy"class="text-right"></td><tr><td>Temps de démarrage</td><td id="t_demarrage"class="text-right"></td><tr><td>Nom wifi <a onclick=g_wifi()>SSID</a></td><td id="w_name"class="text-right"></td><tr><td>Mot de passe wifi</td><td id="w_pass"class="text-right"></td></table></div></div></div></div>', 3];
+var edit = ["edit", '<div class="container"><div class="row"><div class="col-12"><button onclick="save_edit()" class="btn btn-miro mb-3" >Sauvegarder</button><p><SELECT name="p1" size="1" class="custom-select"id="opt_edit"><OPTION value="" selected>Choisissez le fichier à éditer</OPTION><OPTION value="1">1</OPTION><OPTION value="2">2</OPTION><OPTION value="3">3</OPTION><OPTION value="4">4</OPTION><OPTION value="5">5</OPTION><OPTION value="6">6</OPTION><OPTION value="7">7</OPTION><OPTION value="8">8</OPTION><OPTION value="9">9</OPTION><OPTION value="Retour">Retour</OPTION> </SELECT></p><TEXTAREA class="form-control" name="d1" rows=15 cols=15 id="put_text"></TEXTAREA></div></div></div>', 4];
+var planning = ["planning", '<div class="container"><div class="row"><div class="col-12"><button onclick="save_plan()" class="btn btn-miro mb-3">Sauvegarder</button><div class="table-responsive"><table class="table"><thead><tr><th scope="col">#</th><th scope="col">Heure</th><th scope="col">Minute</th><th scope="col">A / D</th><th scope="col">Programme</th></tr></thead><tbody id="f_tab"></tbody></table></div></div></div>', 5];
+var conf = ["conf", '<div class="container"><div class="row"><div class="col-12 "><button class="btn btn-miro" onclick="save_conf()">Enregistrer les modifications</button><div class="col-6 conf"><div class="row"><div class="col-6 name_conf"><label>Consigne Moteur:</label></div><div class="col-4 in_conf"><input required="required" type="text" id="Consigne_Moteur" name="m1"  min="0" max="50" size="5"/></div><div class="col-2 u_conf"> A</div></div><div class="row"><div class="col-6 name_conf"><label>Consigne Pelle: </label></div><div class="col-4 in_conf"><input required="required" id="Consigne_Pelle" type="text" name="c1"  min="0" max="50"size="5"/></div><div class="col-2 u_conf"> A</div></div><div class="row"><div class="col-6 name_conf"><label>Seuil Pelle: </label></div><div class="col-4 in_conf"><input required="required" id="Seuil_Pelle" type="text" name="s1"  min="0" max="50" size="5"/></div><div class="col-2 u_conf"> A</div></div><div class="row"><div class="col-6 name_conf"><label>Consigne Bequille: </label></div><div class="col-4 in_conf"><input type="text" required="required" id="Consigne_Bequille" name="b1"  min="0" max="50" size="5"/></div><div class="col-2 u_conf"> A</div></div><div class="row"><div class="col-6 name_conf"><label>Seuil Bequille: </label></div><div class="col-4 in_conf"><input required="required" id="Seuil_Bequille" type="text" name="d1"  min="0" max="50" size="5"/></div><div class="col-2 u_conf"> A</div></div><div class="row"><div class="col-6 name_conf"><label>Patinage: </label></div><div class="col-4 in_conf"><input id="Patinage" type="text" required="required" name="p1"  min="0" max="500" size="5"/></div><div class="col-2 u_conf"> s</div></div><div class="row"><div class="col-6 name_conf"><label>Temps Pion: </label></div><div class="col-4 in_conf"><input type="text" id="Temps_Pion" required="required" name="i1"  min="0" max="3000" size="5"/></div><div class="col-2 u_conf"> ms</div></div><div class="row"><div class="col-6 name_conf"><label>Temps Platine: </label></div><div class="col-4 in_conf"><input required="required" id="Temps_Platine" type="text" name="l1"  min="0" max="5000" size="5"/></div><div class="col-2 u_conf"> ms</div></div><div class="row"><div class="col-6 name_conf"><label>Temps pelle: </label></div><div class="col-4 in_conf"><input id="Temps_Pelle" required="required" type="text" name="e1"  min="0" max="600" size="5"/></div><div class="col-2 u_conf"> s</div></div></div></div></div></div>', 6];
+var calibration = ["calibration", '<div class="container"><div class="row"><div class="col-12"><div class="pad19"><div class="row mb-2"><div class="col-12"><ul class="prgm-nav"><li><a class="btn btn-miro btn-lg" onclick="Calibration_cmd(1)">10 V</a></li><li><a class="btn btn-miro btn-lg" onclick="Calibration_cmd(2)">30 V</a></li><li><a class="btn btn-miro btn-lg" onclick="Calibration_cmd(3)">Bip</a></li></ul></div></div></div><div class="row mb-2"><div class="col-12"><ul class="prgm-nav"><li><a class="btn btn-miro btn-lg" onclick="Calibration_cmd(4)">LED ON</a></li><li><a class="btn btn-miro btn-lg" onclick="Calibration_cmd(5)">LED OFF</a></li><li><a class="btn btn-miro btn-lg" onclick="Calibration_cmd(6)">00:00</a></li></ul></div></div></div></div></div></div>', 7];
+var wifi = ["wifi", '<div class="container"><div class="row"><div class="col-12 "><div class="form-group"><div>Nouveau nom Wifi = "P5 - {Nom saisi}"</div><input type="text" id="n1" name="n1" maxlength="8" pattern="[a-zA-Z0-9_ ]{1,8}"></div><div class="form-group"><div>Mot de passe</div> <input type="text" id="p1" name="p1" minlength="8" maxlength="20" pattern="[a-zA-Z0-9_-]{8,20}"><div>Caractères autorisés : chiffre et lettre (minuscule et majuscule) ayant minumum 8 Caractères</div></div><div class="form-group"><label>Canal</label> <SELECT name="c1" id="c1" size="1" class="custom-select"></SELECT></div><button onclick="change_wifi()" class="btn btn-miro">Sauvegarde</button></div></div><div class="row"><div class="col-12 wifi-change"><div class="col-4" id="w_name"></div><div class="col-4" id="w_pass"></div><div class="col-4" id="w_channel"></div></div></div></div>', 8];
+
 /* Demarrage des fonctions a l'ouverture de la page HTML */
 $(document).ready(function () {
     init();
