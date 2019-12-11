@@ -1,0 +1,1 @@
+Ici sont placés les fichiers mpy-cross  version 1.9.4 compatibles avec la version Wipy 1.20.0.rc13

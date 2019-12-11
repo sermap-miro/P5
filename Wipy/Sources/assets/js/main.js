@@ -1,4 +1,10 @@
 /* AFFICHAGE DE BOITE DE DIALOGUE + MISE EN AU CENTRE de l'ecran*/
+$.fn.atcenter = function () {
+    this.css({
+        'margin-top': -this.height() / 2 + "px",
+        'margin-left': -this.width() / 2 + "px",
+    })
+}
 $.fn.center = function () {
     this.css({
         'visibility': 'visible',
@@ -42,17 +48,20 @@ function fermeture_pos(cible, val, number) {
 }
 /* Accès page conf et Calibration via un mot de passe */
 function acces_conf(number) {
+    var centrer;
     $('#show_mdp').center();
-    var val_mdp
+    centrer = setInterval("$('#show_mdp').atcenter()",500);
+    var val_mdp;
     var yes = document.getElementById("y_pass").onclick = function () {
         val_mdp = document.getElementById('motdepasse').value;
         document.getElementById('motdepasse').value = "";
         $('#show_mdp').closing();
+        clearInterval(centrer);
         if (val_mdp == 'Conf') {
             localStorage.setItem('mdp_conf_cali', 'tracker777');
-            date_y = Date.now();
+            var date_y = Date.now();
             localStorage.setItem('y', date_y);
-            compteur(1800, cle = "mdp_conf_cali", value = "no");
+            compteur(1800, cle = "mdp_conf_cali", value = "no",date_y);
             g_HTML(number[1]);
             if (number[0] == 'edit') {
                 event_edit();
@@ -83,6 +92,39 @@ function acces_conf(number) {
     var no = document.getElementById("n_pass").onclick = function () {
         document.getElementById('motdepasse').value = "";
         $('#show_mdp').closing();
+        clearInterval(centrer);
+        if (number[0] == 'edit') {
+            g_HTML(number[1]);
+            event_edit();
+        }
+    };
+
+}
+function acces_calib(number)
+{
+    var centrer
+    $('#show_mdp').center();
+    centrer = setInterval("$('#show_mdp').atcenter()",500);
+    var val_mdp;
+    var yes = document.getElementById("y_pass").onclick = function () {
+        val_mdp = document.getElementById('motdepasse').value;
+        document.getElementById('motdepasse').value = "";
+        $('#show_mdp').closing();
+        clearInterval(centrer);
+        if (val_mdp == 'Sermap25510') {
+            localStorage.setItem('Cali_access', 'Triple-Double');
+            var date_y = Date.now();
+            localStorage.setItem('cy', date_y);
+            compteur(1800, cle = "Cali_access", value = "no",date_y);
+            g_HTML(number[1]);
+        } else {
+            alerter("Page Conf et Calib", "Mot de passe érroné", "", "");
+        }
+    };
+    var no = document.getElementById("n_pass").onclick = function () {
+        document.getElementById('motdepasse').value = "";
+        $('#show_mdp').closing();
+        clearInterval(centrer);
         if (number[0] == 'edit') {
             g_HTML(number[1]);
             event_edit();
@@ -92,16 +134,20 @@ function acces_conf(number) {
 }
 /* Boite de dialogue : Un titre, un message , deux reponses possibles */
 function alerter(type, message, cible, val) {
+    var centrer;
     $('#alerter').center();
+    centrer = setInterval("$('#alerter').atcenter()",500);
     $('#title_alt').text(type);
     $('#error-msg').text(message);
     var y = document.getElementById('y_alert');
     var n = document.getElementById("n_alert");
     var ent = document.getElementById("alerter");
     var no = n.onclick = function () {
+        clearInterval(centrer);
         fermeture_pos(cible, val, 0);
     };
     var yes = y.onclick = function () {
+        clearInterval(centrer);
         fermeture_pos(cible, val, 1);
     };
 }
@@ -162,26 +208,66 @@ function main_view() {
     }
 }
 x = 0;
+nom_wifi = "";
+auth_wifi = "";
+channel_wifi = "";
 /* A l'ouverture de la page */
 function init() {
+    var connexion, time1,time2;
     // Affichage de l'heure locale dans la div comportant l'id 'now' 
     g_time(); // Affichage de l'heure du P5 
     if (localStorage.getItem("y") === null) {
         localStorage.setItem("y", 0); // Initialisation des variables locales
     }
+    else 
+    {
+        time1 = localStorage.getItem("y");
+    }
+    if (localStorage.getItem("cy") === null) {
+        localStorage.setItem("cy", 0); // Initialisation des variables locales
+    }
+    else 
+    {
+        time2 = localStorage.getItem("cy");
+    }
     if (localStorage.getItem("mdp_conf_cali") === null) {
         localStorage.setItem("mdp_conf_cali", "no");
     }
-    compteur(1800, cle = "mdp_conf_cali", value = "no"); // Compteur de 30 pour l'activation de la page CONF et CALI
+    if (localStorage.getItem("Cali_access") === null) {
+        localStorage.setItem("Cali_access", "no");
+    }
+    compteur(1800, cle = "mdp_conf_cali", value = "no",time1); // Compteur de 30 pour l'activation de la page CONF et CALI
+    compteur(1800, cle = "Cali_access", value = "no",time2);
     set_active();
+    connexion = setInterval(get_wifi_datas,5000);
 }
-
-function compteur(nb, cle, value) {
+function get_wifi_datas(){
+    $.get({
+        url: 'assets/json/wifi.json',
+        headers: {
+            'Cache-Control': 'no-cache, no-store',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+        },
+        cache: false,
+        dataType: 'json',
+        success: function (jsonObj) {
+            nom_wifi=jsonObj["ssid"];
+            auth_wifi=jsonObj["auth"];
+            channel_wifi=jsonObj["canal"];
+            linked(1);
+        },
+        error:function(){
+            linked(0);
+        }
+    })
+}
+function compteur(nb, cle, value,t) {
     var diff = Date.now();
-    if ((diff - localStorage.getItem('y')) >= nb * 1000) {
+    if ((diff - t) >= nb * 1000) {
         localStorage.setItem(this.cle, this.value);
     } else {
-        setTimeout("compteur(" + nb + ",this.cle,this.value)", "1000");
+        setTimeout("compteur(" + nb + ",this.cle,this.value,this.t)", "1000");
     }
 }
 /* Appel de la fonction venant du menu */
@@ -191,10 +277,10 @@ function comd(number) {
     if (number[0] == 'home') {
         $("body").css("background-image", ""); // Affichage à nouveau du Background
     }
-    if ((number[0] == 'calibration') || (number[0] == 'conf') || (number[0] == 'edit')) {
+    if ((number[0] == 'conf') || (number[0] == 'edit')) {
 
-        cali = localStorage.getItem('mdp_conf_cali');
-        if (cali != 'tracker777') {
+        mdp_conf = localStorage.getItem('mdp_conf_cali');
+        if (mdp_conf != 'tracker777') {
             acces_conf(number);
         } else {
             g_HTML(number[1]);
@@ -216,7 +302,19 @@ function comd(number) {
                 })
             }
         }
-    } else {
+    } else if ((number[0] == 'calibration'))
+    {
+        mdp_cali = localStorage.getItem('Cali_access'); 
+        if(mdp_cali != 'Triple-Double')
+        {
+            acces_calib(number);
+        }
+        else {
+            g_HTML(number[1]);
+        }
+    }
+    else
+    {
         g_HTML(number[1]); // Affichage du contenu 
     }
     if (number[0] == 'info') {
@@ -256,7 +354,7 @@ function set_active() {
 function g_wifi() {
     comd(wifi);
     $.get({
-        url: 'assets/json/channel.json',
+        url: 'assets/json/wifi.json',
         headers: {
             'Cache-Control': 'no-cache, no-store, must-revalidate',
             'Pragma': 'no-cache',
@@ -298,7 +396,10 @@ function g_time() {
             'Expires': '0'
         },
         cache: false,
-        dataType: 'json',
+        dataType: 'json', 
+        error: function() {
+              linked(0);
+            },
         // lors de la recuperation du fichier on fait appel à up_date time pour traiter le fichier JSON
         success: function (jsonObj) {
             up_date_time(jsonObj);
@@ -306,8 +407,32 @@ function g_time() {
     });
     setTimeout('g_time();', 15000); // Actualisation toutes les 15 secondes
 }
-/* Recuperation et affichage de l'heure */
+function linked(connected){
+    var Lscreen = window.innerWidth;
+    if (!connected){
+    
+        if (Lscreen < 1200){
+            document.getElementById("etat_co").innerHTML = "Non connecté";
+        }
+        else{
+            document.getElementById("etat_co").innerHTML = "";  
+        }
+        document.getElementById("thetitle").innerHTML = "Non connecté";
+        }
+    else {
+        if (Lscreen < 1200){
+            document.getElementById("etat_co").innerHTML = nom_wifi;
+            }
+        else{
+            document.getElementById("etat_co").innerHTML = "";
+            }
+        document.getElementById("thetitle").innerHTML = nom_wifi;
+}
+}
+
+/* Recupération et affichage de l'heure */
 function up_date_time(jsonObj) {
+    
     var l_heure = jsonObj['h'];
     var la_minute = jsonObj['m'];
     (l_heure < 10) ? (l_heure = "0" + l_heure) : l_heure;
@@ -329,6 +454,9 @@ function Info() {
                 dataType: 'json',
                 success: function (jsonObj) {
                     generate_info(jsonObj);
+                },
+                error: function(){
+                    linked(0);
                 }
             })
         } else {
@@ -381,8 +509,6 @@ function generate_info(jsonObj) {
         console.log(error);
     }
     try {
-
-
         document.getElementById('c_capot').innerHTML = jsonObj["Capteur capot"] ? '<span class="badge badge-success">En place</span>' : '<span class="badge badge-danger">En défaut</span>';
     } catch (error) {
         console.log(error);
@@ -446,6 +572,7 @@ function generate_info(jsonObj) {
     }
     try {
         document.getElementById('w_name').innerHTML = jsonObj["WIFI"];
+        nom_wifi = jsonObj["WIFI"];
     } catch (error) {
         console.log(error);
     }
@@ -682,8 +809,10 @@ function change_wifi() {
                     if (wifi_name != '') {
 
                         document.getElementById('w_name').innerHTML = 'Nom Wifi : P5 -' + wifi_name;
+                        nom_wifi = "P5 - "+wifi_name;
                     } else {
                         document.getElementById('w_name').innerHTML = 'Nom Wifi : P5';
+                        nom_wifi = "P5";
                     }
                     document.getElementById('w_pass').innerHTML = 'Mot de passe : ' + pass_;
                     document.getElementById('w_channel').innerHTML = 'Canal: ' + canal;

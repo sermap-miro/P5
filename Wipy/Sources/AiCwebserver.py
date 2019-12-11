@@ -111,7 +111,8 @@ def AiCWebserv(port):
 						ibinfo_json = requete.find('info.json')
 						ibclock_json = requete.find('clock.json')
 						ibconf_json = requete.find('conf.json')
-						get_channel = requete.find('channel.json')
+						get_wifi_data = requete.find('wifi.json')
+						
 						ibl_white = requete.find('l_white.png')
 						ibmiro_logo = requete.find('logo.png')
 						sermap_png = requete.find('SERMAP.png')
@@ -305,7 +306,7 @@ def AiCWebserv(port):
 								data = f.read(CHUNK_SIZE)
 								while data:
 									conn.send(bytes(data))
-									data = f.read(CHUNK_SIZE)		
+									data = f.read(CHUNK_SIZE)
 						elif ibmain_js > 0 :
 							conn.sendall(Rep_Server('jsc'))
 							CHUNK_SIZE = 512
@@ -345,11 +346,11 @@ def AiCWebserv(port):
 								while data :
 									conn.send(bytes(data))
 									data = f.read(CHUNK_SIZE)
-						elif get_channel > 0:
+						elif get_wifi_data > 0:
 							conn.sendall(Rep_Server('json'))
 							CHUNK_SIZE = 512
 							m.channel_wifi()
-							with open('assets/json/channel.json', 'rb') as f:
+							with open('assets/json/wifi.json', 'rb') as f:
 								data = f.read(CHUNK_SIZE)
 								while data :
 									conn.send(bytes(data))
