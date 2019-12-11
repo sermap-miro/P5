@@ -11,7 +11,7 @@
 
 ##### Version 39
 -----
-##### Sur Windows
+#### Sur Windows
 ###### Pour installer le binaire vous devez vous rendre sur P5/Wipy/FWTOOL-CLI/Version_39/win
 ###### Avant cela, vérifiez que vous avez votre câble FTDI avec vous et branché sur le module W01.
 ###### Cliquez sur B6.bat
@@ -32,6 +32,7 @@ cd P5/Wipy/FWTOOL-CLI/Version_39/linux
 sh Create_Binary_Linux_V39.sh
 ```
 -----
+#### Pour tout le monde
 ###### Pour être en mode FTDI, vous devez à la fois shunter le bloc SJ1 et appuyer sur le bouton reset de votre module FTDI.
 
 ###### L'installation se fera en 3 étapes, et tout cela en mode FTDI:
