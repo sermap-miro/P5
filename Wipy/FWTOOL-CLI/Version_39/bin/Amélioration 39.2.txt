@@ -1,0 +1,3 @@
+R�ajustement automatique de la boite de dialogue 39.1
+Indicateur de connexion 39.2
+Mot de passe pour le calibrage 39.2

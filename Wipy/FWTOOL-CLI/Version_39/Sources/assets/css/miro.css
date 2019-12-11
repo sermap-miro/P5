@@ -42,7 +42,12 @@
     font-size: 1.2em!important;
 	}
 }
-
+#etat_co{
+    font-family: 'Quantify','Segoe UI',Arial;
+    color:white;
+    text-transform: uppercase;
+    font-weight:bold;
+}
 html{
     width: 100%; /* Largeur de la page html */
     min-height: 100%; /* Taille minimale de la page html */
@@ -50,7 +55,7 @@ html{
 }
 
 body {
-    font-family: Arial;
+    font-family: 'Quantify','Segoe UI',Arial;
     font-size: 12px;
 }
 

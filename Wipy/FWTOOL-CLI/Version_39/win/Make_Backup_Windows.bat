@@ -1,5 +1,4 @@
-#!/bin/bash
-#curl "https://software.pycom.io/findupgrade?key=wipy.wipy%20with%20esp32&redirect=false&type=all"
+﻿#!/bin/bash
 
 echo "Reset Complet du Wipy"
 

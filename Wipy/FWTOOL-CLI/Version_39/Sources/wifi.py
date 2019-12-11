@@ -17,7 +17,7 @@ def Wifi_Perso():
     #wlan.ifconfig(id=1,config=("192.168.4.1","255.255.255.252","192.168.4.1","8.8.8.8")) # AP
     #print(wlan.ifconfig(id=0)) # STA
     #print(wlan.ifconfig(id=1))# AP
-    if ARRET_URGENCE() == 1: # il y a pas de metal en face du capteur (capot ouvert)
+    if ARRET_URGENCE() == 1: # Si arret urgence est allumé
         Wifi_Local()
     else:
         print("Wifi Usine")
