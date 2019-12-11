@@ -19,9 +19,11 @@
 #### Sur Linux
 ###### Pour installer le binaire vous devez vous rendre sur P5/Wipy/FWTOOL-CLI/Version_39/linux
 ###### Avant cela, vérifiez que vous avez votre câble FTDI avec vous et branché sur le module W01.
-'''
+```
 sh Create_Binary_Linux_V39.sh
-'''
+```
+
+
 -----
 ###### L'installation se fera en 3 étapes :
 ###### - Suppression totale des éléments dans le Wipy
