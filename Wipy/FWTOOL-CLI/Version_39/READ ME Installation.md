@@ -1,9 +1,9 @@
-## Windows
------
+
 ### Requis pour installer un fichier binaire dans le P5
-###### - [git bash](https://gitforwindows.org/)
+###### - [git bash](https://gitforwindows.org/)(Windows)
 ###### - [fwtool-cli](https://docs.pycom.io/advance/cli/)
-###### - (Optional) [Atom](https://atom.io/) ou [Visual Studio Code](https://code.visualstudio.com/Download)
+---
+###### -  [Atom](https://atom.io/) ou [Visual Studio Code](https://code.visualstudio.com/Download)(Optionnel)
 
 -----
 
