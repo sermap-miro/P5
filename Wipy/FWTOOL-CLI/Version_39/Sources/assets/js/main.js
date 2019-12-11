@@ -62,6 +62,7 @@ function acces_conf(number) {
             var date_y = Date.now();
             localStorage.setItem('y', date_y);
             compteur(1800, cle = "mdp_conf_cali", value = "no",date_y);
+            activeur(number[2]);
             g_HTML(number[1]);
             if (number[0] == 'edit') {
                 event_edit();
@@ -116,6 +117,7 @@ function acces_calib(number)
             var date_y = Date.now();
             localStorage.setItem('cy', date_y);
             compteur(1800, cle = "Cali_access", value = "no",date_y);
+            activeur(number[2]);
             g_HTML(number[1]);
         } else {
             alerter("Page Conf et Calib", "Mot de passe érroné", "", "");
