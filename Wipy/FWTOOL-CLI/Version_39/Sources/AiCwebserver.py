@@ -101,7 +101,7 @@ def AiCWebserv(port):
 						ibexit = requete.find('xit')
 
 						ibbootstrap_min_css = requete.find('bootstrap.min.css')
-						ibmiro_css = requete.find('miro.css')
+						ibmiro_css = requete.find('miro.min.css')
 						ibmiroresponsive_css = requete.find('miro.responsive.css')
 						
 						ibbootstrap_bundle_min_js = requete.find('bootstrap.bundle.min.js')
@@ -277,7 +277,7 @@ def AiCWebserv(port):
 						elif ibmiro_css > 0 :
 							CHUNK_SIZE = 512
 							conn.sendall(Rep_Server('cssa'))
-							with open('assets/css/miro.css', 'rb') as f:
+							with open('assets/css/miro.min.css', 'rb') as f:
 								data = f.read(CHUNK_SIZE)
 								while data:
 									conn.send(bytes(data))

@@ -160,7 +160,10 @@ function commande(cmd, opt) {
     $.post({
         url: cmd + opt,
         data: "PROGRAMME MANUEL CALIBRATION",
-        cache: false
+        cache: false,
+        error: function(){
+            linked(0);
+        }
     });
 }
 
@@ -382,6 +385,9 @@ function g_wifi() {
         dateType: 'json',
         success: function (jsonObj) {
             var channel = parseInt(jsonObj["canal"]);
+            var auth = jsonObj["auth"];
+            var ssid = jsonObj["ssid"];
+            console.log("canal : "+channel+"\nMot de passe : "+ auth+"\nSSID : "+ssid+"\n")
             var txt = '';
             for (var i = 1; i < 12; i++) {
                 txt += '<OPTION value="' + i + '" ';
@@ -391,6 +397,18 @@ function g_wifi() {
                 txt += ' >' + i + '</OPTION>';
             }
             document.getElementById('c1').innerHTML = txt;
+            if (auth !=null){
+                document.getElementById('p1').placeholder = auth[1];
+            }
+            else {
+                document.getElementById('p1').placeholder = "12345678";
+            }
+            if (ssid != 'P5'){
+                document.getElementById('n1').placeholder = ssid.substr(5);
+            }
+            else {
+                document.getElementById('n1').placeholder = "par exemple: PART_A";
+            }
 
         },
         error: function () {
@@ -697,11 +715,11 @@ function event_edit() {
                 cache: false,
                 dataType: 'text',
                 success: function (contenu) {
-                    document.getElementById('put_text').innerHTML = contenu; // Affichage de la récupération
+                    document.getElementById('put_text').value = contenu; // Affichage de la récupération
                 }
             });
         } else {
-            document.getElementById('put_text').innerHTML = "";
+            document.getElementById('put_text').value = "";
         }
     });
 }
