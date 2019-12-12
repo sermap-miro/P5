@@ -46,7 +46,11 @@ function fermeture_pos(cible, val, number) {
         });
     }
 }
-/* Accès page conf et Calibration via un mot de passe */
+function affichage(number){
+    activeur(number[2]);
+    g_HTML(number[1]);
+}
+/* Accès page COnfiguration et Edition via un mot de passe */
 function acces_conf(number) {
     var centrer;
     $('#show_mdp').center();
@@ -62,8 +66,7 @@ function acces_conf(number) {
             var date_y = Date.now();
             localStorage.setItem('y', date_y);
             compteur(1800, cle = "mdp_conf_cali", value = "no",date_y);
-            activeur(number[2]);
-            g_HTML(number[1]);
+            affichage(number);
             if (number[0] == 'edit') {
                 event_edit();
             } else if (number[0] == 'conf') {
@@ -84,8 +87,7 @@ function acces_conf(number) {
             }
         } else if (number[0] == 'edit'){
             alerter("Edition", "Mot de passe érroné", "", "");
-            activeur(number[2]);
-            g_HTML(number[1]);
+            affichage(number);
             event_edit();
         } else {
             alerter("Configuration", "Mot de passe érroné", "", "");
@@ -96,8 +98,7 @@ function acces_conf(number) {
         $('#show_mdp').closing();
         clearInterval(centrer);
         if (number[0] == 'edit') {
-            activeur(number[2]);
-            g_HTML(number[1]);
+            affichage(number);
             event_edit();
         }
     };
@@ -119,8 +120,7 @@ function acces_calib(number)
             var date_y = Date.now();
             localStorage.setItem('cy', date_y);
             compteur(1800, cle = "Cali_access", value = "no",date_y);
-            activeur(number[2]);
-            g_HTML(number[1]);
+            affichage(number);
         } else {
             alerter("Calibration", "Mot de passe érroné", "", "");
         }
@@ -285,8 +285,7 @@ function comd(number) {
         if (mdp_conf != 'tracker777') {
             acces_conf(number);
         } else {
-            activeur(number[2]);
-            g_HTML(number[1]);
+            affichage(number);
             // Affichage du contenu
             if (number[0] == 'conf') {
 
@@ -313,14 +312,12 @@ function comd(number) {
             acces_calib(number);
         }
         else {
-            activeur(number[2]);
-            g_HTML(number[1]);
+            affichage(number);
         }
     }
     else
     {
-        activeur(number[2]);
-        g_HTML(number[1]); // Affichage du contenu 
+        affichage(number); // Affichage du contenu 
     }
     if (number[0] == 'info') {
         Info(); // Affichage des information du ¨P5 
