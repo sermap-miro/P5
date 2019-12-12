@@ -82,12 +82,13 @@ function acces_conf(number) {
                     }
                 })
             }
+        } else if (number[0] == 'edit'){
+            alerter("Edition", "Mot de passe érroné", "", "");
+            activeur(number[2]);
+            g_HTML(number[1]);
+            event_edit();
         } else {
-            alerter("Page Conf et Calib", "Mot de passe érroné", "", "");
-            if (number[0] == 'edit') {
-                g_HTML(number[1]);
-                event_edit();
-            }
+            alerter("Configuration", "Mot de passe érroné", "", "");
         }
     };
     var no = document.getElementById("n_pass").onclick = function () {
@@ -95,6 +96,7 @@ function acces_conf(number) {
         $('#show_mdp').closing();
         clearInterval(centrer);
         if (number[0] == 'edit') {
+            activeur(number[2]);
             g_HTML(number[1]);
             event_edit();
         }
@@ -120,17 +122,13 @@ function acces_calib(number)
             activeur(number[2]);
             g_HTML(number[1]);
         } else {
-            alerter("Page Conf et Calib", "Mot de passe érroné", "", "");
+            alerter("Calibration", "Mot de passe érroné", "", "");
         }
     };
     var no = document.getElementById("n_pass").onclick = function () {
         document.getElementById('motdepasse').value = "";
         $('#show_mdp').closing();
         clearInterval(centrer);
-        if (number[0] == 'edit') {
-            g_HTML(number[1]);
-            event_edit();
-        }
     };
 
 }
@@ -217,7 +215,8 @@ channel_wifi = "";
 function init() {
     var connexion, time1,time2;
     // Affichage de l'heure locale dans la div comportant l'id 'now' 
-    g_time(); // Affichage de l'heure du P5 
+    g_time(); // Affichage de l'heure du P5
+    linked(0); 
     if (localStorage.getItem("y") === null) {
         localStorage.setItem("y", 0); // Initialisation des variables locales
     }
