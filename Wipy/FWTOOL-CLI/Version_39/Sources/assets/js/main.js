@@ -46,7 +46,8 @@ function fermeture_pos(cible, val, number) {
         });
     }
 }
-function affichage(number){
+
+function affichage(number) {
     activeur(number[2]);
     g_HTML(number[1]);
 }
@@ -54,7 +55,7 @@ function affichage(number){
 function acces_conf(number) {
     var centrer;
     $('#show_mdp').center();
-    centrer = setInterval("$('#show_mdp').atcenter()",500);
+    centrer = setInterval("$('#show_mdp').atcenter()", 500);
     var val_mdp;
     var yes = document.getElementById("y_pass").onclick = function () {
         val_mdp = document.getElementById('motdepasse').value;
@@ -65,7 +66,7 @@ function acces_conf(number) {
             localStorage.setItem('mdp_conf_cali', 'tracker777');
             var date_y = Date.now();
             localStorage.setItem('y', date_y);
-            compteur(1800, cle = "mdp_conf_cali", value = "no",date_y);
+            compteur(1800, cle = "mdp_conf_cali", value = "no", date_y);
             affichage(number);
             if (number[0] == 'edit') {
                 event_edit();
@@ -85,7 +86,7 @@ function acces_conf(number) {
                     }
                 })
             }
-        } else if (number[0] == 'edit'){
+        } else if (number[0] == 'edit') {
             alerter("Edition", "Mot de passe érroné", "", "");
             affichage(number);
             event_edit();
@@ -104,11 +105,11 @@ function acces_conf(number) {
     };
 
 }
-function acces_calib(number)
-{
+
+function acces_calib(number) {
     var centrer
     $('#show_mdp').center();
-    centrer = setInterval("$('#show_mdp').atcenter()",500);
+    centrer = setInterval("$('#show_mdp').atcenter()", 500);
     var val_mdp;
     var yes = document.getElementById("y_pass").onclick = function () {
         val_mdp = document.getElementById('motdepasse').value;
@@ -119,7 +120,7 @@ function acces_calib(number)
             localStorage.setItem('Cali_access', 'Triple-Double');
             var date_y = Date.now();
             localStorage.setItem('cy', date_y);
-            compteur(1800, cle = "Cali_access", value = "no",date_y);
+            compteur(1800, cle = "Cali_access", value = "no", date_y);
             affichage(number);
         } else {
             alerter("Calibration", "Mot de passe érroné", "", "");
@@ -136,7 +137,7 @@ function acces_calib(number)
 function alerter(type, message, cible, val) {
     var centrer;
     $('#alerter').center();
-    centrer = setInterval("$('#alerter').atcenter()",500);
+    centrer = setInterval("$('#alerter').atcenter()", 500);
     $('#title_alt').text(type);
     $('#error-msg').text(message);
     var y = document.getElementById('y_alert');
@@ -161,7 +162,7 @@ function commande(cmd, opt) {
         url: cmd + opt,
         data: "PROGRAMME MANUEL CALIBRATION",
         cache: false,
-        error: function(){
+        error: function () {
             linked(0);
         }
     });
@@ -192,8 +193,8 @@ function maj_clock() {
         data: "HORLOGE",
         success: function () {
             alerter("Horloge", 'L\'horloge à été mise a jour', "", "");
-            (t < 10) ? (t="0"+t):t;
-            (n < 10) ? (n="0"+n):t;
+            (t < 10) ? (t = "0" + t) : t;
+            (n < 10) ? (n = "0" + n) : t;
             document.getElementById('m_time').innerHTML = 'P5 : ' + n + ':' + t;
         }
     })
@@ -216,22 +217,18 @@ auth_wifi = "";
 channel_wifi = "";
 /* A l'ouverture de la page */
 function init() {
-    var connexion, time1,time2;
+    var connexion, time1, time2;
     // Affichage de l'heure locale dans la div comportant l'id 'now' 
     g_time(); // Affichage de l'heure du P5
-    linked(0); 
+    linked(0);
     if (localStorage.getItem("y") === null) {
         localStorage.setItem("y", 0); // Initialisation des variables locales
-    }
-    else 
-    {
+    } else {
         time1 = localStorage.getItem("y");
     }
     if (localStorage.getItem("cy") === null) {
         localStorage.setItem("cy", 0); // Initialisation des variables locales
-    }
-    else 
-    {
+    } else {
         time2 = localStorage.getItem("cy");
     }
     if (localStorage.getItem("mdp_conf_cali") === null) {
@@ -240,12 +237,13 @@ function init() {
     if (localStorage.getItem("Cali_access") === null) {
         localStorage.setItem("Cali_access", "no");
     }
-    compteur(1800, cle = "mdp_conf_cali", value = "no",time1); // Compteur de 30 pour l'activation de la page CONF et CALI
-    compteur(1800, cle = "Cali_access", value = "no",time2);
-    connexion = setInterval(get_wifi_datas,5000);
+    compteur(1800, cle = "mdp_conf_cali", value = "no", time1); // Compteur de 30 pour l'activation de la page CONF et CALI
+    compteur(1800, cle = "Cali_access", value = "no", time2);
+    connexion = setInterval(get_wifi_datas, 5000);
     activeur(-1);
 }
-function get_wifi_datas(){
+
+function get_wifi_datas() {
     $.get({
         url: 'assets/json/wifi.json',
         headers: {
@@ -256,17 +254,18 @@ function get_wifi_datas(){
         cache: false,
         dataType: 'json',
         success: function (jsonObj) {
-            nom_wifi=jsonObj["ssid"];
-            auth_wifi=jsonObj["auth"];
-            channel_wifi=jsonObj["canal"];
+            nom_wifi = jsonObj["ssid"];
+            auth_wifi = jsonObj["auth"];
+            channel_wifi = jsonObj["canal"];
             linked(1);
         },
-        error:function(){
+        error: function () {
             linked(0);
         }
     })
 }
-function compteur(nb, cle, value,t) {
+
+function compteur(nb, cle, value, t) {
     var diff = Date.now();
     if ((diff - t) >= nb * 1000) {
         localStorage.setItem(this.cle, this.value);
@@ -280,7 +279,7 @@ function comd(number) {
     $("body").css("background-image", "none"); // Suppression l'image en arriere plan SERMAP
     if (number[0] == 'home') {
         $("body").css("background-image", "");
-         // Affichage à nouveau du Background
+        // Affichage à nouveau du Background
     }
     if ((number[0] == 'conf') || (number[0] == 'edit')) {
 
@@ -307,19 +306,14 @@ function comd(number) {
                 })
             }
         }
-    } else if ((number[0] == 'calibration'))
-    {
-        mdp_cali = localStorage.getItem('Cali_access'); 
-        if(mdp_cali != 'Triple-Double')
-        {
+    } else if ((number[0] == 'calibration')) {
+        mdp_cali = localStorage.getItem('Cali_access');
+        if (mdp_cali != 'Triple-Double') {
             acces_calib(number);
-        }
-        else {
+        } else {
             affichage(number);
         }
-    }
-    else
-    {
+    } else {
         affichage(number); // Affichage du contenu 
     }
     if (number[0] == 'info') {
@@ -334,44 +328,44 @@ function comd(number) {
 }
 
 // function set_active() {
-    // var logo = document.getElementById("home");
-    // logo.addEventListener("click", function () {
-        // var acti = document.getElementsByClassName("bright-miro");
-        // if (acti.length > 0) {
-            // acti[0].className = acti[0].className.replace("bright-miro", "nav-link");
-        // }
-    // })
-    // var li_btn = document.getElementById("navbarColor01");
-    // var btns = li_btn.getElementsByTagName("a");
-    // for (var i = 0; i < btns.length - 2; i++) {
-        // btns[i].addEventListener("click", function () {
-            // var current = document.getElementsByClassName("bright-miro");
-            // //If there's no active class
-            // if (current.length > 0) {
-                // current[0].className = current[0].className.replace("bright-miro", "nav-link");
-            // }
-            // //Add the active class to the current/clicked button
-            // this.className = "bright-miro";
-        // });
-    // }
+// var logo = document.getElementById("home");
+// logo.addEventListener("click", function () {
+// var acti = document.getElementsByClassName("bright-miro");
+// if (acti.length > 0) {
+// acti[0].className = acti[0].className.replace("bright-miro", "nav-link");
 // }
-function activeur(la_page){
-	var acti = document.getElementsByClassName("bright-miro");
+// })
+// var li_btn = document.getElementById("navbarColor01");
+// var btns = li_btn.getElementsByTagName("a");
+// for (var i = 0; i < btns.length - 2; i++) {
+// btns[i].addEventListener("click", function () {
+// var current = document.getElementsByClassName("bright-miro");
+// //If there's no active class
+// if (current.length > 0) {
+// current[0].className = current[0].className.replace("bright-miro", "nav-link");
+// }
+// //Add the active class to the current/clicked button
+// this.className = "bright-miro";
+// });
+// }
+// }
+function activeur(la_page) {
+    var acti = document.getElementsByClassName("bright-miro");
     if (acti.length > 0) {
-            acti[0].className = acti[0].className.replace("bright-miro", "nav-link");    
-        }
+        acti[0].className = acti[0].className.replace("bright-miro", "nav-link");
+    }
     var current = document.getElementsByClassName("bright-miro");
     // If there's no active class
     if (current.length > 0) {
-            current[0].className = current[0].className.replace("bright-miro", "nav-link");
+        current[0].className = current[0].className.replace("bright-miro", "nav-link");
     }
     var li_btn = document.getElementById("navbarColor01");
-    var btns = li_btn.getElementsByTagName("a");        
-    if (la_page > -1)
-    {
+    var btns = li_btn.getElementsByTagName("a");
+    if (la_page > -1) {
         btns[la_page].className = "bright-miro";
     }
 }
+
 function g_wifi() {
     comd(wifi);
     $.get({
@@ -387,7 +381,7 @@ function g_wifi() {
             var channel = parseInt(jsonObj["canal"]);
             var auth = jsonObj["auth"];
             var ssid = jsonObj["ssid"];
-            console.log("canal : "+channel+"\nMot de passe : "+ auth+"\nSSID : "+ssid+"\n")
+            console.log("canal : " + channel + "\nMot de passe : " + auth + "\nSSID : " + ssid + "\n")
             var txt = '';
             for (var i = 1; i < 12; i++) {
                 txt += '<OPTION value="' + i + '" ';
@@ -397,16 +391,14 @@ function g_wifi() {
                 txt += ' >' + i + '</OPTION>';
             }
             document.getElementById('c1').innerHTML = txt;
-            if (auth !=null){
+            if (auth != null) {
                 document.getElementById('p1').placeholder = auth[1];
-            }
-            else {
+            } else {
                 document.getElementById('p1').placeholder = "12345678";
             }
-            if (ssid != 'P5'){
+            if (ssid != 'P5') {
                 document.getElementById('n1').placeholder = ssid.substr(5);
-            }
-            else {
+            } else {
                 document.getElementById('n1').placeholder = "par exemple: PART_A";
             }
 
@@ -432,10 +424,10 @@ function g_time() {
             'Expires': '0'
         },
         cache: false,
-        dataType: 'json', 
-        error: function() {
-              linked(0);
-            },
+        dataType: 'json',
+        error: function () {
+            linked(0);
+        },
         // lors de la recuperation du fichier on fait appel à up_date time pour traiter le fichier JSON
         success: function (jsonObj) {
             up_date_time(jsonObj);
@@ -443,32 +435,30 @@ function g_time() {
     });
     setTimeout('g_time();', 15000); // Actualisation toutes les 15 secondes
 }
-function linked(connected){
+
+function linked(connected) {
     var Lscreen = window.innerWidth;
-    if (!connected){
-    
-        if (Lscreen < 1200){
+    if (!connected) {
+
+        if (Lscreen < 1200) {
             document.getElementById("etat_co").innerHTML = "Non connecté";
-        }
-        else{
-            document.getElementById("etat_co").innerHTML = "";  
+        } else {
+            document.getElementById("etat_co").innerHTML = "";
         }
         document.getElementById("thetitle").innerHTML = "Non connecté";
-        }
-    else {
-        if (Lscreen < 1200){
+    } else {
+        if (Lscreen < 1200) {
             document.getElementById("etat_co").innerHTML = nom_wifi;
-            }
-        else{
+        } else {
             document.getElementById("etat_co").innerHTML = "";
-            }
+        }
         document.getElementById("thetitle").innerHTML = nom_wifi;
-}
+    }
 }
 
 /* Recupération et affichage de l'heure */
 function up_date_time(jsonObj) {
-    
+
     var l_heure = jsonObj['h'];
     var la_minute = jsonObj['m'];
     (l_heure < 10) ? (l_heure = "0" + l_heure) : l_heure;
@@ -491,7 +481,7 @@ function Info() {
                 success: function (jsonObj) {
                     generate_info(jsonObj);
                 },
-                error: function(){
+                error: function () {
                     linked(0);
                 }
             })
@@ -690,11 +680,11 @@ function g_edit() {
 }
 /* Génération de la page édit*/
 function event_edit() {
-    var access = localStorage.getItem('mdp_conf_cali'); 
-    var x = document.getElementById('opt_edit'); 
+    var access = localStorage.getItem('mdp_conf_cali');
+    var x = document.getElementById('opt_edit');
     var tab = ['Standard', 'Pailleux', 'DVT', 'MultiTas'];
-
-    if (access == 'tracker777') { /* Si le mot de passe est bon alors on affiche les fichiers Standard, Pailleux, DVT, Multitas */
+    if (access == 'tracker777') {
+        /* Si le mot de passe est bon alors on affiche les fichiers Standard, Pailleux, DVT, Multitas */
         for (var add in tab) {
             var opt = document.createElement('option');
             opt.value = tab[add];
@@ -733,11 +723,11 @@ function g_planning() {
             'Pragma': 'no-cache',
             'Expires': '0'
         },
-        cache: false, 
+        cache: false,
         dataType: 'text',
         success: function (contenu) {
-            var texte = ''; 
-            var reg = new RegExp(["\n"]); 
+            var texte = '';
+            var reg = new RegExp(["\n"]);
             var reg2 = new RegExp([":"]);
             var col = 1;
             var tab_opt = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Standard', 'Pailleux', 'DVT', 'MultiTas'];
@@ -845,7 +835,7 @@ function change_wifi() {
                     if (wifi_name != '') {
 
                         document.getElementById('w_name').innerHTML = 'Nom Wifi : P5 -' + wifi_name;
-                        nom_wifi = "P5 - "+wifi_name;
+                        nom_wifi = "P5 - " + wifi_name;
                     } else {
                         document.getElementById('w_name').innerHTML = 'Nom Wifi : P5';
                         nom_wifi = "P5";
@@ -914,8 +904,8 @@ function save_conf() {
     } else if (vide) {
         alerter(z_c, "Il y a " + vide + " cases vides, remplissez les!", "", "");
     } else if (cons) {
-        alerter(z_c, "Il y a " 
-        + cons + " consigne(s) au dessus de 20 A, corrigez la/les!", "", "");
+        alerter(z_c, "Il y a " +
+            cons + " consigne(s) au dessus de 20 A, corrigez la/les!", "", "");
     } else if (pat) {
         alerter(z_c, "Les variables de patinage et de Temps pelle doivent être inferieure à 255 secondes!", "", "");
     } else if (t_ms) {
@@ -941,6 +931,7 @@ function save_edit() {
             err = 0,
             ligne = 0,
             ev = 0;
+
         var tosend = fichier + contenu + mode;
         var reg = new RegExp("(^[ADMPRSE] [1-9][0-9]{0,3}$)|(^O [DG]$)|(^[ARBL]$)|(^[AR] 0$)|(^\#[\t A-Za-z0-9_'*\#\-]*$)|(^[\t ]*$)", "gm");
         var reg2 = new RegExp("[\n]");
@@ -995,12 +986,11 @@ function save_h() {
                 data: dataString,
                 success: function () {
                     alerter("Horloge", "L'horloge à été mis à jour", "", "");
-                    (h1 < 10) ? (h1="0"+h1):h1;
-                    (m1 < 10) ? (m1="0"+m1):m1;
+                    (h1 < 10) ? (h1 = "0" + h1) : h1;
+                    (m1 < 10) ? (m1 = "0" + m1) : m1;
                     document.getElementById('m_time').innerHTML = 'P5 : ' + h1 + ':' + m1;
                 }
             });
-
             return false;
         } else {
             alerter("Horloge", "Les entrées ne sont pas attribuables", "", "");
@@ -1054,7 +1044,6 @@ function save_h() {
     }
 
 })();
-pages = {"manu": 0,"programme":1,"clock":2,"info":3,"edit":4,"planning":5,"conf":6,"calibration":7,"wifi":8}
 var home = ["home", '', -1];
 var manu = ["manu", '<div class="container"><div class="row"><div class="col-12"><ul class="miro-nav"><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(1)">Cycle (Standard)</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(2)">Avant</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(3)">Lever Pelle</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(4)">Sort (Bequille)</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(5)">STOP</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(6)">Rentre (Bequille)</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(7)">Cycle (Retour)</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(8)">Arrière</a></li><li><a class="btn btn-miro prgm_manu" onclick="Manuel_cmd(9)">Baisser Pelle</a></li></ul></div></div></div>', 0];
 var programme = ["programme", '<div class="container"><div class="row"><div class="col-12"><div class="pad19"><div class="row"><div class="col-12"><ul class="prgm-nav"><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(1)">1</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(2)">2</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(3)">3</a></li> </ul></div></div><div class="row"><div class="col-12"><ul class="prgm-nav"><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(4)">4</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(5)">5</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(6)">6</a></li></ul></div></div><div class="row"><div class="col-12"><ul class="prgm-nav"><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(7)">7</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(8)">8</a></li><li><a class="btn btn-miro btn-lg" onclick="Programme_cmd(9)">9</a></li></ul></div></div></div><ul class="miro-nav"><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(10)">Standard</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(11)">Pailleux</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(12)">DVT</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(13)">MultiTas</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(14)">Retour</a></li><li><a class="btn btn-miro prgm_manu" onclick="Programme_cmd(15)">STOP</a></li></ul></div></div></div>', 1];
