@@ -1,0 +1,26 @@
+Intégrer dans le site web embarqué, la possibilité de modifier la variable: m.Capteur_Capot_Nb_Evenement_Autoriser
+
+
+
+>>> 
+>>> 
+>>> Unhandled exception in thread started by <function check_fly at 0x3f950390>
+Traceback (most recent call last):
+  File "main.py", line 353, in check_fly
+  File "commande.py", line 91, in Read_Prgm
+  File "mirobot2.py", line 348, in get_statut_PIC
+  File "mirobot2.py", line 296, in PIC_ASK
+TypeError: object of type 'NoneType' has no len()
+
+>>> 
+
+
+-Sécurité capot à proximité d'une platine => déphasé dans son cycle
+-programme de retour en fonction de sa position dans l'installation
+-lorsque le mirobot part en fonction multitas, il ne semble pas faire la détection du faux départ s'il reste sur la platine de multitas:
+il faudrait ajouter un drapeau qui dit que la fumière est pleine
+-VREF au lieu de la calibration
+-Rendre le programme multilangue
+-Ajout d'un état bloquer impossible avec la fumière pleine: au démarrage d'un multitas, si on ne quitte pas la platine du début de la fumière alors on doit tout arrêter et mettre le système en défaut avec le message comme quoi la fumière est pleine!
+-Fonction Relais/Interrupteur... retiré dans coupe_moteur le RELAIS = 0 (ligne 267 dans action.c dans le code du PIC) de la fonction Coupe_Moteur() 
+-sur la version 31/32, lorsque l'on change certain paramètres de la page: http://192.168.4.1 ils ne sont pas mis correctement a jour dans la page qui s'actualise tout seul. Par contre si on l'actualise nous meme alors, on voit les modifications apportés => à regarder si il y a le même comportement avec la version 38 et supérieur

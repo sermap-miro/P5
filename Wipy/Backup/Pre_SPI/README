@@ -1,0 +1,14 @@
+#Version 6:
+#18 Avril
+
+Multitas: 
+	-Le paramètre dans les programmes concernant le nombre de seconde de patinage est désormais le nombre
+	de centaine de milliseconde
+	-Comme Quentin l'a proposé, lorsque le mirobot est en multitas, on défini le temps de platine égal au temps de		patinage passé en paramètre
+
+
+#Version 7:
+#14 Juin
+
+Vérification de l'horloge au démarrage du lopy
+Comptage des heures de fonctionnement

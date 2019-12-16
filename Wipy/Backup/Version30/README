@@ -1,0 +1,80 @@
+#Version 30:
+Problème des commentaires dans l'édition des programmes => le caractère dièse ("#") apparait sous la forme %23
+le caractère espace apparait sous la forme d'un plus ("+")
+
+#Version 29:
+Ajout du paramètre de channel pour le wifi
+
+#Version 28:
+Temps de vol affichage en fonction s/min/h: correction du bug qui affiche la mauvaise valeurs dans les informations:
+ ca affichait toujours l'unité en seconde!
+
+#Version 27:
+Temps de démarrage dans le menu Information: 14,19 secondes
+
+#Version 26:
+mesure du temps de démarrage avec son affichage dans la page information
+
+#Version 25:
+m.request émis de nouveau si mauvaise écoute de la requete <= abandonné, ne résolvait pas le problème avec chrome
+
+#Version 24:
+s.listen(0) dans AiCwebserver.py
+
+#Version 23:
+-Wifi_Connect (temps de pause de 4 seconde pour laisser au wipy le temps de se connecter)
+
+#Version 22:
+-Réduction en taille de main.py => pour un upgrade plus rapide
+
+#Version 21:
+-l'application P4 n'était plus compatible pour la remonté du Statut (à cause de la nouvelle facon d'accéder au paramétrage du Wifi), cela est modifier en conséquence
+
+#Version 20:
+-Suppression de print dans AiCwebserver.py
+
+#Version 19:
+-Version compilé pour le wipy
+
+#Version 18:
+-Amélioration de l'application pour la mise à jour du Wipy (problème d'utf-8 entre python 2.7 et 3.x). (Il y a peut etre des problèmes sur les versions précédentes de par ce fait la... qui pourtant n'existait pas auparavant! Bizarre)
+
+#Version 17:
+-Ajout du password pour le wifi
+-Modification des liens du site internet pour que ca pointe en local et non en fixant l'adresse ip (dans le cas éventuel ou le wipy viendrait se connecter a un réseau wifi existant)
+
+#Version 16:
+-Bug accès site web avec déconnexion: https://forum.pycom.io/topic/1747/urequests-with-ussl-causes-an-oserror/4
+Fermeture de la socket dans tous les cas => socket.close()
+et gc.collect() pour vider le collecteur python
+
+
+#Version 15:
+-Ajout de l'icone du site web embarqué
+-Ajout de la commande Interrupteur qui permet d'activer ou de désactiver le relais
+-Ajout du temps de fonctionnement et de maintenance sur la page Information
+
+
+#Version 14: version en fonctionnement au Tilleret
+
+
+#Version 9:
+Ajout de nouveau intitulé d'alarme:
+9 : 'Overload_Cap_1_1'
+10 : 'Overload_Cap_1_3'
+
+
+#Version 6:
+#18 Avril
+
+Multitas: 
+	-Le paramètre dans les programmes concernant le nombre de seconde de patinage est désormais le nombre
+	de centaine de milliseconde
+	-Comme Quentin l'a proposé, lorsque le mirobot est en multitas, on défini le temps de platine égal au temps de		patinage passé en paramètre
+
+
+#Version 7:
+#14 Juin
+
+Vérification de l'horloge au démarrage du lopy
+Comptage des heures de fonctionnement

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>P5</title>
+
+        <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+
+        <link href="assets/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="assets/css/miro.css" type="text/css" rel="stylesheet">
+        <link href="assets/css/miro.responsive.css" type="text/css" rel="stylesheet">
+
+        <script src="assets/js/jquery-3.3.1.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/main.min.js"></script>
+
+
+
+
+
+        <script language="javascript">
+            function Send_Clock_hidden2(){
+                var d = new Date();
+                var hours = d.getHours();
+                var mins = d.getMinutes();
+                
+                document.getElementById("h1").value = hours
+                document.getElementById("m1").value = mins
+                
+                
+                
+
+
+                var resp, xmlhttp=new XMLHttpRequest();
+                xmlhttp.onreadystatechange=function() {
+                    if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                        resp = xmlhttp.responseText;
+                        console.log(resp);
+                        }
+                }
+                xmlhttp.open("GET","H="+hours+":"+mins,true); 
+                xmlhttp.send();
+
+                //sleep(1)
+
+
+//var nameValue = document.getElementById("uniqueID").value;
+
+//setTimeout(() => window.open('http://192.168.4.1/'), 1000);
+setTimeout(() => window.open('http://192.168.4.1/', '_self'), 1000);
+                //document.forms["clock"].submit();
+            }
+        </script>
+
+
+    </head>
+    
+    <body>
+        <header class="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6 logo">
+                        <img src="assets/img/logo.png">
+                    </div>
+
+                    <div class="col-6 title">
+                        <h1>P5</h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="time">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <p id="now"></p>
+                        <p id="clock"></p>
+                    </div>
+
+                    <div class="col-6 text-right">
+                        <button type="submit" class="btn btn-primary btn-sm" form="clock">Mettre à jour</button>
+                        <button class="btn btn-primary btn-sm" onclick="Send_Clock_hidden2()">Mettre à jour JS</button>
+                    </div>
+                </div>
+            </div>     
+        </div>
+
+        <main id="main" class="mt-3">
+

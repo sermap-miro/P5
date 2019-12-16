@@ -1,0 +1,15 @@
+#!/bin/bash
+##java -jar /opt/microchip/mplabx/v4.01/mplab_ipe/ipecmd.jar -TPICD3 -M -Y -P18F4431 -F/home/sam/MPLABXProjects/MOTEUR.X/dist/default/production/MOTEUR.X.production.hex
+#java -jar /opt/microchip/mplabx/v3.61/mplab_ipe/ipecmd.jar -TPICD3 -M -Y -P18F4431 -F/home/sam/Projects/P4/PIC/Moteur_P4.production.hex
+
+#Labo
+#/opt/microchip/mplabx/v4.01/sys/java/jre1.8.0_141/bin/java -jar /opt/microchip/mplabx/v3.61/mplab_ipe/ipecmd.jar -TPICD3 -M -Y -P18F4431 -F/home/sam/Projects/P4/PIC/Moteur_P4.production.hex
+
+
+#plinux
+/opt/microchip/mplabx/v3.61/sys/java/jre1.8.0_121/bin/java -jar /opt/microchip/mplabx/v3.61/mplab_ipe/ipecmd.jar -TPICD3 -M -Y -P18F4431 -F/home/sam/Projects/P4/PIC/Moteur_P4.production.hex
+
+
+#pwin
+/opt/microchip/mplabx/v4.01/sys/java/jre1.8.0_141/bin/java -jar /opt/microchip/mplabx/v4.01/mplab_ipe/ipecmd.jar -TPICD3 -M -Y -P18F4431 -F/home/sam/Projects/P4/PIC/Moteur_P4.production.hex
+

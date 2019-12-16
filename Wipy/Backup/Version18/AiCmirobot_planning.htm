@@ -1,0 +1,570 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head> 
+<title>P5</title> 
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+  <style type="text/css" id="style">
+  
+  @media screen and (min-device-width:698px) {
+  div#showgrid {
+    width: 698px;
+    margin: auto;
+  }
+}
+
+div.column {
+  border-style: solid;
+  border-width: 0px;
+}
+
+.row {
+  width: 100%;
+  margin: auto;
+vertical-align: middle;
+}
+
+@media (min-device-width: 698px) {
+  .column {
+    width: 200px;
+    height: 77px;
+    display: inline;
+    float: left;
+  }
+}
+
+.column {
+  width: 200px;
+  height: 77px;
+  margin: auto;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+    vertical-align: middle;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.button {
+  display: inline;
+  /*display: inline-block;*/
+  /*display: table-cell;*/
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  vertical-align: middle;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #8e3e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.150px-width{
+ width: 150px;
+}
+
+  </style>
+<script language="javascript">
+function Send_Command(cmd){
+	var resp, xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			resp = xmlhttp.responseText;
+			console.log(resp);
+			}
+	}
+	xmlhttp.open("GET","Plan=" + cmd,true); xmlhttp.send()	
+}
+</script> 
+</head> 
+<body> 
+
+
+
+
+
+<form action="/T3Plan" method="post">
+
+<div>
+<button type="submit" class="button 150px-width" onclick="location.href='http://192.168.4.1/T3Plan'">Sauvegarder</button>
+</div>
+
+
+<div>
+01
+<input type="number" name="h1" value="0" min="0" max="23">
+<input type="number" name="m1" value="0" min="0" max="59">
+<input type="checkbox" id="v1" name="c1"/>
+<SELECT name="p1" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+02
+<input type="number" name="h2" value="0" min="0" max="23">
+<input type="number" name="m2" value="0" min="0" max="59">
+<input type="checkbox" id="v2" name="c2"/>
+<SELECT name="p2" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+03
+<input type="number" name="h3" value="0" min="0" max="23">
+<input type="number" name="m3" value="0" min="0" max="59">
+<input type="checkbox" id="v3" name="c3"/>
+<SELECT name="p3" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+04
+<input type="number" name="h4" value="0" min="0" max="23">
+<input type="number" name="m4" value="0" min="0" max="59">
+<input type="checkbox" id="v4" name="c4"/>
+<SELECT name="p4" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+05
+<input type="number" name="h5" value="0" min="0" max="23">
+<input type="number" name="m5" value="0" min="0" max="59">
+<input type="checkbox" id="v5" name="c5"/>
+<SELECT name="p5" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+06
+<input type="number" name="h6" value="0" min="0" max="23">
+<input type="number" name="m6" value="0" min="0" max="59">
+<input type="checkbox" id="v6" name="c6"/>
+<SELECT name="p6" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+07
+<input type="number" name="h7" value="0" min="0" max="23">
+<input type="number" name="m7" value="0" min="0" max="59">
+<input type="checkbox" id="v7" name="c7"/>
+<SELECT name="p7" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+08
+<input type="number" name="h8" value="0" min="0" max="23">
+<input type="number" name="m8" value="0" min="0" max="59">
+<input type="checkbox" id="v8" name="c8"/>
+<SELECT name="p8" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+09
+<input type="number" name="h9" value="0" min="0" max="23">
+<input type="number" name="m9" value="0" min="0" max="59">
+<input type="checkbox" id="v9" name="c9"/>
+<SELECT name="p9" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+10
+<input type="number" name="h10" value="0" min="0" max="23">
+<input type="number" name="m10" value="0" min="0" max="59">
+<input type="checkbox" id="v10" name="c10"/>
+<SELECT name="p10" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+11
+<input type="number" name="h11" value="0" min="0" max="23">
+<input type="number" name="m11" value="0" min="0" max="59">
+<input type="checkbox" id="v11" name="c11"/>
+<SELECT name="p11" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+12
+<input type="number" name="h12" value="0" min="0" max="23">
+<input type="number" name="m12" value="0" min="0" max="59">
+<input type="checkbox" id="v12" name="c12"/>
+<SELECT name="p12" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+13
+<input type="number" name="h13" value="0" min="0" max="23">
+<input type="number" name="m13" value="0" min="0" max="59">
+<input type="checkbox" id="v13" name="c13"/>
+<SELECT name="p13" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+14
+<input type="number" name="h14" value="0" min="0" max="23">
+<input type="number" name="m14" value="0" min="0" max="59">
+<input type="checkbox" id="v14" name="c14"/>
+<SELECT name="p14" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+15
+<input type="number" name="h15" value="0" min="0" max="23">
+<input type="number" name="m15" value="0" min="0" max="59">
+<input type="checkbox" id="v15" name="c15"/>
+<SELECT name="p15" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+16
+<input type="number" name="h16" value="0" min="0" max="23">
+<input type="number" name="m16" value="0" min="0" max="59">
+<input type="checkbox" id="v16" name="c16"/>
+<SELECT name="p16" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+17
+<input type="number" name="h17" value="0" min="0" max="23">
+<input type="number" name="m17" value="0" min="0" max="59">
+<input type="checkbox" id="v17" name="c17"/>
+<SELECT name="p17" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+18
+<input type="number" name="h18" value="0" min="0" max="23">
+<input type="number" name="m18" value="0" min="0" max="59">
+<input type="checkbox" id="v18" name="c18"/>
+<SELECT name="p18" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+19
+<input type="number" name="h19" value="0" min="0" max="23">
+<input type="number" name="m19" value="0" min="0" max="59">
+<input type="checkbox" id="v19" name="c19"/>
+<SELECT name="p19" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+<div>
+20
+<input type="number" name="h20" value="0" min="0" max="23">
+<input type="number" name="m20" value="0" min="0" max="59">
+<input type="checkbox" id="v20" name="c20"/>
+<SELECT name="p20" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+
+
+<p>
+
+
+<button type="submit" class="button 150px-width" onclick="location.href='http://192.168.4.1/T3Plan'">Sauvegarder</button>
+<div id="showgrid">
+<div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/Prgm'">Menu Programme</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/Manu'">Menu Manuel</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1'">Menu Principal</button></div>
+  </div>
+</div>
+
+
+</form>
+</body>
+</html>

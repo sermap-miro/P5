@@ -1,0 +1,153 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head> 
+<title>P5</title> 
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+  <style type="text/css" id="style">
+  
+  @media screen and (min-device-width:698px) {
+  div#showgrid {
+    width: 698px;
+    margin: auto;
+  }
+}
+
+div.column {
+  border-style: solid;
+  border-width: 0px;
+}
+
+.row {
+  width: 100%;
+  margin: auto;
+vertical-align: middle;
+}
+
+@media (min-device-width: 698px) {
+  .column {
+    width: 200px;
+    height: 77px;
+    display: inline;
+    float: left;
+  }
+}
+
+.column {
+  width: 200px;
+  height: 77px;
+  margin: auto;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+    vertical-align: middle;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.button {
+  display: inline;
+  /*display: inline-block;*/
+  /*display: table-cell;*/
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  vertical-align: middle;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #8e3e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.150px-width{
+ width: 150px;
+}
+
+  </style>
+<script language="javascript">
+function Send_Command(cmd){
+	var resp, xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			resp = xmlhttp.responseText;
+			console.log(resp);
+			}
+	}
+	xmlhttp.open("GET","Plan=" + cmd,true); xmlhttp.send()	
+}
+</script> 
+</head> 
+<body> 
+
+
+
+
+
+<form action="/T3Plan" method="post">
+
+<div>
+<button type="submit" class="button 150px-width" onclick="location.href='http://192.168.4.1/Clock'">Sauvegarder</button>
+<button type="submit" class="button 150px-width" onclick="location.href='http://192.168.4.1/'">Menu Principal</button>
+</div>
+
+
+<div>
+01
+<input type="number" name="h1" value="0" min="0" max="23">
+<input type="number" name="m1" value="0" min="0" max="59">
+<input type="checkbox" id="v1" name="c1"/>
+<SELECT name="p1" size="1">
+<OPTION>1
+<OPTION>2
+<OPTION>3
+<OPTION>4
+<OPTION>5
+<OPTION>6
+<OPTION>7
+<OPTION>8
+<OPTION>9
+<OPTION>Standard
+<OPTION>Pailleux
+<OPTION>DVT
+<OPTION>MultiTas
+</SELECT>
+</div>
+
+
+
+<p>
+
+
+<button type="submit" class="button 150px-width" onclick="location.href='http://192.168.4.1/T3Plan'">Sauvegarder</button>
+<div id="showgrid">
+<div class="row row-centered">
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/Prgm'">Menu Programme</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1/Manu'">Menu Manuel</button></div>
+    <div class="column small-centered"><button class="button 150px-width" onclick="location.href='http://192.168.4.1'">Menu Principal</button></div>
+  </div>
+</div>
+
+
+</form>
+</body>
+</html>

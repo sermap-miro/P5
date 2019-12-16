@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+
+
+import network
+from network import WLAN
+
+from es import ARRET_URGENCE, BUZZER
+
+def Wifi_Init():
+    server = network.Server()
+    server.deinit() # disable the server
+    server.init(login=('sermap', 'sermapP5'), timeout=16000)
+    #if True:
+    #if ARRET_URGENCE() == 1: # il y a pas de metal en face du capteur
+    if True:
+        wlan = WLAN()
+        wlan.init(mode=WLAN.AP, ssid='P5 - 
+abc
+', auth=None, channel=7, antenna=WLAN.INT_ANT)
